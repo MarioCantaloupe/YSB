@@ -14,6 +14,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_38x42")
+id = "slime"
 name = "Slime"
 average_color = Color(0.39924723, 0.9155587, 0.34050837, 1)
 sprite_grid = Array[Array]([[ExtResource("2_38x42"), ExtResource("3_0ppah"), ExtResource("4_l2kga")], [ExtResource("5_hdxom"), ExtResource("6_eh6wf"), ExtResource("7_qnip6")], [ExtResource("8_7xs0l"), ExtResource("9_xvx7l"), ExtResource("10_jqfw2")]])

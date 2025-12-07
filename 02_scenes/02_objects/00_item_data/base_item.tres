@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="FoodData" load_steps=12 format=3 uid="uid://duk0ntp6mk6qf"]
+[gd_resource type="Resource" script_class="FoodData" load_steps=11 format=3 uid="uid://duk0ntp6mk6qf"]
 
 [ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="1_8l28y"]
-[ext_resource type="Texture2D" uid="uid://cv1sucm7fy3lh" path="res://01_assets/01_sprites/02_objects/00_foods/bread_dirty.png" id="2_08qxq"]
 [ext_resource type="Texture2D" uid="uid://cmer58h6eg36h" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook0.png" id="2_x260g"]
 [ext_resource type="Texture2D" uid="uid://bvr6sb3dn6r51" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook1.png" id="3_08qxq"]
 [ext_resource type="Texture2D" uid="uid://bsauc5s1v4ko5" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook2.png" id="4_o6qma"]
@@ -15,7 +14,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_8l28y")
+id = "ingredient"
 name = "Bread"
 average_color = Color(0.8782371, 0.41342348, 0.1290206, 1)
-sprite_dirty = ExtResource("2_08qxq")
 sprite_grid = Array[Array]([[ExtResource("2_x260g"), ExtResource("3_08qxq"), ExtResource("4_o6qma")], [ExtResource("5_8m0e2"), ExtResource("6_t5i43"), ExtResource("7_lv8y1")], [ExtResource("8_1ljiu"), ExtResource("9_4cqp5"), ExtResource("10_fntoj")]])

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="V2D_Tests"
+config/name="YSB"
 run/main_scene="uid://2fdgqp5p3dve"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"

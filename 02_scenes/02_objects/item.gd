@@ -32,6 +32,7 @@ var selected = false : set = _set_selected
 var has_reached_rest = false
 var rest_point
 var rest_nodes = []
+var last_item_pos : Vector2
 
 func _ready() -> void:
 	#if not gravity:
@@ -58,6 +59,7 @@ func _on_click_area_button_down() -> void:
 		#if PlayerCursor.held_item != null and PlayerCursor.held_item != self: # no regrab
 			#return
 		PlayerCursor.held_item = self
+		last_item_pos = get_global_mouse_position()
 		print(PlayerCursor.held_item.food_data.name)
 		_set_selected(true)
 		#PlayerCursor.set_cursor(PlayerCursor.CursorType.HOLDING)

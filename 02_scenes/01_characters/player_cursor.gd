@@ -44,7 +44,6 @@ func _process(_delta: float) -> void:
 	if velocity_buffer.size() > VELOCITY_SAMPLES:
 		velocity_buffer.pop_front()
 	
-
 func get_avg_mouse_velocity():
 	if velocity_buffer.is_empty():
 		return Vector2.ZERO
