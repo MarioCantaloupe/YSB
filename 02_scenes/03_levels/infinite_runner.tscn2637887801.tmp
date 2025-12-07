@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb04ji4mpf2vu"]
+
+[ext_resource type="PackedScene" uid="uid://co1ew4wo03x4j" path="res://02_scenes/01_characters/yaya_runner.tscn" id="1_w88gs"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w88gs"]
+
+[node name="InfiniteRunner" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Node2D" parent="." instance=ExtResource("1_w88gs")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 223)
+shape = SubResource("WorldBoundaryShape2D_w88gs")

@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpk6ka7ckqbny"]
+
+[ext_resource type="Script" uid="uid://ccleoijy68y2b" path="res://02_scenes/02_objects/pantry_picker.gd" id="1_ucdvd"]
+[ext_resource type="Resource" uid="uid://b70hme8husnxq" path="res://02_scenes/02_objects/00_item_data/ingredient_cheese.tres" id="2_y6gya"]
+[ext_resource type="Resource" uid="uid://duk0ntp6mk6qf" path="res://02_scenes/02_objects/00_item_data/base_item.tres" id="3_u2ok8"]
+[ext_resource type="Resource" uid="uid://b4ixsb5vt31om" path="res://02_scenes/02_objects/00_item_data/ingredient_slime.tres" id="4_8isjd"]
+
+[node name="pantry" type="Control"]
+layout_mode = 3
+anchor_top = 0.66
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 13.799988
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "INGR"
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("2_y6gya")
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EDIE"
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("3_u2ok8")
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NTES"
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("4_8isjd")
+
+[connection signal="button_down" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_button_down"]
+[connection signal="button_down" from="HBoxContainer/Button2" to="HBoxContainer/Button2" method="_on_button_down"]
+[connection signal="button_down" from="HBoxContainer/Button3" to="HBoxContainer/Button3" method="_on_button_down"]

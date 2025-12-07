@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cb04ji4mpf2vu"]
+
+[ext_resource type="Script" uid="uid://bqognyraoiwx0" path="res://02_scenes/03_levels/infinite_runner.gd" id="1_0p27r"]
+[ext_resource type="PackedScene" uid="uid://co1ew4wo03x4j" path="res://02_scenes/01_characters/yaya_runner.tscn" id="1_w88gs"]
+[ext_resource type="Script" uid="uid://cfel1p4e70kct" path="res://02_scenes/02_objects/obstacle_spawner.gd" id="2_u86ga"]
+[ext_resource type="PackedScene" uid="uid://bbhi6ysyx7ejp" path="res://02_scenes/02_objects/obstacle.tscn" id="3_fa34h"]
+[ext_resource type="PackedScene" uid="uid://cbx6k5i72h3n2" path="res://02_scenes/02_objects/cart_upgrade.tscn" id="4_0p27r"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w88gs"]
+
+[node name="InfiniteRunner" type="Node2D"]
+script = ExtResource("1_0p27r")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(577, 321)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 223)
+shape = SubResource("WorldBoundaryShape2D_w88gs")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -576.0
+offset_top = 224.0
+offset_right = -536.0
+offset_bottom = 264.0
+scale = Vector2(28.844486, 2.5505745)
+color = Color(0.41981313, 0.41981313, 0.4198131, 1)
+
+[node name="yaya" parent="." instance=ExtResource("1_w88gs")]
+position = Vector2(123, 496)
+jump_time_to_descent = 1.5
+
+[node name="asteroid_spawner" type="Node2D" parent="."]
+script = ExtResource("2_u86ga")
+obstacle_scenes = [{
+"scene": ExtResource("3_fa34h"),
+"weight": 5
+}, {
+"scene": ExtResource("4_0p27r"),
+"weight": 1
+}]
+
+[node name="asteroid_spawn_timer" type="Timer" parent="asteroid_spawner"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="GameEnd" from="yaya" to="." method="_on_yaya_game_end"]
+[connection signal="timeout" from="asteroid_spawner/asteroid_spawn_timer" to="asteroid_spawner" method="_on_asteroid_spawn_timer_timeout"]

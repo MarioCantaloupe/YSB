@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbx6k5i72h3n2"]
+
+[ext_resource type="PackedScene" uid="uid://dk6a0x7vluwke" path="res://02_scenes/02_objects/pickup.tscn" id="1_u5pvj"]
+[ext_resource type="Script" uid="uid://bqnduylenu37c" path="res://02_scenes/02_objects/cart_upgrade.gd" id="2_5x7pv"]
+[ext_resource type="Texture2D" uid="uid://182prsigxpyx" path="res://01_assets/01_sprites/02_objects/magic_orb.png" id="3_5svyq"]
+
+[node name="pickup" instance=ExtResource("1_u5pvj")]
+script = ExtResource("2_5x7pv")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -3)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_5svyq")
+
+[connection signal="area_entered" from="collision" to="." method="_on_collision_area_entered"]

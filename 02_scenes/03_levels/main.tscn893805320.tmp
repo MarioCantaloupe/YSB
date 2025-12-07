@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://woyyjsax1g5c"]
+
+[ext_resource type="PackedScene" uid="uid://0j3ym7bx0rgj" path="res://02_scenes/02_objects/draggable.tscn" id="1_ntjb8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ntjb8"]
+
+[node name="main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="draggable" parent="." instance=ExtResource("1_ntjb8")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 248)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_ntjb8")

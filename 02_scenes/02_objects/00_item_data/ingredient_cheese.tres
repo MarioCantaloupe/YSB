@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FoodData" load_steps=11 format=3 uid="uid://b70hme8husnxq"]
+
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="1_5pfhx"]
+[ext_resource type="Texture2D" uid="uid://ctp8msc8anijc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co00.PNG" id="2_7q0sh"]
+[ext_resource type="Texture2D" uid="uid://d115an4w0cw84" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co01.PNG" id="3_5pfhx"]
+[ext_resource type="Texture2D" uid="uid://cmb2q1hbresf7" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co02.PNG" id="4_w70cc"]
+[ext_resource type="Texture2D" uid="uid://bcu5k26gb6osp" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co00.PNG" id="5_cjpmf"]
+[ext_resource type="Texture2D" uid="uid://d1vgr4k0se56w" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co01.PNG" id="6_627da"]
+[ext_resource type="Texture2D" uid="uid://b7ll5jnlb1wxc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co02.PNG" id="7_crdrh"]
+[ext_resource type="Texture2D" uid="uid://cnwc0tr2pm507" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co00.PNG" id="8_wechj"]
+[ext_resource type="Texture2D" uid="uid://131cyaut1eft" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co01.PNG" id="9_djlxk"]
+[ext_resource type="Texture2D" uid="uid://b0j4bhsfp40wu" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co02.PNG" id="10_fh0e3"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_5pfhx")
+name = "Queso"
+average_color = Color(0.96, 0.752, 0, 1)
+sprite_grid = Array[Array]([[ExtResource("2_7q0sh"), ExtResource("3_5pfhx"), ExtResource("4_w70cc")], [ExtResource("5_cjpmf"), ExtResource("6_627da"), ExtResource("7_crdrh")], [ExtResource("8_wechj"), ExtResource("9_djlxk"), ExtResource("10_fh0e3")]])

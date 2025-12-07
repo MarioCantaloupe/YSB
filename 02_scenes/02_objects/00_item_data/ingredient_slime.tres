@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FoodData" load_steps=11 format=3 uid="uid://b4ixsb5vt31om"]
+
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="1_38x42"]
+[ext_resource type="Texture2D" uid="uid://vsrfgvkxinv3" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co00.PNG" id="2_38x42"]
+[ext_resource type="Texture2D" uid="uid://0h357ukeii6e" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co01.PNG" id="3_0ppah"]
+[ext_resource type="Texture2D" uid="uid://b1u4x2l7n3yge" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co02.PNG" id="4_l2kga"]
+[ext_resource type="Texture2D" uid="uid://816p2uik3vb2" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co00.PNG" id="5_hdxom"]
+[ext_resource type="Texture2D" uid="uid://c517u5d05udqa" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co01.PNG" id="6_eh6wf"]
+[ext_resource type="Texture2D" uid="uid://cm05h3dk5dyjn" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co02.PNG" id="7_qnip6"]
+[ext_resource type="Texture2D" uid="uid://uj33qrldaaqk" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co00.PNG" id="8_7xs0l"]
+[ext_resource type="Texture2D" uid="uid://c0gve4goacgwf" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co01.PNG" id="9_xvx7l"]
+[ext_resource type="Texture2D" uid="uid://cq1kbc7hu183l" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co02.PNG" id="10_jqfw2"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_38x42")
+name = "Slime"
+average_color = Color(0.39924723, 0.9155587, 0.34050837, 1)
+sprite_grid = Array[Array]([[ExtResource("2_38x42"), ExtResource("3_0ppah"), ExtResource("4_l2kga")], [ExtResource("5_hdxom"), ExtResource("6_eh6wf"), ExtResource("7_qnip6")], [ExtResource("8_7xs0l"), ExtResource("9_xvx7l"), ExtResource("10_jqfw2")]])

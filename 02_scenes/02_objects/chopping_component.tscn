@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx46jgahrlra4"]
+
+[ext_resource type="Script" uid="uid://c28t03r1w138w" path="res://02_scenes/02_objects/chopping_component.gd" id="1_uf25l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sw82m"]
+size = Vector2(86, 84)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b2rid"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pjh6b"]
+
+[node name="chopping_component" type="Node2D"]
+script = ExtResource("1_uf25l")
+
+[node name="activation_zone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="activation_zone"]
+shape = SubResource("RectangleShape2D_sw82m")
+
+[node name="topCut_zone" type="Area2D" parent="."]
+
+[node name="top_collision" type="CollisionShape2D" parent="topCut_zone"]
+position = Vector2(0, -80)
+rotation = -3.1415927
+shape = SubResource("WorldBoundaryShape2D_b2rid")
+
+[node name="bottomCut_zone" type="Area2D" parent="."]
+
+[node name="bottom_collision" type="CollisionShape2D" parent="bottomCut_zone"]
+position = Vector2(0, 70)
+rotation = -6.2831855
+shape = SubResource("WorldBoundaryShape2D_b2rid")
+
+[node name="side_zone" type="Area2D" parent="."]
+scale = Vector2(1.0050774, 1)
+
+[node name="right_collision" type="CollisionShape2D" parent="side_zone"]
+position = Vector2(80, 0)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_pjh6b")
+
+[node name="left_collision" type="CollisionShape2D" parent="side_zone"]
+position = Vector2(-80, 0)
+rotation = -4.712389
+shape = SubResource("WorldBoundaryShape2D_pjh6b")
+
+[connection signal="input_event" from="activation_zone" to="." method="_on_activation_zone_input_event"]
+[connection signal="mouse_entered" from="activation_zone" to="." method="_on_activation_zone_mouse_entered"]
+[connection signal="mouse_exited" from="activation_zone" to="." method="_on_activation_zone_mouse_exited"]
+[connection signal="mouse_entered" from="topCut_zone" to="." method="_on_top_cut_zone_mouse_entered"]
+[connection signal="mouse_entered" from="bottomCut_zone" to="." method="_on_bottom_cut_zone_mouse_entered"]
+[connection signal="mouse_entered" from="side_zone" to="." method="_on_side_zone_mouse_entered"]
