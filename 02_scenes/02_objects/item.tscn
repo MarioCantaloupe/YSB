@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwov6edkubuxi"]
+[gd_scene load_steps=15 format=3 uid="uid://bwov6edkubuxi"]
 
 [ext_resource type="Script" uid="uid://choy4l2dbk5xs" path="res://02_scenes/02_objects/item.gd" id="1_xwsi1"]
 [ext_resource type="Resource" uid="uid://duk0ntp6mk6qf" path="res://02_scenes/02_objects/00_item_data/base_item.tres" id="2_70bak"]
@@ -17,7 +17,7 @@ atlas = ExtResource("5_wkqhs")
 region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l2ic3"]
-size = Vector2(104, 59)
+size = Vector2(104, 39.5)
 
 [sub_resource type="Animation" id="Animation_5p8h4"]
 length = 0.001
@@ -56,6 +56,9 @@ _data = {
 &"show_text_tip": SubResource("Animation_iyt2q")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkqhs"]
+size = Vector2(84, 82)
+
 [node name="item" type="RigidBody2D" groups=["grabbables"]]
 y_sort_enabled = true
 input_pickable = true
@@ -89,8 +92,9 @@ scale_amount_min = 0.1
 scale_amount_max = 0.3
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 12.75)
 shape = SubResource("RectangleShape2D_l2ic3")
+debug_color = Color(0.95849806, 0.13365772, 0.39914265, 0.41960785)
 
 [node name="chopping_component" parent="." instance=ExtResource("3_7pmsf")]
 z_index = 5
@@ -157,26 +161,14 @@ script = ExtResource("6_5p8h4")
 wait_time = 3.0
 one_shot = true
 
-[node name="click_area" type="Button" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -43.0
-offset_top = -44.0
-offset_right = 43.0
-offset_bottom = 44.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-mouse_filter = 1
-mouse_default_cursor_shape = 2
+[node name="click_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="click_area"]
+shape = SubResource("RectangleShape2D_wkqhs")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="chop_up" from="chopping_component" to="." method="_on_chopping_component_chop_up"]
 [connection signal="knife_slip" from="chopping_component" to="." method="_on_chopping_component_knife_slip"]
 [connection signal="timeout" from="ProgressBar/cook_timer" to="." method="_on_cook_timer_timeout"]
-[connection signal="button_down" from="click_area" to="." method="_on_click_area_button_down"]
+[connection signal="input_event" from="click_area" to="." method="_on_click_area_input_event"]

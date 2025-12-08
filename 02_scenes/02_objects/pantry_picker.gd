@@ -1,8 +1,17 @@
 extends Button
 
+signal item_dropped(item)
+
 @export var item_resource : Resource
 var item_scene = preload("res://02_scenes/02_objects/item.tscn")
 const WORLD_NODE_PATH := NodePath("") 
+
+var can_drop : bool = false
+
+func _ready() -> void:
+	button_down.connect(_on_button_down)
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 
 func _on_button_down() -> void:
 	if PlayerCursor.held_item != null:
@@ -29,13 +38,26 @@ func _on_button_down() -> void:
 
 	# Simulate the normal pickup behavior so it behaves exactly like clicking an existing item
 	# (this method exists in your item script)
-	if new_item.has_method("_on_click_area_button_down"):
-		new_item._on_click_area_button_down()
+	if new_item.has_method("_on_click_area_input_event"):
+		new_item._on_click_area_input_event(null, null, 0)
 	else:
 		# fallback: ensure it's selected and frozen so it doesn't fall
 		if new_item.has_variable("selected"):
 			new_item.selected = true
 		if new_item.has_variable("freeze"):
 			new_item.freeze = true
-	
-	
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_released("Lclick"):
+		if can_drop and PlayerCursor.held_item != null:
+			print("item dropped")
+			emit_signal("item_dropped", PlayerCursor.held_item)
+			PlayerCursor.held_item.queue_free()
+
+func _on_mouse_entered() -> void:
+	can_drop = true
+	print(can_drop)
+
+func _on_mouse_exited() -> void:
+	can_drop = false
+	print(can_drop)

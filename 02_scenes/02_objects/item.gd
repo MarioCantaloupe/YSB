@@ -16,7 +16,8 @@ const LERP_SPEED_REST := 10.0
 @onready var cook_timer: Timer = $ProgressBar/cook_timer
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var static_dust_particles: CPUParticles2D = $sprite/static_dust
-@onready var click_area: Button = $click_area
+#@onready var click_area: Button = $click_area
+@onready var click_area: Area2D = $click_area
 
 @onready var debug_text: Label = $debug_text
 
@@ -24,7 +25,7 @@ const LERP_SPEED_REST := 10.0
 #cooking variables
 var chop_level : int = 0 : set = _set_chop_level
 var cook_level : int = 0 : set = _set_cook_level
-var is_clean : bool = false
+@export var is_clean : bool = false
 @export var is_frozen : bool = false
 
 #navigation variables
@@ -54,16 +55,18 @@ func _ready() -> void:
 
 #--------------------------------   INPUT   -----------------------------------
 #LClick On
-func _on_click_area_button_down() -> void:
-	if not PlayerCursor.is_knife:
-		#if PlayerCursor.held_item != null and PlayerCursor.held_item != self: # no regrab
-			#return
-		PlayerCursor.held_item = self
-		last_item_pos = get_global_mouse_position()
-		print(PlayerCursor.held_item.food_data.name)
-		_set_selected(true)
-		#PlayerCursor.set_cursor(PlayerCursor.CursorType.HOLDING)
-		stop_right_there()
+func _on_click_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
+	if Input.is_action_just_pressed("Lclick"):
+		if not PlayerCursor.is_knife:
+			#if PlayerCursor.held_item != null and PlayerCursor.held_item != self: # no regrab
+				#return
+			PlayerCursor.held_item = self
+			last_item_pos = get_global_mouse_position()
+			print(PlayerCursor.held_item.food_data.name)
+			_set_selected(true)
+			#PlayerCursor.set_cursor(PlayerCursor.CursorType.HOLDING)
+			stop_right_there()
+
 
 #LClick Off
 func _input(event):
