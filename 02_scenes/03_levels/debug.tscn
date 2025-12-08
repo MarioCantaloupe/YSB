@@ -1,60 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://woyyjsax1g5c"]
+[gd_scene load_steps=6 format=3 uid="uid://woyyjsax1g5c"]
 
-[ext_resource type="PackedScene" uid="uid://bwov6edkubuxi" path="res://02_scenes/02_objects/item.tscn" id="2_btoap"]
-[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="2_qycge"]
 [ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/station.tscn" id="2_xnd6g"]
-[ext_resource type="Texture2D" uid="uid://cmer58h6eg36h" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook0.png" id="3_jw0nr"]
-[ext_resource type="Texture2D" uid="uid://bvr6sb3dn6r51" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook1.png" id="4_rbqgg"]
-[ext_resource type="Texture2D" uid="uid://ctp8msc8anijc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co00.PNG" id="5_7057o"]
-[ext_resource type="Texture2D" uid="uid://bsauc5s1v4ko5" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook2.png" id="5_jp8lb"]
-[ext_resource type="Texture2D" uid="uid://0qoblf7jsw14" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop1_cook0.png" id="6_ifs7j"]
-[ext_resource type="Texture2D" uid="uid://d115an4w0cw84" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co01.PNG" id="6_ryrpg"]
-[ext_resource type="Texture2D" uid="uid://cmb2q1hbresf7" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co02.PNG" id="7_5yi1k"]
-[ext_resource type="Texture2D" uid="uid://buisnp6ygrrbr" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop1_cook1.png" id="7_aospw"]
-[ext_resource type="Texture2D" uid="uid://r7ihw3ouukos" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop1_cook2.png" id="8_1bgxi"]
-[ext_resource type="Texture2D" uid="uid://bcu5k26gb6osp" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co00.PNG" id="8_nvwl1"]
-[ext_resource type="Texture2D" uid="uid://d1vgr4k0se56w" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co01.PNG" id="9_hjy4b"]
-[ext_resource type="Texture2D" uid="uid://dnvhrksh3fiop" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop2_cook0.png" id="9_nqsrp"]
-[ext_resource type="Texture2D" uid="uid://bwf1u55w62i1q" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop2_cook1.png" id="10_bmo12"]
-[ext_resource type="Texture2D" uid="uid://b7ll5jnlb1wxc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co02.PNG" id="10_x6jwb"]
-[ext_resource type="Texture2D" uid="uid://cnwc0tr2pm507" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co00.PNG" id="11_ohasc"]
-[ext_resource type="Texture2D" uid="uid://pal34g62dqqm" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop2_cook2.png" id="11_ud2i6"]
-[ext_resource type="Texture2D" uid="uid://131cyaut1eft" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co01.PNG" id="12_60gml"]
-[ext_resource type="Texture2D" uid="uid://b0j4bhsfp40wu" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co02.PNG" id="13_t7ntv"]
-[ext_resource type="Texture2D" uid="uid://vsrfgvkxinv3" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co00.PNG" id="14_ksumu"]
 [ext_resource type="PackedScene" uid="uid://b81rxm7d8fp6m" path="res://02_scenes/02_objects/blender.tscn" id="14_rbqgg"]
-[ext_resource type="Texture2D" uid="uid://0h357ukeii6e" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co01.PNG" id="15_uitrl"]
-[ext_resource type="Texture2D" uid="uid://b1u4x2l7n3yge" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co02.PNG" id="16_5mnjn"]
-[ext_resource type="Texture2D" uid="uid://816p2uik3vb2" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co00.PNG" id="17_hfu28"]
-[ext_resource type="Texture2D" uid="uid://c517u5d05udqa" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co01.PNG" id="18_012x4"]
-[ext_resource type="Texture2D" uid="uid://cm05h3dk5dyjn" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co02.PNG" id="19_75oge"]
-[ext_resource type="Texture2D" uid="uid://uj33qrldaaqk" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co00.PNG" id="20_3ggax"]
-[ext_resource type="Texture2D" uid="uid://c0gve4goacgwf" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co01.PNG" id="21_ewoqi"]
-[ext_resource type="Texture2D" uid="uid://cq1kbc7hu183l" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co02.PNG" id="22_y3e22"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="32_uitrl"]
+[ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/pantry.tscn" id="33_5mnjn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ntjb8"]
-
-[sub_resource type="Resource" id="Resource_de172"]
-resource_local_to_scene = true
-script = ExtResource("2_qycge")
-name = "Queso"
-average_color = Color(0.96, 0.752, 0, 1)
-sprite_grid = Array[Array]([[ExtResource("5_7057o"), ExtResource("6_ryrpg"), ExtResource("7_5yi1k")], [ExtResource("8_nvwl1"), ExtResource("9_hjy4b"), ExtResource("10_x6jwb")], [ExtResource("11_ohasc"), ExtResource("12_60gml"), ExtResource("13_t7ntv")]])
-
-[sub_resource type="Resource" id="Resource_4h1rl"]
-resource_local_to_scene = true
-script = ExtResource("2_qycge")
-name = "Slime"
-average_color = Color(0.39924723, 0.9155587, 0.34050837, 1)
-sprite_grid = Array[Array]([[ExtResource("14_ksumu"), ExtResource("15_uitrl"), ExtResource("16_5mnjn")], [ExtResource("17_hfu28"), ExtResource("18_012x4"), ExtResource("19_75oge")], [ExtResource("20_3ggax"), ExtResource("21_ewoqi"), ExtResource("22_y3e22")]])
-
-[sub_resource type="Resource" id="Resource_1qo70"]
-resource_local_to_scene = true
-script = ExtResource("2_qycge")
-name = "Bread"
-average_color = Color(0.8782371, 0.41342348, 0.1290206, 1)
-sprite_grid = Array[Array]([[ExtResource("3_jw0nr"), ExtResource("4_rbqgg"), ExtResource("5_jp8lb")], [ExtResource("6_ifs7j"), ExtResource("7_aospw"), ExtResource("8_1bgxi")], [ExtResource("9_nqsrp"), ExtResource("10_bmo12"), ExtResource("11_ud2i6")]])
 
 [node name="main" type="Node2D"]
 
@@ -126,20 +77,8 @@ scale = Vector2(2.475, 2.475)
 text = "COCINAR"
 
 [node name="blender" parent="." instance=ExtResource("14_rbqgg")]
-position = Vector2(0, 133)
+position = Vector2(-421, 133)
 scale = Vector2(0.3732059, 0.3732059)
-
-[node name="item" parent="." instance=ExtResource("2_btoap")]
-position = Vector2(-246, 171)
-food_data = SubResource("Resource_de172")
-
-[node name="item2" parent="." instance=ExtResource("2_btoap")]
-position = Vector2(236, 158)
-food_data = SubResource("Resource_4h1rl")
-
-[node name="item3" parent="." instance=ExtResource("2_btoap")]
-position = Vector2(415, 156)
-food_data = SubResource("Resource_1qo70")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 477.0
@@ -158,6 +97,14 @@ offset_bottom = -258.0
 text = "menu"
 script = ExtResource("32_uitrl")
 target_scene_path = "res://02_scenes/04_screens/main_menu.tscn"
+
+[node name="pantry" parent="." instance=ExtResource("33_5mnjn")]
+anchor_bottom = 1.915
+offset_left = -640.0
+offset_top = 240.0
+offset_right = 640.0
+offset_bottom = 370.0
+grow_vertical = 2
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]

@@ -5,6 +5,8 @@ signal item_dropped(item)
 @export var item_resource : Resource
 var item_scene = preload("res://02_scenes/02_objects/item.tscn")
 const WORLD_NODE_PATH := NodePath("") 
+#var inventory_root = get_tree().get_current_scene()  
+
 
 var can_drop : bool = false
 
