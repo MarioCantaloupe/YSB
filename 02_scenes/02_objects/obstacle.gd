@@ -24,10 +24,10 @@ func _on_collision_area_entered(area: Area2D) -> void:
 func destroyed():
 	if obstacle_particles_scene:
 		var particles = obstacle_particles_scene.instantiate()
-		
 		particles.global_position = global_position
-		#get_parent().add_child(particles)
+		get_parent().add_child(particles)
 		particles.emitting = true
+		GlobalScript.play_sound_once(obstacle_data.hit_sound)
 
 		# Clean up particles after they finish
 		var particle_timer := Timer.new()
@@ -36,5 +36,7 @@ func destroyed():
 		particle_timer.connect("timeout", Callable(particles, "queue_free"))
 		get_parent().add_child(particle_timer)
 		particle_timer.start()
+	else:
+		push_error("no obstacle particles found")
 	# TODO: drop loot
 	queue_free()
