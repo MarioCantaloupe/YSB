@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FoodData" load_steps=5 format=3 uid="uid://1o0lyukg5osb"]
+
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="1_vrg7u"]
+[ext_resource type="Texture2D" uid="uid://dtshu85al6nab" path="res://01_assets/01_sprites/02_objects/00_foods/chapataTapa_ch00_co00.PNG" id="2_fviwt"]
+[ext_resource type="Texture2D" uid="uid://1lm4v5flev23" path="res://01_assets/01_sprites/02_objects/00_foods/chapataTapa_ch00_co01.png.PNG" id="3_bxgb8"]
+[ext_resource type="Texture2D" uid="uid://ckgaay640jv5i" path="res://01_assets/01_sprites/02_objects/00_foods/chapataTapa_ch00_co02.png.PNG" id="4_75njw"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_vrg7u")
+id = "chapatalid"
+name = "ChapataTapa"
+average_color = Color(0.7617113, 0.464392, 0.24293277, 1)
+cookable = true
+cleanable = true
+sprite_grid = Array[Array]([[ExtResource("2_fviwt"), ExtResource("3_bxgb8"), ExtResource("4_75njw")]])

@@ -4,6 +4,18 @@ class_name FoodData
 @export var id: String
 @export var name: String
 @export var average_color: Color
+@export var type : IngredientType
+
+@export var cookable : bool
+@export var cleanable : bool
+@export var cuttable : bool
+
+enum IngredientType {
+	BREAD,
+	MEAT,
+	VEGETABLE,
+	FLUID,
+}
 
 @export_group("Sprites")
 @export var sprite_grid : Array[Array] = [
