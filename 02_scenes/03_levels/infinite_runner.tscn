@@ -12,25 +12,26 @@
 script = ExtResource("1_0p27r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 324)
+position = Vector2(640, 360)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(577, 321)
+position = Vector2(640, 355)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 223)
 shape = SubResource("WorldBoundaryShape2D_w88gs")
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
-offset_left = -576.0
+offset_left = -644.0
 offset_top = 224.0
-offset_right = -536.0
-offset_bottom = 264.0
+offset_right = -599.10406
+offset_bottom = 280.84995
 scale = Vector2(28.844486, 2.5505745)
 color = Color(0.41981313, 0.41981313, 0.4198131, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="yaya" parent="." instance=ExtResource("1_w88gs")]
-position = Vector2(123, 496)
+position = Vector2(152, 572)
 jump_time_to_descent = 1.5
 
 [node name="asteroid_spawner" type="Node2D" parent="."]
