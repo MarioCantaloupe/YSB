@@ -61,7 +61,7 @@ func _process(delta: float) -> void:
 	lung_bar.value = lung_capacity
 	if lung_capacity <= 0:
 		no_air_left()
-		
+
 func jump():
 	velocity.y = jump_velocity
 
