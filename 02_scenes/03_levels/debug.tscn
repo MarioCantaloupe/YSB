@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://woyyjsax1g5c"]
+[gd_scene load_steps=8 format=3 uid="uid://woyyjsax1g5c"]
 
 [ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/station.tscn" id="2_xnd6g"]
+[ext_resource type="PackedScene" uid="uid://bwov6edkubuxi" path="res://02_scenes/02_objects/item.tscn" id="5_542um"]
+[ext_resource type="Resource" uid="uid://1o0lyukg5osb" path="res://02_scenes/02_objects/00_item_data/ingredient_chapataTapa.tres" id="6_rwg0c"]
 [ext_resource type="PackedScene" uid="uid://b81rxm7d8fp6m" path="res://02_scenes/02_objects/blender.tscn" id="14_rbqgg"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="32_uitrl"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/pantry.tscn" id="33_5mnjn"]
@@ -105,6 +107,10 @@ offset_top = 240.0
 offset_right = 640.0
 offset_bottom = 370.0
 grow_vertical = 2
+
+[node name="item" parent="pantry" instance=ExtResource("5_542um")]
+position = Vector2(539, -90)
+food_data = ExtResource("6_rwg0c")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
