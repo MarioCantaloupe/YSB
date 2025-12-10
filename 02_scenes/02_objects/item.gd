@@ -78,6 +78,8 @@ func _on_click_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx:
 			_set_selected(true)
 			#PlayerCursor.set_cursor(PlayerCursor.CursorType.HOLDING)
 			stop_right_there()
+			
+			progress_bar.hide()
 			emit_signal("item_grabbed", true)
 
 #LClick Off
@@ -98,16 +100,12 @@ func _input(event):
 					shortest_distance = distance
 					closest_rest = child
 			
-			if closest_rest:
-				if not closest_rest.is_occupied:
-					has_reached_rest = true
-					
-					closest_rest.select(self)
-					#-------------------we are fucking COOKING-----------------------
-					station_action(closest_rest.get_parent().action) #gets the station action
-					rest_point = closest_rest.global_position
-				else:
-					pass
+			if closest_rest and not closest_rest.is_occupied:
+				has_reached_rest = true
+				closest_rest.select(self)
+				#-------------------we are cooking-----------------------
+				station_action(closest_rest.get_parent().action) #gets the station action
+				rest_point = closest_rest.global_position
 			else:
 				has_reached_rest = false
 				progress_bar.hide()

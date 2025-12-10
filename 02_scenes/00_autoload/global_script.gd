@@ -8,10 +8,3 @@ func wait(duration):
 
 func change_scene(scene):
 	get_tree().change_scene_to_file(scene)
-
-func play_sound_once(stream: AudioStream) -> void:
-	var p = AudioStreamPlayer.new()
-	p.stream = stream
-	add_child(p)
-	p.play()
-	p.finished.connect(p.queue_free)

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ObstacleData" load_steps=4 format=3 uid="uid://d5nolignyog7"]
 
 [ext_resource type="Script" uid="uid://bhj1pdgi67rgb" path="res://02_scenes/02_objects/01_obstacle_data/obstacle_data_resource.gd" id="1_n780b"]
-[ext_resource type="AudioStream" uid="uid://cy53fy7dgrk5t" path="res://01_assets/03_sound/fart9.mp3" id="1_xagop"]
+[ext_resource type="AudioStream" uid="uid://dncyme50uifut" path="res://01_assets/03_sound/hit.wav" id="1_xagop"]
 [ext_resource type="Texture2D" uid="uid://r72isvrsvrev" path="res://01_assets/01_sprites/02_objects/the_obstacle.png" id="2_c4wk8"]
 
 [resource]

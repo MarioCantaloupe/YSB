@@ -45,7 +45,7 @@ obstacle_scenes = [{
 }]
 
 [node name="asteroid_spawn_timer" type="Timer" parent="asteroid_spawner"]
-wait_time = 0.5
+wait_time = 0.55
 autostart = true
 
 [connection signal="GameEnd" from="yaya" to="." method="_on_yaya_game_end"]

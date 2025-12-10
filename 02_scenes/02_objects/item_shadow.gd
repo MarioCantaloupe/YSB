@@ -11,30 +11,29 @@ var item_floating: bool
 func _physics_process(delta: float) -> void:
 	var target_y: float
 	
-	# states: flung, resting on floor, resting on station, held
-	# flung = item_floating
-	# resting on floor = not item_selected and not item.has_reached rest
-	# resting on station = item.has_reached_rest
-	# held = item.selected
-	
+	# 1. Grabbed by cursor
 	if item_floating:
 		target_y = shadow_offset + floating_shadow_offset
+
+	# 2. Resting on station
+	elif item.has_reached_rest:
+		target_y = shadow_offset
+
+	# 3. Resting on floor
+	elif item.distance_to_fake_floor < 1:
+		target_y = shadow_offset
+
+	# 4. Flying through air
 	else:
-		target_y = shadow_offset
-	
-	if item.has_reached_rest and not item.selected:
-		target_y = shadow_offset
-	
-	if not item.selected and item.distance_to_fake_floor > 1:
 		target_y = item.distance_to_fake_floor
+	
 	
 	if item.distance_to_fake_floor < 1:
 		position.y = lerp(position.y, target_y, delta * pickup_lerp_speed)
 	else:
 		position.y = lerp(position.y, target_y, delta * pickup_lerp_speed*4)
 		
-	#TODO: fix shadow offset when item is put on station
-	print(target_y)
+	#TODO: fix shadow offset when item is put on station. this happens because when releasing item, shadow moves but item doesnt fall
 
 
 func _on_item_item_grabbed(floating) -> void:
