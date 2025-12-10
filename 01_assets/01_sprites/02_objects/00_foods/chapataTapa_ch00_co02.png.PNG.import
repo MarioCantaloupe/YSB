@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wgse7uj81bs2"
-path="res://.godot/imported/item_placeholder.png-877e80dfd024e280d4356cc12f3f7b86.ctex"
+uid="uid://ckgaay640jv5i"
+path="res://.godot/imported/chapataTapa_ch00_co02.png.PNG-0d166ff652069c8eece659eeba726cd7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01_assets/01_sprites/02_objects/item_placeholder.png"
-dest_files=["res://.godot/imported/item_placeholder.png-877e80dfd024e280d4356cc12f3f7b86.ctex"]
+source_file="res://01_assets/01_sprites/02_objects/00_foods/chapataTapa_ch00_co02.png.PNG"
+dest_files=["res://.godot/imported/chapataTapa_ch00_co02.png.PNG-0d166ff652069c8eece659eeba726cd7.ctex"]
 
 [params]
 
