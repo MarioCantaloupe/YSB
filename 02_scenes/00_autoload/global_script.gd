@@ -1,6 +1,7 @@
 extends Node
 
-var Kitchen01 = "res://02_scenes/03_levels/debug.tscn"
+var Kitchen01 = "res://02_scenes/03_levels/level_cuttingCounter.tscn"
+var Kitchen02 = "res://02_scenes/03_levels/level_cookingCounter.tscn"
 
 
 func wait(duration):  
