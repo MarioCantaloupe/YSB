@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qmr0sh7y1wwy"
-path="res://.godot/imported/icecube.png-68e21747d20b055d92e3b96305cb6e72.ctex"
+uid="uid://uolyfh1y3tql"
+path="res://.godot/imported/icecube_half.png-cb282a180d4ac8f988a3d574dfce68ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01_assets/01_sprites/02_objects/icecube.png"
-dest_files=["res://.godot/imported/icecube.png-68e21747d20b055d92e3b96305cb6e72.ctex"]
+source_file="res://01_assets/01_sprites/02_objects/icecube_half.png"
+dest_files=["res://.godot/imported/icecube_half.png-cb282a180d4ac8f988a3d574dfce68ba.ctex"]
 
 [params]
 
