@@ -1,0 +1,162 @@
+[gd_scene load_steps=33 format=3 uid="uid://woyyjsax1g5c"]
+
+[ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/station.tscn" id="1_65jii"]
+[ext_resource type="PackedScene" uid="uid://b81rxm7d8fp6m" path="res://02_scenes/02_objects/blender.tscn" id="2_sryl2"]
+[ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="3_fdho2"]
+[ext_resource type="PackedScene" uid="uid://bwov6edkubuxi" path="res://02_scenes/02_objects/item.tscn" id="4_aun3e"]
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="5_pxaco"]
+[ext_resource type="Texture2D" uid="uid://5v8qhewdhpfp" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch00_co00.png" id="6_qdmhu"]
+[ext_resource type="Texture2D" uid="uid://cd4u0x653fjgu" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch00_co01.png" id="7_ro2q7"]
+[ext_resource type="Texture2D" uid="uid://d4h2n1wwkhdjw" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch00_co02.png" id="8_bw5sj"]
+[ext_resource type="Texture2D" uid="uid://c37mpdfy6jbjb" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch01_co00.png" id="9_ubtys"]
+[ext_resource type="Texture2D" uid="uid://dvvney1jyko8v" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch01_co01.png" id="10_3ryf3"]
+[ext_resource type="Texture2D" uid="uid://d1enu0ur2lbu0" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch01_co02.png" id="11_a2sfp"]
+[ext_resource type="Texture2D" uid="uid://bmvjego1qs6t1" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch02_co00.png" id="12_jh4rm"]
+[ext_resource type="Texture2D" uid="uid://di41r638an887" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch02_co01.png" id="13_53x5r"]
+[ext_resource type="Texture2D" uid="uid://m486epoxpxeb" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch02_co02.png" id="14_3phrp"]
+[ext_resource type="Texture2D" uid="uid://d2gf4bjg4roct" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAzul_lab00_co00.png" id="15_vjjpe"]
+[ext_resource type="Texture2D" uid="uid://bjs8idu4ymsk8" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAzul_lab00_co01.png" id="16_gx0xu"]
+[ext_resource type="Texture2D" uid="uid://c3ro2o13psltv" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAzul_lab00_co02.png" id="17_x1pe1"]
+[ext_resource type="Texture2D" uid="uid://vsrfgvkxinv3" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co00.PNG" id="18_sc0v5"]
+[ext_resource type="Texture2D" uid="uid://0h357ukeii6e" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co01.PNG" id="19_2xeql"]
+[ext_resource type="Texture2D" uid="uid://b1u4x2l7n3yge" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co02.PNG" id="20_2ftlc"]
+[ext_resource type="Texture2D" uid="uid://816p2uik3vb2" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co00.PNG" id="21_nbvtf"]
+[ext_resource type="Texture2D" uid="uid://c517u5d05udqa" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co01.PNG" id="22_h8ba0"]
+[ext_resource type="Texture2D" uid="uid://cm05h3dk5dyjn" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co02.PNG" id="23_qunri"]
+[ext_resource type="Texture2D" uid="uid://uj33qrldaaqk" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co00.PNG" id="24_nomy4"]
+[ext_resource type="Texture2D" uid="uid://c0gve4goacgwf" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co01.PNG" id="25_i8b2s"]
+[ext_resource type="Texture2D" uid="uid://cq1kbc7hu183l" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co02.PNG" id="26_v3nj7"]
+[ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/pantry.tscn" id="27_3omxm"]
+[ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/tap.tscn" id="28_srrtn"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ntjb8"]
+
+[sub_resource type="Resource" id="Resource_vrbhm"]
+resource_local_to_scene = true
+script = ExtResource("5_pxaco")
+id = "steak"
+name = "Filete"
+average_color = Color(0.85, 0.1105, 0.25840023, 1)
+type = 1
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("6_qdmhu"), ExtResource("7_ro2q7"), ExtResource("8_bw5sj")], [ExtResource("9_ubtys"), ExtResource("10_3ryf3"), ExtResource("11_a2sfp")], [ExtResource("12_jh4rm"), ExtResource("13_53x5r"), ExtResource("14_3phrp")]])
+
+[sub_resource type="Resource" id="Resource_p6123"]
+resource_local_to_scene = true
+script = ExtResource("5_pxaco")
+id = "lettuce_blue"
+name = "Lechuga Azul"
+average_color = Color(0.10813113, 0.709177, 0.750614, 1)
+type = 2
+cooking_time = 6.0
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("15_vjjpe")], [ExtResource("16_gx0xu")], [ExtResource("17_x1pe1")]])
+
+[sub_resource type="Resource" id="Resource_n3gjq"]
+resource_local_to_scene = true
+script = ExtResource("5_pxaco")
+id = "slime"
+name = "Slime"
+average_color = Color(0.39924723, 0.9155587, 0.34050837, 1)
+type = 1
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("18_sc0v5"), ExtResource("19_2xeql"), ExtResource("20_2ftlc")], [ExtResource("21_nbvtf"), ExtResource("22_h8ba0"), ExtResource("23_qunri")], [ExtResource("24_nomy4"), ExtResource("25_i8b2s"), ExtResource("26_v3nj7")]])
+
+[node name="main" type="Node2D"]
+
+[node name="station" parent="." instance=ExtResource("1_65jii")]
+position = Vector2(-329, -191)
+action = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 248)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_ntjb8")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+position = Vector2(509, 0)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_ntjb8")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+position = Vector2(-1, -275)
+rotation = -3.1415925
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+shape = SubResource("WorldBoundaryShape2D_ntjb8")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+position = Vector2(-490.00003, -1)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+shape = SubResource("WorldBoundaryShape2D_ntjb8")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -431.0
+offset_top = -94.00001
+offset_right = -359.0
+offset_bottom = -71.00001
+scale = Vector2(2.475, 2.475)
+text = "COCINAR"
+
+[node name="blender" parent="." instance=ExtResource("2_sryl2")]
+position = Vector2(-421, 133)
+scale = Vector2(0.3732059, 0.3732059)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 477.0
+offset_top = -307.0
+offset_right = 556.0
+offset_bottom = -258.0
+text = "runner"
+script = ExtResource("3_fdho2")
+target_scene_path = "res://02_scenes/03_levels/infinite_runner.tscn"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = -586.0
+offset_top = -307.0
+offset_right = -507.0
+offset_bottom = -258.0
+text = "menu"
+script = ExtResource("3_fdho2")
+target_scene_path = "res://02_scenes/04_screens/main_menu.tscn"
+
+[node name="item" parent="." instance=ExtResource("4_aun3e")]
+position = Vector2(-104, 115)
+food_data = SubResource("Resource_vrbhm")
+is_frozen = true
+
+[node name="item2" parent="." instance=ExtResource("4_aun3e")]
+position = Vector2(129, 117)
+food_data = SubResource("Resource_p6123")
+
+[node name="item3" parent="." instance=ExtResource("4_aun3e")]
+position = Vector2(355, 117)
+food_data = SubResource("Resource_n3gjq")
+
+[node name="pantry" parent="." instance=ExtResource("27_3omxm")]
+anchor_bottom = 1.915
+offset_left = -640.0
+offset_top = 240.0
+offset_right = 640.0
+offset_bottom = 370.0
+grow_vertical = 2
+
+[node name="tap" parent="." instance=ExtResource("28_srrtn")]
+position = Vector2(228, -58)
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
