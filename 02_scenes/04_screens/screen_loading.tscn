@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://djnixpwp4y8fx"]
+
+[ext_resource type="Texture2D" uid="uid://xx5gpc1w5b0k" path="res://01_assets/01_sprites/00_placeholders/loadScreen_placeholder.png" id="1_0wqsi"]
+
+[node name="loading_screen" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.6957
+offset_top = -360.0
+offset_right = 640.6957
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0wqsi")
+expand_mode = 2
