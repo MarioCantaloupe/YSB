@@ -7,11 +7,19 @@ func _ready() -> void:
 	subscribe_to_buttons()
 
 func _add_to_inventory(item : Resource, amount: int):
-	if inventory.has(item):
-		inventory[item] += amount
-	else:
-		inventory[item] = 1
-	print(item.name , inventory[item])
+	var id : String = item.id
+	inventory[id] = inventory.get(id, 0) + amount
+
+func remove_from_inventory(id: String, amount: int = 1) -> bool:
+	PantryInventory.remove_item(id, amount)
+
+	inventory[id] -= amount
+
+	if inventory[id] <= 0:
+		inventory.erase(id)
+
+	return true
+
 
 func subscribe_to_buttons():
 	for button in $HBoxContainer.get_children():
@@ -21,3 +29,9 @@ func subscribe_to_buttons():
 
 func _on_item_dropped(item):
 	_add_to_inventory(item.food_data, 1)
+
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_key"):
+		print(inventory)
