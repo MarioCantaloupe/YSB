@@ -5,6 +5,7 @@ class_name FoodData
 @export var name: String
 @export var average_color: Color
 @export var type : IngredientType
+@export var cooking_time : float = 3.0
 
 @export var cookable : bool
 @export var cleanable : bool
