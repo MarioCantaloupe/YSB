@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpk6ka7ckqbny"]
+[gd_scene load_steps=7 format=3 uid="uid://bpk6ka7ckqbny"]
 
 [ext_resource type="Script" uid="uid://b5w70dnu2wngt" path="res://02_scenes/02_objects/pantry_inventory.gd" id="1_8isjd"]
 [ext_resource type="Script" uid="uid://ccleoijy68y2b" path="res://02_scenes/02_objects/pantry_picker.gd" id="1_ucdvd"]
+[ext_resource type="Texture2D" uid="uid://cmer58h6eg36h" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook0.png" id="2_kiyky"]
 [ext_resource type="Resource" uid="uid://b70hme8husnxq" path="res://02_scenes/02_objects/00_item_data/ingredient_cheese.tres" id="2_y6gya"]
 [ext_resource type="Resource" uid="uid://duk0ntp6mk6qf" path="res://02_scenes/02_objects/00_item_data/base_item.tres" id="3_u2ok8"]
 [ext_resource type="Resource" uid="uid://b4ixsb5vt31om" path="res://02_scenes/02_objects/00_item_data/ingredient_slime.tres" id="4_8isjd"]
@@ -31,6 +32,9 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 text = "INGR"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("2_y6gya")
 
@@ -38,6 +42,9 @@ item_resource = ExtResource("2_y6gya")
 layout_mode = 2
 size_flags_horizontal = 3
 text = "EDIE"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("3_u2ok8")
 
@@ -45,5 +52,8 @@ item_resource = ExtResource("3_u2ok8")
 layout_mode = 2
 size_flags_horizontal = 3
 text = "NTES"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("4_8isjd")
