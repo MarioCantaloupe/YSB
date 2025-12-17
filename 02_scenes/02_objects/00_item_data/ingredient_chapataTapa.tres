@@ -8,8 +8,8 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_vrg7u")
-id = "chapatalid"
-name = "ChapataTapa"
+id = "chapataTop"
+name = "Chapata Tapa"
 average_color = Color(0.7617113, 0.464392, 0.24293277, 1)
 cookable = true
 cleanable = true

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="FoodData" load_steps=11 format=3 uid="uid://uqiyg04bsjge"]
+
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="1_jhbg2"]
+[ext_resource type="Texture2D" uid="uid://c3tfqoejxaiq6" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch00_co00.png" id="2_jhbg2"]
+[ext_resource type="Texture2D" uid="uid://ck71ayff0p6mw" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch00_co01.png" id="3_ub7fj"]
+[ext_resource type="Texture2D" uid="uid://c2wiivwkxossa" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch00_co02.png" id="4_2887t"]
+[ext_resource type="Texture2D" uid="uid://c0ph55nyk2o64" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch01_co00.png" id="5_63wjg"]
+[ext_resource type="Texture2D" uid="uid://cq0hkgj5t2o65" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch01_co01.png" id="6_gf5cb"]
+[ext_resource type="Texture2D" uid="uid://exqf0dkkfkme" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch01_co02.png" id="7_gbft8"]
+[ext_resource type="Texture2D" uid="uid://d3a6cpwiwyqy7" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch02_co00.png" id="8_134jm"]
+[ext_resource type="Texture2D" uid="uid://cvdgt088lkr3u" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch02_co01.png" id="9_je2he"]
+[ext_resource type="Texture2D" uid="uid://6j6agdgfa35r" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch02_co02.png" id="10_o51b8"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_jhbg2")
+id = "squid"
+name = "Calamar"
+average_color = Color(0.95634, 0.4851, 0.99, 1)
+type = 1
+cooking_time = 4.0
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("2_jhbg2"), ExtResource("3_ub7fj"), ExtResource("4_2887t")], [ExtResource("5_63wjg"), ExtResource("6_gf5cb"), ExtResource("7_gbft8")], [ExtResource("8_134jm"), ExtResource("9_je2he"), ExtResource("10_o51b8")]])

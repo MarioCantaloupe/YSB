@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="FoodData" load_steps=11 format=3 uid="uid://2b8b0k04pyix"]
+
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="1_34yov"]
+[ext_resource type="Texture2D" uid="uid://c3yixewydxe8x" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch00_co00.PNG" id="2_34yov"]
+[ext_resource type="Texture2D" uid="uid://d5ts17joka8o" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch00_co01.PNG" id="3_ry8ae"]
+[ext_resource type="Texture2D" uid="uid://incda887nawd" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch00_co02.PNG" id="4_7j4t7"]
+[ext_resource type="Texture2D" uid="uid://dt12orvgodhjy" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch01_co00.PNG" id="5_tniyx"]
+[ext_resource type="Texture2D" uid="uid://dnh1tqoy6tgke" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch01_co01.PNG" id="6_kapxg"]
+[ext_resource type="Texture2D" uid="uid://derr7cdkcrw5h" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch01_co02.PNG" id="7_ar3on"]
+[ext_resource type="Texture2D" uid="uid://beb6ubohlga2" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch02_co00.PNG" id="8_16i76"]
+[ext_resource type="Texture2D" uid="uid://bhyjmuugf1hfl" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch02_co01.PNG" id="9_mtnnp"]
+[ext_resource type="Texture2D" uid="uid://w005sla52yeb" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch02_co02.PNG" id="10_r8pfh"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_34yov")
+id = "carrot"
+name = "Zanahoria"
+average_color = Color(0.99, 0.495, 0, 1)
+type = 2
+cooking_time = 5.0
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("2_34yov"), ExtResource("3_ry8ae"), ExtResource("4_7j4t7")], [ExtResource("5_tniyx"), ExtResource("6_kapxg"), ExtResource("7_ar3on")], [ExtResource("8_16i76"), ExtResource("9_mtnnp"), ExtResource("10_r8pfh")]])

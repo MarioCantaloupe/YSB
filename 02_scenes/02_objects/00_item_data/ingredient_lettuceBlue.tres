@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FoodData" load_steps=5 format=3 uid="uid://dfqesp81j8l2s"]
+
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="1_78qlv"]
+[ext_resource type="Texture2D" uid="uid://d2gf4bjg4roct" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAzul_lab00_co00.png" id="2_6a7u4"]
+[ext_resource type="Texture2D" uid="uid://bjs8idu4ymsk8" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAzul_lab00_co01.png" id="3_orkab"]
+[ext_resource type="Texture2D" uid="uid://c3ro2o13psltv" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAzul_lab00_co02.png" id="4_8olpb"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_78qlv")
+id = "lettuce_blue"
+name = "Lechuga Azul"
+average_color = Color(0.10813113, 0.709177, 0.750614, 1)
+type = 2
+cooking_time = 6.0
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("2_6a7u4")], [ExtResource("3_orkab")], [ExtResource("4_8olpb")]])
