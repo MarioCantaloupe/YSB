@@ -1,0 +1,92 @@
+[gd_scene load_steps=19 format=3 uid="uid://b1uufv8ixv0b5"]
+
+[ext_resource type="Texture2D" uid="uid://cit0wudxrvthe" path="res://01_assets/01_sprites/00_placeholders/cuttingCounter_placeholder.png" id="1_kj6sw"]
+[ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/tap.tscn" id="2_pkr72"]
+[ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/pantry.tscn" id="3_26cpk"]
+[ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="4_gfw5h"]
+[ext_resource type="PackedScene" uid="uid://bwov6edkubuxi" path="res://02_scenes/02_objects/item.tscn" id="5_5y2wv"]
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="6_pxsgn"]
+[ext_resource type="Texture2D" uid="uid://ctp8msc8anijc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co00.PNG" id="7_fpdgg"]
+[ext_resource type="Texture2D" uid="uid://d115an4w0cw84" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co01.PNG" id="8_2qpom"]
+[ext_resource type="Texture2D" uid="uid://cmb2q1hbresf7" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co02.PNG" id="9_hvqip"]
+[ext_resource type="Texture2D" uid="uid://bcu5k26gb6osp" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co00.PNG" id="10_m8twi"]
+[ext_resource type="Texture2D" uid="uid://d1vgr4k0se56w" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co01.PNG" id="11_2gmnc"]
+[ext_resource type="Texture2D" uid="uid://b7ll5jnlb1wxc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co02.PNG" id="12_5pe5v"]
+[ext_resource type="Texture2D" uid="uid://cnwc0tr2pm507" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co00.PNG" id="13_4phes"]
+[ext_resource type="Texture2D" uid="uid://131cyaut1eft" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co01.PNG" id="14_p4ii4"]
+[ext_resource type="Texture2D" uid="uid://b0j4bhsfp40wu" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co02.PNG" id="15_0my6p"]
+[ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="16_fpdgg"]
+
+[sub_resource type="Resource" id="Resource_qcrgy"]
+resource_local_to_scene = true
+script = ExtResource("6_pxsgn")
+id = "cheese"
+name = "Queso"
+average_color = Color(0.96, 0.752, 0, 1)
+type = 1
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("7_fpdgg"), ExtResource("8_2qpom"), ExtResource("9_hvqip")], [ExtResource("10_m8twi"), ExtResource("11_2gmnc"), ExtResource("12_5pe5v")], [ExtResource("13_4phes"), ExtResource("14_p4ii4"), ExtResource("15_0my6p")]])
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rjbqa"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640.6957, 360)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1281.3914
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kj6sw")
+expand_mode = 2
+
+[node name="tap" parent="." instance=ExtResource("2_pkr72")]
+position = Vector2(304.69568, 243)
+
+[node name="pantry" parent="." instance=ExtResource("3_26cpk")]
+anchor_bottom = 1.915
+offset_left = 0.6956787
+offset_top = 562.0
+offset_right = 1280.6957
+offset_bottom = 730.0
+grow_vertical = 2
+
+[node name="button_nextScene" type="Button" parent="."]
+offset_left = 1091.6957
+offset_top = 18.0
+offset_right = 1265.6957
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 41
+script = ExtResource("4_gfw5h")
+target_scene_path = "res://02_scenes/03_levels/level_cookingCounter.tscn"
+
+[node name="item" parent="." instance=ExtResource("5_5y2wv")]
+position = Vector2(725.6957, 251)
+food_data = SubResource("Resource_qcrgy")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(640.6957, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 150)
+shape = SubResource("WorldBoundaryShape2D_rjbqa")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("16_fpdgg")]
+process_mode = 3
+offset_left = 4.0
+offset_right = 4.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="pressed" from="button_nextScene" to="button_nextScene" method="_on_pressed"]

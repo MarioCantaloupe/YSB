@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2gd5cnmmonf"]
+
+[ext_resource type="Texture2D" uid="uid://cnqdm28a3tw45" path="res://01_assets/01_sprites/00_placeholders/cookingCounter_placeholder.png" id="1_wyvwv"]
+[ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/pantry.tscn" id="2_i7egh"]
+[ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="3_i7egh"]
+[ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/station.tscn" id="4_al4r0"]
+[ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="5_xprrl"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_al4r0"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1281.3914
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wyvwv")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="pantry" parent="." instance=ExtResource("2_i7egh")]
+anchor_bottom = 1.915
+offset_left = 5.0
+offset_top = 558.0
+offset_right = 1285.0
+offset_bottom = 726.0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="button_prevScene" type="Button" parent="."]
+offset_left = 30.695679
+offset_top = 32.0
+offset_right = 204.69568
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 41
+script = ExtResource("3_i7egh")
+target_scene_path = "res://02_scenes/03_levels/level_cuttingCounter.tscn"
+metadata/_edit_use_anchors_ = true
+
+[node name="button_prevScene2" type="Button" parent="."]
+offset_left = 1065.6957
+offset_top = 32.0
+offset_right = 1239.6957
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 41
+script = ExtResource("3_i7egh")
+metadata/_edit_use_anchors_ = true
+
+[node name="station" parent="." instance=ExtResource("4_al4r0")]
+position = Vector2(699.6957, 239)
+action = 1
+
+[node name="station2" parent="." instance=ExtResource("4_al4r0")]
+position = Vector2(890.6957, 239)
+action = 1
+
+[node name="station3" parent="." instance=ExtResource("4_al4r0")]
+position = Vector2(1066.6957, 239)
+action = 1
+
+[node name="station4" parent="." instance=ExtResource("4_al4r0")]
+position = Vector2(1098.6957, 384)
+action = 1
+
+[node name="station5" parent="." instance=ExtResource("4_al4r0")]
+position = Vector2(898.6957, 392)
+action = 1
+
+[node name="station6" parent="." instance=ExtResource("4_al4r0")]
+position = Vector2(683.6957, 382)
+action = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(640.6957, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 150)
+shape = SubResource("WorldBoundaryShape2D_al4r0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 2
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("5_xprrl")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="pressed" from="button_prevScene" to="button_prevScene" method="_on_pressed"]
+[connection signal="pressed" from="button_prevScene2" to="button_prevScene2" method="_on_pressed"]
