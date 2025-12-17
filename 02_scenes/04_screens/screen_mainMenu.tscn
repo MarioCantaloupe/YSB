@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="2_7uqsd"]
 [ext_resource type="Script" uid="uid://dorl1ac5yqonb" path="res://02_scenes/04_screens/button_quit.gd" id="4_1swjj"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Node2D" groups=["mouse_scene"]]
 script = ExtResource("1_j4tqg")
 
 [node name="UI" type="Control" parent="."]

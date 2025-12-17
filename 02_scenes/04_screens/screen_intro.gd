@@ -8,3 +8,7 @@ func _ready() -> void:
 	animation_player.play("logo_fade_in")
 	await GlobalScript.wait(1.5)
 	GlobalScript.change_scene(NextScene)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		GlobalScript.change_scene(NextScene)

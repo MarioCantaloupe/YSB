@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bbhi6ysyx7ejp"]
 
-[ext_resource type="Script" uid="uid://blb2k5s7b4nel" path="res://02_scenes/02_objects/obstacle.gd" id="1_jakap"]
+[ext_resource type="Script" uid="uid://blb2k5s7b4nel" path="res://02_scenes/02_objects/runner/obstacle.gd" id="1_jakap"]
 [ext_resource type="Texture2D" uid="uid://r72isvrsvrev" path="res://01_assets/01_sprites/02_objects/the_obstacle.png" id="2_gebl6"]
 [ext_resource type="Resource" uid="uid://d5nolignyog7" path="res://02_scenes/02_objects/01_obstacle_data/base_obstacle.tres" id="2_insee"]
-[ext_resource type="PackedScene" uid="uid://cm7o4svgs5u75" path="res://02_scenes/02_objects/obstacle_particles.tscn" id="3_insee"]
+[ext_resource type="PackedScene" uid="uid://cm7o4svgs5u75" path="res://02_scenes/02_objects/runner/obstacle_particles.tscn" id="3_insee"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh8gx"]
 radius = 38.052597

@@ -154,7 +154,7 @@ func _physics_process(delta: float) -> void:
 			linear_velocity.y = lerp(linear_velocity.y, 0.0, delta * 8.0)
 			linear_velocity.x = lerp(linear_velocity.x, 0.0, delta * 6.0)
 		else:
-			gravity_scale = 1 #return gravity to normal
+			gravity_scale = 1.3 #return gravity to normal
 	if has_fake_floor and not selected:
 		distance_to_fake_floor = fake_floor_y - global_position.y
 	else:

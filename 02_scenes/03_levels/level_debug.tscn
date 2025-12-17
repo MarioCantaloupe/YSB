@@ -1,9 +1,9 @@
 [gd_scene load_steps=33 format=3 uid="uid://woyyjsax1g5c"]
 
-[ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/station.tscn" id="1_65jii"]
-[ext_resource type="PackedScene" uid="uid://b81rxm7d8fp6m" path="res://02_scenes/02_objects/blender.tscn" id="2_sryl2"]
+[ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/stations/station.tscn" id="1_65jii"]
+[ext_resource type="PackedScene" uid="uid://b81rxm7d8fp6m" path="res://02_scenes/02_objects/stations/blender.tscn" id="2_sryl2"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="3_fdho2"]
-[ext_resource type="PackedScene" uid="uid://bwov6edkubuxi" path="res://02_scenes/02_objects/item.tscn" id="4_aun3e"]
+[ext_resource type="PackedScene" uid="uid://bwov6edkubuxi" path="res://02_scenes/02_objects/item/item.tscn" id="4_aun3e"]
 [ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="5_pxaco"]
 [ext_resource type="Texture2D" uid="uid://5v8qhewdhpfp" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch00_co00.png" id="6_qdmhu"]
 [ext_resource type="Texture2D" uid="uid://cd4u0x653fjgu" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch00_co01.png" id="7_ro2q7"]
@@ -27,7 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://c0gve4goacgwf" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co01.PNG" id="25_i8b2s"]
 [ext_resource type="Texture2D" uid="uid://cq1kbc7hu183l" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co02.PNG" id="26_v3nj7"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/pantry.tscn" id="27_3omxm"]
-[ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/tap.tscn" id="28_srrtn"]
+[ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="28_srrtn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ntjb8"]
 

@@ -1,21 +1,21 @@
 [gd_scene load_steps=41 format=3 uid="uid://bwov6edkubuxi"]
 
-[ext_resource type="Script" uid="uid://choy4l2dbk5xs" path="res://02_scenes/02_objects/item.gd" id="1_xwsi1"]
+[ext_resource type="Script" uid="uid://choy4l2dbk5xs" path="res://02_scenes/02_objects/item/item.gd" id="1_xwsi1"]
 [ext_resource type="Texture2D" uid="uid://blwgex1cdinyv" path="res://01_assets/01_sprites/04_vfx/shadow.png" id="2_028ab"]
 [ext_resource type="Resource" uid="uid://duk0ntp6mk6qf" path="res://02_scenes/02_objects/00_item_data/base_item.tres" id="2_70bak"]
 [ext_resource type="Texture2D" uid="uid://ctp8msc8anijc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co00.PNG" id="3_5p8h4"]
-[ext_resource type="PackedScene" uid="uid://dx46jgahrlra4" path="res://02_scenes/02_objects/chopping_component.tscn" id="3_7pmsf"]
-[ext_resource type="Script" uid="uid://ch7hpp8eatjiq" path="res://02_scenes/02_objects/item_shadow.gd" id="3_fldbe"]
+[ext_resource type="PackedScene" uid="uid://dx46jgahrlra4" path="res://02_scenes/02_objects/item/chopping_component.tscn" id="3_7pmsf"]
+[ext_resource type="Script" uid="uid://ch7hpp8eatjiq" path="res://02_scenes/02_objects/item/item_shadow.gd" id="3_fldbe"]
 [ext_resource type="Shader" uid="uid://fm02emy6ogy7" path="res://01_assets/04_shaders/sprite_boil.gdshader" id="5_ntrvf"]
 [ext_resource type="Texture2D" uid="uid://bno73j0wa8l1g" path="res://01_assets/01_sprites/04_vfx/pelusa_spritesheet.png" id="5_wkqhs"]
 [ext_resource type="Texture2D" uid="uid://ivdj087umlem" path="res://01_assets/01_sprites/04_vfx/perlin.png" id="6_osky5"]
 [ext_resource type="Texture2D" uid="uid://bol4fikx3rlfj" path="res://01_assets/01_sprites/04_vfx/vfx_poof_spritesheet.png" id="8_028ab"]
 [ext_resource type="Texture2D" uid="uid://lagptp0juwey" path="res://01_assets/01_sprites/02_objects/icecube_full.png" id="8_xesb6"]
-[ext_resource type="Script" uid="uid://c3g1inqiivp0n" path="res://02_scenes/02_objects/ice_block.gd" id="9_exv7o"]
+[ext_resource type="Script" uid="uid://c3g1inqiivp0n" path="res://02_scenes/02_objects/item/ice_block.gd" id="9_exv7o"]
 [ext_resource type="Texture2D" uid="uid://uolyfh1y3tql" path="res://01_assets/01_sprites/02_objects/icecube_half.png" id="10_v7lnu"]
 [ext_resource type="Texture2D" uid="uid://c0os4hw58viij" path="res://01_assets/01_sprites/05_ui/reloj_base.PNG" id="11_w438a"]
 [ext_resource type="Texture2D" uid="uid://bxdffroj5togu" path="res://01_assets/01_sprites/05_ui/reloj_cronometro.PNG" id="12_ntrvf"]
-[ext_resource type="Script" uid="uid://b4lkuhhayt4sa" path="res://02_scenes/02_objects/cooking_ui.gd" id="12_osky5"]
+[ext_resource type="Script" uid="uid://b4lkuhhayt4sa" path="res://02_scenes/02_objects/item/cooking_ui.gd" id="12_osky5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_70bak"]
 friction = 0.69
@@ -178,6 +178,7 @@ input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_70bak")
 script = ExtResource("1_xwsi1")
 food_data = ExtResource("2_70bak")
+is_clean = true
 max_drop_distance = 75.0
 
 [node name="shadow" type="Sprite2D" parent="."]

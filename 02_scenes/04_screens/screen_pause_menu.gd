@@ -5,8 +5,10 @@ var main_menu = preload("res://02_scenes/04_screens/screen_mainMenu.tscn")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	
 	visible = false
 	animation_player.play("RESET")
+	
 
 func _process(_delta: float) -> void:
 	testEsc()
@@ -16,6 +18,11 @@ func resume():
 	await animation_player.animation_finished
 	visible = false
 	get_tree().paused = false
+	print("cursor scene = "+str(not get_tree().get_root().is_in_group("mouse_scene")))
+	if owner.is_in_group("mouse_scene"):
+		PlayerCursor.enable_cursor(true)
+	else:
+		PlayerCursor.enable_cursor(false)
 	
 func pause():
 	get_tree().paused = true
@@ -25,6 +32,7 @@ func pause():
 func testEsc():
 	if Input.is_action_just_pressed("pause"):
 		if not get_tree().paused:
+			PlayerCursor.enable_cursor(true)
 			pause()
 			print("game paused")
 		elif get_tree().paused:
@@ -43,6 +51,7 @@ func _on_options_pressed() -> void:
 	options.exited.connect(func():
 		options.queue_free()
 		visible = true
+		PlayerCursor.enable_cursor(true)
 	)
 
 

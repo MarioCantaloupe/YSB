@@ -5,11 +5,10 @@ signal GameEnd
 
 @onready var sprite: Sprite2D = $sprite
 @onready var hit_cooldown: Timer = $hit_cooldown
-
+@onready var demon_cart_timer: Timer = $demonCart_timer
 # game logic variables
 
 @export var lung_capacity : float = 60
-@onready var lung_bar: ProgressBar = $lung_bar
 var can_hit : bool = true
 
 #carrito variables
@@ -30,8 +29,7 @@ var carrito_level : int = 0
 @onready var fall_gravity_buffer : float = fall_gravity
 
 func _ready() -> void:
-	lung_bar.max_value = lung_capacity
-	lung_bar.value = lung_capacity
+	pass
 
 func _physics_process(delta: float) -> void:
 
@@ -58,7 +56,6 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	lung_capacity -= delta
-	lung_bar.value = lung_capacity
 	if lung_capacity <= 0:
 		no_air_left()
 
@@ -82,11 +79,12 @@ func _on_hit_cooldown_timeout() -> void:
 	print("inv frames ended")
 
 func increase_carrito_level(value):
-	carrito_level += value
-	print(carrito_level)
-	if carrito_level >= carrito_threshold:
-		activate_demon_mode()
-		#change animation
+	if not carrito_demon:
+		carrito_level += value
+		print(carrito_level)
+		if carrito_level >= carrito_threshold:
+			activate_demon_mode()
+			#change animation
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug_key"):
@@ -96,6 +94,7 @@ func activate_demon_mode():
 	carrito_demon = true
 	print("carrito demon ON")
 	carrito_level = 0
+	demon_cart_timer.start()
 
 func no_air_left():
 	queue_free()

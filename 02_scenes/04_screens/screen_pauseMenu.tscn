@@ -174,7 +174,7 @@ _data = {
 &"menu_popup": SubResource("Animation_2qhxx")
 }
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="Control" groups=["mouse_scene"]]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15

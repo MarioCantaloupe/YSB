@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://wkvbdahuorpu"]
 
-[ext_resource type="Script" uid="uid://5s35cm0w1768" path="res://02_scenes/02_objects/tap.gd" id="1_tebv5"]
-[ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/station.tscn" id="1_xjyip"]
+[ext_resource type="Script" uid="uid://5s35cm0w1768" path="res://02_scenes/02_objects/stations/tap.gd" id="1_tebv5"]
+[ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/stations/station.tscn" id="1_xjyip"]
 [ext_resource type="Texture2D" uid="uid://cwsfkivka488d" path="res://01_assets/01_sprites/04_vfx/tap_water.png" id="2_ial2f"]
 [ext_resource type="Texture2D" uid="uid://bk70enskd15qk" path="res://01_assets/01_sprites/02_objects/tap.png" id="2_x4ek4"]
 [ext_resource type="Texture2D" uid="uid://deum0vheb2y6" path="res://01_assets/01_sprites/04_vfx/tap_flame.png" id="4_x4ek4"]

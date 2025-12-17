@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var obstacle_scenes := [
-	{ "scene": preload("res://02_scenes/02_objects/obstacle.tscn"), "weight": 3 },
-	{ "scene": preload("res://02_scenes/02_objects/cart_upgrade.tscn"), "weight": 1 },
+	{ "scene": preload("res://02_scenes/02_objects/runner/obstacle.tscn"), "weight": 3 },
+	{ "scene": preload("res://02_scenes/02_objects/runner/cart_upgrade.tscn"), "weight": 1 },
 ]
 
 

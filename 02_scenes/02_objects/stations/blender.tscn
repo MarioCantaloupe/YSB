@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b81rxm7d8fp6m"]
 
-[ext_resource type="Script" uid="uid://beg652sl57d2v" path="res://02_scenes/02_objects/blender.gd" id="1_4sw1a"]
+[ext_resource type="Script" uid="uid://beg652sl57d2v" path="res://02_scenes/02_objects/stations/blender.gd" id="1_4sw1a"]
 [ext_resource type="Texture2D" uid="uid://c1x8yqnjh87gx" path="res://01_assets/01_sprites/blender.png" id="2_mcf2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q28b6"]

@@ -4,7 +4,8 @@ signal item_dropped(item)
 @onready var inventory_node := get_owner()
 
 @export var item_resource : Resource
-var item_scene = preload("res://02_scenes/02_objects/item.tscn")
+@export var infinite_resources : bool = false
+var item_scene = preload("res://02_scenes/02_objects/item/item.tscn")
 const WORLD_NODE_PATH := NodePath("") 
 #var inventory_root = get_tree().get_current_scene()  
 
@@ -25,7 +26,29 @@ func _ready() -> void:
 func _on_button_down() -> void:
 	if PlayerCursor.held_item != null:
 		return
+	if infinite_resources:
+		give_item()
+		return
 	if PantryInventory.inventory.get(item_resource.id, 0) > 0:
+		give_item()
+	else:
+		print("item not in inventory")
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_released("Lclick"):
+		if can_drop and PlayerCursor.held_item != null:
+			print("item dropped")
+			emit_signal("item_dropped", PlayerCursor.held_item)
+			PantryInventory.add_item(PlayerCursor.held_item.food_data.id, 1)
+			PlayerCursor.held_item.queue_free()
+
+func _on_mouse_entered() -> void:
+	can_drop = true
+
+func _on_mouse_exited() -> void:
+	can_drop = false
+
+func give_item():
 		PantryInventory.remove_item(item_resource.id, 1)
 		var new_item = item_scene.instantiate()
 		new_item.food_data = item_resource
@@ -51,19 +74,3 @@ func _on_button_down() -> void:
 				new_item.selected = true
 			if new_item.has_variable("freeze"):
 				new_item.freeze = true
-	else:
-		print("item not in inventory")
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_released("Lclick"):
-		if can_drop and PlayerCursor.held_item != null:
-			print("item dropped")
-			emit_signal("item_dropped", PlayerCursor.held_item)
-			PantryInventory.add_item(PlayerCursor.held_item.food_data.id, 1)
-			PlayerCursor.held_item.queue_free()
-
-func _on_mouse_entered() -> void:
-	can_drop = true
-
-func _on_mouse_exited() -> void:
-	can_drop = false

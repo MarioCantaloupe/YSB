@@ -3,12 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://cnqdm28a3tw45" path="res://01_assets/01_sprites/00_placeholders/cookingCounter_placeholder.png" id="1_wyvwv"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/pantry.tscn" id="2_i7egh"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="3_i7egh"]
-[ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/station.tscn" id="4_al4r0"]
+[ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/stations/station.tscn" id="4_al4r0"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="5_xprrl"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_al4r0"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=["mouse_scene"]]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 8

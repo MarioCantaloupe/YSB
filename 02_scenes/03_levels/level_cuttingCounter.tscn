@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://b1uufv8ixv0b5"]
+[gd_scene load_steps=29 format=3 uid="uid://b1uufv8ixv0b5"]
 
 [ext_resource type="Texture2D" uid="uid://cit0wudxrvthe" path="res://01_assets/01_sprites/00_placeholders/cuttingCounter_placeholder.png" id="1_kj6sw"]
-[ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/tap.tscn" id="2_pkr72"]
+[ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="2_pkr72"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/pantry.tscn" id="3_26cpk"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="4_gfw5h"]
-[ext_resource type="PackedScene" uid="uid://bwov6edkubuxi" path="res://02_scenes/02_objects/item.tscn" id="5_5y2wv"]
+[ext_resource type="PackedScene" uid="uid://bwov6edkubuxi" path="res://02_scenes/02_objects/item/item.tscn" id="5_5y2wv"]
 [ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="6_pxsgn"]
 [ext_resource type="Texture2D" uid="uid://ctp8msc8anijc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co00.PNG" id="7_fpdgg"]
 [ext_resource type="Texture2D" uid="uid://d115an4w0cw84" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co01.PNG" id="8_2qpom"]
@@ -16,6 +16,15 @@
 [ext_resource type="Texture2D" uid="uid://131cyaut1eft" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co01.PNG" id="14_p4ii4"]
 [ext_resource type="Texture2D" uid="uid://b0j4bhsfp40wu" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co02.PNG" id="15_0my6p"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="16_fpdgg"]
+[ext_resource type="Texture2D" uid="uid://vsrfgvkxinv3" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co00.PNG" id="16_qcrgy"]
+[ext_resource type="Texture2D" uid="uid://0h357ukeii6e" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co01.PNG" id="17_rjbqa"]
+[ext_resource type="Texture2D" uid="uid://b1u4x2l7n3yge" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co02.PNG" id="18_m1xlr"]
+[ext_resource type="Texture2D" uid="uid://816p2uik3vb2" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co00.PNG" id="19_ql667"]
+[ext_resource type="Texture2D" uid="uid://c517u5d05udqa" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co01.PNG" id="20_vhoh2"]
+[ext_resource type="Texture2D" uid="uid://cm05h3dk5dyjn" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co02.PNG" id="21_pkdl8"]
+[ext_resource type="Texture2D" uid="uid://uj33qrldaaqk" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co00.PNG" id="22_uvnk5"]
+[ext_resource type="Texture2D" uid="uid://c0gve4goacgwf" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co01.PNG" id="23_f7tq5"]
+[ext_resource type="Texture2D" uid="uid://cq1kbc7hu183l" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co02.PNG" id="24_f2qak"]
 
 [sub_resource type="Resource" id="Resource_qcrgy"]
 resource_local_to_scene = true
@@ -29,9 +38,21 @@ cleanable = true
 cuttable = true
 sprite_grid = Array[Array]([[ExtResource("7_fpdgg"), ExtResource("8_2qpom"), ExtResource("9_hvqip")], [ExtResource("10_m8twi"), ExtResource("11_2gmnc"), ExtResource("12_5pe5v")], [ExtResource("13_4phes"), ExtResource("14_p4ii4"), ExtResource("15_0my6p")]])
 
+[sub_resource type="Resource" id="Resource_3w4b1"]
+resource_local_to_scene = true
+script = ExtResource("6_pxsgn")
+id = "slime"
+name = "Slime"
+average_color = Color(0.39924723, 0.9155587, 0.34050837, 1)
+type = 1
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("16_qcrgy"), ExtResource("17_rjbqa"), ExtResource("18_m1xlr")], [ExtResource("19_ql667"), ExtResource("20_vhoh2"), ExtResource("21_pkdl8")], [ExtResource("22_uvnk5"), ExtResource("23_f7tq5"), ExtResource("24_f2qak")]])
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rjbqa"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=["mouse_scene"]]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640.6957, 360)
@@ -72,6 +93,11 @@ target_scene_path = "res://02_scenes/03_levels/level_cookingCounter.tscn"
 [node name="item" parent="." instance=ExtResource("5_5y2wv")]
 position = Vector2(725.6957, 251)
 food_data = SubResource("Resource_qcrgy")
+
+[node name="item2" parent="." instance=ExtResource("5_5y2wv")]
+position = Vector2(945, 251)
+food_data = SubResource("Resource_3w4b1")
+is_frozen = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(640.6957, 360)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://qgwmv34hv8rp" path="res://01_assets/01_sprites/00_placeholders/orders_placeholder.png" id="1_avjwa"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=["mouse_scene"]]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 8
