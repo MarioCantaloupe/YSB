@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk6a0x7vluwke"]
 
-[ext_resource type="Texture2D" uid="uid://wgse7uj81bs2" path="res://01_assets/01_sprites/00_placeholders/item_placeholder.png" id="1_r7jdq"]
+[ext_resource type="Texture2D" uid="uid://wgse7uj81bs2" path="res://01_assets/01_sprites/00_placeholders/item_placeholder.png" id="1_1pl0j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krwo4"]
 radius = 63.03174
@@ -8,7 +8,7 @@ radius = 63.03174
 [node name="pickup" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_r7jdq")
+texture = ExtResource("1_1pl0j")
 
 [node name="collision" type="Area2D" parent="."]
 

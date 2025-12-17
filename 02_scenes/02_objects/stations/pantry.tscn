@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bpk6ka7ckqbny"]
 
-[ext_resource type="Script" uid="uid://ccleoijy68y2b" path="res://02_scenes/02_objects/pantry_picker.gd" id="1_ucdvd"]
+[ext_resource type="Script" uid="uid://ccleoijy68y2b" path="res://02_scenes/02_objects/stations/pantry_picker.gd" id="1_ucdvd"]
 [ext_resource type="Texture2D" uid="uid://cmer58h6eg36h" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook0.png" id="2_kiyky"]
 [ext_resource type="Resource" uid="uid://b70hme8husnxq" path="res://02_scenes/02_objects/00_item_data/ingredient_cheese.tres" id="2_y6gya"]
 [ext_resource type="Resource" uid="uid://duk0ntp6mk6qf" path="res://02_scenes/02_objects/00_item_data/base_item.tres" id="3_u2ok8"]

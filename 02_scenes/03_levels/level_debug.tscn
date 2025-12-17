@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://uj33qrldaaqk" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co00.PNG" id="24_nomy4"]
 [ext_resource type="Texture2D" uid="uid://c0gve4goacgwf" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co01.PNG" id="25_i8b2s"]
 [ext_resource type="Texture2D" uid="uid://cq1kbc7hu183l" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co02.PNG" id="26_v3nj7"]
-[ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/pantry.tscn" id="27_3omxm"]
+[ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="27_3omxm"]
 [ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="28_srrtn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ntjb8"]
