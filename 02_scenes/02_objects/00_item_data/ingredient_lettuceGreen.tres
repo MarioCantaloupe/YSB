@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FoodData" load_steps=5 format=3 uid="uid://cxw6btm776x0e"]
 
-[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="1_bayqm"]
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/item_data.gd" id="1_bayqm"]
 [ext_resource type="Texture2D" uid="uid://dv3ixbeupp6uc" path="res://01_assets/01_sprites/02_objects/00_foods/lechuga_lab00_co00.png" id="2_f3fiv"]
 [ext_resource type="Texture2D" uid="uid://bph017h8f1rjq" path="res://01_assets/01_sprites/02_objects/00_foods/lechuga_lab00_co01.png" id="3_52kbw"]
 [ext_resource type="Texture2D" uid="uid://ylp1xnp4o27v" path="res://01_assets/01_sprites/02_objects/00_foods/lechuga_lab00_co02.png" id="4_dl6of"]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FoodData" load_steps=11 format=3 uid="uid://2b8b0k04pyix"]
 
-[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="1_34yov"]
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/item_data.gd" id="1_34yov"]
 [ext_resource type="Texture2D" uid="uid://c3yixewydxe8x" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch00_co00.PNG" id="2_34yov"]
 [ext_resource type="Texture2D" uid="uid://d5ts17joka8o" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch00_co01.PNG" id="3_ry8ae"]
 [ext_resource type="Texture2D" uid="uid://incda887nawd" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch00_co02.PNG" id="4_7j4t7"]

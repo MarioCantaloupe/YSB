@@ -51,9 +51,7 @@ var floor_reached := false
 var distance_to_fake_floor : float
 
 func _ready() -> void:
-	#if not gravity:
-		#gravity_scale = 0
-	sprite.texture = food_data.sprite_grid[0][0]
+	set_sprite(0,0)
 	lock_rotation = true
 	cooking_time = food_data.cooking_time
 	cook_timer.wait_time = cooking_time

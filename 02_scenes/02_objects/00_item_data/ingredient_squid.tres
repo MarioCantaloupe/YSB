@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FoodData" load_steps=11 format=3 uid="uid://uqiyg04bsjge"]
 
-[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/food_item_data_resource.gd" id="1_jhbg2"]
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/item_data.gd" id="1_jhbg2"]
 [ext_resource type="Texture2D" uid="uid://c3tfqoejxaiq6" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch00_co00.png" id="2_jhbg2"]
 [ext_resource type="Texture2D" uid="uid://ck71ayff0p6mw" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch00_co01.png" id="3_ub7fj"]
 [ext_resource type="Texture2D" uid="uid://c2wiivwkxossa" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch00_co02.png" id="4_2887t"]
