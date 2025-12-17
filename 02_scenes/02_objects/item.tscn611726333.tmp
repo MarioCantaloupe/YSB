@@ -1,0 +1,258 @@
+[gd_scene load_steps=28 format=3 uid="uid://bwov6edkubuxi"]
+
+[ext_resource type="Script" uid="uid://choy4l2dbk5xs" path="res://02_scenes/02_objects/item.gd" id="1_xwsi1"]
+[ext_resource type="Texture2D" uid="uid://blwgex1cdinyv" path="res://01_assets/01_sprites/04_vfx/shadow.png" id="2_028ab"]
+[ext_resource type="Resource" uid="uid://duk0ntp6mk6qf" path="res://02_scenes/02_objects/00_item_data/base_item.tres" id="2_70bak"]
+[ext_resource type="Texture2D" uid="uid://ctp8msc8anijc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co00.PNG" id="3_5p8h4"]
+[ext_resource type="PackedScene" uid="uid://dx46jgahrlra4" path="res://02_scenes/02_objects/chopping_component.tscn" id="3_7pmsf"]
+[ext_resource type="Script" uid="uid://ch7hpp8eatjiq" path="res://02_scenes/02_objects/item_shadow.gd" id="3_fldbe"]
+[ext_resource type="Texture2D" uid="uid://qmr0sh7y1wwy" path="res://01_assets/01_sprites/02_objects/icecube.png" id="5_iyt2q"]
+[ext_resource type="Texture2D" uid="uid://bno73j0wa8l1g" path="res://01_assets/01_sprites/04_vfx/pelusa_spritesheet.png" id="5_wkqhs"]
+[ext_resource type="Script" uid="uid://p1xjxxckxrrv" path="res://02_scenes/02_objects/item_progressBar.gd" id="6_5p8h4"]
+[ext_resource type="Texture2D" uid="uid://bol4fikx3rlfj" path="res://01_assets/01_sprites/04_vfx/vfx_poof_spritesheet.png" id="8_028ab"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_70bak"]
+friction = 0.69
+bounce = 0.3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exv7o"]
+atlas = ExtResource("5_wkqhs")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v7lnu"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 150.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.5
+scale_max = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2ic3"]
+size = Vector2(104, 34)
+
+[sub_resource type="Animation" id="Animation_5p8h4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tooltip/item_label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iyt2q"]
+resource_name = "show_text_tip"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tooltip/item_label:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(0.3186401, 0.3186401, 0.3186401, 9.849135),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wkqhs"]
+_data = {
+&"RESET": SubResource("Animation_5p8h4"),
+&"show_text_tip": SubResource("Animation_iyt2q")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkqhs"]
+size = Vector2(84, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fldbe"]
+atlas = ExtResource("8_028ab")
+region = Rect2(0, 0, 325, 325)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1x73"]
+atlas = ExtResource("8_028ab")
+region = Rect2(325, 0, 325, 325)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10o5n"]
+atlas = ExtResource("8_028ab")
+region = Rect2(650, 0, 325, 325)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w438a"]
+atlas = ExtResource("8_028ab")
+region = Rect2(975, 0, 325, 325)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntrvf"]
+atlas = ExtResource("8_028ab")
+region = Rect2(1300, 0, 325, 325)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osky5"]
+atlas = ExtResource("8_028ab")
+region = Rect2(1625, 0, 325, 325)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nltx"]
+atlas = ExtResource("8_028ab")
+region = Rect2(1950, 0, 325, 325)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xesb6"]
+atlas = ExtResource("8_028ab")
+region = Rect2(2275, 0, 325, 325)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_exv7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fldbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1x73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10o5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w438a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntrvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osky5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nltx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xesb6")
+}],
+"loop": false,
+"name": &"poof",
+"speed": 12.0
+}]
+
+[node name="item" type="RigidBody2D" groups=["grabbables"]]
+y_sort_enabled = true
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_70bak")
+script = ExtResource("1_xwsi1")
+food_data = ExtResource("2_70bak")
+max_drop_distance = 75.0
+
+[node name="shadow" type="Sprite2D" parent="."]
+self_modulate = Color(0.1764706, 0.1764706, 0.1764706, 0.36078432)
+position = Vector2(1, 20)
+scale = Vector2(0.48437503, 0.19715577)
+texture = ExtResource("2_028ab")
+script = ExtResource("3_fldbe")
+
+[node name="sprite" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-2, -4)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_5p8h4")
+
+[node name="ice_sprite" type="Sprite2D" parent="sprite"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.5372549)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_iyt2q")
+
+[node name="static_dust" type="GPUParticles2D" parent="sprite"]
+texture = SubResource("AtlasTexture_exv7o")
+preprocess = 1.0
+speed_scale = 0.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_v7lnu")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 22)
+shape = SubResource("RectangleShape2D_l2ic3")
+debug_color = Color(0.95849806, 0.13365772, 0.39914265, 0.41960785)
+
+[node name="chopping_component" parent="." instance=ExtResource("3_7pmsf")]
+z_index = 5
+slices_per_level = 3
+
+[node name="debug_text" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -157.0
+offset_right = 56.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "DEBUG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="tooltip" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -50.0
+offset_top = -111.5
+offset_right = -10.0
+offset_bottom = -71.5
+
+[node name="item_label" type="Label" parent="tooltip"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 80.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "TEXTOTEXTO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="tooltip"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_wkqhs")
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -76.0
+offset_top = -119.0
+offset_right = 80.0
+offset_bottom = -92.0
+script = ExtResource("6_5p8h4")
+
+[node name="cook_timer" type="Timer" parent="ProgressBar"]
+wait_time = 3.0
+one_shot = true
+
+[node name="click_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="click_area"]
+shape = SubResource("RectangleShape2D_wkqhs")
+
+[node name="poof_vfx" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 2
+scale = Vector2(0.8676923, 0.8676924)
+sprite_frames = SubResource("SpriteFrames_exv7o")
+animation = &"poof"
+
+[connection signal="item_grabbed" from="." to="shadow" method="_on_item_item_grabbed"]
+[connection signal="chop_up" from="chopping_component" to="." method="_on_chopping_component_chop_up"]
+[connection signal="knife_slip" from="chopping_component" to="." method="_on_chopping_component_knife_slip"]
+[connection signal="timeout" from="ProgressBar/cook_timer" to="." method="_on_cook_timer_timeout"]
+[connection signal="input_event" from="click_area" to="." method="_on_click_area_input_event"]
