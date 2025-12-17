@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://wkvbdahuorpu"]
+
+[ext_resource type="Script" uid="uid://5s35cm0w1768" path="res://02_scenes/02_objects/tap.gd" id="1_tebv5"]
+[ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/station.tscn" id="1_xjyip"]
+[ext_resource type="Texture2D" uid="uid://cwsfkivka488d" path="res://01_assets/01_sprites/04_vfx/tap_water.png" id="2_ial2f"]
+[ext_resource type="Texture2D" uid="uid://bk70enskd15qk" path="res://01_assets/01_sprites/02_objects/tap.png" id="2_x4ek4"]
+[ext_resource type="Texture2D" uid="uid://deum0vheb2y6" path="res://01_assets/01_sprites/04_vfx/tap_flame.png" id="4_x4ek4"]
+
+[node name="tap" type="Node2D"]
+script = ExtResource("1_tebv5")
+water_texture = ExtResource("2_ial2f")
+fire_texture = ExtResource("4_x4ek4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(38, -75)
+scale = Vector2(0.39316234, 0.3931624)
+texture = ExtResource("2_x4ek4")
+
+[node name="station" parent="." instance=ExtResource("1_xjyip")]
+action = 2
+
+[node name="mode_switch" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 94.0
+offset_top = -89.0
+offset_right = 134.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="debug_text" type="Label" parent="."]
+offset_left = 79.0
+offset_top = -127.0
+offset_right = 124.0
+offset_bottom = -104.0
+text = "Limpiar"
+
+[node name="tap_vfx" type="Sprite2D" parent="."]
+position = Vector2(1.9999981, -55)
+scale = Vector2(0.4580078, 0.4580078)
+texture = ExtResource("4_x4ek4")
+
+[connection signal="pressed" from="mode_switch" to="." method="_on_mode_switch_pressed"]
