@@ -1,0 +1,51 @@
+extends Control
+
+var options_screen = preload("res://02_scenes/04_screens/screen_options.tscn")
+var main_menu = preload("res://02_scenes/04_screens/screen_mainMenu.tscn")
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+func _ready() -> void:
+	visible = false
+	animation_player.play("RESET")
+
+func _process(_delta: float) -> void:
+	testEsc()
+
+func resume():
+	animation_player.play_backwards("menu_popup")
+	await animation_player.animation_finished
+	visible = false
+	get_tree().paused = false
+	
+func pause():
+	get_tree().paused = true
+	visible = true
+	animation_player.play("menu_popup")
+	
+func testEsc():
+	if Input.is_action_just_pressed("pause"):
+		if not get_tree().paused:
+			pause()
+			print("game paused")
+		elif get_tree().paused:
+			resume()
+			print("game resumed")
+
+
+func _on_resume_pressed() -> void:
+	resume()
+
+
+func _on_options_pressed() -> void:
+	var options = options_screen.instantiate()
+	add_child(options)
+	
+	options.exited.connect(func():
+		options.queue_free()
+		visible = true
+	)
+
+
+func _on_quit_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_packed(main_menu)
