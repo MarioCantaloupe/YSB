@@ -7,6 +7,7 @@ signal item_grabbed(bool)
 
 @export var food_data : Resource
 @export var gravity : bool = true
+var cooking_time : float
 
 @onready var sprite: Sprite2D = $sprite
 @onready var ice_sprite: Sprite2D = $sprite/ice_sprite
@@ -14,9 +15,10 @@ signal item_grabbed(bool)
 @onready var chopping_component: Node2D = $chopping_component
 @onready var item_label: Label = $tooltip/item_label
 @onready var animation_player: AnimationPlayer = $tooltip/AnimationPlayer
-@onready var cook_timer: Timer = $ProgressBar/cook_timer
-@onready var progress_bar: ProgressBar = $ProgressBar
+@onready var cook_timer: Timer = $cook_timer
 @onready var static_dust_particles: GPUParticles2D = $sprite/static_dust
+@onready var ui_clock: Sprite2D = $ui_clock
+
 
 #@onready var click_area: Button = $click_area
 @onready var click_area: Area2D = $click_area
@@ -27,12 +29,13 @@ signal item_grabbed(bool)
 # cooking variables
 var chop_level : int = 0 : set = _set_chop_level
 var cook_level : int = 0 : set = _set_cook_level
+var ice_level : int
 @export var is_clean : bool = false
 @export var is_frozen : bool = false
 
 # navigation variables
 var selected = false : set = _set_selected
-var has_reached_rest = false
+var has_reached_rest = false : set = _set_has_reached_rest
 var rest_point
 var rest_nodes = []
 var last_item_pos : Vector2
@@ -52,13 +55,18 @@ func _ready() -> void:
 		#gravity_scale = 0
 	sprite.texture = food_data.sprite_grid[0][0]
 	lock_rotation = true
+	cooking_time = food_data.cooking_time
+	cook_timer.wait_time = cooking_time
+	_set_selected(false)
 	check_rest_zones()
 	if is_frozen:
 		ice_sprite.show()
+		ice_level = 2
 	else:
 		ice_sprite.hide()
+		ice_level = 0
 	item_label.hide()
-	progress_bar.hide()
+	ui_clock.hide_cooking_ui(true)
 	if not is_clean:
 		static_dust_particles.show()
 	else:
@@ -70,24 +78,25 @@ func _ready() -> void:
 func _on_click_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
 	if Input.is_action_just_pressed("Lclick"):
 		if not PlayerCursor.is_knife:
-			#if PlayerCursor.held_item != null and PlayerCursor.held_item != self: # no regrab
-				#return
+			# Prevent multiple items from being grabbed at the same time
+			# Only grab if nothing is currently held, or if we already hold this item
+			if PlayerCursor.held_item != null and PlayerCursor.held_item != self:
+				return
+
 			PlayerCursor.held_item = self
 			last_item_pos = get_global_mouse_position()
 			print(PlayerCursor.held_item.food_data.name)
 			_set_selected(true)
-			#PlayerCursor.set_cursor(PlayerCursor.CursorType.HOLDING)
 			stop_right_there()
 			
-			progress_bar.hide()
+			ui_clock.hide_cooking_ui(true)
 			emit_signal("item_grabbed", true)
+
 
 #LClick Off
 func _input(event):
-	if not PlayerCursor.is_knife:
+	if not PlayerCursor.is_knife and (selected or PlayerCursor.held_item == self):
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-			#if PlayerCursor.held_item:	
-				#PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_INTERACT)
 			_set_selected(false)
 			emit_signal("item_grabbed", false)
 			
@@ -101,20 +110,20 @@ func _input(event):
 					closest_rest = child
 			
 			if closest_rest and not closest_rest.is_occupied:
-				has_reached_rest = true
+				_set_has_reached_rest(true)
 				closest_rest.select(self)
 				#-------------------we are cooking-----------------------
 				station_action(closest_rest.get_parent().action) #gets the station action
 				rest_point = closest_rest.global_position
 			else:
-				has_reached_rest = false
-				progress_bar.hide()
+				_set_has_reached_rest(false)
+				ui_clock.hide_cooking_ui(true)
+
 
 #--------------------------------   TICK   ---------------------------------
 func _physics_process(delta: float) -> void:
 	if selected:
 		global_position = lerp(global_position, get_global_mouse_position(), LERP_SPEED_SELECTED * delta)
-		#look_at(get_global_mouse_position())
 	else:
 		if has_reached_rest:
 			stop_right_there()
@@ -123,7 +132,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			freeze = false
 	
-	debug_text.text = "rested: " + str(has_reached_rest)
 	
 	# sprite stretching
 	if selected == false:
@@ -151,19 +159,23 @@ func _physics_process(delta: float) -> void:
 		distance_to_fake_floor = fake_floor_y - global_position.y
 	else:
 		distance_to_fake_floor = 0.0
-	#print("fake floor: " + str(has_fake_floor) + "distance: " + str(distance_to_fake_floor))
+	debug_text.text = "collision: " + str(!collision.disabled)
 
-#func _process(_delta: float) -> void:
-	#click_area.visible = not PlayerCursor.is_knife
 # MAIN ACTIONS
 func cook():
 	if has_reached_rest:
 		if not is_frozen:
 			if is_clean:
-				cook_timer.start()
-				progress_bar.show()
-				progress_bar.start_loop()
-				print("started timer")
+				if food_data.cookable:
+					cook_timer.start()
+					
+					
+					
+					ui_clock.hide_cooking_ui(false)
+					ui_clock.start_cooking_ui(cooking_time)
+					print("started timer")
+				else:
+					show_text("item no cocinable")
 			else:
 				show_text("Requiere limpiar")
 		else:
@@ -171,15 +183,15 @@ func cook():
 
 func _on_cook_timer_timeout() -> void:
 	if has_reached_rest and food_data.cookable:
-		cook_level += 1
+		_set_cook_level(cook_level+1)
 		print("cook level " + str(cook_level))
 		if cook_level < 2:
 			play_poof(Color(1.0, 1.0, 1.0, 1.0))
 			cook_timer.start()
-			progress_bar.start_loop()
+			ui_clock.start_cooking_ui(cooking_time)
 		else:
 			play_poof(Color(0.0, 0.0, 0.0, 1.0))
-			progress_bar.hide()
+			ui_clock.hide_cooking_ui(true)
 	else:
 		print(str(food_data.name) + " has not reached rest")
 
@@ -188,14 +200,18 @@ func clean():
 		show_text("Requiere descongelar")
 	else:
 		if not is_clean and food_data.cleanable:
-			set_sprite(0,0)
 			is_clean = true
 			static_dust_particles.hide()
 
 func defrost():
 	if is_frozen:
-		is_frozen = false
-		ice_sprite.hide()
+		reduce_ice_level()
+	else:
+		if food_data.cookable:
+			_set_cook_level(2)
+			static_dust_particles.self_modulate = Color(0.149, 0.149, 0.149, 1.0)
+			play_poof(Color(0.106, 0.07, 0.015, 1.0))
+
 
 # UTILITIES
 func station_action(action):
@@ -221,7 +237,8 @@ func set_sprite(x: int, y: int):
 		push_error("Coordenadas fuera de rango: (%d, %d)" % [x,y])
 		return
 	
-	sprite.texture = spritesheet[x][y] 
+	if food_data.cookable:
+		sprite.texture = spritesheet[x][y] 
 
 func show_text(text : String):
 	#TODO placeholder
@@ -237,11 +254,19 @@ func check_rest_zones():
 	rest_nodes = get_tree().get_nodes_in_group("rest_zone")
 	if rest_nodes.is_empty():
 		rest_point = global_position
-		has_reached_rest = false
+		_set_has_reached_rest(false)
 		cook_timer.paused = true
 
 func clear_from_station():
-	rest_point = Vector2(0,0)
+	# clear rest state on the item so it no longer thinks it's resting on a station
+	rest_point = null
+	_set_has_reached_rest(false)
+	# if you want to stop any rest lerp immediately:
+	# optionally reset rotation target or other station-specific flags
+	# also ensure progress/cooking stops if it was active
+	ui_clock.hide_cooking_ui(true)
+	if cook_timer != null:
+		cook_timer.stop()
 
 # SETTERS
 func _set_chop_level(value):
@@ -252,6 +277,15 @@ func _set_chop_level(value):
 func _set_cook_level(value):
 	cook_level = clamp(value, 0 ,2)
 	set_sprite(chop_level, cook_level)
+
+func reduce_ice_level():
+	ice_level -= 1
+	if ice_level == 1:
+		ice_sprite.melt()
+	if ice_level <= 0:
+		ice_sprite.hide()
+		is_frozen = false
+		
 
 func _set_selected(value : bool):
 	if value == true:
@@ -269,6 +303,13 @@ func _set_selected(value : bool):
 		
 	selected = value
 
+func _set_has_reached_rest(value: bool):
+	has_reached_rest = value
+	#if value == true:
+		#collision.disabled = false
+	#else:
+		#collision.disabled = true
+
 # SIGNALED
 func _on_chopping_component_knife_slip() -> void:
 	pass
@@ -279,6 +320,7 @@ func _on_chopping_component_chop_up(_new_level: int) -> void:
 		if is_clean:
 			if food_data.cuttable:
 				_set_chop_level(chop_level+1)
+				play_poof(Color(4.416, 4.416, 4.416, 1.0))
 				print(chop_level)
 			else:
 				show_text("No cortable")

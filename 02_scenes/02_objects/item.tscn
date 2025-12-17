@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bwov6edkubuxi"]
+[gd_scene load_steps=41 format=3 uid="uid://bwov6edkubuxi"]
 
 [ext_resource type="Script" uid="uid://choy4l2dbk5xs" path="res://02_scenes/02_objects/item.gd" id="1_xwsi1"]
 [ext_resource type="Texture2D" uid="uid://blwgex1cdinyv" path="res://01_assets/01_sprites/04_vfx/shadow.png" id="2_028ab"]
@@ -6,14 +6,52 @@
 [ext_resource type="Texture2D" uid="uid://ctp8msc8anijc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co00.PNG" id="3_5p8h4"]
 [ext_resource type="PackedScene" uid="uid://dx46jgahrlra4" path="res://02_scenes/02_objects/chopping_component.tscn" id="3_7pmsf"]
 [ext_resource type="Script" uid="uid://ch7hpp8eatjiq" path="res://02_scenes/02_objects/item_shadow.gd" id="3_fldbe"]
-[ext_resource type="Texture2D" uid="uid://qmr0sh7y1wwy" path="res://01_assets/01_sprites/02_objects/icecube.png" id="5_iyt2q"]
+[ext_resource type="Shader" uid="uid://fm02emy6ogy7" path="res://01_assets/04_shaders/sprite_boil.gdshader" id="5_ntrvf"]
 [ext_resource type="Texture2D" uid="uid://bno73j0wa8l1g" path="res://01_assets/01_sprites/04_vfx/pelusa_spritesheet.png" id="5_wkqhs"]
-[ext_resource type="Script" uid="uid://p1xjxxckxrrv" path="res://02_scenes/02_objects/item_progressBar.gd" id="6_5p8h4"]
+[ext_resource type="Texture2D" uid="uid://ivdj087umlem" path="res://01_assets/01_sprites/04_vfx/perlin.png" id="6_osky5"]
 [ext_resource type="Texture2D" uid="uid://bol4fikx3rlfj" path="res://01_assets/01_sprites/04_vfx/vfx_poof_spritesheet.png" id="8_028ab"]
+[ext_resource type="Texture2D" uid="uid://lagptp0juwey" path="res://01_assets/01_sprites/02_objects/icecube_full.png" id="8_xesb6"]
+[ext_resource type="Script" uid="uid://c3g1inqiivp0n" path="res://02_scenes/02_objects/ice_block.gd" id="9_exv7o"]
+[ext_resource type="Texture2D" uid="uid://uolyfh1y3tql" path="res://01_assets/01_sprites/02_objects/icecube_half.png" id="10_v7lnu"]
+[ext_resource type="Texture2D" uid="uid://c0os4hw58viij" path="res://01_assets/01_sprites/05_ui/reloj_base.PNG" id="11_w438a"]
+[ext_resource type="Texture2D" uid="uid://bxdffroj5togu" path="res://01_assets/01_sprites/05_ui/reloj_cronometro.PNG" id="12_ntrvf"]
+[ext_resource type="Script" uid="uid://b4lkuhhayt4sa" path="res://02_scenes/02_objects/cooking_ui.gd" id="12_osky5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_70bak"]
 friction = 0.69
 bounce = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8nltx"]
+shader = ExtResource("5_ntrvf")
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/strength = 1.0
+shader_parameter/fps = 4.0
+shader_parameter/noise = ExtResource("6_osky5")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xesb6"]
+frequency = 0.0031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_exv7o"]
+noise = SubResource("FastNoiseLite_xesb6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_osky5"]
+shader = ExtResource("5_ntrvf")
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/strength = 1.0
+shader_parameter/fps = 3.0
+shader_parameter/noise = SubResource("NoiseTexture2D_exv7o")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v7lnu"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xhjsk"]
+noise = SubResource("FastNoiseLite_v7lnu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xesb6"]
+shader = ExtResource("5_ntrvf")
+shader_parameter/scale = Vector2(5.92, 1)
+shader_parameter/strength = 0.5
+shader_parameter/fps = 3.0
+shader_parameter/noise = SubResource("NoiseTexture2D_xhjsk")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_exv7o"]
 atlas = ExtResource("5_wkqhs")
@@ -22,7 +60,7 @@ region = Rect2(0, 0, 100, 100)
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v7lnu"]
 particle_flag_disable_z = true
 emission_shape = 1
-emission_sphere_radius = 200.0
+emission_sphere_radius = 150.0
 gravity = Vector3(0, 98, 0)
 scale_min = 0.5
 scale_max = 2.0
@@ -143,26 +181,35 @@ food_data = ExtResource("2_70bak")
 max_drop_distance = 75.0
 
 [node name="shadow" type="Sprite2D" parent="."]
-self_modulate = Color(0.1764706, 0.1764706, 0.1764706, 0.36078432)
-position = Vector2(1, 20)
-scale = Vector2(0.42707416, 0.17383254)
+self_modulate = Color(0.18, 0.18, 0.18, 0.39215687)
+material = SubResource("ShaderMaterial_8nltx")
+position = Vector2(0, 20)
+scale = Vector2(0.5, 0.2)
 texture = ExtResource("2_028ab")
 script = ExtResource("3_fldbe")
 
 [node name="sprite" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_osky5")
 position = Vector2(-2, -4)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_5p8h4")
 
 [node name="ice_sprite" type="Sprite2D" parent="sprite"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.5372549)
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("5_iyt2q")
+z_index = 2
+position = Vector2(0, -16)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("8_xesb6")
+script = ExtResource("9_exv7o")
+full_texture = ExtResource("8_xesb6")
+melted_texture = ExtResource("10_v7lnu")
 
 [node name="static_dust" type="GPUParticles2D" parent="sprite"]
+z_index = 1
+material = SubResource("ShaderMaterial_xesb6")
+position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_exv7o")
 preprocess = 1.0
 speed_scale = 0.0
@@ -179,6 +226,7 @@ z_index = 5
 slices_per_level = 3
 
 [node name="debug_text" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -228,17 +276,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_wkqhs")
 }
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -76.0
-offset_top = -119.0
-offset_right = 80.0
-offset_bottom = -92.0
-script = ExtResource("6_5p8h4")
-
-[node name="cook_timer" type="Timer" parent="ProgressBar"]
-wait_time = 3.0
-one_shot = true
-
 [node name="click_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="click_area"]
@@ -251,8 +288,21 @@ scale = Vector2(0.8676923, 0.8676924)
 sprite_frames = SubResource("SpriteFrames_exv7o")
 animation = &"poof"
 
+[node name="cook_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="ui_clock" type="Sprite2D" parent="."]
+position = Vector2(0, -100)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("11_w438a")
+script = ExtResource("12_osky5")
+
+[node name="ui_timer" type="Sprite2D" parent="ui_clock"]
+texture = ExtResource("12_ntrvf")
+
 [connection signal="item_grabbed" from="." to="shadow" method="_on_item_item_grabbed"]
 [connection signal="chop_up" from="chopping_component" to="." method="_on_chopping_component_chop_up"]
 [connection signal="knife_slip" from="chopping_component" to="." method="_on_chopping_component_knife_slip"]
-[connection signal="timeout" from="ProgressBar/cook_timer" to="." method="_on_cook_timer_timeout"]
 [connection signal="input_event" from="click_area" to="." method="_on_click_area_input_event"]
+[connection signal="timeout" from="cook_timer" to="." method="_on_cook_timer_timeout"]
