@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://305xsumn4isp"]
+
+[ext_resource type="PackedScene" uid="uid://b81rxm7d8fp6m" path="res://02_scenes/02_objects/stations/blender.tscn" id="1_wbwrb"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="blender" parent="." instance=ExtResource("1_wbwrb")]
+position = Vector2(492, 394)
+scale = Vector2(0.7968067, 0.7968067)
