@@ -1,0 +1,253 @@
+[gd_scene load_steps=77 format=3 uid="uid://pgwhwteqbcgb"]
+
+[ext_resource type="PackedScene" uid="uid://bwov6edkubuxi" path="res://02_scenes/02_objects/item/item.tscn" id="1_20an1"]
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/item_data.gd" id="2_ix1op"]
+[ext_resource type="Texture2D" uid="uid://ctp8msc8anijc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co00.PNG" id="3_w7766"]
+[ext_resource type="Texture2D" uid="uid://d115an4w0cw84" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co01.PNG" id="4_4uhcf"]
+[ext_resource type="Texture2D" uid="uid://cmb2q1hbresf7" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co02.PNG" id="5_uo5v0"]
+[ext_resource type="Texture2D" uid="uid://bcu5k26gb6osp" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co00.PNG" id="6_3a51u"]
+[ext_resource type="Texture2D" uid="uid://d1vgr4k0se56w" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co01.PNG" id="7_tkwgf"]
+[ext_resource type="Texture2D" uid="uid://b7ll5jnlb1wxc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch01_co02.PNG" id="8_d8stm"]
+[ext_resource type="Texture2D" uid="uid://cnwc0tr2pm507" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co00.PNG" id="9_pdfe3"]
+[ext_resource type="Texture2D" uid="uid://131cyaut1eft" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co01.PNG" id="10_l8n8y"]
+[ext_resource type="Texture2D" uid="uid://b0j4bhsfp40wu" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch02_co02.PNG" id="11_ct5bd"]
+[ext_resource type="Texture2D" uid="uid://dtshu85al6nab" path="res://01_assets/01_sprites/02_objects/00_foods/chapataTapa_ch00_co00.PNG" id="12_2fbw7"]
+[ext_resource type="Texture2D" uid="uid://1lm4v5flev23" path="res://01_assets/01_sprites/02_objects/00_foods/chapataTapa_ch00_co01.png.PNG" id="13_wtg74"]
+[ext_resource type="Texture2D" uid="uid://ckgaay640jv5i" path="res://01_assets/01_sprites/02_objects/00_foods/chapataTapa_ch00_co02.png.PNG" id="14_q466s"]
+[ext_resource type="Texture2D" uid="uid://sjdaxisgti2f" path="res://01_assets/01_sprites/02_objects/00_foods/Chapata_ch00_co00.PNG" id="15_n31uc"]
+[ext_resource type="Texture2D" uid="uid://btbux4bufsyxi" path="res://01_assets/01_sprites/02_objects/00_foods/Chapata_ch00_co01.png.PNG" id="16_48jde"]
+[ext_resource type="Texture2D" uid="uid://c6duiecuh3mt5" path="res://01_assets/01_sprites/02_objects/00_foods/Chapata_ch00_co02.png.PNG" id="17_pewrr"]
+[ext_resource type="Texture2D" uid="uid://c3yixewydxe8x" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch00_co00.PNG" id="18_j1tmy"]
+[ext_resource type="Texture2D" uid="uid://d5ts17joka8o" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch00_co01.PNG" id="19_vf0cf"]
+[ext_resource type="Texture2D" uid="uid://incda887nawd" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch00_co02.PNG" id="20_uitkg"]
+[ext_resource type="Texture2D" uid="uid://dt12orvgodhjy" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch01_co00.PNG" id="21_jic1r"]
+[ext_resource type="Texture2D" uid="uid://dnh1tqoy6tgke" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch01_co01.PNG" id="22_yrrp0"]
+[ext_resource type="Texture2D" uid="uid://derr7cdkcrw5h" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch01_co02.PNG" id="23_o25qa"]
+[ext_resource type="Texture2D" uid="uid://beb6ubohlga2" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch02_co00.PNG" id="24_b2nwh"]
+[ext_resource type="Texture2D" uid="uid://bhyjmuugf1hfl" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch02_co01.PNG" id="25_17vtt"]
+[ext_resource type="Texture2D" uid="uid://w005sla52yeb" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch02_co02.PNG" id="26_jvm6n"]
+[ext_resource type="Texture2D" uid="uid://d2gf4bjg4roct" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAzul_lab00_co00.png" id="27_pvm7q"]
+[ext_resource type="Texture2D" uid="uid://bjs8idu4ymsk8" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAzul_lab00_co01.png" id="28_lmhnd"]
+[ext_resource type="Texture2D" uid="uid://c3ro2o13psltv" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAzul_lab00_co02.png" id="29_1o5r0"]
+[ext_resource type="Texture2D" uid="uid://dv3ixbeupp6uc" path="res://01_assets/01_sprites/02_objects/00_foods/lechuga_lab00_co00.png" id="30_25dgh"]
+[ext_resource type="Texture2D" uid="uid://bph017h8f1rjq" path="res://01_assets/01_sprites/02_objects/00_foods/lechuga_lab00_co01.png" id="31_etday"]
+[ext_resource type="Texture2D" uid="uid://ylp1xnp4o27v" path="res://01_assets/01_sprites/02_objects/00_foods/lechuga_lab00_co02.png" id="32_d5l0e"]
+[ext_resource type="Texture2D" uid="uid://7x63y6kilo7l" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaRosa_lab00_co00.png" id="33_ylg1i"]
+[ext_resource type="Texture2D" uid="uid://dm44mdfdvjorx" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaRosa_lab00_co01.png" id="34_1h2a4"]
+[ext_resource type="Texture2D" uid="uid://xc3ybuhqav3s" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaRosa_lab00_co02.png" id="35_ck2p6"]
+[ext_resource type="Texture2D" uid="uid://dv5h74nwicp27" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAmarillo_lab00_co00.png" id="36_jfl2u"]
+[ext_resource type="Texture2D" uid="uid://dnd0tvxalj2mc" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAmarillo_lab00_co01.png" id="37_im3vh"]
+[ext_resource type="Texture2D" uid="uid://bv0wwvepveu7a" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAmarillo_lab00_co02.png" id="38_gg8gy"]
+[ext_resource type="Texture2D" uid="uid://vsrfgvkxinv3" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co00.PNG" id="39_1ngsf"]
+[ext_resource type="Texture2D" uid="uid://0h357ukeii6e" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co01.PNG" id="40_0gpvb"]
+[ext_resource type="Texture2D" uid="uid://b1u4x2l7n3yge" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co02.PNG" id="41_r1u7r"]
+[ext_resource type="Texture2D" uid="uid://816p2uik3vb2" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co00.PNG" id="42_wtv67"]
+[ext_resource type="Texture2D" uid="uid://c517u5d05udqa" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co01.PNG" id="43_lnvfc"]
+[ext_resource type="Texture2D" uid="uid://cm05h3dk5dyjn" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch01_co02.PNG" id="44_lu43t"]
+[ext_resource type="Texture2D" uid="uid://uj33qrldaaqk" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co00.PNG" id="45_b883t"]
+[ext_resource type="Texture2D" uid="uid://c0gve4goacgwf" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co01.PNG" id="46_fqr3o"]
+[ext_resource type="Texture2D" uid="uid://cq1kbc7hu183l" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co02.PNG" id="47_mt665"]
+[ext_resource type="Texture2D" uid="uid://c3tfqoejxaiq6" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch00_co00.png" id="48_2qorv"]
+[ext_resource type="Texture2D" uid="uid://ck71ayff0p6mw" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch00_co01.png" id="49_xq505"]
+[ext_resource type="Texture2D" uid="uid://c2wiivwkxossa" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch00_co02.png" id="50_gy1mu"]
+[ext_resource type="Texture2D" uid="uid://c0ph55nyk2o64" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch01_co00.png" id="51_ro3c8"]
+[ext_resource type="Texture2D" uid="uid://cq0hkgj5t2o65" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch01_co01.png" id="52_0tuhp"]
+[ext_resource type="Texture2D" uid="uid://exqf0dkkfkme" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch01_co02.png" id="53_2v3cq"]
+[ext_resource type="Texture2D" uid="uid://d3a6cpwiwyqy7" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch02_co00.png" id="54_i1tdq"]
+[ext_resource type="Texture2D" uid="uid://cvdgt088lkr3u" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch02_co01.png" id="55_61378"]
+[ext_resource type="Texture2D" uid="uid://6j6agdgfa35r" path="res://01_assets/01_sprites/02_objects/00_foods/calamar_ch02_co02.png" id="56_vqqxl"]
+[ext_resource type="Texture2D" uid="uid://5v8qhewdhpfp" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch00_co00.png" id="57_0rlwe"]
+[ext_resource type="Texture2D" uid="uid://cd4u0x653fjgu" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch00_co01.png" id="58_s5ety"]
+[ext_resource type="Texture2D" uid="uid://d4h2n1wwkhdjw" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch00_co02.png" id="59_imc1l"]
+[ext_resource type="Texture2D" uid="uid://c37mpdfy6jbjb" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch01_co00.png" id="60_mcpqh"]
+[ext_resource type="Texture2D" uid="uid://dvvney1jyko8v" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch01_co01.png" id="61_kxk0c"]
+[ext_resource type="Texture2D" uid="uid://d1enu0ur2lbu0" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch01_co02.png" id="62_2x0k7"]
+[ext_resource type="Texture2D" uid="uid://bmvjego1qs6t1" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch02_co00.png" id="63_7hsty"]
+[ext_resource type="Texture2D" uid="uid://di41r638an887" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch02_co01.png" id="64_rp7ff"]
+[ext_resource type="Texture2D" uid="uid://m486epoxpxeb" path="res://01_assets/01_sprites/02_objects/00_foods/carne_ch02_co02.png" id="65_fa6sp"]
+
+[sub_resource type="Resource" id="Resource_84jxa"]
+resource_local_to_scene = true
+script = ExtResource("2_ix1op")
+id = "cheese"
+name = "Queso"
+average_color = Color(0.96, 0.752, 0, 1)
+type = 1
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("3_w7766"), ExtResource("4_4uhcf"), ExtResource("5_uo5v0")], [ExtResource("6_3a51u"), ExtResource("7_tkwgf"), ExtResource("8_d8stm")], [ExtResource("9_pdfe3"), ExtResource("10_l8n8y"), ExtResource("11_ct5bd")]])
+
+[sub_resource type="Resource" id="Resource_8uttu"]
+resource_local_to_scene = true
+script = ExtResource("2_ix1op")
+id = "chapataTop"
+name = "Chapata Tapa"
+average_color = Color(0.7617113, 0.464392, 0.24293277, 1)
+cookable = true
+cleanable = true
+sprite_grid = Array[Array]([[ExtResource("12_2fbw7"), ExtResource("13_wtg74"), ExtResource("14_q466s")]])
+
+[sub_resource type="Resource" id="Resource_skpcg"]
+resource_local_to_scene = true
+script = ExtResource("2_ix1op")
+id = "chapataBottom"
+name = "Chapata Base"
+average_color = Color(0.7617113, 0.464392, 0.24293277, 1)
+cookable = true
+cleanable = true
+sprite_grid = Array[Array]([[ExtResource("15_n31uc"), ExtResource("16_48jde"), ExtResource("17_pewrr")]])
+
+[sub_resource type="Resource" id="Resource_8mig2"]
+resource_local_to_scene = true
+script = ExtResource("2_ix1op")
+id = "carrot"
+name = "Zanahoria"
+average_color = Color(0.99, 0.495, 0, 1)
+type = 2
+cooking_time = 5.0
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("18_j1tmy"), ExtResource("19_vf0cf"), ExtResource("20_uitkg")], [ExtResource("21_jic1r"), ExtResource("22_yrrp0"), ExtResource("23_o25qa")], [ExtResource("24_b2nwh"), ExtResource("25_17vtt"), ExtResource("26_jvm6n")]])
+
+[sub_resource type="Resource" id="Resource_bgllg"]
+resource_local_to_scene = true
+script = ExtResource("2_ix1op")
+id = "lettuce_blue"
+name = "Lechuga Azul"
+average_color = Color(0.10813113, 0.709177, 0.750614, 1)
+type = 2
+cooking_time = 6.0
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("27_pvm7q")], [ExtResource("28_lmhnd")], [ExtResource("29_1o5r0")]])
+
+[sub_resource type="Resource" id="Resource_emmn8"]
+resource_local_to_scene = true
+script = ExtResource("2_ix1op")
+id = "lettuce_green"
+name = "Lechuga Verde"
+average_color = Color(0.40207717, 0.77725893, 0.13935596, 1)
+type = 2
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("30_25dgh")], [ExtResource("31_etday")], [ExtResource("32_d5l0e")]])
+
+[sub_resource type="Resource" id="Resource_ptvim"]
+resource_local_to_scene = true
+script = ExtResource("2_ix1op")
+id = "lettuce_pink"
+name = "Lechuga Rosa"
+average_color = Color(0.92, 0.32200003, 0.40173328, 1)
+type = 2
+cooking_time = 5.0
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("33_ylg1i")], [ExtResource("34_1h2a4")], [ExtResource("35_ck2p6")]])
+
+[sub_resource type="Resource" id="Resource_pkvav"]
+resource_local_to_scene = true
+script = ExtResource("2_ix1op")
+id = "lettuce_yellow"
+name = "Lechuga Amarilla"
+average_color = Color(0.89, 0.8217666, 0.07119998, 1)
+type = 2
+cooking_time = 6.0
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("36_jfl2u")], [ExtResource("37_im3vh")], [ExtResource("38_gg8gy")]])
+
+[sub_resource type="Resource" id="Resource_ki5sf"]
+resource_local_to_scene = true
+script = ExtResource("2_ix1op")
+id = "slime"
+name = "Slime"
+average_color = Color(0.39924723, 0.9155587, 0.34050837, 1)
+type = 1
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("39_1ngsf"), ExtResource("40_0gpvb"), ExtResource("41_r1u7r")], [ExtResource("42_wtv67"), ExtResource("43_lnvfc"), ExtResource("44_lu43t")], [ExtResource("45_b883t"), ExtResource("46_fqr3o"), ExtResource("47_mt665")]])
+
+[sub_resource type="Resource" id="Resource_dfm8t"]
+resource_local_to_scene = true
+script = ExtResource("2_ix1op")
+id = "squid"
+name = "Calamar"
+average_color = Color(0.95634, 0.4851, 0.99, 1)
+type = 1
+cooking_time = 4.0
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("48_2qorv"), ExtResource("49_xq505"), ExtResource("50_gy1mu")], [ExtResource("51_ro3c8"), ExtResource("52_0tuhp"), ExtResource("53_2v3cq")], [ExtResource("54_i1tdq"), ExtResource("55_61378"), ExtResource("56_vqqxl")]])
+
+[sub_resource type="Resource" id="Resource_4r0e2"]
+resource_local_to_scene = true
+script = ExtResource("2_ix1op")
+id = "steak"
+name = "Filete"
+average_color = Color(0.85, 0.1105, 0.25840023, 1)
+type = 1
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("57_0rlwe"), ExtResource("58_s5ety"), ExtResource("59_imc1l")], [ExtResource("60_mcpqh"), ExtResource("61_kxk0c"), ExtResource("62_2x0k7")], [ExtResource("63_7hsty"), ExtResource("64_rp7ff"), ExtResource("65_fa6sp")]])
+
+[node name="DEBUG" type="Node2D"]
+
+[node name="item4" parent="." instance=ExtResource("1_20an1")]
+position = Vector2(744, 166)
+food_data = SubResource("Resource_84jxa")
+gravity = false
+
+[node name="item7" parent="." instance=ExtResource("1_20an1")]
+position = Vector2(563, 166)
+food_data = SubResource("Resource_8uttu")
+gravity = false
+
+[node name="item8" parent="." instance=ExtResource("1_20an1")]
+position = Vector2(379, 166)
+food_data = SubResource("Resource_skpcg")
+gravity = false
+
+[node name="item9" parent="." instance=ExtResource("1_20an1")]
+position = Vector2(195, 166)
+food_data = SubResource("Resource_8mig2")
+gravity = false
+
+[node name="item5" parent="." instance=ExtResource("1_20an1")]
+position = Vector2(924, 166)
+food_data = SubResource("Resource_bgllg")
+gravity = false
+
+[node name="item6" parent="." instance=ExtResource("1_20an1")]
+position = Vector2(1103, 166)
+food_data = SubResource("Resource_emmn8")
+gravity = false
+
+[node name="item10" parent="." instance=ExtResource("1_20an1")]
+position = Vector2(744, 374)
+food_data = SubResource("Resource_ptvim")
+gravity = false
+
+[node name="item11" parent="." instance=ExtResource("1_20an1")]
+position = Vector2(563, 374)
+food_data = SubResource("Resource_pkvav")
+gravity = false
+
+[node name="item12" parent="." instance=ExtResource("1_20an1")]
+position = Vector2(379, 374)
+food_data = SubResource("Resource_ki5sf")
+gravity = false
+
+[node name="item13" parent="." instance=ExtResource("1_20an1")]
+position = Vector2(195, 374)
+food_data = SubResource("Resource_dfm8t")
+gravity = false
+
+[node name="item14" parent="." instance=ExtResource("1_20an1")]
+position = Vector2(924, 374)
+food_data = SubResource("Resource_4r0e2")
+gravity = false
