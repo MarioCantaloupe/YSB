@@ -5,7 +5,7 @@ const LERP_SPEED_SELECTED := 25.0
 const LERP_SPEED_REST := 10.0
 signal item_grabbed(bool)
 
-@export var food_data : Resource
+@export var food_data : ItemData
 @export var gravity : bool = true
 var cooking_time : float
 
@@ -51,6 +51,8 @@ var floor_reached := false
 var distance_to_fake_floor : float
 
 func _ready() -> void:
+	if not gravity:
+		gravity_scale = 0
 	set_sprite(0,0)
 	lock_rotation = true
 	cooking_time = food_data.cooking_time
@@ -230,13 +232,8 @@ func get_sprite(x: int, y: int):
 	return spritesheet[x][y]
 
 func set_sprite(x: int, y: int):
-	var spritesheet = food_data.sprite_grid
-	if x < 0 or x >= 3 or y < 0 or y >= 3:
-		push_error("Coordenadas fuera de rango: (%d, %d)" % [x,y])
-		return
-	
-	if food_data.cookable:
-		sprite.texture = spritesheet[x][y] 
+	#if food_data.cookable or food_data.cuttable:
+		sprite.texture = get_sprite(x,y)
 
 func show_text(text : String):
 	#TODO placeholder
