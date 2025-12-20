@@ -1,23 +1,13 @@
-[gd_resource type="Resource" script_class="FoodData" load_steps=11 format=3 uid="uid://duk0ntp6mk6qf"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://duk0ntp6mk6qf"]
 
 [ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/item_data.gd" id="1_8l28y"]
-[ext_resource type="Texture2D" uid="uid://cmer58h6eg36h" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook0.png" id="2_x260g"]
-[ext_resource type="Texture2D" uid="uid://bvr6sb3dn6r51" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook1.png" id="3_08qxq"]
-[ext_resource type="Texture2D" uid="uid://bsauc5s1v4ko5" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook2.png" id="4_o6qma"]
-[ext_resource type="Texture2D" uid="uid://0qoblf7jsw14" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop1_cook0.png" id="5_8m0e2"]
-[ext_resource type="Texture2D" uid="uid://buisnp6ygrrbr" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop1_cook1.png" id="6_t5i43"]
-[ext_resource type="Texture2D" uid="uid://r7ihw3ouukos" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop1_cook2.png" id="7_lv8y1"]
-[ext_resource type="Texture2D" uid="uid://dnvhrksh3fiop" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop2_cook0.png" id="8_1ljiu"]
-[ext_resource type="Texture2D" uid="uid://bwf1u55w62i1q" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop2_cook1.png" id="9_4cqp5"]
-[ext_resource type="Texture2D" uid="uid://pal34g62dqqm" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop2_cook2.png" id="10_fntoj"]
+[ext_resource type="Texture2D" uid="uid://b5xgl63gdonh3" path="res://01_assets/01_sprites/00_placeholders/null_sprite.png" id="2_a8uqw"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_8l28y")
-id = "ingredient"
-name = "Bread"
-average_color = Color(0.8782371, 0.41342348, 0.1290206, 1)
-cookable = true
+id = "default"
+name = "NULL"
+average_color = Color(1, 0, 1, 1)
 cleanable = true
-cuttable = true
-sprite_grid = Array[Array]([[ExtResource("2_x260g"), ExtResource("3_08qxq"), ExtResource("4_o6qma")], [ExtResource("5_8m0e2"), ExtResource("6_t5i43"), ExtResource("7_lv8y1")], [ExtResource("8_1ljiu"), ExtResource("9_4cqp5"), ExtResource("10_fntoj")]])
+sprite_grid = Array[Array]([[ExtResource("2_a8uqw")], [ExtResource("2_a8uqw")], [ExtResource("2_a8uqw")]])
