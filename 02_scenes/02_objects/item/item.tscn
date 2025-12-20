@@ -1,9 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://bwov6edkubuxi"]
+[gd_scene load_steps=40 format=3 uid="uid://bwov6edkubuxi"]
 
 [ext_resource type="Script" uid="uid://choy4l2dbk5xs" path="res://02_scenes/02_objects/item/item.gd" id="1_xwsi1"]
 [ext_resource type="Texture2D" uid="uid://blwgex1cdinyv" path="res://01_assets/01_sprites/04_vfx/shadow.png" id="2_028ab"]
 [ext_resource type="Resource" uid="uid://duk0ntp6mk6qf" path="res://02_scenes/02_objects/00_item_data/base_item.tres" id="2_70bak"]
-[ext_resource type="Texture2D" uid="uid://ctp8msc8anijc" path="res://01_assets/01_sprites/02_objects/00_foods/queso_ch00_co00.PNG" id="3_5p8h4"]
 [ext_resource type="PackedScene" uid="uid://dx46jgahrlra4" path="res://02_scenes/02_objects/item/chopping_component.tscn" id="3_7pmsf"]
 [ext_resource type="Script" uid="uid://ch7hpp8eatjiq" path="res://02_scenes/02_objects/item/item_shadow.gd" id="3_fldbe"]
 [ext_resource type="Shader" uid="uid://fm02emy6ogy7" path="res://01_assets/04_shaders/sprite_boil.gdshader" id="5_ntrvf"]
@@ -195,7 +194,6 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_osky5")
 position = Vector2(-2, -4)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_5p8h4")
 
 [node name="ice_sprite" type="Sprite2D" parent="sprite"]
 self_modulate = Color(1, 1, 1, 0.5372549)
