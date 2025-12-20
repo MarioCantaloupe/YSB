@@ -1,7 +1,7 @@
 extends Resource
 class_name ItemState
 
-@export var data: String
+@export var data: ItemData #datos inmutables del ingrediente
 @export var cook_level: int = 0
 @export var chop_level: int = 0
 @export var ice_level: int = 0
