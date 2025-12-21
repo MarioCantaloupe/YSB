@@ -159,7 +159,9 @@ func _physics_process(delta: float) -> void:
 		distance_to_fake_floor = fake_floor_y - global_position.y
 	else:
 		distance_to_fake_floor = 0.0
-	debug_text.text = "collision: " + str(!collision.disabled)
+
+func _process(_delta: float) -> void:
+	debug_text.text = "Y: " + str(global_position.y)
 
 # MAIN ACTIONS
 func cook():
