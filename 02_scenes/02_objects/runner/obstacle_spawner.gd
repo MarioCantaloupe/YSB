@@ -5,6 +5,7 @@ extends Node2D
 	{ "scene": preload("res://02_scenes/02_objects/runner/cart_upgrade.tscn"), "weight": 1 },
 ]
 
+@export var scale_variation : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,8 +18,12 @@ func _process(_delta: float) -> void:
 func _on_asteroid_spawn_timer_timeout() -> void:
 	var scene = pick_weighted_scene()
 	var obstacle = scene.instantiate()
-	obstacle.position.y = randi_range(0 , get_viewport().size.y - 50)
+	obstacle.position.y = randi_range(0 , get_viewport().size.y - 100)
 	obstacle.position.x = get_viewport().size.x + 100
+	var random_scale = 1 + randf_range(-scale_variation, scale_variation)
+	if obstacle.get_child(1).is_in_group("space_obstacle"):
+		obstacle.scale.x *= random_scale
+		obstacle.scale.y *= random_scale
 	add_child(obstacle)
 	
 func pick_weighted_scene() -> PackedScene:
