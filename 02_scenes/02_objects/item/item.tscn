@@ -64,49 +64,6 @@ gravity = Vector3(0, 98, 0)
 scale_min = 0.5
 scale_max = 2.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2ic3"]
-size = Vector2(104, 34)
-
-[sub_resource type="Animation" id="Animation_5p8h4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tooltip/item_label:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_iyt2q"]
-resource_name = "show_text_tip"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tooltip/item_label:self_modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.5, 2),
-"transitions": PackedFloat32Array(0.3186401, 0.3186401, 0.3186401, 9.849135),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wkqhs"]
-_data = {
-&"RESET": SubResource("Animation_5p8h4"),
-&"show_text_tip": SubResource("Animation_iyt2q")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkqhs"]
-size = Vector2(84, 82)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_fldbe"]
 atlas = ExtResource("8_028ab")
 region = Rect2(0, 0, 325, 325)
@@ -171,6 +128,49 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Animation" id="Animation_5p8h4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tooltip/item_label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iyt2q"]
+resource_name = "show_text_tip"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tooltip/item_label:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(0.3186401, 0.3186401, 0.3186401, 9.849135),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wkqhs"]
+_data = {
+&"RESET": SubResource("Animation_5p8h4"),
+&"show_text_tip": SubResource("Animation_iyt2q")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2ic3"]
+size = Vector2(104, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkqhs"]
+size = Vector2(84, 82)
+
 [node name="item" type="RigidBody2D" groups=["grabbables"]]
 y_sort_enabled = true
 input_pickable = true
@@ -215,32 +215,12 @@ speed_scale = 0.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_v7lnu")
 
-[node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 22)
-shape = SubResource("RectangleShape2D_l2ic3")
-debug_color = Color(0.95849806, 0.13365772, 0.39914265, 0.41960785)
-
-[node name="chopping_component" parent="." instance=ExtResource("3_7pmsf")]
-z_index = 5
-slices_per_level = 3
-
-[node name="debug_text" type="Label" parent="."]
+[node name="poof_vfx" type="AnimatedSprite2D" parent="."]
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -44.0
-offset_top = -157.0
-offset_right = 56.0
-offset_bottom = -134.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "DEBUG"
-horizontal_alignment = 1
-vertical_alignment = 1
+z_index = 2
+scale = Vector2(0.8676923, 0.8676924)
+sprite_frames = SubResource("SpriteFrames_exv7o")
+animation = &"poof"
 
 [node name="tooltip" type="Control" parent="."]
 layout_mode = 3
@@ -275,17 +255,37 @@ libraries = {
 &"": SubResource("AnimationLibrary_wkqhs")
 }
 
+[node name="debug_text" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -157.0
+offset_right = 56.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "DEBUG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 22)
+shape = SubResource("RectangleShape2D_l2ic3")
+debug_color = Color(0.95849806, 0.13365772, 0.39914265, 0.41960785)
+
+[node name="chopping_component" parent="." instance=ExtResource("3_7pmsf")]
+z_index = 5
+slices_per_level = 3
+
 [node name="click_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="click_area"]
 shape = SubResource("RectangleShape2D_wkqhs")
-
-[node name="poof_vfx" type="AnimatedSprite2D" parent="."]
-visible = false
-z_index = 2
-scale = Vector2(0.8676923, 0.8676924)
-sprite_frames = SubResource("SpriteFrames_exv7o")
-animation = &"poof"
 
 [node name="cook_timer" type="Timer" parent="."]
 wait_time = 3.0
