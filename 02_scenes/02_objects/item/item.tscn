@@ -175,10 +175,10 @@ max_drop_distance = 75.0
 [node name="shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0.18, 0.18, 0.18, 0.39215687)
 material = SubResource("ShaderMaterial_8nltx")
-position = Vector2(0, -1)
 scale = Vector2(0.5, 0.2)
 texture = ExtResource("2_028ab")
 script = ExtResource("3_fldbe")
+shadow_offset = 0.0
 
 [node name="sprite" type="Sprite2D" parent="."]
 z_index = 1
@@ -251,6 +251,7 @@ libraries = {
 }
 
 [node name="debug_text" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

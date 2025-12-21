@@ -1,6 +1,6 @@
 extends Sprite2D
 
-var shadow_offset : float = 20
+@export var shadow_offset : float = 10
 var floating_shadow_offset : float = 30
 var pickup_lerp_speed: float = 5
 @export var shadow_scale = Vector2(0.5,0.2)

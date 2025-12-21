@@ -229,10 +229,15 @@ func station_action(action):
 
 func get_sprite(x: int, y: int):
 	var spritesheet = food_data.sprite_grid
-	if x < 0 or x >= 3 or y < 0 or y >= 3:
-		push_error("Coordenadas fuera de rango: (%d, %d)" % [x,y])
+
+	x = clamp(x, 0, spritesheet.size() - 1)
+	var row = spritesheet[x]
+
+	if row.is_empty():
 		return null
-	return spritesheet[x][y]
+
+	y = clamp(y, 0, row.size() - 1)
+	return row[y]
 
 func set_sprite(x: int, y: int):
 	#if food_data.cookable or food_data.cuttable:
