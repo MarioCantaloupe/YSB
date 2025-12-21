@@ -15,6 +15,7 @@ script = ExtResource("1_uf25l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="activation_zone"]
 shape = SubResource("RectangleShape2D_sw82m")
+debug_color = Color(0, 0.5950001, 0.7, 0.078431375)
 
 [node name="topCut_zone" type="Area2D" parent="."]
 
@@ -22,6 +23,7 @@ shape = SubResource("RectangleShape2D_sw82m")
 position = Vector2(-1.0569706e-06, -77)
 rotation = 3.1415925
 shape = SubResource("RectangleShape2D_x3sr4")
+debug_color = Color(0, 0.5950001, 0.7, 0.078431375)
 
 [node name="bottomCut_zone" type="Area2D" parent="."]
 
@@ -29,6 +31,7 @@ shape = SubResource("RectangleShape2D_x3sr4")
 position = Vector2(0, 70)
 rotation = -6.2831855
 shape = SubResource("RectangleShape2D_x3sr4")
+debug_color = Color(0, 0.5950001, 0.7, 0.078431375)
 
 [node name="side_zone" type="Area2D" parent="."]
 scale = Vector2(1.0050774, 1)
@@ -37,11 +40,13 @@ scale = Vector2(1.0050774, 1)
 position = Vector2(86.5605, 0)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_x3sr4")
+debug_color = Color(0, 0.5950001, 0.7, 0.078431375)
 
 [node name="left_collision" type="CollisionShape2D" parent="side_zone"]
 position = Vector2(-86.5605, 0)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_x3sr4")
+debug_color = Color(0, 0.5950001, 0.7, 0.078431375)
 
 [connection signal="input_event" from="activation_zone" to="." method="_on_activation_zone_input_event"]
 [connection signal="mouse_entered" from="activation_zone" to="." method="_on_activation_zone_mouse_entered"]
