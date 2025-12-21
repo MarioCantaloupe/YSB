@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dunv7fftvnlfn" path="res://01_assets/01_sprites/02_objects/knife.png" id="2_mcri3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mcri3"]
-radius = 49.0
+radius = 64.0
 height = 494.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vkg6y"]
@@ -20,6 +20,7 @@ script = ExtResource("1_6f1ut")
 [node name="click_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="click_area"]
+position = Vector2(24, 0)
 shape = SubResource("CapsuleShape2D_mcri3")
 
 [node name="sprite" type="Sprite2D" parent="."]
