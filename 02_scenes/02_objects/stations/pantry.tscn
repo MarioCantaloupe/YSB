@@ -1,10 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpk6ka7ckqbny"]
+[gd_scene load_steps=16 format=3 uid="uid://bpk6ka7ckqbny"]
 
 [ext_resource type="Script" uid="uid://ccleoijy68y2b" path="res://02_scenes/02_objects/stations/pantry_picker.gd" id="1_ucdvd"]
 [ext_resource type="Texture2D" uid="uid://cmer58h6eg36h" path="res://01_assets/01_sprites/02_objects/00_foods/bread_chop0_cook0.png" id="2_kiyky"]
 [ext_resource type="Resource" uid="uid://b70hme8husnxq" path="res://02_scenes/02_objects/00_item_data/ingredient_cheese.tres" id="2_y6gya"]
-[ext_resource type="Resource" uid="uid://duk0ntp6mk6qf" path="res://02_scenes/02_objects/00_item_data/base_item.tres" id="3_u2ok8"]
+[ext_resource type="Resource" uid="uid://1o0lyukg5osb" path="res://02_scenes/02_objects/00_item_data/ingredient_chapataTapa.tres" id="3_pfn7n"]
 [ext_resource type="Resource" uid="uid://b4ixsb5vt31om" path="res://02_scenes/02_objects/00_item_data/ingredient_slime.tres" id="4_8isjd"]
+[ext_resource type="Resource" uid="uid://dmgtiv1aowxgl" path="res://02_scenes/02_objects/00_item_data/ingredient_lettuceYellow.tres" id="4_55pe5"]
+[ext_resource type="Resource" uid="uid://bq8pcq0h6og0u" path="res://02_scenes/02_objects/00_item_data/ingredient_chapataBase.tres" id="4_seay2"]
+[ext_resource type="Resource" uid="uid://q2lq84d37vs6" path="res://02_scenes/02_objects/00_item_data/ingredient_steak.tres" id="7_y3hr3"]
+[ext_resource type="Resource" uid="uid://uqiyg04bsjge" path="res://02_scenes/02_objects/00_item_data/ingredient_squid.tres" id="8_ei0n3"]
+[ext_resource type="Resource" uid="uid://cxw6btm776x0e" path="res://02_scenes/02_objects/00_item_data/ingredient_lettuceGreen.tres" id="10_mu46c"]
+[ext_resource type="Resource" uid="uid://34uyg5mkdrsh" path="res://02_scenes/02_objects/00_item_data/ingredient_lettucePink.tres" id="11_p6xw0"]
+[ext_resource type="Resource" uid="uid://dfqesp81j8l2s" path="res://02_scenes/02_objects/00_item_data/ingredient_lettuceBlue.tres" id="12_immh1"]
+[ext_resource type="Resource" uid="uid://2b8b0k04pyix" path="res://02_scenes/02_objects/00_item_data/ingredient_carrot.tres" id="13_j875i"]
+[ext_resource type="Resource" uid="uid://btuotq2livsn6" path="res://02_scenes/02_objects/00_item_data/ingredient_tomato.tres" id="14_qpwvf"]
+[ext_resource type="Resource" uid="uid://bxk5gtmstigmb" path="res://02_scenes/02_objects/00_item_data/ingredient_vodka.tres" id="15_ei0n3"]
 
 [node name="pantry" type="Control"]
 layout_mode = 3
@@ -15,18 +25,92 @@ offset_top = 13.799988
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_right = -20.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Panes" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="00_breads" type="HBoxContainer" parent="TabContainer/Panes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="chapataTop" type="Button" parent="TabContainer/Panes/00_breads"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "INGR"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("3_pfn7n")
+infinite_resources = true
+
+[node name="chapataBottom" type="Button" parent="TabContainer/Panes/00_breads"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "INGR"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("4_seay2")
+infinite_resources = true
+
+[node name="bagelTop" type="Button" parent="TabContainer/Panes/00_breads"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EDIE"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("4_55pe5")
+infinite_resources = true
+
+[node name="bagelBottom" type="Button" parent="TabContainer/Panes/00_breads"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EDIE"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("4_55pe5")
+infinite_resources = true
+
+[node name="Carnes" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="01_meats" type="HBoxContainer" parent="TabContainer/Carnes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="cheese" type="Button" parent="TabContainer/Carnes/01_meats"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "INGR"
@@ -35,8 +119,9 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("2_y6gya")
+infinite_resources = true
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
+[node name="steak" type="Button" parent="TabContainer/Carnes/01_meats"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "EDIE"
@@ -44,9 +129,21 @@ icon = ExtResource("2_kiyky")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
-item_resource = ExtResource("3_u2ok8")
+item_resource = ExtResource("7_y3hr3")
+infinite_resources = true
 
-[node name="Button3" type="Button" parent="HBoxContainer"]
+[node name="squid" type="Button" parent="TabContainer/Carnes/01_meats"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NTES"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("8_ei0n3")
+infinite_resources = true
+
+[node name="slime" type="Button" parent="TabContainer/Carnes/01_meats"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "NTES"
@@ -55,3 +152,123 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("4_8isjd")
+infinite_resources = true
+
+[node name="Vegetales" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="02_veggies" type="HBoxContainer" parent="TabContainer/Vegetales"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="lettuceGreen" type="Button" parent="TabContainer/Vegetales/02_veggies"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "INGR"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("10_mu46c")
+infinite_resources = true
+
+[node name="lettucePink" type="Button" parent="TabContainer/Vegetales/02_veggies"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EDIE"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("11_p6xw0")
+infinite_resources = true
+
+[node name="lettuceYellow" type="Button" parent="TabContainer/Vegetales/02_veggies"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NTES"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("4_55pe5")
+infinite_resources = true
+
+[node name="lettuceBlue" type="Button" parent="TabContainer/Vegetales/02_veggies"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NTES"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("12_immh1")
+infinite_resources = true
+
+[node name="carrot" type="Button" parent="TabContainer/Vegetales/02_veggies"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "INGR"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("13_j875i")
+infinite_resources = true
+
+[node name="tomato" type="Button" parent="TabContainer/Vegetales/02_veggies"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EDIE"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("14_qpwvf")
+infinite_resources = true
+
+[node name="Líquidos" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="03_fluids" type="HBoxContainer" parent="TabContainer/Líquidos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="vodka" type="Button" parent="TabContainer/Líquidos/03_fluids"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "INGR"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("15_ei0n3")
+infinite_resources = true
+
+[node name="water" type="Button" parent="TabContainer/Líquidos/03_fluids"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EDIE"
+icon = ExtResource("2_kiyky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_ucdvd")
+item_resource = ExtResource("4_55pe5")
+infinite_resources = true
