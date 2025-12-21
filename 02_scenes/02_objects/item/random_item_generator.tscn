@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmlfwywo2pn46"]
-
-[ext_resource type="Script" uid="uid://dago6u75gfmy7" path="res://02_scenes/02_objects/item/random_item_generator.gd" id="1_2fdmv"]
-
-[node name="random_item_generator" type="Node"]
-script = ExtResource("1_2fdmv")

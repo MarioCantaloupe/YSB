@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0b50y1quuhw"]
-
-[ext_resource type="Script" uid="uid://dxch0xy14nrs5" path="res://02_scenes/02_objects/item/spawn_random_item.gd" id="1_d6nes"]
-[ext_resource type="PackedScene" uid="uid://bmlfwywo2pn46" path="res://02_scenes/02_objects/item/random_item_generator.tscn" id="2_kfdyp"]
-
-[node name="item_spawner" type="Node"]
-script = ExtResource("1_d6nes")
-
-[node name="random_item_generator" parent="." instance=ExtResource("2_kfdyp")]

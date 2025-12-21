@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2fvw1rt6asl8"]
+
+[ext_resource type="Script" uid="uid://b5sdpt2nfq8t6" path="res://02_scenes/02_objects/item/spawner/random_ItemState.gd" id="1_1dob6"]
+[ext_resource type="Script" uid="uid://c56cjudah5kvb" path="res://02_scenes/02_objects/item/spawner/ingredient_group_weight.gd" id="2_d42l1"]
+
+[sub_resource type="Resource" id="Resource_mnv1v"]
+script = ExtResource("2_d42l1")
+metadata/_custom_type_script = "uid://c56cjudah5kvb"
+
+[node name="random_ItemState" type="Node"]
+script = ExtResource("1_1dob6")
+weight_config = SubResource("Resource_mnv1v")
+clean_chance = 1.0
