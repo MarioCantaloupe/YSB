@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 func _on_button_down() -> void:
-	if PlayerCursor.held_item != null:
+	if PlayerCursor.held_item != null or PlayerCursor.is_knife:
 		return
 
 	if infinite_resources:
