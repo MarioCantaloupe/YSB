@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cb04ji4mpf2vu"]
+[gd_scene load_steps=10 format=3 uid="uid://cb04ji4mpf2vu"]
 
 [ext_resource type="Script" uid="uid://bqognyraoiwx0" path="res://02_scenes/03_levels/infinite_runner.gd" id="1_0p27r"]
 [ext_resource type="PackedScene" uid="uid://co1ew4wo03x4j" path="res://02_scenes/01_characters/yaya_runner.tscn" id="1_w88gs"]
 [ext_resource type="Script" uid="uid://cfel1p4e70kct" path="res://02_scenes/02_objects/runner/obstacle_spawner.gd" id="2_u86ga"]
-[ext_resource type="PackedScene" uid="uid://bbhi6ysyx7ejp" path="res://02_scenes/02_objects/runner/obstacle.tscn" id="3_fa34h"]
-[ext_resource type="PackedScene" uid="uid://cbx6k5i72h3n2" path="res://02_scenes/02_objects/runner/cart_upgrade.tscn" id="4_0p27r"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="6_2tkmp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w88gs"]
@@ -116,13 +114,7 @@ jump_time_to_descent = 1.5
 
 [node name="asteroid_spawner" type="Node2D" parent="."]
 script = ExtResource("2_u86ga")
-obstacle_scenes = [{
-"scene": ExtResource("3_fa34h"),
-"weight": 5
-}, {
-"scene": ExtResource("4_0p27r"),
-"weight": 1
-}]
+scale_variation = 0.5
 
 [node name="asteroid_spawn_timer" type="Timer" parent="asteroid_spawner"]
 wait_time = 0.55
@@ -150,15 +142,6 @@ layout_mode = 2
 text = "Aire"
 horizontal_alignment = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_2tkmp")]
-process_mode = 3
-offset_left = 4.0
-offset_right = 4.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
 [node name="start_tooltip" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
 offset_left = 518.0
@@ -176,6 +159,13 @@ horizontal_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_hebh8")
 }
+
+[node name="pause_canvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="pause_canvasLayer" instance=ExtResource("6_2tkmp")]
+process_mode = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [connection signal="GameEnd" from="yaya" to="." method="_on_yaya_game_end"]
 [connection signal="timeout" from="asteroid_spawner/asteroid_spawn_timer" to="asteroid_spawner" method="_on_asteroid_spawn_timer_timeout"]

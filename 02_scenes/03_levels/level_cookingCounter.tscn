@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2gd5cnmmonf"]
+[gd_scene load_steps=8 format=3 uid="uid://c2gd5cnmmonf"]
 
+[ext_resource type="Script" uid="uid://bpu36njf45mvk" path="res://02_scenes/03_levels/level.gd" id="1_p1e7v"]
 [ext_resource type="Texture2D" uid="uid://cnqdm28a3tw45" path="res://01_assets/01_sprites/00_placeholders/cookingCounter_placeholder.png" id="1_wyvwv"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="2_i7egh"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="3_i7egh"]
@@ -9,6 +10,8 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_al4r0"]
 
 [node name="Node2D" type="Node2D" groups=["mouse_scene"]]
+script = ExtResource("1_p1e7v")
+can_pause = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 8
@@ -24,15 +27,6 @@ texture = ExtResource("1_wyvwv")
 expand_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="pantry" parent="." instance=ExtResource("2_i7egh")]
-anchor_bottom = 1.915
-offset_left = 5.0
-offset_top = 558.0
-offset_right = 1285.0
-offset_bottom = 726.0
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
 [node name="button_prevScene" type="Button" parent="."]
 offset_left = 30.695679
 offset_top = 32.0
@@ -42,6 +36,14 @@ theme_override_font_sizes/font_size = 41
 script = ExtResource("3_i7egh")
 target_scene_path = "res://02_scenes/03_levels/level_cuttingCounter.tscn"
 metadata/_edit_use_anchors_ = true
+
+[node name="pantry" parent="." instance=ExtResource("2_i7egh")]
+anchor_bottom = 1.915
+offset_left = -0.3043213
+offset_top = 552.0
+offset_right = 1279.6957
+offset_bottom = 720.0
+grow_vertical = 2
 
 [node name="button_prevScene2" type="Button" parent="."]
 offset_left = 1065.6957
@@ -83,10 +85,11 @@ position = Vector2(640.6957, 360)
 position = Vector2(0, 150)
 shape = SubResource("WorldBoundaryShape2D_al4r0")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="pause_canvasLayer" type="CanvasLayer" parent="."]
 process_mode = 2
+visible = false
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("5_xprrl")]
+[node name="PauseMenu" parent="pause_canvasLayer" instance=ExtResource("5_xprrl")]
 size_flags_horizontal = 4
 size_flags_vertical = 4
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1uufv8ixv0b5"]
+[gd_scene load_steps=13 format=3 uid="uid://b1uufv8ixv0b5"]
 
+[ext_resource type="Script" uid="uid://bpu36njf45mvk" path="res://02_scenes/03_levels/level.gd" id="1_e0736"]
 [ext_resource type="Texture2D" uid="uid://cit0wudxrvthe" path="res://01_assets/01_sprites/00_placeholders/cuttingCounter_placeholder.png" id="1_kj6sw"]
 [ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="2_pkr72"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="3_26cpk"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bwov6edkubuxi" path="res://02_scenes/02_objects/item/item.tscn" id="5_5y2wv"]
 [ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/item_data.gd" id="6_pxsgn"]
 [ext_resource type="Texture2D" uid="uid://b5xgl63gdonh3" path="res://01_assets/01_sprites/00_placeholders/null_sprite.png" id="8_l52f4"]
+[ext_resource type="PackedScene" uid="uid://dywybglont3jq" path="res://02_scenes/02_objects/knife.tscn" id="10_oi6qb"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="16_fpdgg"]
 
 [sub_resource type="Resource" id="Resource_e0736"]
@@ -21,6 +23,8 @@ sprite_grid = Array[Array]([[ExtResource("8_l52f4")], [ExtResource("8_l52f4")], 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rjbqa"]
 
 [node name="Node2D" type="Node2D" groups=["mouse_scene"]]
+script = ExtResource("1_e0736")
+can_pause = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640.6957, 360)
@@ -43,10 +47,10 @@ position = Vector2(304.69568, 243)
 
 [node name="pantry" parent="." instance=ExtResource("3_26cpk")]
 anchor_bottom = 1.915
-offset_left = 0.6956787
-offset_top = 562.0
-offset_right = 1280.6957
-offset_bottom = 730.0
+offset_left = -0.3043213
+offset_top = 552.0
+offset_right = 1279.6957
+offset_bottom = 720.0
 grow_vertical = 2
 
 [node name="item" parent="." instance=ExtResource("5_5y2wv")]
@@ -69,14 +73,19 @@ position = Vector2(640.6957, 360)
 position = Vector2(0, 150)
 shape = SubResource("WorldBoundaryShape2D_rjbqa")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="pause_canvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("16_fpdgg")]
+[node name="PauseMenu" parent="pause_canvasLayer" instance=ExtResource("16_fpdgg")]
 process_mode = 3
 offset_left = 4.0
 offset_right = 4.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="knife" parent="." instance=ExtResource("10_oi6qb")]
+position = Vector2(1045.0001, 380.99997)
+rotation = -0.098475076
+scale = Vector2(0.65631264, 0.65631264)
 
 [connection signal="pressed" from="button_nextScene" to="button_nextScene" method="_on_pressed"]
