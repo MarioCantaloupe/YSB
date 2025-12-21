@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=11 format=3 uid="uid://btuotq2livsn6"]
+
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/item_data.gd" id="1_g1l8w"]
+[ext_resource type="Texture2D" uid="uid://c55x4xbxsdji6" path="res://01_assets/01_sprites/02_objects/00_foods/tomate_ch00_co00.PNG" id="2_g1l8w"]
+[ext_resource type="Texture2D" uid="uid://cpcgr8qsj83wv" path="res://01_assets/01_sprites/02_objects/00_foods/tomate_ch00_co01.PNG" id="3_ytgdk"]
+[ext_resource type="Texture2D" uid="uid://bbp853uucpvub" path="res://01_assets/01_sprites/02_objects/00_foods/tomate_ch00_co02.PNG" id="4_ihtyn"]
+[ext_resource type="Texture2D" uid="uid://b5bqht5lrch4r" path="res://01_assets/01_sprites/02_objects/00_foods/tomate_ch01_co00.PNG" id="5_rj0gm"]
+[ext_resource type="Texture2D" uid="uid://eyhced6l5yx6" path="res://01_assets/01_sprites/02_objects/00_foods/tomate_ch01_co01.PNG" id="6_7cne4"]
+[ext_resource type="Texture2D" uid="uid://bjegh7wnj6cnr" path="res://01_assets/01_sprites/02_objects/00_foods/tomate_ch01_co02.PNG" id="7_8cqa4"]
+[ext_resource type="Texture2D" uid="uid://ddgwhrk8qtg5h" path="res://01_assets/01_sprites/02_objects/00_foods/tomate_ch02_co00.PNG" id="8_nq8au"]
+[ext_resource type="Texture2D" uid="uid://dg33rxjtw621l" path="res://01_assets/01_sprites/02_objects/00_foods/tomate_ch02_co01.PNG" id="9_t48ul"]
+[ext_resource type="Texture2D" uid="uid://3mp744ba82s" path="res://01_assets/01_sprites/02_objects/00_foods/tomate_ch02_co02.PNG" id="10_rl8jv"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_g1l8w")
+id = "tomato"
+name = "Tomate"
+average_color = Color(0.30588236, 0.14117648, 0.60784316, 1)
+type = 2
+cooking_time = 5.0
+cookable = true
+cleanable = true
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("2_g1l8w"), ExtResource("3_ytgdk"), ExtResource("4_ihtyn")], [ExtResource("5_rj0gm"), ExtResource("6_7cne4"), ExtResource("7_8cqa4")], [ExtResource("8_nq8au"), ExtResource("9_t48ul"), ExtResource("10_rl8jv")]])

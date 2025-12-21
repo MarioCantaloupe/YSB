@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://bxk5gtmstigmb"]
+
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/item_data.gd" id="1_3p5yc"]
+[ext_resource type="Texture2D" uid="uid://k16clpg308jc" path="res://01_assets/01_sprites/02_objects/00_foods/vodka_full.PNG" id="2_hy7oh"]
+[ext_resource type="Texture2D" uid="uid://bdndc0d0shdqh" path="res://01_assets/01_sprites/02_objects/00_foods/vodka_empty.PNG" id="3_55uhy"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_3p5yc")
+id = "vodka"
+name = "Vokda"
+average_color = Color(0.691073, 0.7684066, 0.99316055, 0.23921569)
+type = 3
+cooking_time = 5.0
+cuttable = true
+sprite_grid = Array[Array]([[ExtResource("2_hy7oh")], [ExtResource("3_55uhy")]])

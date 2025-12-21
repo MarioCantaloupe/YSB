@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FoodData" load_steps=5 format=3 uid="uid://34uyg5mkdrsh"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://34uyg5mkdrsh"]
 
 [ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/item_data.gd" id="1_gxjs1"]
 [ext_resource type="Texture2D" uid="uid://7x63y6kilo7l" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaRosa_lab00_co00.png" id="2_26es4"]
@@ -12,7 +12,7 @@ id = "lettuce_pink"
 name = "Lechuga Rosa"
 average_color = Color(0.92, 0.32200003, 0.40173328, 1)
 type = 2
-cooking_time = 5.0
+cooking_time = 6.0
 cleanable = true
 cuttable = true
 sprite_grid = Array[Array]([[ExtResource("2_26es4")], [ExtResource("3_5su1y")], [ExtResource("4_bhfin")]])

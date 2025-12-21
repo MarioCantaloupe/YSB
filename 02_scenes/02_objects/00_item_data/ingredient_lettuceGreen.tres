@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FoodData" load_steps=5 format=3 uid="uid://cxw6btm776x0e"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://cxw6btm776x0e"]
 
 [ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/item_data.gd" id="1_bayqm"]
 [ext_resource type="Texture2D" uid="uid://dv3ixbeupp6uc" path="res://01_assets/01_sprites/02_objects/00_foods/lechuga_lab00_co00.png" id="2_f3fiv"]
@@ -12,6 +12,7 @@ id = "lettuce_green"
 name = "Lechuga Verde"
 average_color = Color(0.40207717, 0.77725893, 0.13935596, 1)
 type = 2
+cooking_time = 6.0
 cleanable = true
 cuttable = true
 sprite_grid = Array[Array]([[ExtResource("2_f3fiv")], [ExtResource("3_52kbw")], [ExtResource("4_dl6of")]])
