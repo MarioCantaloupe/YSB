@@ -21,10 +21,10 @@ enum CursorType {
 }
 
 var cursor_images := { #TODO placeholders
-	CursorType.POINT: "res://01_assets/01_sprites/01_characters/cursor-png-1137.png",
+	CursorType.POINT: "res://01_assets/01_sprites/01_characters/cursor_default.png",
 	CursorType.CAN_INTERACT: "res://01_assets/01_sprites/01_characters/hand_point.png",
 	CursorType.HOLDING: "res://01_assets/01_sprites/01_characters/cursor-png-1137.png",
-	CursorType.KNIFE: "res://01_assets/01_sprites/01_characters/tinyKnife.png",
+	CursorType.KNIFE: "res://01_assets/01_sprites/01_characters/cursor_knife.png",
 }
 
 # Called when the node enters the scene tree for the first time.
