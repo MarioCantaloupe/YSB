@@ -52,9 +52,9 @@ func get_avg_mouse_velocity():
 		sum += v
 	return sum / velocity_buffer.size()
 	
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("debug_key"):
-		toggle_knife()
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("debug_key"):
+		#toggle_knife()
 	
 func toggle_knife():
 	is_knife = !is_knife
