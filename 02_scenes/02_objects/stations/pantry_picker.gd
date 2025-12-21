@@ -38,7 +38,7 @@ func _on_button_down() -> void:
 
 func spawn_new_item(state: ItemState) -> void:
 	var new_item = item_scene.instantiate()
-	get_tree().current_scene.add_child(new_item)
+	get_tree().current_scene.get_node("WorldItems").add_child(new_item)
 
 	new_item.global_position = get_global_mouse_position()
 
