@@ -8,7 +8,7 @@ func _input(event: InputEvent) -> void:
 		print_random_item_state()
 
 func _ready():
-	randomize()  # ensure random values
+	randomize()  # resets rng
 	print_random_item_state()
 
 
@@ -24,7 +24,7 @@ func print_random_item_state():
 	if state.is_frozen:
 		ice_level_value = state.ice_level
 
-	# Print nicely
+	# pretyy print
 	print("-------- Random ItemState --------")
 	print("Name: ", state.data.name)
 	print("Type: ", state.data.type)
