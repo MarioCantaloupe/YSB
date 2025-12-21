@@ -83,19 +83,35 @@ func increase_carrito_level(value):
 		carrito_level += value
 		print(carrito_level)
 		if carrito_level >= carrito_threshold:
-			activate_demon_mode()
-			#change animation
+			set_demon_mode(true)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug_key"):
-		activate_demon_mode()
+		set_demon_mode(true)
 
-func activate_demon_mode():
-	carrito_demon = true
-	print("carrito demon ON")
-	carrito_level = 0
-	demon_cart_timer.start()
+func set_demon_mode(value):
+	if value == true:
+		carrito_demon = true
+		demon_form()
+		print("carrito demon ON")
+		carrito_level = 0
+		demon_cart_timer.start()
+	if value == false:
+		carrito_demon = false
+		regular_form()
+		print("carrito demon OFF")
+
+func demon_form():
+	sprite.modulate = Color(0.944, 0.0, 0.0, 1.0)
+
+func regular_form():
+	sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
+
 
 func no_air_left():
 	queue_free()
 	emit_signal("GameEnd")
+
+
+func _on_demon_cart_timer_timeout() -> void:
+	set_demon_mode(false)

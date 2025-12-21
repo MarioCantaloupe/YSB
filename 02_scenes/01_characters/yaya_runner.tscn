@@ -45,6 +45,8 @@ one_shot = true
 
 [node name="demonCart_timer" type="Timer" parent="."]
 wait_time = 10.0
+one_shot = true
 
 [connection signal="area_entered" from="collision" to="." method="_on_collision_area_entered"]
 [connection signal="timeout" from="hit_cooldown" to="." method="_on_hit_cooldown_timeout"]
+[connection signal="timeout" from="demonCart_timer" to="." method="_on_demon_cart_timer_timeout"]
