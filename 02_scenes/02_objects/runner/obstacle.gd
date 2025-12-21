@@ -8,15 +8,20 @@ extends Node2D
 @onready var sprite: Sprite2D = $sprite
 
 var instanced_particles = null
+var random_rotation : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	random_rotation = randf_range(-0.05, 0.05)
 	sprite.texture = obstacle_data.sprite
 	instanced_particles = obstacle_particles_scene.instantiate()
 	await instanced_particles.ready
 	
+	
+	
 func _physics_process(_delta: float) -> void:
 	position.x -= obstacle_data.movement_speed
+	rotation += random_rotation
 
 func _on_collision_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
