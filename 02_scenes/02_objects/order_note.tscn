@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq80il7e83rsc"]
+
+[ext_resource type="Script" uid="uid://dicaw43s5vqrr" path="res://02_scenes/02_objects/order_bocata_visuals.gd" id="1_vkpnu"]
+
+[node name="order_note" type="Node2D"]
+
+[node name="bocata_visuals" type="Node2D" parent="."]
+script = ExtResource("1_vkpnu")
