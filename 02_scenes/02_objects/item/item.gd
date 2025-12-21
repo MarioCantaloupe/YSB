@@ -253,16 +253,51 @@ func check_rest_zones():
 		cook_timer.paused = true
 
 func clear_from_station():
-	# clear rest state on the item so it no longer thinks it's resting on a station
 	rest_point = null
 	_set_has_reached_rest(false)
-	# if you want to stop any rest lerp immediately:
-	# optionally reset rotation target or other station-specific flags
-	# also ensure progress/cooking stops if it was active
 	ui_clock.hide_cooking_ui(true)
 	if cook_timer != null:
 		cook_timer.stop()
 
+func apply_item_state(state: ItemState) -> void:
+	if state == null:
+		push_error("ItemState is Null")
+		return
+
+	food_data = state.data
+
+	cook_level = state.cook_level
+	chop_level = state.chop_level
+	ice_level = state.ice_level
+	is_clean = state.is_clean
+	is_frozen = state.is_frozen
+
+	if is_frozen:
+		ice_sprite.show()
+	else:
+		ice_sprite.hide()
+
+	if not is_clean:
+		static_dust_particles.show()
+	else:
+		static_dust_particles.hide()
+
+	set_sprite(chop_level, cook_level)
+	cooking_time = food_data.cooking_time
+	cook_timer.wait_time = cooking_time
+
+func save_item_state() -> ItemState:
+	
+	var item_state : ItemState = ItemState.new()
+	item_state.cook_level = cook_level
+	item_state.chop_level = chop_level
+	item_state.ice_level = ice_level
+	item_state.is_clean = is_clean
+	item_state.is_frozen = is_frozen
+	item_state.data = food_data
+	
+	return item_state
+	
 # SETTERS
 func _set_chop_level(value):
 	chop_level = clamp(value, 0 ,2)
