@@ -20,7 +20,6 @@ func _process(_delta: float) -> void:
 		tooltip_player.play_backwards("control_tooltip_fadeIn")
 		has_tooltip_appeared = true
 		
-
 func _on_yaya_game_end() -> void:
 	PlayerCursor.enable_cursor(true)
 	GlobalScript.change_scene(GlobalScript.Kitchen01)
