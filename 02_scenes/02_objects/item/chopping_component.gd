@@ -31,7 +31,6 @@ func _process(_delta: float) -> void:
 
 func chop_level_up():
 	chop_level += 1
-	#print("CHOP! Chop level: " + str(chop_level))
 	emit_signal("chop_up", chop_level)
 	slice_count = 0
 	chopping = false #prevent overchopping
@@ -46,7 +45,6 @@ func _on_activation_zone_mouse_exited() -> void:
 func _on_activation_zone_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
 	if PlayerCursor.is_knife:
 		if Input.is_action_just_pressed("Lclick"):
-			#print("chopping component clicked")
 			chopping = true
 			bottom_cut_zone.monitoring = true
 			top_cut_zone.monitoring = true
@@ -56,20 +54,14 @@ func _on_bottom_cut_zone_mouse_entered() -> void:
 	if chopping:
 		if chop_isTop:
 			slice_count += 1
-			#print("slice count: " + str(slice_count))
 			chop_isTop = false
-	#else:
-		#print("knife slip")
 
 
 func _on_top_cut_zone_mouse_entered() -> void:
 	if chopping:
 		if not chop_isTop:
 			slice_count += 1
-			#print("slice count: " + str(slice_count))
 			chop_isTop = true
-	#else:
-		#print("knife slip")
 
 
 func _on_side_zone_mouse_entered() -> void:
