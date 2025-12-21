@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name Item
 
 const REST_RADIUS: float = 80.0   # maximum distance to snap into a rest zone
 const LERP_SPEED_SELECTED := 25.0
@@ -211,7 +212,7 @@ func defrost():
 	else:
 		if food_data.cookable:
 			_set_cook_level(2)
-			static_dust_particles.self_modulate = Color(0.149, 0.149, 0.149, 1.0)
+			static_dust_particles.self_modulate = Color(0.149, 0.149, 0.149, 1.0) #burn dust
 			play_poof(Color(0.106, 0.07, 0.015, 1.0))
 
 

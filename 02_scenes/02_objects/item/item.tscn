@@ -1,20 +1,20 @@
-[gd_scene load_steps=40 format=3 uid="uid://bwov6edkubuxi"]
+[gd_scene load_steps=37 format=3 uid="uid://bwov6edkubuxi"]
 
 [ext_resource type="Script" uid="uid://choy4l2dbk5xs" path="res://02_scenes/02_objects/item/item.gd" id="1_xwsi1"]
 [ext_resource type="Texture2D" uid="uid://blwgex1cdinyv" path="res://01_assets/01_sprites/04_vfx/shadow.png" id="2_028ab"]
 [ext_resource type="Resource" uid="uid://duk0ntp6mk6qf" path="res://02_scenes/02_objects/00_item_data/base_item.tres" id="2_70bak"]
 [ext_resource type="PackedScene" uid="uid://dx46jgahrlra4" path="res://02_scenes/02_objects/item/chopping_component.tscn" id="3_7pmsf"]
-[ext_resource type="Script" uid="uid://ch7hpp8eatjiq" path="res://02_scenes/02_objects/item/item_shadow.gd" id="3_fldbe"]
+[ext_resource type="Script" uid="uid://ch7hpp8eatjiq" path="res://02_scenes/02_objects/item/visual_components/item_shadow.gd" id="3_fldbe"]
 [ext_resource type="Shader" uid="uid://fm02emy6ogy7" path="res://01_assets/04_shaders/sprite_boil.gdshader" id="5_ntrvf"]
 [ext_resource type="Texture2D" uid="uid://bno73j0wa8l1g" path="res://01_assets/01_sprites/04_vfx/pelusa_spritesheet.png" id="5_wkqhs"]
 [ext_resource type="Texture2D" uid="uid://ivdj087umlem" path="res://01_assets/01_sprites/04_vfx/perlin.png" id="6_osky5"]
 [ext_resource type="Texture2D" uid="uid://bol4fikx3rlfj" path="res://01_assets/01_sprites/04_vfx/vfx_poof_spritesheet.png" id="8_028ab"]
 [ext_resource type="Texture2D" uid="uid://lagptp0juwey" path="res://01_assets/01_sprites/02_objects/icecube_full.png" id="8_xesb6"]
-[ext_resource type="Script" uid="uid://c3g1inqiivp0n" path="res://02_scenes/02_objects/item/ice_block.gd" id="9_exv7o"]
+[ext_resource type="Script" uid="uid://c3g1inqiivp0n" path="res://02_scenes/02_objects/item/visual_components/ice_block.gd" id="9_exv7o"]
 [ext_resource type="Texture2D" uid="uid://uolyfh1y3tql" path="res://01_assets/01_sprites/02_objects/icecube_half.png" id="10_v7lnu"]
 [ext_resource type="Texture2D" uid="uid://c0os4hw58viij" path="res://01_assets/01_sprites/05_ui/reloj_base.PNG" id="11_w438a"]
 [ext_resource type="Texture2D" uid="uid://bxdffroj5togu" path="res://01_assets/01_sprites/05_ui/reloj_cronometro.PNG" id="12_ntrvf"]
-[ext_resource type="Script" uid="uid://b4lkuhhayt4sa" path="res://02_scenes/02_objects/item/cooking_ui.gd" id="12_osky5"]
+[ext_resource type="Script" uid="uid://b4lkuhhayt4sa" path="res://02_scenes/02_objects/item/visual_components/cooking_ui.gd" id="12_osky5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_70bak"]
 friction = 0.69
@@ -40,18 +40,6 @@ shader_parameter/strength = 1.0
 shader_parameter/fps = 3.0
 shader_parameter/noise = SubResource("NoiseTexture2D_exv7o")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_v7lnu"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xhjsk"]
-noise = SubResource("FastNoiseLite_v7lnu")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xesb6"]
-shader = ExtResource("5_ntrvf")
-shader_parameter/scale = Vector2(5.92, 1)
-shader_parameter/strength = 0.5
-shader_parameter/fps = 3.0
-shader_parameter/noise = SubResource("NoiseTexture2D_xhjsk")
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_exv7o"]
 atlas = ExtResource("5_wkqhs")
 region = Rect2(0, 0, 100, 100)
@@ -60,9 +48,13 @@ region = Rect2(0, 0, 100, 100)
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 150.0
-gravity = Vector3(0, 98, 0)
+angle_min = -179.99998
+angle_max = 180.00002
+gravity = Vector3(0, 0, 0)
 scale_min = 0.5
-scale_max = 2.0
+scale_max = 0.9
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fldbe"]
 atlas = ExtResource("8_028ab")
@@ -183,7 +175,7 @@ max_drop_distance = 75.0
 [node name="shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0.18, 0.18, 0.18, 0.39215687)
 material = SubResource("ShaderMaterial_8nltx")
-position = Vector2(0, 20)
+position = Vector2(0, -1)
 scale = Vector2(0.5, 0.2)
 texture = ExtResource("2_028ab")
 script = ExtResource("3_fldbe")
@@ -192,12 +184,13 @@ script = ExtResource("3_fldbe")
 z_index = 1
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_osky5")
-position = Vector2(-2, -4)
+position = Vector2(-2, -25)
 scale = Vector2(0.25, 0.25)
 
 [node name="ice_sprite" type="Sprite2D" parent="sprite"]
 self_modulate = Color(1, 1, 1, 0.5372549)
 z_index = 2
+use_parent_material = true
 position = Vector2(0, -16)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("8_xesb6")
@@ -206,11 +199,14 @@ full_texture = ExtResource("8_xesb6")
 melted_texture = ExtResource("10_v7lnu")
 
 [node name="static_dust" type="GPUParticles2D" parent="sprite"]
-material = SubResource("ShaderMaterial_xesb6")
+z_index = 1
+use_parent_material = true
 position = Vector2(0, -8)
+amount = 6
 texture = SubResource("AtlasTexture_exv7o")
 preprocess = 1.0
 speed_scale = 0.0
+explosiveness = 1.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_v7lnu")
 
@@ -225,9 +221,9 @@ animation = &"poof"
 layout_mode = 3
 anchors_preset = 0
 offset_left = -50.0
-offset_top = -111.5
+offset_top = -132.5
 offset_right = -10.0
-offset_bottom = -71.5
+offset_bottom = -92.5
 
 [node name="item_label" type="Label" parent="tooltip"]
 self_modulate = Color(1, 1, 1, 0)
@@ -261,9 +257,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -44.0
-offset_top = -157.0
+offset_top = -178.0
 offset_right = 56.0
-offset_bottom = -134.0
+offset_bottom = -155.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -272,15 +268,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 22)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_l2ic3")
 debug_color = Color(0.95849806, 0.13365772, 0.39914265, 0.41960785)
 
 [node name="chopping_component" parent="." instance=ExtResource("3_7pmsf")]
 z_index = 5
+position = Vector2(0, -21)
 slices_per_level = 3
 
 [node name="click_area" type="Area2D" parent="."]
+position = Vector2(0, -21)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="click_area"]
 shape = SubResource("RectangleShape2D_wkqhs")
@@ -290,7 +288,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="ui_clock" type="Sprite2D" parent="."]
-position = Vector2(0, -100)
+position = Vector2(0, -121)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("11_w438a")
 script = ExtResource("12_osky5")

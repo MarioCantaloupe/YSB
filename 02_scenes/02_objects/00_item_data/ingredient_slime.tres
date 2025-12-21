@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=11 format=3 uid="uid://b4ixsb5vt31om"]
 
-[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/00_item_data/item_data.gd" id="1_38x42"]
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/item/item_data.gd" id="1_38x42"]
 [ext_resource type="Texture2D" uid="uid://vsrfgvkxinv3" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co00.PNG" id="2_38x42"]
 [ext_resource type="Texture2D" uid="uid://0h357ukeii6e" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co01.PNG" id="3_0ppah"]
 [ext_resource type="Texture2D" uid="uid://b1u4x2l7n3yge" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch00_co02.PNG" id="4_l2kga"]
