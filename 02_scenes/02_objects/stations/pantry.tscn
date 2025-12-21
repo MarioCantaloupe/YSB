@@ -59,7 +59,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("3_pfn7n")
-infinite_resources = true
 
 [node name="chapataBottom" type="Button" parent="TabContainer/Panes/00_breads"]
 layout_mode = 2
@@ -70,7 +69,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("4_seay2")
-infinite_resources = true
 
 [node name="bagelTop" type="Button" parent="TabContainer/Panes/00_breads"]
 layout_mode = 2
@@ -81,7 +79,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("4_55pe5")
-infinite_resources = true
 
 [node name="bagelBottom" type="Button" parent="TabContainer/Panes/00_breads"]
 layout_mode = 2
@@ -92,7 +89,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("4_55pe5")
-infinite_resources = true
 
 [node name="Carnes" type="TabBar" parent="TabContainer"]
 visible = false
@@ -119,7 +115,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("2_y6gya")
-infinite_resources = true
 
 [node name="steak" type="Button" parent="TabContainer/Carnes/01_meats"]
 layout_mode = 2
@@ -130,7 +125,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("7_y3hr3")
-infinite_resources = true
 
 [node name="squid" type="Button" parent="TabContainer/Carnes/01_meats"]
 layout_mode = 2
@@ -141,7 +135,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("8_ei0n3")
-infinite_resources = true
 
 [node name="slime" type="Button" parent="TabContainer/Carnes/01_meats"]
 layout_mode = 2
@@ -152,7 +145,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("4_8isjd")
-infinite_resources = true
 
 [node name="Vegetales" type="TabBar" parent="TabContainer"]
 visible = false
@@ -177,7 +169,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("10_mu46c")
-infinite_resources = true
 
 [node name="lettucePink" type="Button" parent="TabContainer/Vegetales/02_veggies"]
 layout_mode = 2
@@ -188,7 +179,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("11_p6xw0")
-infinite_resources = true
 
 [node name="lettuceYellow" type="Button" parent="TabContainer/Vegetales/02_veggies"]
 layout_mode = 2
@@ -199,7 +189,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("4_55pe5")
-infinite_resources = true
 
 [node name="lettuceBlue" type="Button" parent="TabContainer/Vegetales/02_veggies"]
 layout_mode = 2
@@ -210,7 +199,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("12_immh1")
-infinite_resources = true
 
 [node name="carrot" type="Button" parent="TabContainer/Vegetales/02_veggies"]
 layout_mode = 2
@@ -221,7 +209,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("13_j875i")
-infinite_resources = true
 
 [node name="tomato" type="Button" parent="TabContainer/Vegetales/02_veggies"]
 layout_mode = 2
@@ -232,7 +219,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("14_qpwvf")
-infinite_resources = true
 
 [node name="Líquidos" type="TabBar" parent="TabContainer"]
 visible = false
@@ -260,7 +246,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("15_ei0n3")
-infinite_resources = true
 
 [node name="water" type="Button" parent="TabContainer/Líquidos/03_fluids"]
 layout_mode = 2
@@ -271,4 +256,3 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_ucdvd")
 item_resource = ExtResource("4_55pe5")
-infinite_resources = true
