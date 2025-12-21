@@ -1,9 +1,9 @@
 extends Resource
 class_name ItemState
 
-@export var data: ItemData #datos inmutables del ingrediente
-@export var cook_level: int = 0
-@export var chop_level: int = 0
-@export var ice_level: int = 0
-@export var is_clean: bool = false
-@export var is_frozen: bool = false
+var data: ItemData #datos inmutables del ingrediente
+var cook_level: int = 0
+var chop_level: int = 0
+var ice_level: int = 0
+var is_clean: bool = false
+var is_frozen: bool = false
