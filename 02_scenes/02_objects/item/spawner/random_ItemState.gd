@@ -13,12 +13,12 @@ class_name RandomItemStateGenerator
 # Cooking
 @export_group("State variables")
 @export var min_cook_level: int = 0
-@export var max_cook_level: int = 3
+@export var max_cook_level: int = 2
 var max_allowed_cook_level : int = 2
 
 # Chopping
 @export var min_chop_level: int = 0
-@export var max_chop_level: int = 3
+@export var max_chop_level: int = 2
 var max_allowed_chop_level : int = 2
 
 # Probabilities (0.0 – 1.0)
@@ -34,6 +34,8 @@ var _item_data_by_type: Dictionary = {}
 # https://docs.godotengine.org/en/stable/classes/class_randomnumbergenerator.html
 var _rng := RandomNumberGenerator.new()
 
+func _init():
+	_load_item_data()
 
 func _ready() -> void:
 	_rng.randomize()
