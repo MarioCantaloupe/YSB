@@ -157,8 +157,9 @@ _data = {
 &"show_text_tip": SubResource("Animation_iyt2q")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2ic3"]
-size = Vector2(104, 34)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l4qy8"]
+radius = 16.0
+height = 54.0091
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkqhs"]
 size = Vector2(84, 82)
@@ -270,7 +271,8 @@ vertical_alignment = 1
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_l2ic3")
+rotation = -1.5659237
+shape = SubResource("CapsuleShape2D_l4qy8")
 debug_color = Color(0.95849806, 0.13365772, 0.39914265, 0.41960785)
 
 [node name="chopping_component" parent="." instance=ExtResource("3_7pmsf")]
