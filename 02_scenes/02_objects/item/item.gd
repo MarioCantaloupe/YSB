@@ -40,6 +40,7 @@ var has_reached_rest = false : set = _set_has_reached_rest
 var rest_point
 var rest_nodes = []
 var last_item_pos : Vector2
+var _original_z_index : int
 
 # fake floor variables
 @export var enable_fake_floor := true
@@ -56,6 +57,7 @@ func _ready() -> void:
 		gravity_scale = 0
 	set_sprite(0,0)
 	lock_rotation = true
+	_original_z_index = z_index
 	cooking_time = food_data.cooking_time
 	cook_timer.wait_time = cooking_time
 	_set_selected(false)
@@ -229,10 +231,15 @@ func station_action(action):
 
 func get_sprite(x: int, y: int):
 	var spritesheet = food_data.sprite_grid
-	if x < 0 or x >= 3 or y < 0 or y >= 3:
-		push_error("Coordenadas fuera de rango: (%d, %d)" % [x,y])
+
+	x = clamp(x, 0, spritesheet.size() - 1)
+	var row = spritesheet[x]
+
+	if row.is_empty():
 		return null
-	return spritesheet[x][y]
+
+	y = clamp(y, 0, row.size() - 1)
+	return row[y]
 
 func set_sprite(x: int, y: int):
 	#if food_data.cookable or food_data.cuttable:
@@ -321,11 +328,16 @@ func reduce_ice_level():
 		
 
 func _set_selected(value : bool):
+	collision.disabled = value
+	
 	if value == true:
+		z_index = 1000
 		var zones = get_tree().get_nodes_in_group("rest_zone")
 		for i in zones:
 			if i.held_item == self:
 				i.deselect()
+	else:
+		z_index = _original_z_index
 	
 	if selected and not value:
 		await GlobalScript.wait(.01)

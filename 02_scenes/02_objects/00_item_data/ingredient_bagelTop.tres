@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://plxtj1yh3e6v"]
+
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/item/item_data.gd" id="1_hq06x"]
+[ext_resource type="Texture2D" uid="uid://c305xrxbqajsf" path="res://01_assets/01_sprites/02_objects/00_foods/bagelTapa_ch00_co00.PNG" id="2_hq06x"]
+[ext_resource type="Texture2D" uid="uid://bduf1762s6mqp" path="res://01_assets/01_sprites/02_objects/00_foods/bagelTapa_ch00_co01.PNG" id="3_0vw3s"]
+[ext_resource type="Texture2D" uid="uid://bt63naahcgmox" path="res://01_assets/01_sprites/02_objects/00_foods/bagelTapa_ch00_co02.PNG" id="4_njycg"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_hq06x")
+id = "bagelTop"
+name = "Bagel Tapa"
+average_color = Color(0.64705884, 0.4117647, 0.26666668, 1)
+cookable = true
+cleanable = true
+sprite_grid = Array[Array]([[ExtResource("2_hq06x"), ExtResource("3_0vw3s"), ExtResource("4_njycg")]])

@@ -1,7 +1,14 @@
 extends Node
 
+@export_dir var item_data_folder : String = "res://02_scenes/02_objects/00_item_data/"
+
 var inventory: Dictionary = {}
 
+@export var starting_items : Array[ItemData] = []
+
+func _ready() -> void:
+	load_starting_items()
+	initialize_starting_inventory()
 
 func add_item_state(state: ItemState) -> void:
 	if state == null or state.data == null:
@@ -40,3 +47,27 @@ func get_count(id: String) -> int:
 	if not inventory.has(id):
 		return 0
 	return inventory[id].size()
+
+func initialize_starting_inventory() -> void:
+	for item_data in starting_items:
+		var state := ItemState.new()
+		state.data = item_data
+		add_item_state(state)
+		
+func load_starting_items() -> void:
+	starting_items.clear()
+
+	var dir : DirAccess = DirAccess.open(item_data_folder)
+	if dir == null:
+		push_error("ItemData folder not found: %s" % item_data_folder)
+		return
+
+	dir.list_dir_begin()
+	var file_name : String = dir.get_next()
+	while file_name != "":
+		if file_name.ends_with(".tres"):
+			var res : Resource = load(item_data_folder + "/" + file_name)
+			if res is ItemData:
+				starting_items.append(res)
+		file_name = dir.get_next()
+	dir.list_dir_end()

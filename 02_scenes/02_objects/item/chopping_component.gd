@@ -7,6 +7,7 @@ signal knife_slip()
 
 @onready var bottom_cut_zone: Area2D = $bottomCut_zone
 @onready var top_cut_zone: Area2D = $topCut_zone
+@onready var sound_player: AudioStreamPlayer2D = $soundPlayer
 
 
 var mouse_hovering : bool = false
@@ -55,6 +56,8 @@ func _on_bottom_cut_zone_mouse_entered() -> void:
 		if chop_isTop:
 			slice_count += 1
 			chop_isTop = false
+			sound_player.pitch_scale = 1 + (float(slice_count) / slices_per_level)*0.5
+			sound_player.play()
 
 
 func _on_top_cut_zone_mouse_entered() -> void:
@@ -62,6 +65,8 @@ func _on_top_cut_zone_mouse_entered() -> void:
 		if not chop_isTop:
 			slice_count += 1
 			chop_isTop = true
+			sound_player.pitch_scale = 1 + (float(slice_count) / slices_per_level)*0.5
+			sound_player.play()
 
 
 func _on_side_zone_mouse_entered() -> void:

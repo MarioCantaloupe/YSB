@@ -7,6 +7,7 @@ extends Node2D
 func _ready() -> void:
 	var state = state_gen.generate_item_state()
 	item.apply_item_state(state)
+	state_gen.pretty_print_item_state(state)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -14,3 +15,4 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_key"):
 		var state = state_gen.generate_item_state()
 		item.apply_item_state(state)
+		state_gen.pretty_print_item_state(state)

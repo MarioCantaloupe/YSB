@@ -157,8 +157,9 @@ _data = {
 &"show_text_tip": SubResource("Animation_iyt2q")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2ic3"]
-size = Vector2(104, 34)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l4qy8"]
+radius = 16.0
+height = 54.0091
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkqhs"]
 size = Vector2(84, 82)
@@ -175,10 +176,10 @@ max_drop_distance = 75.0
 [node name="shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0.18, 0.18, 0.18, 0.39215687)
 material = SubResource("ShaderMaterial_8nltx")
-position = Vector2(0, -1)
 scale = Vector2(0.5, 0.2)
 texture = ExtResource("2_028ab")
 script = ExtResource("3_fldbe")
+shadow_offset = 0.0
 
 [node name="sprite" type="Sprite2D" parent="."]
 z_index = 1
@@ -251,6 +252,7 @@ libraries = {
 }
 
 [node name="debug_text" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -269,7 +271,8 @@ vertical_alignment = 1
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_l2ic3")
+rotation = -1.5659237
+shape = SubResource("CapsuleShape2D_l4qy8")
 debug_color = Color(0.95849806, 0.13365772, 0.39914265, 0.41960785)
 
 [node name="chopping_component" parent="." instance=ExtResource("3_7pmsf")]

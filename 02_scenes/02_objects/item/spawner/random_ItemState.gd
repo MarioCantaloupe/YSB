@@ -44,10 +44,6 @@ func _ready() -> void:
 
 	_load_item_data()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("debug_key"):
-		pretty_print_item_state(generate_item_state())
-
 func generate_item_state() -> ItemState:
 	"""
 	Returns a fully generated ItemState based on:
