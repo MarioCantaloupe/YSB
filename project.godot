@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PlayerCursor="*res://02_scenes/01_characters/player_cursor.tscn"
 GlobalScript="*res://02_scenes/00_autoload/global_script.gd"
 PantryInventory="*res://02_scenes/00_autoload/pantry_inventory.gd"
+GameSystem="*res://02_scenes/00_autoload/game_system.gd"
 
 [display]
 
