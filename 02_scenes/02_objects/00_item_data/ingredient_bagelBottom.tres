@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://dkq7mt0j7vko6"]
+
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/item/item_data.gd" id="1_trh67"]
+[ext_resource type="Texture2D" uid="uid://tall2by1l6n1" path="res://01_assets/01_sprites/02_objects/00_foods/bagel_ch00_co00.PNG" id="2_trh67"]
+[ext_resource type="Texture2D" uid="uid://ckn0l8l30fs25" path="res://01_assets/01_sprites/02_objects/00_foods/bagel_ch00_co01.PNG" id="3_8i0hj"]
+[ext_resource type="Texture2D" uid="uid://buxtbcahum4dk" path="res://01_assets/01_sprites/02_objects/00_foods/bagel_ch00_co02.PNG" id="4_na1j4"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_trh67")
+id = "bagelBottom"
+name = "Bagel Base"
+average_color = Color(0.64705884, 0.4117647, 0.26666668, 1)
+cookable = true
+cleanable = true
+sprite_grid = Array[Array]([[ExtResource("2_trh67"), ExtResource("3_8i0hj"), ExtResource("4_na1j4")]])
