@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dx46jgahrlra4"]
 
 [ext_resource type="Script" uid="uid://c28t03r1w138w" path="res://02_scenes/02_objects/item/chopping_component.gd" id="1_uf25l"]
-[ext_resource type="AudioStream" uid="uid://devb5dc0p00hf" path="res://01_assets/03_sound/chop.ogg" id="2_ep54e"]
+[ext_resource type="AudioStream" uid="uid://devb5dc0p00hf" path="res://01_assets/03_sound/kitchen/chop.ogg" id="2_ep54e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sw82m"]
 size = Vector2(86, 84)
