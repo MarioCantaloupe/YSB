@@ -7,7 +7,7 @@ const LERP_SPEED_REST := 10.0
 signal item_grabbed(bool)
 
 @export var food_data : ItemData
-@export var gravity : bool = true
+@export var gravity : bool = true : set = set_gravity
 var cooking_time : float
 
 @onready var sprite: Sprite2D = $sprite
@@ -19,6 +19,7 @@ var cooking_time : float
 @onready var cook_timer: Timer = $cook_timer
 @onready var static_dust_particles: GPUParticles2D = $sprite/static_dust
 @onready var ui_clock: Sprite2D = $ui_clock
+@onready var shadow: Sprite2D = $shadow
 
 
 #@onready var click_area: Button = $click_area
@@ -354,6 +355,13 @@ func _set_has_reached_rest(value: bool):
 		#collision.disabled = false
 	#else:
 		#collision.disabled = true
+
+func set_gravity(value : bool):
+	gravity = value
+	if value:
+		gravity_scale = 1
+	else:
+		gravity_scale = 0
 
 # SIGNALED
 func _on_chopping_component_knife_slip() -> void:
