@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://nvg3t8mftpqk"]
+
+[ext_resource type="Shader" uid="uid://fm02emy6ogy7" path="res://01_assets/04_shaders/sprite_boil.gdshader" id="1_685mj"]
+[ext_resource type="Texture2D" uid="uid://ivdj087umlem" path="res://01_assets/01_sprites/04_vfx/perlin.png" id="2_8on18"]
+
+[resource]
+shader = ExtResource("1_685mj")
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/strength = 1.0
+shader_parameter/fps = 3.0
+shader_parameter/noise = ExtResource("2_8on18")
