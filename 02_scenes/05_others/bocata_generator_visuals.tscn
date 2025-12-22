@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyrwndmasxwrv"]
+
+[ext_resource type="Script" uid="uid://eegxgpyol448" path="res://02_scenes/05_others/bocata_generator_visuals.gd" id="1_ahvnf"]
+[ext_resource type="PackedScene" uid="uid://bo4kwri6qfybu" path="res://02_scenes/05_others/bocataGenerator_logic.tscn" id="2_bwwo2"]
+[ext_resource type="PackedScene" uid="uid://bwov6edkubuxi" path="res://02_scenes/02_objects/item/item.tscn" id="2_jpe8r"]
+
+[node name="bocataGenerator_visuals" type="Node2D"]
+script = ExtResource("1_ahvnf")
+item_scene = ExtResource("2_jpe8r")
+
+[node name="bocataGenerator_logic" parent="." instance=ExtResource("2_bwwo2")]
