@@ -3,7 +3,7 @@ extends Node2D
 @export var held_items : Array = []
 @onready var drop_zone: Area2D = $drop_zone
 @onready var button: Button = $Button
-@onready var color_rect: ColorRect = $ColorRect
+@onready var blender_fluid: Sprite2D = $blender_fluid
 
 var can_drop : bool
 var blended_color : Color
@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _on_button_pressed() -> void:
 	var tween = create_tween()
-	tween.tween_property(color_rect, "color", blended_color, 1)
+	tween.tween_property(blender_fluid, "self_modulate", blended_color, 1)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("Lclick"):
