@@ -48,5 +48,7 @@ func get_array_average_color() -> Color:
 
 func _on_drop_zone_mouse_entered() -> void:
 	can_drop = true
+	print(can_drop)
 func _on_drop_zone_mouse_exited() -> void:
 	can_drop = false
+	print(can_drop)
