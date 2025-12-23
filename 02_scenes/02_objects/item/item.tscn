@@ -252,7 +252,7 @@ vertical_alignment = 1
 position = Vector2(0, 1)
 rotation = -1.5659237
 shape = SubResource("CapsuleShape2D_l4qy8")
-debug_color = Color(0.95849806, 0.13365772, 0.39914265, 0.41960785)
+debug_color = Color(4.692748e-06, 0.6478955, 0.1750665, 0.41960785)
 
 [node name="chopping_component" parent="." instance=ExtResource("3_7pmsf")]
 z_index = 5
