@@ -50,6 +50,8 @@ func spawn_new_item(state: ItemState) -> void:
 	PlayerCursor.held_item = new_item
 	new_item.selected = true
 	new_item.freeze = true
+	
+	can_drop = false
 
 
 func _process(_delta: float) -> void:
