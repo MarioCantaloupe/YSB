@@ -1,14 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1uufv8ixv0b5"]
+[gd_scene load_steps=13 format=3 uid="uid://b1uufv8ixv0b5"]
 
 [ext_resource type="Script" uid="uid://bpu36njf45mvk" path="res://02_scenes/03_levels/level.gd" id="1_e0736"]
-[ext_resource type="Texture2D" uid="uid://cit0wudxrvthe" path="res://01_assets/01_sprites/00_placeholders/cuttingCounter_placeholder.png" id="1_kj6sw"]
+[ext_resource type="Texture2D" uid="uid://dtgbymj77xp4r" path="res://01_assets/01_sprites/03_environments/encimera_test.png" id="2_l52f4"]
 [ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="2_pkr72"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="3_26cpk"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="4_gfw5h"]
+[ext_resource type="PackedScene" uid="uid://dsbonk760qi1j" path="res://02_scenes/05_others/killzone.tscn" id="8_l52f4"]
 [ext_resource type="PackedScene" uid="uid://dywybglont3jq" path="res://02_scenes/02_objects/knife.tscn" id="10_oi6qb"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="16_fpdgg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rjbqa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0736"]
+size = Vector2(120.5, 1097)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oi6qb"]
+size = Vector2(120.5, 1227)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mv02x"]
+size = Vector2(86, 558)
 
 [node name="Node2D" type="Node2D" groups=["mouse_scene"]]
 script = ExtResource("1_e0736")
@@ -31,7 +41,7 @@ offset_right = 1281.3914
 offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_kj6sw")
+texture = ExtResource("2_l52f4")
 expand_mode = 2
 
 [node name="tap" parent="." instance=ExtResource("2_pkr72")]
@@ -57,9 +67,23 @@ target_scene_path = "res://02_scenes/03_levels/level_cookingCounter.tscn"
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(640.6957, 360)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="wall_bottom" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 150)
+rotation = 0.00061584933
 shape = SubResource("WorldBoundaryShape2D_rjbqa")
+
+[node name="wall_left" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-637.4457, -394.5)
+shape = SubResource("RectangleShape2D_e0736")
+
+[node name="wall_right" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(693.3043, -394.5)
+shape = SubResource("RectangleShape2D_e0736")
+
+[node name="wall_top" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(23.804321, -943)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_oi6qb")
 
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -75,5 +99,13 @@ size_flags_vertical = 4
 position = Vector2(941, 203)
 rotation = 1.5707964
 scale = Vector2(0.351, 0.351)
+
+[node name="killzone" parent="." instance=ExtResource("8_l52f4")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(26, 276)
+shape = SubResource("RectangleShape2D_mv02x")
+debug_color = Color(0.85, 0, 0, 0.41960785)
 
 [connection signal="pressed" from="button_nextScene" to="button_nextScene" method="_on_pressed"]

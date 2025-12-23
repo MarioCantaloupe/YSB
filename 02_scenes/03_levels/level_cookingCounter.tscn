@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2gd5cnmmonf"]
+[gd_scene load_steps=10 format=3 uid="uid://c2gd5cnmmonf"]
 
 [ext_resource type="Script" uid="uid://bpu36njf45mvk" path="res://02_scenes/03_levels/level.gd" id="1_p1e7v"]
 [ext_resource type="Texture2D" uid="uid://cnqdm28a3tw45" path="res://01_assets/01_sprites/00_placeholders/cookingCounter_placeholder.png" id="1_wyvwv"]
@@ -7,7 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/stations/station.tscn" id="4_al4r0"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="5_xprrl"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_al4r0"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p1e7v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sc1e2"]
+size = Vector2(120.5, 1097)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usgy1"]
+size = Vector2(120.5, 1227)
 
 [node name="Node2D" type="Node2D" groups=["mouse_scene"]]
 script = ExtResource("1_p1e7v")
@@ -45,13 +51,14 @@ offset_right = 1279.6957
 offset_bottom = 720.0
 grow_vertical = 2
 
-[node name="button_prevScene2" type="Button" parent="."]
+[node name="button_nextScene" type="Button" parent="."]
 offset_left = 1065.6957
 offset_top = 32.0
 offset_right = 1239.6957
 offset_bottom = 96.0
 theme_override_font_sizes/font_size = 41
 script = ExtResource("3_i7egh")
+target_scene_path = "res://02_scenes/03_levels/level_blenderCounter.tscn"
 metadata/_edit_use_anchors_ = true
 
 [node name="stoves" type="Node" parent="."]
@@ -80,24 +87,40 @@ action = 1
 position = Vector2(683.6957, 382)
 action = 1
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(640.6957, 360)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 150)
-shape = SubResource("WorldBoundaryShape2D_al4r0")
-
-[node name="pause_canvasLayer" type="CanvasLayer" parent="."]
-process_mode = 2
-visible = false
-
-[node name="PauseMenu" parent="pause_canvasLayer" instance=ExtResource("5_xprrl")]
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
 [node name="WorldItems" type="Node2D" parent="."]
 z_index = 3
 y_sort_enabled = true
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(640.6957, 360)
+
+[node name="wall_bottom" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 150)
+rotation = 0.00061584933
+shape = SubResource("WorldBoundaryShape2D_p1e7v")
+
+[node name="wall_left" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-637.4457, -394.5)
+shape = SubResource("RectangleShape2D_sc1e2")
+
+[node name="wall_right" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(693.3043, -394.5)
+shape = SubResource("RectangleShape2D_sc1e2")
+
+[node name="wall_top" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(23.804321, -943)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_usgy1")
+
+[node name="pause_canvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PauseMenu" parent="pause_canvasLayer" instance=ExtResource("5_xprrl")]
+process_mode = 3
+offset_left = 4.0
+offset_right = 4.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
 [connection signal="pressed" from="button_prevScene" to="button_prevScene" method="_on_pressed"]
-[connection signal="pressed" from="button_prevScene2" to="button_prevScene2" method="_on_pressed"]
+[connection signal="pressed" from="button_nextScene" to="button_nextScene" method="_on_pressed"]

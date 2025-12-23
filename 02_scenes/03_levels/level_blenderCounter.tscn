@@ -1,12 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://305xsumn4isp"]
+[gd_scene load_steps=10 format=3 uid="uid://305xsumn4isp"]
 
 [ext_resource type="Script" uid="uid://bpu36njf45mvk" path="res://02_scenes/03_levels/level.gd" id="1_tcpgh"]
 [ext_resource type="PackedScene" uid="uid://b81rxm7d8fp6m" path="res://02_scenes/02_objects/stations/blender.tscn" id="1_wbwrb"]
-[ext_resource type="Texture2D" uid="uid://cit0wudxrvthe" path="res://01_assets/01_sprites/00_placeholders/cuttingCounter_placeholder.png" id="2_5fig4"]
+[ext_resource type="Texture2D" uid="uid://dtgbymj77xp4r" path="res://01_assets/01_sprites/03_environments/encimera_test.png" id="2_25ncl"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="2_co7y4"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="4_5fig4"]
+[ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="6_25ncl"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_25ncl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvppe"]
+size = Vector2(120.5, 1097)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcc7k"]
+size = Vector2(120.5, 1227)
+
+[node name="Node2D" type="Node2D" groups=["mouse_scene"]]
 script = ExtResource("1_tcpgh")
 can_pause = true
 
@@ -20,24 +29,16 @@ offset_right = 1281.3914
 offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_5fig4")
+texture = ExtResource("2_25ncl")
 expand_mode = 2
-
-[node name="blender" parent="." instance=ExtResource("1_wbwrb")]
-position = Vector2(277.00003, 413)
-scale = Vector2(0.49374786, 0.49374786)
 
 [node name="WorldItems" type="Node2D" parent="."]
 z_index = 3
 y_sort_enabled = true
 
-[node name="pantry" parent="." instance=ExtResource("2_co7y4")]
-anchor_bottom = 1.915
-offset_left = 0.6956787
-offset_top = 562.0
-offset_right = 1280.6957
-offset_bottom = 730.0
-grow_vertical = 2
+[node name="blender" parent="WorldItems" instance=ExtResource("1_wbwrb")]
+position = Vector2(277.00003, 413)
+scale = Vector2(0.49374786, 0.49374786)
 
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -48,3 +49,44 @@ offset_left = 4.0
 offset_right = 4.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="button_prevScene" type="Button" parent="."]
+offset_left = 30.695679
+offset_top = 32.0
+offset_right = 204.69568
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 41
+script = ExtResource("6_25ncl")
+target_scene_path = "res://02_scenes/03_levels/level_cookingCounter.tscn"
+metadata/_edit_use_anchors_ = true
+
+[node name="pantry" parent="." instance=ExtResource("2_co7y4")]
+anchor_bottom = 1.915
+offset_left = -0.3043213
+offset_top = 552.0
+offset_right = 1279.6957
+offset_bottom = 720.0
+grow_vertical = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(640.6957, 360)
+
+[node name="wall_bottom" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 150)
+rotation = 0.00061584933
+shape = SubResource("WorldBoundaryShape2D_25ncl")
+
+[node name="wall_left" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-637.4457, -394.5)
+shape = SubResource("RectangleShape2D_fvppe")
+
+[node name="wall_right" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(693.3043, -394.5)
+shape = SubResource("RectangleShape2D_fvppe")
+
+[node name="wall_top" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(23.804321, -943)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_mcc7k")
+
+[connection signal="pressed" from="button_prevScene" to="button_prevScene" method="_on_pressed"]

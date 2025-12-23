@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://df1gg5noj12cr"]
 
-[ext_resource type="Texture2D" uid="uid://qgwmv34hv8rp" path="res://01_assets/01_sprites/00_placeholders/orders_placeholder.png" id="1_avjwa"]
+[ext_resource type="Texture2D" uid="uid://cb4comhg3t442" path="res://01_assets/01_sprites/03_environments/notas_fondo.PNG" id="1_cja8n"]
 
 [node name="Node2D" type="Node2D" groups=["mouse_scene"]]
 
@@ -10,13 +10,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -640.72205
-offset_top = -360.0
-offset_right = 640.72205
-offset_bottom = 360.0
+offset_right = 1281.4441
+offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_avjwa")
+texture = ExtResource("1_cja8n")
 expand_mode = 2
-
-[node name="Camera2D" type="Camera2D" parent="."]
