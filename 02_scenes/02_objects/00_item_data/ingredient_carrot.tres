@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FoodData" load_steps=11 format=3 uid="uid://2b8b0k04pyix"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=11 format=3 uid="uid://2b8b0k04pyix"]
 
 [ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/item/item_data.gd" id="1_34yov"]
 [ext_resource type="Texture2D" uid="uid://c3yixewydxe8x" path="res://01_assets/01_sprites/02_objects/00_foods/zanahoria_ch00_co00.PNG" id="2_34yov"]
@@ -19,6 +19,9 @@ name = "Zanahoria"
 average_color = Color(0.99, 0.495, 0, 1)
 type = 2
 cooking_time = 5.0
+ingredient_height_ch00 = 55
+ingredient_height_ch01 = 55
+ingredient_height_ch02 = 55
 cookable = true
 cleanable = true
 cuttable = true

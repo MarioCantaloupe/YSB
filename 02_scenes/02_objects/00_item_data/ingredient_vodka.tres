@@ -12,4 +12,7 @@ name = "Vokda"
 average_color = Color(0.691073, 0.7684066, 0.99316055, 0.23921569)
 type = 3
 cooking_time = 5.0
+ingredient_height_ch00 = 330
+ingredient_height_ch01 = 330
+ingredient_height_ch02 = 330
 sprite_grid = Array[Array]([[ExtResource("2_hy7oh")], [ExtResource("3_55uhy")]])

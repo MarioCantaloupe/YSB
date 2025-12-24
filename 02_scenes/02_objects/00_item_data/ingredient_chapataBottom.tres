@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FoodData" load_steps=5 format=3 uid="uid://bq8pcq0h6og0u"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://bq8pcq0h6og0u"]
 
 [ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/item/item_data.gd" id="1_aulpi"]
 [ext_resource type="Texture2D" uid="uid://sjdaxisgti2f" path="res://01_assets/01_sprites/02_objects/00_foods/Chapata_ch00_co00.PNG" id="2_aulpi"]
@@ -11,6 +11,9 @@ script = ExtResource("1_aulpi")
 id = "chapataBottom"
 name = "Chapata Base"
 average_color = Color(0.7617113, 0.464392, 0.24293277, 1)
+ingredient_height_ch00 = 70
+ingredient_height_ch01 = 70
+ingredient_height_ch02 = 70
 cookable = true
 cleanable = true
 sprite_grid = Array[Array]([[ExtResource("2_aulpi"), ExtResource("3_ai4ea"), ExtResource("4_dwlxc")]])

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FoodData" load_steps=5 format=3 uid="uid://dmgtiv1aowxgl"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://dmgtiv1aowxgl"]
 
 [ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/item/item_data.gd" id="1_fkf6o"]
 [ext_resource type="Texture2D" uid="uid://dv5h74nwicp27" path="res://01_assets/01_sprites/02_objects/00_foods/lechugaAmarillo_lab00_co00.png" id="2_fkf6o"]
@@ -13,6 +13,9 @@ name = "Lechuga Amarilla"
 average_color = Color(0.89, 0.8217666, 0.07119998, 1)
 type = 2
 cooking_time = 6.0
+ingredient_height_ch00 = 220
+ingredient_height_ch01 = 50
+ingredient_height_ch02 = 30
 cleanable = true
 cuttable = true
 sprite_grid = Array[Array]([[ExtResource("2_fkf6o")], [ExtResource("3_t7dku")], [ExtResource("4_pj1e5")]])
