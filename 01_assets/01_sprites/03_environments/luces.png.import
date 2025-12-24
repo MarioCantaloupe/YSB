@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v7q1uqwpjyof"
-path="res://.godot/imported/cordel.PNG-5aea21a70dd062d6b933c85aa67d3793.ctex"
+uid="uid://cdvw0om54b2ay"
+path="res://.godot/imported/luces.png-6cc50ad7f1bff093237c38dd69502af8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01_assets/01_sprites/cordel.PNG"
-dest_files=["res://.godot/imported/cordel.PNG-5aea21a70dd062d6b933c85aa67d3793.ctex"]
+source_file="res://01_assets/01_sprites/03_environments/luces.png"
+dest_files=["res://.godot/imported/luces.png-6cc50ad7f1bff093237c38dd69502af8.ctex"]
 
 [params]
 

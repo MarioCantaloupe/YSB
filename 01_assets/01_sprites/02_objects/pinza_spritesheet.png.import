@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oprhxtbm0png"
-path="res://.godot/imported/encimera_fondo.PNG-dcfb4542c531d8b873fb1e04c577a41c.ctex"
+uid="uid://d3a4maenfeluq"
+path="res://.godot/imported/pinza_spritesheet.png-a3724b35fccd8def29d58f38f3fb9cee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01_assets/01_sprites/03_environments/encimera_fondo.PNG"
-dest_files=["res://.godot/imported/encimera_fondo.PNG-dcfb4542c531d8b873fb1e04c577a41c.ctex"]
+source_file="res://01_assets/01_sprites/02_objects/pinza_spritesheet.png"
+dest_files=["res://.godot/imported/pinza_spritesheet.png-a3724b35fccd8def29d58f38f3fb9cee.ctex"]
 
 [params]
 

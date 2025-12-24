@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oprhxtbm0png"
-path="res://.godot/imported/encimera_fondo.PNG-dcfb4542c531d8b873fb1e04c577a41c.ctex"
+uid="uid://btrmdme5q4qqg"
+path="res://.godot/imported/PinzaAmarilla.png-31b7daca6754d31a8ef3cd252a636e4f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01_assets/01_sprites/03_environments/encimera_fondo.PNG"
-dest_files=["res://.godot/imported/encimera_fondo.PNG-dcfb4542c531d8b873fb1e04c577a41c.ctex"]
+source_file="res://01_assets/01_sprites/02_objects/PinzaAmarilla.png"
+dest_files=["res://.godot/imported/PinzaAmarilla.png-31b7daca6754d31a8ef3cd252a636e4f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oprhxtbm0png"
-path="res://.godot/imported/encimera_fondo.PNG-c6d2759d060f7636cd226191abab8ae7.ctex"
+uid="uid://cv5icxtjsosrg"
+path="res://.godot/imported/PinzaRosa.png-dba10f04d65853403c1b5fe6a64683d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01_assets/01_sprites/encimera_fondo.PNG"
-dest_files=["res://.godot/imported/encimera_fondo.PNG-c6d2759d060f7636cd226191abab8ae7.ctex"]
+source_file="res://01_assets/01_sprites/02_objects/PinzaRosa.png"
+dest_files=["res://.godot/imported/PinzaRosa.png-dba10f04d65853403c1b5fe6a64683d4.ctex"]
 
 [params]
 
