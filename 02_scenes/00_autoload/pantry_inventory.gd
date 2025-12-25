@@ -4,6 +4,8 @@ extends Node
 
 var inventory: Dictionary = {}
 
+var open_tab : int = 0
+
 @export var starting_items : Array[ItemData] = []
 
 func _ready() -> void:
