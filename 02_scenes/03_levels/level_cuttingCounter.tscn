@@ -1,24 +1,31 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1uufv8ixv0b5"]
+[gd_scene load_steps=18 format=3 uid="uid://b1uufv8ixv0b5"]
 
 [ext_resource type="Script" uid="uid://bpu36njf45mvk" path="res://02_scenes/03_levels/level.gd" id="1_e0736"]
-[ext_resource type="Texture2D" uid="uid://dtgbymj77xp4r" path="res://01_assets/01_sprites/03_environments/encimera_test.png" id="2_l52f4"]
 [ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="2_pkr72"]
+[ext_resource type="Texture2D" uid="uid://wt2e1uavyimq" path="res://01_assets/01_sprites/03_environments/fondo.PNG" id="2_tjvqv"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="3_26cpk"]
+[ext_resource type="PackedScene" uid="uid://dx13ntlp0pio6" path="res://02_scenes/02_objects/trash_bin.tscn" id="3_l575l"]
+[ext_resource type="Shader" uid="uid://cx741vcq254d2" path="res://01_assets/04_shaders/alpha_pulsing.tres" id="3_oi6qb"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="4_gfw5h"]
+[ext_resource type="Texture2D" uid="uid://cdvw0om54b2ay" path="res://01_assets/01_sprites/03_environments/luces.png" id="4_oi6qb"]
+[ext_resource type="Texture2D" uid="uid://c0c48ma4mpvm7" path="res://01_assets/01_sprites/03_environments/encimera.PNG" id="4_uu03t"]
 [ext_resource type="PackedScene" uid="uid://dsbonk760qi1j" path="res://02_scenes/05_others/killzone.tscn" id="8_l52f4"]
 [ext_resource type="PackedScene" uid="uid://dywybglont3jq" path="res://02_scenes/02_objects/knife.tscn" id="10_oi6qb"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="16_fpdgg"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rjbqa"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0736"]
-size = Vector2(120.5, 1097)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oi6qb"]
-size = Vector2(120.5, 1227)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tjvqv"]
+shader = ExtResource("3_oi6qb")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mv02x"]
-size = Vector2(86, 558)
+size = Vector2(86, 3167)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tjvqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l575l"]
+size = Vector2(120.5, 1097)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uu03t"]
+size = Vector2(120.5, 1227)
 
 [node name="Node2D" type="Node2D" groups=["mouse_scene"]]
 script = ExtResource("1_e0736")
@@ -27,11 +34,7 @@ can_pause = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640.6957, 360)
 
-[node name="WorldItems" type="Node2D" parent="."]
-z_index = 3
-y_sort_enabled = true
-
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -41,11 +44,52 @@ offset_right = 1281.3914
 offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_l52f4")
+texture = ExtResource("2_tjvqv")
 expand_mode = 2
+
+[node name="trash_bin" parent="." instance=ExtResource("3_l575l")]
+position = Vector2(1175, 331)
+scale = Vector2(0.41664198, 0.41664198)
+
+[node name="Table" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_right = 1227.3914
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_uu03t")
+expand_mode = 2
+
+[node name="Lights" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_tjvqv")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1281.3914
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_oi6qb")
+expand_mode = 2
+
+[node name="WorldItems" type="Node2D" parent="."]
+z_index = 3
+y_sort_enabled = true
 
 [node name="tap" parent="." instance=ExtResource("2_pkr72")]
 position = Vector2(304.69568, 243)
+
+[node name="knife" parent="." instance=ExtResource("10_oi6qb")]
+position = Vector2(941, 203)
+rotation = 1.5707964
+scale = Vector2(0.351, 0.351)
 
 [node name="pantry" parent="." instance=ExtResource("3_26cpk")]
 anchor_bottom = 1.915
@@ -64,26 +108,14 @@ theme_override_font_sizes/font_size = 41
 script = ExtResource("4_gfw5h")
 target_scene_path = "res://02_scenes/03_levels/level_cookingCounter.tscn"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(640.6957, 360)
-
-[node name="wall_bottom" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 150)
-rotation = 0.00061584933
-shape = SubResource("WorldBoundaryShape2D_rjbqa")
-
-[node name="wall_left" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-637.4457, -394.5)
-shape = SubResource("RectangleShape2D_e0736")
-
-[node name="wall_right" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(693.3043, -394.5)
-shape = SubResource("RectangleShape2D_e0736")
-
-[node name="wall_top" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(23.804321, -943)
-rotation = 1.5707964
-shape = SubResource("RectangleShape2D_oi6qb")
+[node name="button_prevScene" type="Button" parent="."]
+offset_left = 19.0
+offset_top = 18.0
+offset_right = 193.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 41
+script = ExtResource("4_gfw5h")
+target_scene_path = "res://02_scenes/03_levels/level_orderCounter.tscn"
 
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -95,17 +127,39 @@ offset_right = 4.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="knife" parent="." instance=ExtResource("10_oi6qb")]
-position = Vector2(941, 203)
-rotation = 1.5707964
-scale = Vector2(0.351, 0.351)
-
 [node name="killzone" parent="." instance=ExtResource("8_l52f4")]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
-position = Vector2(26, 276)
+position = Vector2(-179, -1052.5)
 shape = SubResource("RectangleShape2D_mv02x")
 debug_color = Color(0.85, 0, 0, 0.41960785)
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="killzone"]
+position = Vector2(1437, -1037)
+shape = SubResource("RectangleShape2D_mv02x")
+debug_color = Color(0.85, 0, 0, 0.41960785)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(640.6957, 360)
+collision_mask = 2
+
+[node name="wall_bottom" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 150)
+rotation = 0.00061584933
+shape = SubResource("WorldBoundaryShape2D_tjvqv")
+
+[node name="wall_left" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-637.4457, -394.5)
+shape = SubResource("RectangleShape2D_l575l")
+
+[node name="wall_right" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(693.3043, -394.5)
+shape = SubResource("RectangleShape2D_l575l")
+
+[node name="wall_top" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(23.804321, -943)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_uu03t")
+
 [connection signal="pressed" from="button_nextScene" to="button_nextScene" method="_on_pressed"]
+[connection signal="pressed" from="button_prevScene" to="button_prevScene" method="_on_pressed"]
