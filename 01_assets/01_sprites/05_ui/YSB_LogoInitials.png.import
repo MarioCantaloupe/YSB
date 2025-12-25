@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv5icxtjsosrg"
-path="res://.godot/imported/PinzaRosa.png-dba10f04d65853403c1b5fe6a64683d4.ctex"
+uid="uid://dbwuai8nppsxp"
+path="res://.godot/imported/YSB_LogoInitials.png-a81cba96013d887686ddfd746822c293.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01_assets/01_sprites/02_objects/PinzaRosa.png"
-dest_files=["res://.godot/imported/PinzaRosa.png-dba10f04d65853403c1b5fe6a64683d4.ctex"]
+source_file="res://01_assets/01_sprites/05_ui/YSB_LogoInitials.png"
+dest_files=["res://.godot/imported/YSB_LogoInitials.png-a81cba96013d887686ddfd746822c293.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3a4maenfeluq"
-path="res://.godot/imported/pinza_spritesheet.png-a3724b35fccd8def29d58f38f3fb9cee.ctex"
+uid="uid://udmy755cyy6c"
+path="res://.godot/imported/agujero_anim_09.PNG-ba169728163852afd5d65cd5bcf4d602.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01_assets/01_sprites/02_objects/pinza_spritesheet.png"
-dest_files=["res://.godot/imported/pinza_spritesheet.png-a3724b35fccd8def29d58f38f3fb9cee.ctex"]
+source_file="res://01_assets/01_sprites/02_objects/01_papelera/frames_anim_agujero/agujero_anim_09.PNG"
+dest_files=["res://.godot/imported/agujero_anim_09.PNG-ba169728163852afd5d65cd5bcf4d602.ctex"]
 
 [params]
 

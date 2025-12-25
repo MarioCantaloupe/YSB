@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs07susr7khwf"
-path="res://.godot/imported/PinzaVerde.png-f94fd856403ea67e704bedd8d2f5c1ef.ctex"
+uid="uid://7hfwucqvyrjc"
+path="res://.godot/imported/cursor_point.png-5f1e5bac8c2f39a376287c34fed42b48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01_assets/01_sprites/02_objects/PinzaVerde.png"
-dest_files=["res://.godot/imported/PinzaVerde.png-f94fd856403ea67e704bedd8d2f5c1ef.ctex"]
+source_file="res://01_assets/01_sprites/01_characters/cursor_point.png"
+dest_files=["res://.godot/imported/cursor_point.png-5f1e5bac8c2f39a376287c34fed42b48.ctex"]
 
 [params]
 
