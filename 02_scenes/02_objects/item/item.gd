@@ -42,6 +42,7 @@ var rest_point
 var rest_nodes = []
 var last_item_pos : Vector2
 var _original_z_index : int
+var ingredient_height : int
 
 # fake floor variables
 @export var enable_fake_floor := true
@@ -93,6 +94,8 @@ func _on_click_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx:
 			_set_selected(true)
 			stop_right_there()
 			
+			PlayerCursor.set_cursor(PlayerCursor.CursorType.HOLDING, Vector2(53,67))
+			
 			ui_clock.hide_cooking_ui(true)
 			emit_signal("item_grabbed", true)
 
@@ -103,6 +106,8 @@ func _input(event):
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			_set_selected(false)
 			emit_signal("item_grabbed", false)
+			
+			PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_HOLD, Vector2(53,67))
 			
 			var shortest_distance = REST_RADIUS
 			var closest_rest = null
@@ -165,7 +170,7 @@ func _physics_process(delta: float) -> void:
 		distance_to_fake_floor = 0.0
 
 func _process(_delta: float) -> void:
-	debug_text.text = "Y: " + str(global_position.y)
+	debug_text.text = "collision: " + str(not collision.disabled)
 
 # MAIN ACTIONS
 func cook():
@@ -277,9 +282,10 @@ func apply_item_state(state: ItemState) -> void:
 
 	food_data = state.data
 
-	cook_level = state.cook_level
-	chop_level = state.chop_level
+	_set_cook_level(state.cook_level)
+	_set_chop_level(state.chop_level)
 	ice_level = state.ice_level
+	
 	is_clean = state.is_clean
 	is_frozen = state.is_frozen
 
@@ -314,6 +320,13 @@ func _set_chop_level(value):
 	chop_level = clamp(value, 0 ,2)
 	set_sprite(chop_level, cook_level)
 	print(chop_level)
+	if chop_level == 0:
+		ingredient_height = food_data.ingredient_height_ch00
+	elif chop_level == 1:
+		ingredient_height = food_data.ingredient_height_ch01
+	elif chop_level == 2:
+		ingredient_height = food_data.ingredient_height_ch02
+	
 	
 func _set_cook_level(value):
 	cook_level = clamp(value, 0 ,2)
@@ -394,3 +407,13 @@ func create_fake_floor():
 			fake_floor_y = global_position.y + drop_dist
 			has_fake_floor = true
 			floor_reached = false
+
+
+func _on_click_area_mouse_entered() -> void:
+	if not selected and not PlayerCursor.is_knife:
+		PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_HOLD, Vector2(53,67))	
+
+
+func _on_click_area_mouse_exited() -> void:
+	if not selected and not PlayerCursor.is_knife:
+		PlayerCursor.set_cursor(PlayerCursor.CursorType.POINT, Vector2(42,24))
