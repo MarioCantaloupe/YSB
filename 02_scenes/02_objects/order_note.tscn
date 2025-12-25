@@ -1,8 +1,287 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq80il7e83rsc"]
+[gd_scene load_steps=14 format=3 uid="uid://bq80il7e83rsc"]
 
-[ext_resource type="Script" uid="uid://dicaw43s5vqrr" path="res://02_scenes/02_objects/order_bocata_visuals.gd" id="1_vkpnu"]
+[ext_resource type="Script" uid="uid://7vbuvpyhkrk3" path="res://02_scenes/02_objects/order_note.gd" id="1_76yku"]
+[ext_resource type="Texture2D" uid="uid://cei82cwkotrng" path="res://01_assets/01_sprites/02_objects/tique.PNG" id="2_nr0ra"]
+[ext_resource type="FontFile" uid="uid://dkm1wr55ky6h6" path="res://01_assets/02_fonts/merchant-copy-doublesize.ttf" id="3_nr0ra"]
+[ext_resource type="Shader" uid="uid://c6d1er8x4ep6h" path="res://01_assets/04_shaders/printed_receipt.gdshader" id="3_ucmjy"]
+[ext_resource type="PackedScene" uid="uid://bo4kwri6qfybu" path="res://02_scenes/05_others/orderGenerator_logic.tscn" id="4_76yku"]
+[ext_resource type="Texture2D" uid="uid://dbwuai8nppsxp" path="res://01_assets/01_sprites/05_ui/YSB_LogoInitials.png" id="4_njcss"]
+[ext_resource type="Texture2D" uid="uid://bavq3e4xxdrmv" path="res://01_assets/01_sprites/02_objects/pinza.png" id="6_ucmjy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7pkm"]
+shader = ExtResource("3_ucmjy")
+shader_parameter/threshold = 0.8999999798832
+shader_parameter/paper_color = Color(0.91764706, 0.8745098, 0.827451, 1)
+shader_parameter/ink_color = Color(0.18715334, 0.10476113, 0.014883977, 1)
+shader_parameter/dither_scale = 4.0
+shader_parameter/dither_strength = 0.15
+shader_parameter/grain_amount = 0.1
+shader_parameter/scanline_intensity = 0.2
+shader_parameter/scanline_frequency = 4.0
+shader_parameter/feed_line_intensity = 0.15
+shader_parameter/feed_line_spacing = 30.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_76yku"]
+line_spacing = 0.0
+font = ExtResource("3_nr0ra")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lgqdg"]
+line_spacing = 0.0
+font = ExtResource("3_nr0ra")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_njcss"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pinza:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-96, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ticket_box:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-28, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ticket_box:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ticket_box:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ticket_box:scale:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("pinza:self_modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ucmjy"]
+resource_name = "note_appear"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pinza:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-199, 0, 0, 0, 101.460556, -96, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ticket_box:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(110, 0, 0, 0, -129.02626, -28, -0.25, 0, 0.24999997, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ticket_box:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ticket_box:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(2, 0, 0, 0, -0.9420122, 1.0056232, -0.13333336, 0.034909666, 0.25, 0),
+"times": PackedFloat32Array(0, 0.16666669)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("pinza:self_modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q7pkm"]
+_data = {
+&"RESET": SubResource("Animation_njcss"),
+&"note_appear": SubResource("Animation_ucmjy")
+}
 
 [node name="order_note" type="Node2D"]
+script = ExtResource("1_76yku")
 
-[node name="bocata_visuals" type="Node2D" parent="."]
-script = ExtResource("1_vkpnu")
+[node name="ticket_box" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.07
+anchor_right = 0.5
+anchor_bottom = 0.07
+offset_left = -221.0
+offset_top = -28.0
+offset_right = 253.0
+offset_bottom = 610.0
+
+[node name="ticket_bg" type="NinePatchRect" parent="ticket_box"]
+layout_mode = 2
+texture = ExtResource("2_nr0ra")
+region_rect = Rect2(204.03735, 84.53008, 370.76257, 774.82385)
+patch_margin_left = 95
+patch_margin_top = 128
+patch_margin_right = 79
+patch_margin_bottom = 150
+axis_stretch_vertical = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ticket_box"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginCont_logo" type="MarginContainer" parent="ticket_box/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="logo" type="TextureRect" parent="ticket_box/VBoxContainer/MarginCont_logo"]
+material = SubResource("ShaderMaterial_q7pkm")
+layout_mode = 2
+texture = ExtResource("4_njcss")
+expand_mode = 5
+
+[node name="MarginCont_establish" type="MarginContainer" parent="ticket_box/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 10
+
+[node name="establishmentName" type="Label" parent="ticket_box/VBoxContainer/MarginCont_establish"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Yaya's Sideral Bocatas"
+label_settings = SubResource("LabelSettings_76yku")
+horizontal_alignment = 1
+
+[node name="MarginCont_dir" type="MarginContainer" parent="ticket_box/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="direction" type="Label" parent="ticket_box/VBoxContainer/MarginCont_dir"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "C/ Orion, Andrómeda, M31"
+label_settings = SubResource("LabelSettings_lgqdg")
+horizontal_alignment = 1
+
+[node name="MarginContainer_orderNum" type="MarginContainer" parent="ticket_box/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 5
+
+[node name="order_number" type="Label" parent="ticket_box/VBoxContainer/MarginContainer_orderNum"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Nº xx"
+label_settings = SubResource("LabelSettings_76yku")
+
+[node name="MarginContainer_text" type="MarginContainer" parent="ticket_box/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ticket_label" type="Label" parent="ticket_box/VBoxContainer/MarginContainer_text"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "PAN
+LECHUGA
+CARNE
+PAN
+LECHUGA"
+label_settings = SubResource("LabelSettings_76yku")
+
+[node name="pinza" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -96)
+texture = ExtResource("6_ucmjy")
+
+[node name="orderGenerator_logic" parent="." instance=ExtResource("4_76yku")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_q7pkm")
+}
+speed_scale = 2.0
+
+[connection signal="gui_input" from="ticket_box" to="." method="_on_ticket_box_gui_input"]
+[connection signal="mouse_entered" from="ticket_box" to="." method="_on_ticket_box_mouse_entered"]
+[connection signal="mouse_exited" from="ticket_box" to="." method="_on_ticket_box_mouse_exited"]

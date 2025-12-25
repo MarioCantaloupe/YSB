@@ -1,10 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://df1gg5noj12cr"]
+[gd_scene load_steps=8 format=3 uid="uid://df1gg5noj12cr"]
 
+[ext_resource type="Script" uid="uid://bvkwrh163n3aj" path="res://02_scenes/03_levels/level_order_counter.gd" id="1_bovh0"]
 [ext_resource type="Texture2D" uid="uid://cb4comhg3t442" path="res://01_assets/01_sprites/03_environments/notas_fondo.PNG" id="1_cja8n"]
+[ext_resource type="Texture2D" uid="uid://v7q1uqwpjyof" path="res://01_assets/01_sprites/03_environments/cordel.PNG" id="2_e2j81"]
+[ext_resource type="PackedScene" uid="uid://bq80il7e83rsc" path="res://02_scenes/02_objects/order_note.tscn" id="2_w24k5"]
+[ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="5_408wl"]
+[ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="6_0wcnp"]
 
-[node name="Node2D" type="Node2D" groups=["mouse_scene"]]
+[sub_resource type="Curve2D" id="Curve2D_w24k5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3, 158, 0, 0, 0, 0, 251, 179, 0, 0, 0, 0, 598, 197, 0, 0, 0, 0, 910, 201, 0, 0, 0, 0, 1157, 199, 0, 0, 0, 0, 1281, 194)
+}
+point_count = 6
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="order_counter" type="Node2D" groups=["mouse_scene"]]
+script = ExtResource("1_bovh0")
+note_scene = ExtResource("2_w24k5")
+note_scale = Vector2(0.35, 0.35)
+max_notes_on_string = 6
+
+[node name="Background" type="TextureRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -16,3 +31,43 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_cja8n")
 expand_mode = 2
+
+[node name="string_visuals" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1281.4441
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e2j81")
+expand_mode = 2
+
+[node name="string_curve" type="Path2D" parent="."]
+curve = SubResource("Curve2D_w24k5")
+
+[node name="WorldItems" type="Node2D" parent="."]
+z_index = 3
+y_sort_enabled = true
+
+[node name="button_nextScene" type="Button" parent="."]
+offset_left = 1091.6957
+offset_top = 18.0
+offset_right = 1265.6957
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 41
+script = ExtResource("5_408wl")
+target_scene_path = "res://02_scenes/03_levels/level_cuttingCounter.tscn"
+
+[node name="pause_canvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="pause_canvasLayer" instance=ExtResource("6_0wcnp")]
+process_mode = 3
+offset_left = 4.0
+offset_right = 4.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="pressed" from="button_nextScene" to="button_nextScene" method="_on_pressed"]
