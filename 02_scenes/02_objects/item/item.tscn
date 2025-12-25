@@ -145,6 +145,7 @@ size = Vector2(84, 82)
 
 [node name="item" type="RigidBody2D" groups=["grabbables"]]
 y_sort_enabled = true
+collision_layer = 2
 input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_70bak")
 script = ExtResource("1_xwsi1")
@@ -231,7 +232,6 @@ libraries = {
 }
 
 [node name="debug_text" type="Label" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -282,4 +282,6 @@ texture = ExtResource("12_ntrvf")
 [connection signal="chop_up" from="chopping_component" to="." method="_on_chopping_component_chop_up"]
 [connection signal="knife_slip" from="chopping_component" to="." method="_on_chopping_component_knife_slip"]
 [connection signal="input_event" from="click_area" to="." method="_on_click_area_input_event"]
+[connection signal="mouse_entered" from="click_area" to="." method="_on_click_area_mouse_entered"]
+[connection signal="mouse_exited" from="click_area" to="." method="_on_click_area_mouse_exited"]
 [connection signal="timeout" from="cook_timer" to="." method="_on_cook_timer_timeout"]
