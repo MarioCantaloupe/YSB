@@ -1,0 +1,107 @@
+[gd_resource type="VisualShader" load_steps=10 format=3 uid="uid://cfd782tvgy5c7"]
+
+[ext_resource type="Script" uid="uid://bykchca5idhgq" path="res://addons/shaderV/rgba/noise/generic2d.gd" id="1_i02ym"]
+[ext_resource type="Script" uid="uid://devfv8rig7bi0" path="res://addons/shaderV/uv/animated/rotateAnimated.gd" id="2_m6x2m"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_i02ym"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_4ofvi"]
+input_name = "texture"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_r6phw"]
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_g4qa7"]
+output_port_for_preview = 0
+default_input_values = [1, Vector3(0, 0, 0), 2, 50.0]
+initialized = true
+script = ExtResource("1_i02ym")
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_lwanb"]
+default_input_values = [1, -0.2, 2, Vector3(0.5, 0.5, 0)]
+initialized = true
+script = ExtResource("2_m6x2m")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_buc4g"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeCompare" id="VisualShaderNodeCompare_m6x2m"]
+default_input_values = [0, 0.0, 1, 0.6, 2, 1e-05]
+function = 2
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+// RotateUVAnimated
+#include \"res://addons/shaderV/uv/animated/rotateAnimated.gdshaderinc\"
+// GenericNoise2D
+#include \"res://addons/shaderV/rgba/noise/generic2d.gdshaderinc\"
+
+void fragment() {
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(TEXTURE, UV);
+	float n_out3p4 = n_out3p0.a;
+
+
+// Input:7
+	float n_out7p0 = TIME;
+
+
+	vec3 n_out6p0;
+// RotateUVAnimated:6
+	float n_in6p1 = -0.20000;
+	vec3 n_in6p2 = vec3(0.50000, 0.50000, 0.00000);
+	{
+		n_out6p0 = vec3(_rotateUVAnimatedFunc(UV.xy, n_in6p2.xy, 0.0, n_in6p1, n_out7p0), 0);
+	}
+
+
+	float n_out5p0;
+// GenericNoise2D:5
+	vec3 n_in5p1 = vec3(0.00000, 0.00000, 0.00000);
+	float n_in5p2 = 50.00000;
+	{
+		n_out5p0 = _genericNoise2D((n_out6p0.xy + n_in5p1.xy) * n_in5p2);
+	}
+
+
+// Compare:9
+	float n_in9p1 = 0.60000;
+	bool n_out9p0 = n_out5p0 > n_in9p1;
+
+
+// FloatOp:10
+	float n_out10p0 = n_out3p4 * (n_out9p0 ? 1.0 : 0.0);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out3p0.xyz);
+	COLOR.a = n_out10p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(720, 220)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_4ofvi")
+nodes/fragment/2/position = Vector2(-1360, 840)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_r6phw")
+nodes/fragment/3/position = Vector2(-780, 640)
+nodes/fragment/5/node = SubResource("VisualShaderNodeCustom_g4qa7")
+nodes/fragment/5/position = Vector2(-1140, 140)
+nodes/fragment/6/node = SubResource("VisualShaderNodeCustom_lwanb")
+nodes/fragment/6/position = Vector2(-1680, 140)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_buc4g")
+nodes/fragment/7/position = Vector2(-2300, 340)
+nodes/fragment/9/node = SubResource("VisualShaderNodeCompare_m6x2m")
+nodes/fragment/9/position = Vector2(-640, 140)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatOp_i02ym")
+nodes/fragment/10/position = Vector2(160, 560)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 6, 0, 5, 0, 7, 0, 6, 3, 5, 0, 9, 0, 3, 4, 10, 0, 3, 0, 0, 0, 9, 0, 10, 1, 10, 0, 0, 1)
