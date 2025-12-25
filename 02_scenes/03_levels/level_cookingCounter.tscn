@@ -93,6 +93,7 @@ y_sort_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(640.6957, 360)
+collision_mask = 2
 
 [node name="wall_bottom" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 150)
