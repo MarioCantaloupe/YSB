@@ -1,40 +1,51 @@
 extends Node2D
 
+@onready var tap_sprite: Sprite2D = $tap
 @onready var station: Node2D = $station
 @onready var mode_switch: Button = $mode_switch
 @onready var tap_vfx: Sprite2D = $tap_vfx
+@onready var vfx: AnimatedSprite2D = $vfx
 
-@onready var debug_text: Label = $debug_text
 
+
+@export var water_tap : Texture2D
+@export var fire_tap : Texture2D
 @export var water_texture : Texture2D
 @export var fire_texture : Texture2D
 
 
 func _ready() -> void:
-	tap_vfx.hide()
+	#tap_vfx.hide()
+	vfx.hide()
 
 func _on_mode_switch_pressed() -> void:
 	
 	if station.action == 2:
 		station.action = 3
-		debug_text.text = "Descongelar"
+		tap_sprite.texture = fire_tap
 	elif station.action == 3:
 		station.action = 2
-		debug_text.text = "Limpiar"
+		tap_sprite.texture = water_tap
 	
 	
 func enable_fire(value):
 	if station.action == 3:
-		tap_vfx.texture = fire_texture
+		vfx.play("fire")
+		#tap_vfx.texture = fire_texture
 		if value == true:
-			tap_vfx.show()
+			#tap_vfx.show()
+			vfx.show()
 		else:
-			tap_vfx.hide()
+			#tap_vfx.hide()
+			vfx.hide()
 	
 func enable_water(value):
 	if station.action == 2:
-		tap_vfx.texture = water_texture
+		vfx.play("water")
+		#tap_vfx.texture = water_texture
 		if value == true:
-			tap_vfx.show()
+			#tap_vfx.show()
+			vfx.show()
 		else:
-			tap_vfx.hide()
+			#tap_vfx.hide()
+			vfx.hide()

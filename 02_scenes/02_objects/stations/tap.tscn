@@ -1,48 +1,88 @@
-[gd_scene load_steps=6 format=3 uid="uid://wkvbdahuorpu"]
+[gd_scene load_steps=14 format=3 uid="uid://wkvbdahuorpu"]
 
 [ext_resource type="Script" uid="uid://5s35cm0w1768" path="res://02_scenes/02_objects/stations/tap.gd" id="1_tebv5"]
 [ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/stations/station.tscn" id="1_xjyip"]
+[ext_resource type="Texture2D" uid="uid://d0cs8wb6yx8rc" path="res://01_assets/01_sprites/fregadero_agua.PNG" id="2_d4fx6"]
 [ext_resource type="Texture2D" uid="uid://cwsfkivka488d" path="res://01_assets/01_sprites/04_vfx/tap_water.png" id="2_ial2f"]
-[ext_resource type="Texture2D" uid="uid://bk70enskd15qk" path="res://01_assets/01_sprites/02_objects/tap.png" id="2_x4ek4"]
+[ext_resource type="Texture2D" uid="uid://5llyfe3vwywh" path="res://01_assets/01_sprites/fregadero_fuego.PNG" id="3_aahug"]
 [ext_resource type="Texture2D" uid="uid://deum0vheb2y6" path="res://01_assets/01_sprites/04_vfx/tap_flame.png" id="4_x4ek4"]
+[ext_resource type="Texture2D" uid="uid://bd7ca7wnmx21n" path="res://01_assets/01_sprites/04_vfx/fuego_anim/fuego_1.PNG" id="8_k3jm1"]
+[ext_resource type="Texture2D" uid="uid://dluxjw7exgng6" path="res://01_assets/01_sprites/04_vfx/fuego_anim/fuego_2.PNG" id="9_d73kj"]
+[ext_resource type="Texture2D" uid="uid://b3d1ulvq6o0uk" path="res://01_assets/01_sprites/04_vfx/fuego_anim/fuego_3.PNG" id="10_wls1b"]
+[ext_resource type="Texture2D" uid="uid://d02wya25omltg" path="res://01_assets/01_sprites/04_vfx/agua_anim/agua_1.PNG" id="11_rv0i4"]
+[ext_resource type="Texture2D" uid="uid://cqxl6tynm2x1b" path="res://01_assets/01_sprites/04_vfx/agua_anim/agua_2.PNG" id="12_htne4"]
+[ext_resource type="Texture2D" uid="uid://l6taph6t1042" path="res://01_assets/01_sprites/04_vfx/agua_anim/agua_3.PNG" id="13_obsod"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aklvg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_k3jm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_d73kj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wls1b")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_rv0i4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_htne4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_obsod")
+}],
+"loop": true,
+"name": &"water",
+"speed": 5.0
+}]
 
 [node name="tap" type="Node2D"]
 script = ExtResource("1_tebv5")
+water_tap = ExtResource("2_d4fx6")
+fire_tap = ExtResource("3_aahug")
 water_texture = ExtResource("2_ial2f")
 fire_texture = ExtResource("4_x4ek4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(38, -75)
-scale = Vector2(0.39316234, 0.3931624)
-texture = ExtResource("2_x4ek4")
+[node name="tap" type="Sprite2D" parent="."]
+position = Vector2(-6.199995, -28.800007)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_d4fx6")
 
 [node name="station" parent="." instance=ExtResource("1_xjyip")]
 action = 2
 
 [node name="mode_switch" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 94.0
-offset_top = -89.0
-offset_right = 134.0
-offset_bottom = -59.0
+offset_left = -118.2
+offset_top = -75.8
+offset_right = -86.2
+offset_bottom = -26.800003
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 
-[node name="debug_text" type="Label" parent="."]
-offset_left = 79.0
-offset_top = -127.0
-offset_right = 124.0
-offset_bottom = -104.0
-text = "Limpiar"
-
-[node name="tap_vfx" type="Sprite2D" parent="."]
-position = Vector2(1.9999981, -55)
-scale = Vector2(0.4580078, 0.4580078)
-texture = ExtResource("4_x4ek4")
+[node name="vfx" type="AnimatedSprite2D" parent="."]
+z_index = 20
+z_as_relative = false
+position = Vector2(-6.199993, -28.800007)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_aklvg")
+animation = &"fire"
+autoplay = "fire"
+frame = 1
+frame_progress = 0.80841804
 
 [connection signal="pressed" from="mode_switch" to="." method="_on_mode_switch_pressed"]
