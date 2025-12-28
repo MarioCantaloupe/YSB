@@ -1,7 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://co1ew4wo03x4j"]
+[gd_scene load_steps=15 format=3 uid="uid://co1ew4wo03x4j"]
 
 [ext_resource type="Script" uid="uid://cchhadnjmn6at" path="res://02_scenes/01_characters/yaya_runner.gd" id="1_cq216"]
 [ext_resource type="Texture2D" uid="uid://cxgrdhg6fubo7" path="res://01_assets/01_sprites/01_characters/yaya.png" id="1_iq5ro"]
+[ext_resource type="Texture2D" uid="uid://dshta6ytmlyr4" path="res://01_assets/01_sprites/01_characters/carrito_mordisco_1.PNG" id="3_h0on3"]
+[ext_resource type="Texture2D" uid="uid://bgfeovjvp2g2s" path="res://01_assets/01_sprites/01_characters/carrito_mordisco_2.PNG" id="4_xq6sd"]
+[ext_resource type="Texture2D" uid="uid://defujbk5l7nxd" path="res://01_assets/01_sprites/01_characters/carrito_mordisco_3.PNG" id="5_ht8aj"]
+[ext_resource type="Texture2D" uid="uid://dfol4e7dtxym6" path="res://01_assets/01_sprites/01_characters/carrito_mordisco_4.PNG" id="6_kw8vx"]
+[ext_resource type="Texture2D" uid="uid://bo3v5jr6w244j" path="res://01_assets/01_sprites/01_characters/carro_idle_1.PNG" id="7_0mk7g"]
+[ext_resource type="Texture2D" uid="uid://bqllkevd00xda" path="res://01_assets/01_sprites/01_characters/carro_idle_2.PNG" id="8_k52j5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cq216"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_h0on3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xq6sd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ht8aj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kw8vx")
+}],
+"loop": false,
+"name": &"bite",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_0mk7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k52j5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 9.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iq5ro"]
 radius = 36.0
@@ -11,14 +48,58 @@ height = 192.0
 radius = 31.0
 height = 99.99999
 
+[sub_resource type="Animation" id="Animation_h0on3"]
+resource_name = "yaya_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_yaya:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0005, 0.40612093),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xq6sd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_yaya:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ht8aj"]
+_data = {
+&"RESET": SubResource("Animation_xq6sd"),
+&"yaya_hit": SubResource("Animation_h0on3")
+}
+
 [node name="yaya" type="CharacterBody2D"]
 script = ExtResource("1_cq216")
 jump_time_to_descent = 2.0
 
-[node name="sprite" type="Sprite2D" parent="."]
+[node name="sprite_yaya" type="Sprite2D" parent="."]
 position = Vector2(0, -92)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_iq5ro")
+
+[node name="sprite_carrito" type="AnimatedSprite2D" parent="sprite_yaya"]
+use_parent_material = true
+position = Vector2(33.333336, -12)
+scale = Vector2(0.6666667, 0.6666667)
+sprite_frames = SubResource("SpriteFrames_cq216")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-55, -93)
@@ -47,6 +128,12 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ht8aj")
+}
+
+[connection signal="animation_finished" from="sprite_yaya/sprite_carrito" to="." method="_on_sprite_carrito_animation_finished"]
 [connection signal="area_entered" from="collision" to="." method="_on_collision_area_entered"]
 [connection signal="timeout" from="hit_cooldown" to="." method="_on_hit_cooldown_timeout"]
 [connection signal="timeout" from="demonCart_timer" to="." method="_on_demon_cart_timer_timeout"]

@@ -3,9 +3,12 @@ class_name Player
 
 signal GameEnd
 
-@onready var sprite: Sprite2D = $sprite
+@onready var sprite: Sprite2D = $sprite_yaya
+@onready var sprite_carrito: AnimatedSprite2D = $sprite_yaya/sprite_carrito
 @onready var hit_cooldown: Timer = $hit_cooldown
 @onready var demon_cart_timer: Timer = $demonCart_timer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 # game logic variables
 
 @export var lung_capacity : float = 60
@@ -70,9 +73,11 @@ func _on_collision_area_entered(area: Area2D) -> void:
 		if not carrito_demon:
 			lung_capacity -= 5
 			can_hit = false
+			animation_player.play("yaya_hit")
 			hit_cooldown.start()
 		else:
-			pass #player unharmed, play eating animation
+			sprite_carrito.play("bite")
+			
 
 func _on_hit_cooldown_timeout() -> void:
 	can_hit = true
@@ -115,3 +120,7 @@ func no_air_left():
 
 func _on_demon_cart_timer_timeout() -> void:
 	set_demon_mode(false)
+
+
+func _on_sprite_carrito_animation_finished() -> void:
+	sprite_carrito.play("idle")
