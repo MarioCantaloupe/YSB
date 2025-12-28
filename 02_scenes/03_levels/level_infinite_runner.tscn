@@ -1,9 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb04ji4mpf2vu"]
+[gd_scene load_steps=21 format=3 uid="uid://cb04ji4mpf2vu"]
 
 [ext_resource type="Script" uid="uid://bqognyraoiwx0" path="res://02_scenes/03_levels/infinite_runner.gd" id="1_0p27r"]
 [ext_resource type="PackedScene" uid="uid://co1ew4wo03x4j" path="res://02_scenes/01_characters/yaya_runner.tscn" id="1_w88gs"]
+[ext_resource type="Script" uid="uid://cmj2f6ti4r7m1" path="res://02_scenes/03_levels/infiniteRunner_backgroundParallax.gd" id="2_db44d"]
 [ext_resource type="Script" uid="uid://cfel1p4e70kct" path="res://02_scenes/02_objects/runner/obstacle_spawner.gd" id="2_u86ga"]
+[ext_resource type="Texture2D" uid="uid://rpn41ip8mr37" path="res://01_assets/01_sprites/03_environments/espacio_agujeronegro.PNG" id="3_hebh8"]
+[ext_resource type="Texture2D" uid="uid://b1vdbvougfa7v" path="res://01_assets/01_sprites/03_environments/espacio_sol.PNG" id="3_jk4e5"]
+[ext_resource type="Texture2D" uid="uid://cupemqikjx4w6" path="res://01_assets/01_sprites/03_environments/espacio_estrellas1.PNG" id="4_bg425"]
+[ext_resource type="Texture2D" uid="uid://bugpe7nf0gshr" path="res://01_assets/01_sprites/03_environments/espacio_planeta1.PNG" id="4_p2ljq"]
+[ext_resource type="Texture2D" uid="uid://bcujrebtwyqtv" path="res://01_assets/01_sprites/03_environments/espacio_auroraboreal_o_algo_asi.PNG" id="5_dt7y8"]
+[ext_resource type="Texture2D" uid="uid://biamaiy0r08wq" path="res://01_assets/01_sprites/03_environments/espacio_estrellas2.PNG" id="5_p2ljq"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="6_2tkmp"]
+[ext_resource type="Texture2D" uid="uid://0u17slrrg1g0" path="res://01_assets/01_sprites/04_vfx/radial_gradient.png" id="7_dt7y8"]
+[ext_resource type="Texture2D" uid="uid://baeif3q7vrxks" path="res://01_assets/01_sprites/03_environments/espacio_planeta2.PNG" id="9_mnamq"]
+[ext_resource type="Texture2D" uid="uid://dml57yyf6gus8" path="res://01_assets/01_sprites/05_ui/barra_aire_vacia.PNG" id="13_qdfx5"]
+[ext_resource type="Texture2D" uid="uid://csf86bh3q7488" path="res://01_assets/01_sprites/05_ui/barra_aire_llena.PNG" id="14_sxx0n"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w88gs"]
 
@@ -92,6 +103,56 @@ _data = {
 [node name="InfiniteRunner" type="Node2D"]
 script = ExtResource("1_0p27r")
 
+[node name="BgManager" type="Node2D" parent="."]
+script = ExtResource("2_db44d")
+black_hole = ExtResource("3_hebh8")
+planet01 = ExtResource("4_p2ljq")
+planet02 = ExtResource("9_mnamq")
+sun = ExtResource("3_jk4e5")
+spawn_interval_min = 0.1
+spawn_interval_max = 2.0
+weight_sun = 0.1
+weight_black_hole = 0.15
+min_scale = 0.05
+max_scale = 0.6
+min_speed = 10.0
+max_speed = 250.0
+min_darkness = 0.1
+planet_hue_variation = 0.15
+sun_light_texture = ExtResource("7_dt7y8")
+planet_light_texture = ExtResource("7_dt7y8")
+
+[node name="Background" type="ColorRect" parent="BgManager"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.03529412, 0.007843138, 0.09411765, 1)
+
+[node name="ParallaxAurora" type="Parallax2D" parent="BgManager"]
+repeat_size = Vector2(1280, 0)
+
+[node name="aurora_sprite" type="Sprite2D" parent="BgManager/ParallaxAurora"]
+self_modulate = Color(1, 1, 1, 0.47058824)
+position = Vector2(640.32, 360.18)
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("5_dt7y8")
+
+[node name="ParallaxStars01" type="Parallax2D" parent="BgManager"]
+repeat_size = Vector2(1280, 0)
+
+[node name="stars01_sprite" type="Sprite2D" parent="BgManager/ParallaxStars01"]
+self_modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(640.32, 360.18)
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("4_bg425")
+
+[node name="ParallaxStars02" type="Parallax2D" parent="BgManager"]
+repeat_size = Vector2(1280, 0)
+
+[node name="stars02_sprite" type="Sprite2D" parent="BgManager/ParallaxStars02"]
+position = Vector2(640.32, 360.18)
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("5_p2ljq")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(640, 355)
 
@@ -117,7 +178,7 @@ script = ExtResource("2_u86ga")
 scale_variation = 0.5
 
 [node name="asteroid_spawn_timer" type="Timer" parent="asteroid_spawner"]
-wait_time = 0.55
+wait_time = 0.7
 autostart = true
 
 [node name="UI" type="Control" parent="."]
@@ -126,21 +187,23 @@ anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+[node name="lung_bar_progress" type="VBoxContainer" parent="UI"]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 17.0
 offset_right = 300.0
 offset_bottom = 94.0
 
-[node name="lung_bar" type="ProgressBar" parent="UI/VBoxContainer"]
+[node name="texture_lung_bar" type="TextureProgressBar" parent="UI/lung_bar_progress"]
 layout_mode = 2
-size_flags_vertical = 3
+step = 0.1
+value = 100.0
+texture_under = ExtResource("13_qdfx5")
+texture_progress = ExtResource("14_sxx0n")
 
-[node name="Label" type="Label" parent="UI/VBoxContainer"]
+[node name="Label" type="Label" parent="UI/lung_bar_progress"]
 layout_mode = 2
-text = "Aire"
-horizontal_alignment = 1
+text = "AIRE"
 
 [node name="start_tooltip" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
