@@ -84,7 +84,8 @@ z_index = 3
 y_sort_enabled = true
 
 [node name="tap" parent="." instance=ExtResource("2_pkr72")]
-position = Vector2(304.69568, 243)
+position = Vector2(305, 306)
+scale = Vector2(1.2533906, 1.2533906)
 
 [node name="knife" parent="." instance=ExtResource("10_oi6qb")]
 position = Vector2(941, 203)
