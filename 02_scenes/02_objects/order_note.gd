@@ -3,8 +3,6 @@ extends Node2D
 signal note_was_taken
 
 @onready var order_gen: Node = $orderGenerator_logic
-@onready var click_collision: CollisionShape2D = $click_area/click_collision
-@onready var click_area: Area2D = $click_area
 @onready var pinza: Sprite2D = $pinza
 @onready var ticket_bg: NinePatchRect = $ticket_box/ticket_bg
 @onready var ticket_label: Label = $ticket_box/VBoxContainer/MarginContainer_text/ticket_label
@@ -64,8 +62,8 @@ func _on_ticket_box_gui_input(event: InputEvent) -> void:
 
 
 func _on_ticket_box_mouse_entered() -> void:
-	pass # TODO add hover visuals
+	PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_INTERACT)
 
 
 func _on_ticket_box_mouse_exited() -> void:
-	pass # Replace with function body.
+	PlayerCursor.set_cursor(PlayerCursor.CursorType.POINT)
