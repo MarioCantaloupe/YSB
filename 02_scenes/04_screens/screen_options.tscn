@@ -1,6 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuq0bem6wdd4y"]
+[gd_scene load_steps=7 format=3 uid="uid://cuq0bem6wdd4y"]
 
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_hekwa"]
 [ext_resource type="Script" uid="uid://dxwdao053ukve" path="res://02_scenes/04_screens/screen_options.gd" id="1_wkq6u"]
+[ext_resource type="Script" uid="uid://duwv1o7gw68hi" path="res://02_scenes/04_screens/button_master.gd" id="3_wgf6b"]
+
+[sub_resource type="Animation" id="Animation_hekwa"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel3:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel3:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.7, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel3:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.7, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_wkq6u"]
 resource_name = "options_popup"
@@ -39,42 +77,6 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3)
 }
 
-[sub_resource type="Animation" id="Animation_hekwa"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel3:modulate:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Panel3:scale:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.7, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Panel3:scale:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.7, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wgf6b"]
 _data = {
 &"RESET": SubResource("Animation_hekwa"),
@@ -88,6 +90,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_hekwa")
 script = ExtResource("1_wkq6u")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -116,7 +119,9 @@ offset_left = 40.0
 offset_top = 27.0
 offset_right = 182.0
 offset_bottom = 74.0
+theme_override_font_sizes/font_size = 21
 text = "VOLVER"
+script = ExtResource("3_wgf6b")
 
 [node name="Panel" type="Panel" parent="Panel3"]
 layout_mode = 1
@@ -146,7 +151,9 @@ layout_mode = 2
 
 [node name="button_soundPanel" type="Button" parent="Panel3/Panel/VBoxContainer/sound_marginContainer"]
 layout_mode = 2
-text = "SONIDO"
+text = "Sonido"
+language = "es_ES"
+script = ExtResource("3_wgf6b")
 
 [node name="screen_marginContainer" type="MarginContainer" parent="Panel3/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
@@ -154,7 +161,9 @@ layout_mode = 2
 
 [node name="button_screenPanel" type="Button" parent="Panel3/Panel/VBoxContainer/screen_marginContainer"]
 layout_mode = 2
-text = "PANTALLA"
+text = "Pantalla"
+language = "es_ES"
+script = ExtResource("3_wgf6b")
 
 [node name="credits_marginContainer" type="MarginContainer" parent="Panel3/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
@@ -162,7 +171,9 @@ layout_mode = 2
 
 [node name="button_creditsPanel" type="Button" parent="Panel3/Panel/VBoxContainer/credits_marginContainer"]
 layout_mode = 2
-text = "CRÉDITOS"
+text = "Créditos"
+language = "es_ES"
+script = ExtResource("3_wgf6b")
 
 [node name="Panel2" type="Panel" parent="Panel3"]
 layout_mode = 1

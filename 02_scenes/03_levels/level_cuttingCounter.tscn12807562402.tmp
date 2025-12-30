@@ -107,8 +107,6 @@ offset_bottom = 82.0
 theme_override_font_sizes/font_size = 41
 script = ExtResource("4_gfw5h")
 target_scene_path = "res://02_scenes/03_levels/level_cookingCounter.tscn"
-transition = 2
-use_loading_screen = false
 
 [node name="button_prevScene" type="Button" parent="."]
 offset_left = 19.0
@@ -118,8 +116,6 @@ offset_bottom = 82.0
 theme_override_font_sizes/font_size = 41
 script = ExtResource("4_gfw5h")
 target_scene_path = "res://02_scenes/03_levels/level_orderCounter.tscn"
-transition = 3
-use_loading_screen = false
 
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
 visible = false
