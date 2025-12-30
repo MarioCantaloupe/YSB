@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ryqpe6qt3p8n"]
+
+[ext_resource type="PackedScene" uid="uid://bbhi6ysyx7ejp" path="res://02_scenes/02_objects/runner/obstacle.tscn" id="1_pwg4u"]
+[ext_resource type="Texture2D" uid="uid://dwuhp2l33jjps" path="res://01_assets/01_sprites/02_objects/obstacles/basura_patinete.PNG" id="2_e1dbk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuupu"]
+size = Vector2(20, 115.03594)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5lwl"]
+size = Vector2(127.00001, 32.000008)
+
+[node name="obstacle" instance=ExtResource("1_pwg4u")]
+
+[node name="sprite" parent="." index="0"]
+scale = Vector2(0.29700553, 0.26908702)
+texture = ExtResource("2_e1dbk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision" index="0"]
+position = Vector2(-33.87841, -3.6401644)
+rotation = 0.15082285
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_tuupu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="collision" index="1"]
+position = Vector2(1.4999981, 40)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_g5lwl")

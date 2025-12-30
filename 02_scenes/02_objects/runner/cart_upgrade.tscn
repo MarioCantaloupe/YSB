@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbx6k5i72h3n2"]
 
 [ext_resource type="Script" uid="uid://bqnduylenu37c" path="res://02_scenes/02_objects/runner/cart_upgrade.gd" id="2_5x7pv"]
-[ext_resource type="Texture2D" uid="uid://182prsigxpyx" path="res://01_assets/01_sprites/02_objects/magic_orb.png" id="3_5svyq"]
 [ext_resource type="Resource" uid="uid://cy3ompnpe6ige" path="res://02_scenes/02_objects/01_obstacle_data/cart_upgrade.tres" id="3_hn43r"]
+[ext_resource type="Texture2D" uid="uid://b78e8cnigsi32" path="res://01_assets/01_sprites/02_objects/magic_candy.png" id="3_kw5xt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5pvj"]
 radius = 44.0
@@ -12,9 +12,9 @@ script = ExtResource("2_5x7pv")
 obstacle_data = ExtResource("3_hn43r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -3)
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("3_5svyq")
+position = Vector2(1, 2)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_kw5xt")
 
 [node name="collision" type="Area2D" parent="."]
 

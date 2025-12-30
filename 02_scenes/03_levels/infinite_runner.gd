@@ -1,8 +1,7 @@
 extends Node2D
 
 @onready var player: Player = $yaya
-@onready var lung_bar: ProgressBar = $UI/VBoxContainer/lung_bar
-@onready var texture_lung_bar: TextureProgressBar = $UI/lung_bar_progress/texture_lung_bar
+@onready var texture_lung_bar: TextureProgressBar = %texture_lung_bar
 @onready var tooltip_player: AnimationPlayer = $tooltip_player
 
 var has_tooltip_appeared : bool = false
@@ -26,5 +25,5 @@ func _process(_delta: float) -> void:
 		
 func _on_yaya_game_end() -> void:
 	PlayerCursor.enable_cursor(true)
-	GlobalScript.change_scene(GlobalScript.Kitchen01)
+	SceneLoader.load_scene("res://02_scenes/03_levels/level_cuttingCounter.tscn", SceneLoader.Transition.NONE)
 	

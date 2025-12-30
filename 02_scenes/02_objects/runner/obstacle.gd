@@ -18,14 +18,13 @@ func _ready() -> void:
 	await instanced_particles.ready
 	
 	
-	
 func _physics_process(_delta: float) -> void:
 	position.x -= obstacle_data.movement_speed
 	rotation += random_rotation
 
 func _on_collision_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
-		if area.get_parent().carrito_demon:
+		if area.get_parent().get_parent().carrito_demon:
 			destroyed()
 		else:
 			pass
@@ -33,6 +32,7 @@ func _on_collision_area_entered(area: Area2D) -> void:
 func destroyed():
 	if obstacle_particles_scene:
 		var particles = instanced_particles
+		particles.obstacle_texture = obstacle_data.sprite
 		particles.global_position = global_position
 		get_parent().add_child(particles)
 		particles.emitting = true

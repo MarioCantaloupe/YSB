@@ -1,31 +1,109 @@
-[gd_scene load_steps=15 format=3 uid="uid://co1ew4wo03x4j"]
+[gd_scene load_steps=22 format=3 uid="uid://co1ew4wo03x4j"]
 
 [ext_resource type="Script" uid="uid://cchhadnjmn6at" path="res://02_scenes/01_characters/yaya_runner.gd" id="1_cq216"]
-[ext_resource type="Texture2D" uid="uid://cxgrdhg6fubo7" path="res://01_assets/01_sprites/01_characters/yaya.png" id="1_iq5ro"]
-[ext_resource type="Texture2D" uid="uid://dshta6ytmlyr4" path="res://01_assets/01_sprites/01_characters/carrito_mordisco_1.PNG" id="3_h0on3"]
-[ext_resource type="Texture2D" uid="uid://bgfeovjvp2g2s" path="res://01_assets/01_sprites/01_characters/carrito_mordisco_2.PNG" id="4_xq6sd"]
-[ext_resource type="Texture2D" uid="uid://defujbk5l7nxd" path="res://01_assets/01_sprites/01_characters/carrito_mordisco_3.PNG" id="5_ht8aj"]
-[ext_resource type="Texture2D" uid="uid://dfol4e7dtxym6" path="res://01_assets/01_sprites/01_characters/carrito_mordisco_4.PNG" id="6_kw8vx"]
-[ext_resource type="Texture2D" uid="uid://bo3v5jr6w244j" path="res://01_assets/01_sprites/01_characters/carro_idle_1.PNG" id="7_0mk7g"]
-[ext_resource type="Texture2D" uid="uid://bqllkevd00xda" path="res://01_assets/01_sprites/01_characters/carro_idle_2.PNG" id="8_k52j5"]
+[ext_resource type="Texture2D" uid="uid://crx6i0afvhpg7" path="res://01_assets/01_sprites/01_characters/carrito/carrito_masticar_1.PNG" id="3_0mk7g"]
+[ext_resource type="Texture2D" uid="uid://c5n4ra3wnqq62" path="res://01_assets/01_sprites/01_characters/carrito/carrito_masticar_2.PNG" id="4_k52j5"]
+[ext_resource type="Texture2D" uid="uid://0d87po60ml5x" path="res://01_assets/01_sprites/01_characters/carrito/carrito_tragar_1.PNG" id="5_lwibl"]
+[ext_resource type="Texture2D" uid="uid://c7ji2cco65wjj" path="res://01_assets/01_sprites/01_characters/carrito/carrito_tragar_2.PNG" id="6_rbvnr"]
+[ext_resource type="Texture2D" uid="uid://bo3v5jr6w244j" path="res://01_assets/01_sprites/01_characters/carrito/carro_idle_1.PNG" id="7_0mk7g"]
+[ext_resource type="Texture2D" uid="uid://bqllkevd00xda" path="res://01_assets/01_sprites/01_characters/carrito/carro_idle_2.PNG" id="8_k52j5"]
+[ext_resource type="Texture2D" uid="uid://dc4pn1j88ljvb" path="res://01_assets/01_sprites/01_characters/carrito/carrito_cerrarBoca_1.PNG" id="9_ngwu8"]
+[ext_resource type="Texture2D" uid="uid://bp2m8w223v55o" path="res://01_assets/01_sprites/01_characters/carrito/carrito_cerrarBoca_2.PNG" id="10_83rty"]
+[ext_resource type="Texture2D" uid="uid://37s0wqxm3046" path="res://01_assets/01_sprites/01_characters/yaya/Yaya_01.png" id="11_0mk7g"]
+[ext_resource type="Texture2D" uid="uid://bragchbb267n7" path="res://01_assets/01_sprites/01_characters/carrito/carrito_abribBoca_2.PNG" id="12_fshg3"]
+[ext_resource type="Texture2D" uid="uid://d30ijp6v52kmc" path="res://01_assets/01_sprites/01_characters/yaya/Yaya_00.png" id="12_k52j5"]
+
+[sub_resource type="Animation" id="Animation_xq6sd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("YayaEntity/sprite_carrito:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("YayaEntity/sprite_yaya:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h0on3"]
+resource_name = "yaya_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("YayaEntity/sprite_carrito:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("YayaEntity/sprite_yaya:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ht8aj"]
+_data = {
+&"RESET": SubResource("Animation_xq6sd"),
+&"yaya_hit": SubResource("Animation_h0on3")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h0on3"]
+radius = 22.0
+height = 168.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cq216"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_h0on3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_xq6sd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ht8aj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_kw8vx")
-}],
+"frames": [],
 "loop": false,
 "name": &"bite",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0mk7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k52j5")
+}],
+"loop": false,
+"name": &"chew",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_lwibl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rbvnr")
+}],
+"loop": false,
+"name": &"gulp",
 "speed": 9.0
 }, {
 "frames": [{
@@ -35,91 +113,63 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_k52j5")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ngwu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_83rty")
+}],
+"loop": false,
+"name": &"mouth_close",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_fshg3")
+}],
+"loop": false,
+"name": &"mouth_open",
 "speed": 9.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_kw8vx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_0mk7g")
+}],
+"loop": true,
+"name": &"blink",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_k52j5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iq5ro"]
-radius = 36.0
+radius = 43.0
 height = 192.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cq216"]
 radius = 31.0
-height = 99.99999
+height = 110.0
 
-[sub_resource type="Animation" id="Animation_h0on3"]
-resource_name = "yaya_hit"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprite_yaya:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0005, 0.40612093),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_xq6sd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprite_yaya:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ht8aj"]
-_data = {
-&"RESET": SubResource("Animation_xq6sd"),
-&"yaya_hit": SubResource("Animation_h0on3")
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utuqn"]
+size = Vector2(223.5, 158)
 
 [node name="yaya" type="CharacterBody2D"]
 script = ExtResource("1_cq216")
 jump_time_to_descent = 2.0
-
-[node name="sprite_yaya" type="Sprite2D" parent="."]
-position = Vector2(0, -92)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_iq5ro")
-
-[node name="sprite_carrito" type="AnimatedSprite2D" parent="sprite_yaya"]
-use_parent_material = true
-position = Vector2(33.333336, -12)
-scale = Vector2(0.6666667, 0.6666667)
-sprite_frames = SubResource("SpriteFrames_cq216")
-animation = &"idle"
-autoplay = "idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-55, -93)
-shape = SubResource("CapsuleShape2D_iq5ro")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(46, -77)
-rotation = -1.5707964
-shape = SubResource("CapsuleShape2D_cq216")
-
-[node name="collision" type="Area2D" parent="." groups=["player"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collision"]
-position = Vector2(-55, -93)
-shape = SubResource("CapsuleShape2D_iq5ro")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="collision"]
-position = Vector2(46, -77)
-rotation = -1.5707964
-shape = SubResource("CapsuleShape2D_cq216")
 
 [node name="hit_cooldown" type="Timer" parent="."]
 one_shot = true
@@ -133,7 +183,45 @@ libraries = {
 &"": SubResource("AnimationLibrary_ht8aj")
 }
 
-[connection signal="animation_finished" from="sprite_yaya/sprite_carrito" to="." method="_on_sprite_carrito_animation_finished"]
-[connection signal="area_entered" from="collision" to="." method="_on_collision_area_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -22)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_h0on3")
+debug_color = Color(0.34849384, 0.6171345, 0.17537922, 0.41960785)
+
+[node name="YayaEntity" type="Node2D" parent="."]
+
+[node name="sprite_carrito" type="AnimatedSprite2D" parent="YayaEntity"]
+use_parent_material = true
+position = Vector2(25.000002, -101)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_cq216")
+animation = &"mouth_close"
+autoplay = "idle"
+
+[node name="sprite_yaya" type="AnimatedSprite2D" parent="YayaEntity"]
+position = Vector2(-29, -100)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_kw8vx")
+animation = &"idle"
+
+[node name="collision" type="Area2D" parent="YayaEntity" groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YayaEntity/collision"]
+position = Vector2(-44, -93)
+shape = SubResource("CapsuleShape2D_iq5ro")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="YayaEntity/collision"]
+position = Vector2(35, -55)
+shape = SubResource("CapsuleShape2D_cq216")
+
+[node name="visionCollision" type="Area2D" parent="YayaEntity"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YayaEntity/visionCollision"]
+position = Vector2(183, -91)
+shape = SubResource("RectangleShape2D_utuqn")
+
 [connection signal="timeout" from="hit_cooldown" to="." method="_on_hit_cooldown_timeout"]
 [connection signal="timeout" from="demonCart_timer" to="." method="_on_demon_cart_timer_timeout"]
+[connection signal="area_entered" from="YayaEntity/collision" to="." method="_on_collision_area_entered"]
+[connection signal="area_entered" from="YayaEntity/visionCollision" to="." method="_on_vision_collision_area_entered"]
