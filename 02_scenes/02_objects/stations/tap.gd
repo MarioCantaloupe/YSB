@@ -3,7 +3,6 @@ extends Node2D
 @onready var tap_sprite: Sprite2D = $tap
 @onready var station: Node2D = $station
 @onready var mode_switch: Button = $mode_switch
-@onready var tap_vfx: Sprite2D = $tap_vfx
 @onready var vfx: AnimatedSprite2D = $vfx
 
 
