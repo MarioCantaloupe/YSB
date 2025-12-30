@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://hcaomq6vq7pf"]
+[gd_scene load_steps=8 format=3 uid="uid://hcaomq6vq7pf"]
 
 [ext_resource type="Script" uid="uid://06xtmbf8fhdp" path="res://02_scenes/04_screens/screen_pause_menu.gd" id="1_1r1rt"]
 [ext_resource type="Shader" uid="uid://c3ddhp40ol327" path="res://01_assets/04_shaders/shd_pauseMenu_blyr.gdshader" id="1_flnx2"]
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="3_5fg5t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1r1rt"]
 shader = ExtResource("1_flnx2")
@@ -213,16 +214,19 @@ layout_mode = 2
 [node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("3_5fg5t")
 text = "Reanudar"
 
 [node name="Options" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("3_5fg5t")
 text = "Opciones"
 
 [node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("3_5fg5t")
 text = "Salir"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
