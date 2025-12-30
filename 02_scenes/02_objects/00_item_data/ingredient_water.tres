@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://ddnrbpykq27bh"]
+
+[ext_resource type="Script" uid="uid://c4h6ry1wtc88b" path="res://02_scenes/02_objects/item/item_data.gd" id="1_ov2cy"]
+[ext_resource type="Texture2D" uid="uid://d0nrpqoiabe11" path="res://01_assets/01_sprites/02_objects/00_foods/agua.png" id="2_y03v6"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ov2cy")
+id = "water"
+name = "Agua"
+average_color = Color(0.6693, 0.7845683, 0.97, 0.33333334)
+type = 3
+cooking_time = 5.0
+ingredient_height_ch00 = 330
+ingredient_height_ch01 = 330
+ingredient_height_ch02 = 330
+sprite_grid = Array[Array]([[ExtResource("2_y03v6")]])

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ObstacleData" load_steps=3 format=3 uid="uid://cy3ompnpe6ige"]
 
 [ext_resource type="Script" uid="uid://bhj1pdgi67rgb" path="res://02_scenes/02_objects/01_obstacle_data/obstacle_data_resource.gd" id="1_yiw3s"]
-[ext_resource type="Texture2D" uid="uid://182prsigxpyx" path="res://01_assets/01_sprites/02_objects/magic_orb.png" id="2_yiw3s"]
+[ext_resource type="Texture2D" uid="uid://b78e8cnigsi32" path="res://01_assets/01_sprites/02_objects/magic_candy.png" id="2_yiw3s"]
 
 [resource]
 script = ExtResource("1_yiw3s")
