@@ -14,12 +14,11 @@ var cooking_time : float
 @onready var ice_sprite: Sprite2D = $sprite/ice_sprite
 @onready var collision: CollisionShape2D = $collision
 @onready var chopping_component: Node2D = $chopping_component
-@onready var item_label: Label = $tooltip/item_label
-@onready var animation_player: AnimationPlayer = $tooltip/AnimationPlayer
 @onready var cook_timer: Timer = $cook_timer
 @onready var static_dust_particles: GPUParticles2D = $sprite/static_dust
 @onready var ui_clock: Sprite2D = $ui_clock
 @onready var shadow: Sprite2D = $shadow
+@onready var tooltip: Node2D = $tooltip
 
 
 #@onready var click_area: Button = $click_area
@@ -70,7 +69,6 @@ func _ready() -> void:
 	else:
 		ice_sprite.hide()
 		ice_level = 0
-	item_label.hide()
 	ui_clock.hide_cooking_ui(true)
 	if not is_clean:
 		static_dust_particles.show()
@@ -94,7 +92,7 @@ func _on_click_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx:
 			_set_selected(true)
 			stop_right_there()
 			
-			PlayerCursor.set_cursor(PlayerCursor.CursorType.HOLDING, Vector2(53,67))
+			PlayerCursor.set_cursor(PlayerCursor.CursorType.HOLDING)
 			
 			ui_clock.hide_cooking_ui(true)
 			emit_signal("item_grabbed", true)
@@ -107,7 +105,7 @@ func _input(event):
 			_set_selected(false)
 			emit_signal("item_grabbed", false)
 			
-			PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_HOLD, Vector2(53,67))
+			PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_HOLD)
 			
 			var shortest_distance = REST_RADIUS
 			var closest_rest = null
@@ -186,11 +184,11 @@ func cook():
 					ui_clock.start_cooking_ui(cooking_time)
 					print("started timer")
 				else:
-					show_text("item no cocinable")
+					tooltip.play_popup("item no cocinable")
 			else:
-				show_text("Requiere limpiar")
+				tooltip.play_popup("Requiere limpiar")
 		else:
-			show_text("Requiere descongelar")
+			tooltip.play_popup("Requiere descongelar")
 
 func _on_cook_timer_timeout() -> void:
 	if has_reached_rest and food_data.cookable:
@@ -208,7 +206,7 @@ func _on_cook_timer_timeout() -> void:
 
 func clean():
 	if is_frozen:
-		show_text("Requiere descongelar")
+		tooltip.play_popup("Requiere descongelar")
 	else:
 		if not is_clean and food_data.cleanable:
 			is_clean = true
@@ -250,12 +248,6 @@ func get_sprite(x: int, y: int):
 func set_sprite(x: int, y: int):
 	#if food_data.cookable or food_data.cuttable:
 		sprite.texture = get_sprite(x,y)
-
-func show_text(text : String):
-	#TODO placeholder
-	item_label.text = text
-	item_label.show()
-	animation_player.play("show_text_tip")
 
 func stop_right_there():
 	freeze = true
@@ -354,7 +346,7 @@ func _set_selected(value : bool):
 		z_index = _original_z_index
 	
 	if selected and not value:
-		await GlobalScript.wait(.01)
+		await get_tree().create_timer(0.01).timeout
 		PlayerCursor.held_item = null
 		linear_velocity += PlayerCursor.get_avg_mouse_velocity()
 		
@@ -389,11 +381,11 @@ func _on_chopping_component_chop_up(_new_level: int) -> void:
 				play_poof(Color(4.416, 4.416, 4.416, 1.0))
 				print(chop_level)
 			else:
-				show_text("No cortable")
+				tooltip.play_popup("No cortable")
 		else:
-			show_text("Requiere limpiar")
+			tooltip.play_popup("Requiere limpiar")
 	else:
-		show_text("Requiere descongelar")
+		tooltip.play_popup("Requiere descongelar")
 
 func play_poof(color):
 	poof_vfx.self_modulate = color
@@ -410,10 +402,10 @@ func create_fake_floor():
 
 
 func _on_click_area_mouse_entered() -> void:
-	if not selected and not PlayerCursor.is_knife:
-		PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_HOLD, Vector2(53,67))	
+	if not selected and not PlayerCursor.is_knife and PlayerCursor.held_item == null:
+		PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_HOLD)	
 
 
 func _on_click_area_mouse_exited() -> void:
-	if not selected and not PlayerCursor.is_knife:
-		PlayerCursor.set_cursor(PlayerCursor.CursorType.POINT, Vector2(42,24))
+	if not selected and not PlayerCursor.is_knife and PlayerCursor.held_item == null:
+		PlayerCursor.set_cursor(PlayerCursor.CursorType.POINT)

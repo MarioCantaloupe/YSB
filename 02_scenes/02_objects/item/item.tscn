@@ -11,7 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://lagptp0juwey" path="res://01_assets/01_sprites/02_objects/icecube_full.png" id="8_xesb6"]
 [ext_resource type="Script" uid="uid://c3g1inqiivp0n" path="res://02_scenes/02_objects/item/visual_components/ice_block.gd" id="9_exv7o"]
 [ext_resource type="Texture2D" uid="uid://uolyfh1y3tql" path="res://01_assets/01_sprites/02_objects/icecube_half.png" id="10_v7lnu"]
+[ext_resource type="Script" uid="uid://cqo7nsnj1yu7y" path="res://02_scenes/02_objects/item/tooltip.gd" id="11_l4qy8"]
 [ext_resource type="Texture2D" uid="uid://c0os4hw58viij" path="res://01_assets/01_sprites/05_ui/reloj_base.PNG" id="11_w438a"]
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="12_4xaah"]
 [ext_resource type="Texture2D" uid="uid://bxdffroj5togu" path="res://01_assets/01_sprites/05_ui/reloj_cronometro.PNG" id="12_ntrvf"]
 [ext_resource type="Script" uid="uid://b4lkuhhayt4sa" path="res://02_scenes/02_objects/item/visual_components/cooking_ui.gd" id="12_osky5"]
 
@@ -99,42 +101,9 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="Animation" id="Animation_5p8h4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tooltip/item_label:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_iyt2q"]
-resource_name = "show_text_tip"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tooltip/item_label:self_modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.5, 2),
-"transitions": PackedFloat32Array(0.3186401, 0.3186401, 0.3186401, 9.849135),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wkqhs"]
-_data = {
-&"RESET": SubResource("Animation_5p8h4"),
-&"show_text_tip": SubResource("Animation_iyt2q")
-}
+[sub_resource type="LabelSettings" id="LabelSettings_4xaah"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l4qy8"]
 radius = 16.0
@@ -198,38 +167,29 @@ scale = Vector2(0.8676923, 0.8676924)
 sprite_frames = SubResource("SpriteFrames_exv7o")
 animation = &"poof"
 
-[node name="tooltip" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -50.0
-offset_top = -132.5
-offset_right = -10.0
-offset_bottom = -92.5
+[node name="tooltip" type="Node2D" parent="."]
+position = Vector2(0, -70)
+script = ExtResource("11_l4qy8")
+move_distance = 50.0
 
 [node name="item_label" type="Label" parent="tooltip"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 80.0
-offset_bottom = 3.0
+offset_left = -124.0
+offset_top = -13.000002
+offset_right = 125.0
+offset_bottom = 10.999998
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-text = "TEXTOTEXTO"
+theme = ExtResource("12_4xaah")
+text = "Tooltip"
+label_settings = SubResource("LabelSettings_4xaah")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="tooltip"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_wkqhs")
-}
 
 [node name="debug_text" type="Label" parent="."]
 anchors_preset = 8
