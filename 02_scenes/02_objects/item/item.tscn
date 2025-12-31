@@ -112,7 +112,7 @@ height = 54.0091
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkqhs"]
 size = Vector2(84, 82)
 
-[node name="item" type="RigidBody2D" groups=["grabbables"]]
+[node name="item" type="RigidBody2D" groups=["Item", "grabbables"]]
 y_sort_enabled = true
 collision_layer = 2
 input_pickable = true
