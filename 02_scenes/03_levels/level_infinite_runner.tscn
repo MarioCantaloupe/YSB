@@ -1,20 +1,62 @@
-[gd_scene load_steps=21 format=3 uid="uid://cb04ji4mpf2vu"]
+[gd_scene load_steps=27 format=3 uid="uid://cb04ji4mpf2vu"]
 
 [ext_resource type="Script" uid="uid://bqognyraoiwx0" path="res://02_scenes/03_levels/infinite_runner.gd" id="1_0p27r"]
 [ext_resource type="PackedScene" uid="uid://co1ew4wo03x4j" path="res://02_scenes/01_characters/yaya_runner.tscn" id="1_w88gs"]
-[ext_resource type="Script" uid="uid://cmj2f6ti4r7m1" path="res://02_scenes/03_levels/infiniteRunner_backgroundParallax.gd" id="2_db44d"]
 [ext_resource type="Script" uid="uid://cfel1p4e70kct" path="res://02_scenes/02_objects/runner/obstacle_spawner.gd" id="2_u86ga"]
-[ext_resource type="Texture2D" uid="uid://rpn41ip8mr37" path="res://01_assets/01_sprites/03_environments/espacio_agujeronegro.PNG" id="3_hebh8"]
-[ext_resource type="Texture2D" uid="uid://b1vdbvougfa7v" path="res://01_assets/01_sprites/03_environments/espacio_sol.PNG" id="3_jk4e5"]
 [ext_resource type="Texture2D" uid="uid://cupemqikjx4w6" path="res://01_assets/01_sprites/03_environments/espacio_estrellas1.PNG" id="4_bg425"]
 [ext_resource type="Texture2D" uid="uid://bugpe7nf0gshr" path="res://01_assets/01_sprites/03_environments/espacio_planeta1.PNG" id="4_p2ljq"]
 [ext_resource type="Texture2D" uid="uid://bcujrebtwyqtv" path="res://01_assets/01_sprites/03_environments/espacio_auroraboreal_o_algo_asi.PNG" id="5_dt7y8"]
 [ext_resource type="Texture2D" uid="uid://biamaiy0r08wq" path="res://01_assets/01_sprites/03_environments/espacio_estrellas2.PNG" id="5_p2ljq"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="6_2tkmp"]
-[ext_resource type="Texture2D" uid="uid://0u17slrrg1g0" path="res://01_assets/01_sprites/04_vfx/radial_gradient.png" id="7_dt7y8"]
 [ext_resource type="Texture2D" uid="uid://baeif3q7vrxks" path="res://01_assets/01_sprites/03_environments/espacio_planeta2.PNG" id="9_mnamq"]
 [ext_resource type="Texture2D" uid="uid://dml57yyf6gus8" path="res://01_assets/01_sprites/05_ui/barra_aire_vacia.PNG" id="13_qdfx5"]
 [ext_resource type="Texture2D" uid="uid://csf86bh3q7488" path="res://01_assets/01_sprites/05_ui/barra_aire_llena.PNG" id="14_sxx0n"]
+[ext_resource type="Script" uid="uid://d4xkewnitrok" path="res://02_scenes/02_objects/runner/infinite_runner_floor.gd" id="16_wgdh0"]
+[ext_resource type="Texture2D" uid="uid://66ju24oayi1x" path="res://01_assets/01_sprites/03_environments/Suelo_simple.png" id="17_4y28a"]
+[ext_resource type="Texture2D" uid="uid://b3g5p2h50h7pq" path="res://01_assets/01_sprites/03_environments/Suelo_interseccion.png" id="18_wc3ee"]
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="19_4y28a"]
+[ext_resource type="Texture2D" uid="uid://co3qcou8q5eim" path="res://01_assets/01_sprites/03_environments/Suelo_union.png" id="19_7wen0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4y28a"]
+
+[sub_resource type="Curve" id="Curve_4y28a"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0.57697797), 0.0, 0.87059337, 0, 0, Vector2(0.9985895, 1.2887664), 0.75621116, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wc3ee"]
+curve = SubResource("Curve_4y28a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7wen0"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 62.129997
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.75
+scale_over_velocity_min = 120.399994
+scale_over_velocity_max = 491.03
+scale_over_velocity_curve = SubResource("CurveTexture_wc3ee")
+hue_variation_min = -0.37
+hue_variation_max = 0.25999996
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wc3ee"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 68.2
+initial_velocity_max = 186.18
+gravity = Vector3(0, 0, 0)
+scale_min = 0.45
+scale_max = 0.75
+scale_over_velocity_min = 127.649994
+scale_over_velocity_max = 491.03
+scale_over_velocity_curve = SubResource("CurveTexture_wc3ee")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w88gs"]
 
@@ -104,23 +146,6 @@ _data = {
 script = ExtResource("1_0p27r")
 
 [node name="BgManager" type="Node2D" parent="."]
-script = ExtResource("2_db44d")
-black_hole = ExtResource("3_hebh8")
-planet01 = ExtResource("4_p2ljq")
-planet02 = ExtResource("9_mnamq")
-sun = ExtResource("3_jk4e5")
-spawn_interval_min = 0.1
-spawn_interval_max = 2.0
-weight_sun = 0.1
-weight_black_hole = 0.15
-min_scale = 0.05
-max_scale = 0.6
-min_speed = 10.0
-max_speed = 250.0
-min_darkness = 0.1
-planet_hue_variation = 0.15
-sun_light_texture = ExtResource("7_dt7y8")
-planet_light_texture = ExtResource("7_dt7y8")
 
 [node name="Background" type="ColorRect" parent="BgManager"]
 offset_right = 1280.0
@@ -129,6 +154,7 @@ color = Color(0.03529412, 0.007843138, 0.09411765, 1)
 
 [node name="ParallaxAurora" type="Parallax2D" parent="BgManager"]
 repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-5, 0)
 
 [node name="aurora_sprite" type="Sprite2D" parent="BgManager/ParallaxAurora"]
 self_modulate = Color(1, 1, 1, 0.47058824)
@@ -138,6 +164,7 @@ texture = ExtResource("5_dt7y8")
 
 [node name="ParallaxStars01" type="Parallax2D" parent="BgManager"]
 repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-10, 0)
 
 [node name="stars01_sprite" type="Sprite2D" parent="BgManager/ParallaxStars01"]
 self_modulate = Color(1, 1, 1, 0.5019608)
@@ -147,11 +174,49 @@ texture = ExtResource("4_bg425")
 
 [node name="ParallaxStars02" type="Parallax2D" parent="BgManager"]
 repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-15, 0)
 
 [node name="stars02_sprite" type="Sprite2D" parent="BgManager/ParallaxStars02"]
 position = Vector2(640.32, 360.18)
 scale = Vector2(0.667, 0.667)
 texture = ExtResource("5_p2ljq")
+
+[node name="Planets_Blue" type="GPUParticles2D" parent="BgManager"]
+self_modulate = Color(0.25824526, 0.071785785, 0.46036577, 1)
+material = SubResource("ShaderMaterial_4y28a")
+position = Vector2(1480, 352)
+amount = 98
+texture = ExtResource("9_mnamq")
+lifetime = 76.0
+visibility_rect = Rect2(-500, -500, 1780, 1220)
+process_material = SubResource("ParticleProcessMaterial_7wen0")
+
+[node name="Planets_Red" type="GPUParticles2D" parent="BgManager"]
+material = SubResource("ShaderMaterial_4y28a")
+position = Vector2(1480, 352)
+texture = ExtResource("4_p2ljq")
+lifetime = 25.0
+explosiveness = 0.07
+visibility_rect = Rect2(-500, -500, 1780, 1220)
+process_material = SubResource("ParticleProcessMaterial_wc3ee")
+
+[node name="Floor" type="Node2D" parent="."]
+script = ExtResource("16_wgdh0")
+
+[node name="suelo_simple" type="Sprite2D" parent="Floor"]
+position = Vector2(675.80005, 655.80005)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("17_4y28a")
+
+[node name="floor_interection" type="Sprite2D" parent="Floor"]
+position = Vector2(675.80005, 655.80005)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("18_wc3ee")
+
+[node name="floor_union" type="Sprite2D" parent="Floor"]
+position = Vector2(675.80005, 655.80005)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("19_7wen0")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(640, 355)
@@ -175,7 +240,6 @@ jump_time_to_descent = 1.5
 
 [node name="asteroid_spawner" type="Node2D" parent="."]
 script = ExtResource("2_u86ga")
-scale_variation = 0.5
 
 [node name="asteroid_spawn_timer" type="Timer" parent="asteroid_spawner"]
 wait_time = 0.7
@@ -187,22 +251,26 @@ anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 
-[node name="lung_bar_progress" type="VBoxContainer" parent="UI"]
+[node name="texture_lung_bar" type="TextureProgressBar" parent="UI"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 22.0
 offset_top = 17.0
-offset_right = 300.0
-offset_bottom = 94.0
-
-[node name="texture_lung_bar" type="TextureProgressBar" parent="UI/lung_bar_progress"]
-layout_mode = 2
+offset_right = 411.0
+offset_bottom = 104.0
 step = 0.1
 value = 100.0
 texture_under = ExtResource("13_qdfx5")
 texture_progress = ExtResource("14_sxx0n")
 
-[node name="Label" type="Label" parent="UI/lung_bar_progress"]
-layout_mode = 2
+[node name="Label" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 67.99999
+offset_top = 89.99999
+offset_right = 457.0
+offset_bottom = 140.0
+rotation = -0.05943233
+theme = ExtResource("19_4y28a")
 text = "AIRE"
 
 [node name="start_tooltip" type="Label" parent="."]

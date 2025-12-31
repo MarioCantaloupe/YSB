@@ -1,9 +1,8 @@
-extends Button
+extends DynamicButton
 
 @export var target_scene_path : String
-
-
+@export var transition : SceneLoader.Transition = SceneLoader.Transition.FADE
+@export var use_loading_screen : bool = true
 
 func _on_pressed() -> void:
-	get_tree().change_scene_to_file(target_scene_path)
-	print("Changing scene to " + str(target_scene_path))
+	SceneLoader.load_scene(target_scene_path, transition, use_loading_screen)

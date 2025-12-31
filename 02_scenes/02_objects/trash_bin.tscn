@@ -1,14 +1,86 @@
-[gd_scene load_steps=13 format=3 uid="uid://dx13ntlp0pio6"]
+[gd_scene load_steps=30 format=3 uid="uid://dx13ntlp0pio6"]
 
 [ext_resource type="Script" uid="uid://c2n2s6fs13tfq" path="res://02_scenes/02_objects/trash_bin.gd" id="1_8wf21"]
-[ext_resource type="Texture2D" uid="uid://bnl107nnmcrny" path="res://01_assets/01_sprites/02_objects/01_papelera/agujero.PNG" id="1_ajdb3"]
-[ext_resource type="Texture2D" uid="uid://gara7ekr8kng" path="res://01_assets/01_sprites/02_objects/01_papelera/aura_agujero.PNG" id="2_700yg"]
-[ext_resource type="Shader" uid="uid://d1ndjouy7ryjd" path="res://01_assets/01_sprites/02_objects/01_papelera/trash_bin_aura.tres" id="2_x78en"]
-[ext_resource type="Shader" uid="uid://cfd782tvgy5c7" path="res://01_assets/01_sprites/02_objects/01_papelera/trash_bin_estrellas.tres" id="3_700yg"]
-[ext_resource type="Texture2D" uid="uid://vacorvw48erq" path="res://01_assets/01_sprites/02_objects/01_papelera/estrellas_agujero.PNG" id="3_x78en"]
+[ext_resource type="Texture2D" uid="uid://bnl107nnmcrny" path="res://01_assets/01_sprites/02_objects/02_papelera/agujero.PNG" id="1_ajdb3"]
+[ext_resource type="Texture2D" uid="uid://gara7ekr8kng" path="res://01_assets/01_sprites/02_objects/02_papelera/aura_agujero.PNG" id="2_700yg"]
+[ext_resource type="Shader" uid="uid://d1ndjouy7ryjd" path="res://01_assets/01_sprites/02_objects/02_papelera/trash_bin_aura.tres" id="2_x78en"]
+[ext_resource type="Shader" uid="uid://cfd782tvgy5c7" path="res://01_assets/01_sprites/02_objects/02_papelera/trash_bin_estrellas.tres" id="3_700yg"]
+[ext_resource type="Texture2D" uid="uid://vacorvw48erq" path="res://01_assets/01_sprites/02_objects/02_papelera/estrellas_agujero.PNG" id="3_x78en"]
+[ext_resource type="Texture2D" uid="uid://c8ddv1pa128hf" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_01.PNG" id="5_s4pac"]
+[ext_resource type="Texture2D" uid="uid://bko7eqqtj6576" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_02.PNG" id="6_jf07c"]
+[ext_resource type="Texture2D" uid="uid://ih7a8ae2hwsf" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_03.PNG" id="7_qsfln"]
+[ext_resource type="Texture2D" uid="uid://bws1mfnpb8g5g" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_04.PNG" id="8_dch45"]
+[ext_resource type="Texture2D" uid="uid://xnv43xig723a" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_05.PNG" id="9_5n5e3"]
+[ext_resource type="Texture2D" uid="uid://dvt364nuagxwd" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_06.PNG" id="10_1oswd"]
+[ext_resource type="Texture2D" uid="uid://bmy304qp4bgrm" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_07.PNG" id="11_0yn0w"]
+[ext_resource type="Texture2D" uid="uid://ixw3ici0y642" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_08.PNG" id="12_yddew"]
+[ext_resource type="Texture2D" uid="uid://udmy755cyy6c" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_09.PNG" id="13_vp4sg"]
+[ext_resource type="Texture2D" uid="uid://cartnvavk5s1w" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_10.PNG" id="14_1yxi2"]
+[ext_resource type="Texture2D" uid="uid://p1nogq66r8xj" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_11.PNG" id="15_spbo6"]
+[ext_resource type="Texture2D" uid="uid://bfnk4lti7yqj3" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_12.PNG" id="16_hxjku"]
+[ext_resource type="Texture2D" uid="uid://u85ttq3p5wwa" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_13.PNG" id="17_an7n1"]
+[ext_resource type="Texture2D" uid="uid://op53tcbg13pf" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_14.PNG" id="18_dfrmv"]
+[ext_resource type="Texture2D" uid="uid://bmvg0vwg6gjcs" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_15.PNG" id="19_rxefw"]
+[ext_resource type="Texture2D" uid="uid://bk7mljcrohjy1" path="res://01_assets/01_sprites/02_objects/02_papelera/frames_anim_agujero/agujero_anim_16.PNG" id="20_pw6yv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8wf21"]
 shader = ExtResource("2_x78en")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8wf21"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_s4pac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jf07c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qsfln")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dch45")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5n5e3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1oswd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_0yn0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_yddew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_vp4sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_1yxi2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_spbo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hxjku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_an7n1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_dfrmv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_rxefw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_pw6yv")
+}],
+"loop": false,
+"name": &"eat",
+"speed": 12.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x78en"]
 shader = ExtResource("3_700yg")
@@ -67,7 +139,15 @@ texture = ExtResource("2_700yg")
 scale = Vector2(1.0000001, 1.0000001)
 texture = ExtResource("1_ajdb3")
 
-[node name="estrellas" type="Sprite2D" parent="."]
+[node name="eat_anim" type="AnimatedSprite2D" parent="controller"]
+visible = false
+position = Vector2(-4, 33)
+sprite_frames = SubResource("SpriteFrames_8wf21")
+animation = &"eat"
+frame = 9
+frame_progress = 0.18517062
+
+[node name="estrellas" type="Sprite2D" parent="controller"]
 material = SubResource("ShaderMaterial_x78en")
 texture = ExtResource("3_x78en")
 

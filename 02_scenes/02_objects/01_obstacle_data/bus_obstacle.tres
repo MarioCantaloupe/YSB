@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ObstacleData" load_steps=4 format=3 uid="uid://c6xdbftw81hdd"]
+
+[ext_resource type="AudioStream" uid="uid://dncyme50uifut" path="res://01_assets/03_sound/hit.wav" id="1_8v8cm"]
+[ext_resource type="Script" uid="uid://bhj1pdgi67rgb" path="res://02_scenes/02_objects/01_obstacle_data/obstacle_data_resource.gd" id="2_fejkp"]
+[ext_resource type="Texture2D" uid="uid://dcsk0rfefspuu" path="res://01_assets/01_sprites/02_objects/obstacles/basura_busCorunaAlien.PNG" id="3_8v8cm"]
+
+[resource]
+script = ExtResource("2_fejkp")
+name = "Bus"
+min_loot = 10
+max_loot = 15
+hit_sound = ExtResource("1_8v8cm")
+sprite = ExtResource("3_8v8cm")
+metadata/_custom_type_script = "uid://bhj1pdgi67rgb"

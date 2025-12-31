@@ -4,20 +4,18 @@ signal knife_mode_changed(is_knife: bool)
 
 const VELOCITY_SAMPLES : int = 8
 
+const CURSOR_REFERENCE_RESOLUTION := Vector2i(1280, 720)
+
+var cursor_scale := 1.0
+var scaled_cursor_cache := {}
+
 var velocity_buffer: Array[Vector2] = []
 var previous_mouse_pos
 
-var enabled = true
-
-# ICONS
-var icon_arrow = preload("res://01_assets/01_sprites/01_characters/cursor_default.png")
-
-
-var is_knife = false
-var is_holding = false : set = _set_is_holding
+var enabled := true
+var is_knife := false
+var is_holding := false : set = _set_is_holding
 var held_item: RigidBody2D = null
-
-
 
 enum CursorType {
 	POINT,
@@ -27,67 +25,118 @@ enum CursorType {
 	KNIFE,
 }
 
-var cursor_images := { #TODO placeholders
-	CursorType.POINT: "res://01_assets/01_sprites/01_characters/cursor_point.png",
-	CursorType.CAN_INTERACT: "res://01_assets/01_sprites/01_characters/hand_point.png",
-	CursorType.CAN_HOLD: "res://01_assets/01_sprites/01_characters/cursor_canhold.png",
-	CursorType.HOLDING: "res://01_assets/01_sprites/01_characters/cursor_holding.png",
-	CursorType.KNIFE: "res://01_assets/01_sprites/01_characters/cursor_knife.png",
+# Cursor definitions (texture + hotspot in one place)
+var cursor_data := {
+	CursorType.POINT: {
+		"texture": preload("res://01_assets/01_sprites/01_characters/cursor/cursor_point.png"),
+		"hotspot": Vector2(17, 15),
+	},
+	CursorType.CAN_INTERACT: {
+		"texture": preload("res://01_assets/01_sprites/01_characters/cursor/cursor_canInteract.png"),
+		"hotspot": Vector2(38, 23),
+	},
+	CursorType.CAN_HOLD: {
+		"texture": preload("res://01_assets/01_sprites/01_characters/cursor/cursor_canHold.png"),
+		"hotspot": Vector2(47, 67),
+	},
+	CursorType.HOLDING: {
+		"texture": preload("res://01_assets/01_sprites/01_characters/cursor/cursor_holding.png"),
+		"hotspot": Vector2(47, 67),
+	},
+	CursorType.KNIFE: {
+		"texture": preload("res://01_assets/01_sprites/01_characters/cursor/cursor_knife.png"),
+		"hotspot": Vector2(0, 0),
+	},
 }
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_cursor(CursorType.POINT, Vector2(42,24))
-	Input.set_custom_mouse_cursor(load(cursor_images[1]), Input.CURSOR_POINTING_HAND)
+	update_cursor_scale()
+	scaled_cursor_cache.clear()
+	set_cursor(CursorType.POINT)
 	previous_mouse_pos = get_viewport().get_mouse_position()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	global_position = get_global_mouse_position()
-	var mouse_pos = get_viewport().get_mouse_position()
-	var velocity = (mouse_pos - previous_mouse_pos) / _delta
+
+	var mouse_pos := get_viewport().get_mouse_position()
+	var velocity : Vector2 = (mouse_pos - previous_mouse_pos) / delta
 	previous_mouse_pos = mouse_pos
-	
+
 	velocity_buffer.append(velocity)
 	if velocity_buffer.size() > VELOCITY_SAMPLES:
 		velocity_buffer.pop_front()
-	
-func get_avg_mouse_velocity():
+
+func get_avg_mouse_velocity() -> Vector2:
 	if velocity_buffer.is_empty():
 		return Vector2.ZERO
+
 	var sum := Vector2.ZERO
 	for v in velocity_buffer:
 		sum += v
+
 	return sum / velocity_buffer.size()
-	
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("debug_key"):
-		#toggle_knife()
-	
-func toggle_knife():
+
+func toggle_knife() -> void:
 	is_knife = !is_knife
+
 	if is_knife:
 		set_cursor(CursorType.KNIFE)
 		emit_signal("knife_mode_changed", true)
 	else:
-		set_cursor(CursorType.POINT, Vector2(42,24))
+		set_cursor(CursorType.POINT)
 		emit_signal("knife_mode_changed", false)
-	
-	print("is_knife set to " + str(is_knife))
-	
-func set_cursor(cursor_type: CursorType, hotspot: Vector2 = Vector2.ZERO) -> void:
-	if cursor_images.has(cursor_type):
-		var texture: Texture2D = load(cursor_images[cursor_type])
-		Input.set_custom_mouse_cursor(texture, Input.CURSOR_ARROW, hotspot)
-		print("cursor changed to: %s (hotspot: %s)" % [cursor_type, hotspot])
 
-func enable_cursor(boolean : bool):
-	if boolean:
-		PlayerCursor.enabled = true
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	else:
-		PlayerCursor.enabled = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+func set_cursor(cursor_type: CursorType) -> void:
+	if not cursor_data.has(cursor_type):
+		push_warning("Cursor type not found: %s" % cursor_type)
+		return
 
-func _set_is_holding(value):
+	var scaled := get_scaled_cursor(cursor_type)
+
+	Input.set_custom_mouse_cursor(
+		scaled.texture,
+		Input.CURSOR_ARROW,
+		scaled.hotspot
+	)
+
+
+func enable_cursor(value: bool) -> void:
+	enabled = value
+	Input.set_mouse_mode(
+		Input.MOUSE_MODE_VISIBLE if value else Input.MOUSE_MODE_HIDDEN
+	)
+
+func _set_is_holding(value: bool) -> void:
 	is_holding = value
+
+func update_cursor_scale() -> void:
+	var viewport_size := get_viewport().get_visible_rect().size
+	cursor_scale = min(
+		viewport_size.x / CURSOR_REFERENCE_RESOLUTION.x,
+		viewport_size.y / CURSOR_REFERENCE_RESOLUTION.y
+	)
+	cursor_scale = clamp(cursor_scale, 0.5, 2.0)
+
+func get_scaled_cursor(cursor_type: CursorType) -> Dictionary:
+	if scaled_cursor_cache.has(cursor_type):
+		return scaled_cursor_cache[cursor_type]
+
+	var data = cursor_data[cursor_type]
+	var original_tex: Texture2D = data.texture
+	var original_hotspot: Vector2 = data.hotspot
+
+	var image := original_tex.get_image()
+	var new_size := Vector2i(image.get_size() * cursor_scale)
+
+	image.resize(new_size.x, new_size.y, Image.INTERPOLATE_LANCZOS)
+
+	var scaled_texture := ImageTexture.create_from_image(image)
+	var scaled_hotspot := original_hotspot * cursor_scale
+
+	var result := {
+		"texture": scaled_texture,
+		"hotspot": scaled_hotspot
+	}
+
+	scaled_cursor_cache[cursor_type] = result
+	return result

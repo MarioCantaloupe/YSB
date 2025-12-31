@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbymaercxye8d"]
+
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_43obl"]
+[ext_resource type="Script" uid="uid://chvb44aglrm8p" path="res://02_scenes/02_objects/stations/pantry_slot.gd" id="1_dwulp"]
+[ext_resource type="Resource" uid="uid://duk0ntp6mk6qf" path="res://02_scenes/02_objects/item/base_item.tres" id="2_4heqc"]
+[ext_resource type="Texture2D" uid="uid://14gf18y7mtop" path="res://01_assets/01_sprites/03_environments/pantry_small.png" id="2_v2nvf"]
+[ext_resource type="Texture2D" uid="uid://b5xgl63gdonh3" path="res://01_assets/01_sprites/00_placeholders/null_sprite.png" id="5_rs1f4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4heqc"]
+texture = ExtResource("2_v2nvf")
+texture_margin_left = 25.0
+texture_margin_top = 25.0
+texture_margin_right = 35.0
+texture_margin_bottom = 55.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ram23"]
+
+[node name="PantrySlot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -900.0
+offset_bottom = -514.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1_43obl")
+script = ExtResource("1_dwulp")
+item_resource = ExtResource("2_4heqc")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4heqc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Nombre"
+horizontal_alignment = 1
+
+[node name="Image" type="TextureRect" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_rs1f4")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_4heqc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4heqc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4heqc")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_4heqc")
+theme_override_styles/focus = SubResource("StyleBoxTexture_4heqc")
+icon = ExtResource("5_rs1f4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="drop_area" type="Area2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="drop_area"]
+shape = SubResource("RectangleShape2D_ram23")

@@ -4,6 +4,8 @@ enum StationAction { NONE, COOK, CLEAN, DEFROST }
 
 @export var action: StationAction = StationAction.NONE
 
+signal station_selected(bool)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if action == StationAction.NONE:
@@ -11,6 +13,7 @@ func _ready() -> void:
 
 
 func _on_drop_zone_zone_selected(state):
+	emit_signal("station_selected", state)
 	if state == true:
 		if action == StationAction.DEFROST:
 			get_parent().enable_fire(true)

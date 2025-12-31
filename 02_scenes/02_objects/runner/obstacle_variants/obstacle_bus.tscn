@@ -1,0 +1,25 @@
+[gd_scene load_steps=9 format=3 uid="uid://dw1jr8geg1a2k"]
+
+[ext_resource type="PackedScene" uid="uid://bbhi6ysyx7ejp" path="res://02_scenes/02_objects/runner/obstacle.tscn" id="1_b16vo"]
+[ext_resource type="Texture2D" uid="uid://cdb0wnus38q3k" path="res://01_assets/01_sprites/02_objects/obstacles/basura_busCoruna.PNG" id="2_0bvse"]
+[ext_resource type="Resource" uid="uid://c6xdbftw81hdd" path="res://02_scenes/02_objects/01_obstacle_data/bus_obstacle.tres" id="2_kb2uk"]
+[ext_resource type="Script" uid="uid://dutfeoijn7t48" path="res://02_scenes/02_objects/runner/obstacle_variants/random_bus_picker.gd" id="3_t53tt"]
+[ext_resource type="Texture2D" uid="uid://dcsk0rfefspuu" path="res://01_assets/01_sprites/02_objects/obstacles/basura_busCorunaAlien.PNG" id="4_kb2uk"]
+[ext_resource type="Texture2D" uid="uid://b2klsr0r1ap2y" path="res://01_assets/01_sprites/02_objects/obstacles/basura_busCorunaYaya.PNG" id="5_78jxy"]
+[ext_resource type="Texture2D" uid="uid://ch0bdanblq1p1" path="res://01_assets/01_sprites/02_objects/obstacles/basura_monbus.PNG" id="6_mrjny"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t53tt"]
+size = Vector2(634, 165)
+
+[node name="obstacle" instance=ExtResource("1_b16vo")]
+obstacle_data = ExtResource("2_kb2uk")
+
+[node name="sprite" parent="." index="0"]
+scale = Vector2(1, 1)
+texture = ExtResource("2_0bvse")
+script = ExtResource("3_t53tt")
+bus_variants = Array[Texture2D]([ExtResource("2_0bvse"), ExtResource("4_kb2uk"), ExtResource("5_78jxy"), ExtResource("6_mrjny")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision" index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_t53tt")

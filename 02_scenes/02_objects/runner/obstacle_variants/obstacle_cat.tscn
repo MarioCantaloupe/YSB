@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://fv84rityqeju"]
+
+[ext_resource type="PackedScene" uid="uid://bbhi6ysyx7ejp" path="res://02_scenes/02_objects/runner/obstacle.tscn" id="1_srw6k"]
+[ext_resource type="Texture2D" uid="uid://dmubh85jasutl" path="res://01_assets/01_sprites/02_objects/obstacles/basura_gato_volador.PNG" id="2_tqeal"]
+
+[node name="obstacle" instance=ExtResource("1_srw6k")]
+
+[node name="sprite" parent="." index="0"]
+scale = Vector2(0.21824817, 0.19773285)
+texture = ExtResource("2_tqeal")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collision" index="0"]
+polygon = PackedVector2Array(-32, -24, -17, -28, 10, -26, 28, -15, 41, 21, 1, 25, -29, -1)

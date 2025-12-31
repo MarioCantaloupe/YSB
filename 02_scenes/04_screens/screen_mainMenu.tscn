@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://2fdgqp5p3dve"]
+[gd_scene load_steps=7 format=3 uid="uid://2fdgqp5p3dve"]
 
 [ext_resource type="Texture2D" uid="uid://7jqwh04fqi31" path="res://01_assets/01_sprites/00_placeholders/mainMenu_placeholder.png" id="1_3kh57"]
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_5oke2"]
 [ext_resource type="Script" uid="uid://dsk14mfsfdj04" path="res://02_scenes/04_screens/screen_main_menu.gd" id="1_j4tqg"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="2_7uqsd"]
 [ext_resource type="Script" uid="uid://dorl1ac5yqonb" path="res://02_scenes/04_screens/button_quit.gd" id="4_1swjj"]
+[ext_resource type="Script" uid="uid://duwv1o7gw68hi" path="res://02_scenes/04_screens/button_master.gd" id="5_e5igh"]
 
 [node name="MainMenu" type="Node2D" groups=["mouse_scene"]]
 script = ExtResource("1_j4tqg")
@@ -43,20 +44,21 @@ theme_override_font_sizes/font_size = 41
 text = "JUGAR"
 script = ExtResource("2_7uqsd")
 target_scene_path = "res://02_scenes/03_levels/level_orderCounter.tscn"
+hover_rotation = 1.5
 
 [node name="button_options" type="Button" parent="UI/Button_Manager/mainmenu_buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "OPCIONES"
+script = ExtResource("5_e5igh")
+hover_rotation = -1.5
 
 [node name="button_quit" type="Button" parent="UI/Button_Manager/mainmenu_buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "SALIR"
 script = ExtResource("4_1swjj")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(640, 360)
+hover_rotation = 1.5
 
 [connection signal="pressed" from="UI/Button_Manager/mainmenu_buttons/button_start" to="UI/Button_Manager/mainmenu_buttons/button_start" method="_on_pressed"]
 [connection signal="pressed" from="UI/Button_Manager/mainmenu_buttons/button_options" to="." method="_on_button_options_pressed"]

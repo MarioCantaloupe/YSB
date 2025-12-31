@@ -1,22 +1,48 @@
-[gd_scene load_steps=2 format=3 uid="uid://djnixpwp4y8fx"]
+[gd_scene load_steps=6 format=3 uid="uid://djnixpwp4y8fx"]
 
-[ext_resource type="Texture2D" uid="uid://xx5gpc1w5b0k" path="res://01_assets/01_sprites/00_placeholders/loadScreen_placeholder.png" id="1_0wqsi"]
+[ext_resource type="Script" uid="uid://b53adtxgd6ohf" path="res://02_scenes/04_screens/screen_loading.gd" id="1_lulyd"]
+[ext_resource type="Texture2D" uid="uid://bc4vlaqjnlutj" path="res://01_assets/01_sprites/05_ui/LoadScreen_00.png" id="2_0tuy1"]
+[ext_resource type="Texture2D" uid="uid://bg7flyg413q71" path="res://01_assets/01_sprites/05_ui/LoadScreen_02.png" id="3_feavg"]
+[ext_resource type="Texture2D" uid="uid://dq0rpcvo64wwd" path="res://01_assets/01_sprites/05_ui/LoadScreen_03.png" id="4_inwil"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_flopb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0tuy1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_feavg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_inwil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_feavg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="loading_screen" type="Node2D"]
+script = ExtResource("1_lulyd")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="ColorRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -640.6957
-offset_top = -360.0
-offset_right = 640.6957
-offset_bottom = 360.0
+offset_right = 1281.3914
+offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_0wqsi")
-expand_mode = 2
+color = Color(0.039215688, 0.015686275, 0.1254902, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1078, 529)
+scale = Vector2(0.6557206, 0.6557206)
+sprite_frames = SubResource("SpriteFrames_flopb")
+autoplay = "default"
+frame_progress = 0.10414295

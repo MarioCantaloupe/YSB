@@ -1,4 +1,4 @@
-extends Button
+extends DynamicButton
 
 
 func _on_pressed() -> void:

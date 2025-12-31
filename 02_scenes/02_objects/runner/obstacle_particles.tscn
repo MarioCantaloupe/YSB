@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm7o4svgs5u75"]
+[gd_scene load_steps=14 format=3 uid="uid://cm7o4svgs5u75"]
 
 [ext_resource type="Texture2D" uid="uid://bno73j0wa8l1g" path="res://01_assets/01_sprites/04_vfx/pelusa_spritesheet.png" id="1_37ayo"]
+[ext_resource type="Script" uid="uid://j74q6m27nxq5" path="res://02_scenes/02_objects/runner/obstacle_particles.gd" id="2_7cmpd"]
+[ext_resource type="Texture2D" uid="uid://b78e8cnigsi32" path="res://01_assets/01_sprites/02_objects/magic_candy.png" id="3_ykoni"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_37ayo"]
 particles_animation = true
@@ -32,9 +34,44 @@ alpha_curve = SubResource("CurveTexture_beli3")
 anim_speed_min = 0.55
 anim_speed_max = 2.1499999
 
-[node name="GPUParticles2D" type="GPUParticles2D"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wxolc"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_gts60"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q2c83"]
+gradient = SubResource("Gradient_gts60")
+
+[sub_resource type="Curve" id="Curve_xcwvm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.353541, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g11os"]
+curve = SubResource("Curve_xcwvm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gp7uu"]
+particle_flag_disable_z = true
+angle_min = -261.8
+angle_max = 261.80002
+initial_velocity_min = 122.81
+initial_velocity_max = 228.06999
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
+gravity = Vector3(0, 98, 0)
+damping_min = 71.372
+damping_max = 71.372
+scale_min = 0.25
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_g11os")
+color_ramp = SubResource("GradientTexture1D_q2c83")
+anim_offset_max = 1.0
+
+[node name="dust_particles" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_37ayo")
-position = Vector2(-2, -2)
 emitting = false
 texture = ExtResource("1_37ayo")
 one_shot = true
@@ -42,3 +79,14 @@ explosiveness = 1.0
 randomness = 0.35
 draw_order = 0
 process_material = SubResource("ParticleProcessMaterial_beli3")
+script = ExtResource("2_7cmpd")
+
+[node name="debris_particles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_wxolc")
+emitting = false
+amount = 20
+texture = ExtResource("3_ykoni")
+one_shot = true
+explosiveness = 0.88
+randomness = 0.73
+process_material = SubResource("ParticleProcessMaterial_gp7uu")
