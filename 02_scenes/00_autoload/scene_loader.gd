@@ -14,16 +14,21 @@ var _transition : Transition = Transition.FADE
 var _use_loading_screen := true
 
 
+
 func load_scene(scene_path : String, transition : Transition = Transition.FADE, use_loading_screen : bool = true) -> void:
 	_target_scene = scene_path
 	_transition = transition
 	_use_loading_screen = use_loading_screen
-
+	for item in get_tree().get_nodes_in_group("Item"):
+			var state : ItemState = item.save_item_state()
+			PantryInventory.add_item_state(state)
+			print("added " + str(state) + "to inventory")
+			play_item_exit_animation()
 	if _transition == Transition.NONE:
 		_change_scene()
 	else:
 		_play_transition_out()
-
+	
 
 func _change_scene() -> void:
 	if _use_loading_screen:
@@ -73,3 +78,19 @@ func _go_to_loading_screen() -> void:
 # TODO: change globalscript to sceneloader singleton
 #func change_scene(scene):
 	#get_tree().change_scene_to_file(scene)
+
+func play_item_exit_animation() -> void:
+	var items := get_tree().get_nodes_in_group("Item")
+	if items.is_empty():
+		print_debug("tree doesn't have items")
+		return
+
+	var target : Vector2 = Vector2(DisplayServer.screen_get_size().x/3,DisplayServer.screen_get_size().y-100)
+	var longest_tween: Tween = null
+
+	for item in items:
+		var tween : Tween = item.animate_to_inventory(target)
+		longest_tween = tween
+
+	if longest_tween:
+		await longest_tween.finished
