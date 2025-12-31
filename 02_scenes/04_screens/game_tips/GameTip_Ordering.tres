@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameTip" load_steps=3 format=3 uid="uid://dslyytqtqwo4v"]
+
+[ext_resource type="Texture2D" uid="uid://dbwuai8nppsxp" path="res://01_assets/01_sprites/05_ui/YSB_LogoInitials.png" id="1_xvai8"]
+[ext_resource type="Script" uid="uid://baa3jk7x6sfse" path="res://02_scenes/04_screens/game_tips/game_tip.gd" id="2_35o8r"]
+
+[resource]
+script = ExtResource("2_35o8r")
+text = "Los pedidos deberían aparecer en cualquier momento. ( * ) son fuego. ( / ) son cortes."
+image = ExtResource("1_xvai8")
+metadata/_custom_type_script = "uid://baa3jk7x6sfse"

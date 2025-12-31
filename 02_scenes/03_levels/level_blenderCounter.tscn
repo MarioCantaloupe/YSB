@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://305xsumn4isp"]
+[gd_scene load_steps=12 format=3 uid="uid://305xsumn4isp"]
 
-[ext_resource type="Script" uid="uid://bpu36njf45mvk" path="res://02_scenes/03_levels/level.gd" id="1_tcpgh"]
+[ext_resource type="Script" uid="uid://ye3ledg6bvos" path="res://02_scenes/03_levels/level_blender_counter.gd" id="1_mcc7k"]
 [ext_resource type="PackedScene" uid="uid://b81rxm7d8fp6m" path="res://02_scenes/02_objects/stations/blender.tscn" id="1_wbwrb"]
 [ext_resource type="Texture2D" uid="uid://oprhxtbm0png" path="res://01_assets/01_sprites/03_environments/encimera_fondo.PNG" id="2_25ncl"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="2_co7y4"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="4_5fig4"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="6_25ncl"]
+[ext_resource type="PackedScene" uid="uid://bmnxwektka7wt" path="res://02_scenes/04_screens/game_tip_box.tscn" id="7_mcc7k"]
+[ext_resource type="Resource" uid="uid://cp6ys7yj1nbxq" path="res://02_scenes/04_screens/game_tips/GameTip_Blending.tres" id="8_ffnp2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_25ncl"]
 
@@ -15,9 +17,8 @@ size = Vector2(120.5, 1097)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcc7k"]
 size = Vector2(120.5, 1227)
 
-[node name="Node2D" type="Node2D" groups=["mouse_scene"]]
-script = ExtResource("1_tcpgh")
-can_pause = true
+[node name="BlenderCounter" type="Node2D" groups=["mouse_scene"]]
+script = ExtResource("1_mcc7k")
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 8
@@ -90,5 +91,8 @@ shape = SubResource("RectangleShape2D_fvppe")
 position = Vector2(23.804321, -943)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_mcc7k")
+
+[node name="TipBox" parent="." instance=ExtResource("7_mcc7k")]
+tip_data = ExtResource("8_ffnp2")
 
 [connection signal="pressed" from="button_prevScene" to="button_prevScene" method="_on_pressed"]

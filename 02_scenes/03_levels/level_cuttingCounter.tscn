@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://b1uufv8ixv0b5"]
+[gd_scene load_steps=21 format=3 uid="uid://b1uufv8ixv0b5"]
 
-[ext_resource type="Script" uid="uid://bpu36njf45mvk" path="res://02_scenes/03_levels/level.gd" id="1_e0736"]
+[ext_resource type="Script" uid="uid://dhj03vcapxkd1" path="res://02_scenes/03_levels/level_cutting_counter.gd" id="1_l575l"]
 [ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="2_pkr72"]
 [ext_resource type="Texture2D" uid="uid://wt2e1uavyimq" path="res://01_assets/01_sprites/03_environments/fondo.PNG" id="2_tjvqv"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="3_26cpk"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://c0c48ma4mpvm7" path="res://01_assets/01_sprites/03_environments/encimera.PNG" id="4_uu03t"]
 [ext_resource type="PackedScene" uid="uid://dsbonk760qi1j" path="res://02_scenes/05_others/killzone.tscn" id="8_l52f4"]
 [ext_resource type="PackedScene" uid="uid://dywybglont3jq" path="res://02_scenes/02_objects/knife.tscn" id="10_oi6qb"]
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="10_pxsgn"]
+[ext_resource type="StyleBox" uid="uid://bf2vrb0ob3w3m" path="res://03_themes/ArrowButton_StyleBoxTexture.tres" id="11_fpdgg"]
+[ext_resource type="PackedScene" uid="uid://bmnxwektka7wt" path="res://02_scenes/04_screens/game_tip_box.tscn" id="13_l575l"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="16_fpdgg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tjvqv"]
@@ -27,9 +30,8 @@ size = Vector2(120.5, 1097)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu03t"]
 size = Vector2(120.5, 1227)
 
-[node name="Node2D" type="Node2D" groups=["mouse_scene"]]
-script = ExtResource("1_e0736")
-can_pause = true
+[node name="CuttingCounter" type="Node2D" groups=["mouse_scene"]]
+script = ExtResource("1_l575l")
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -99,28 +101,6 @@ offset_right = 1279.6957
 offset_bottom = 720.0
 grow_vertical = 2
 
-[node name="button_nextScene" type="Button" parent="."]
-offset_left = 1091.6957
-offset_top = 18.0
-offset_right = 1265.6957
-offset_bottom = 82.0
-theme_override_font_sizes/font_size = 41
-script = ExtResource("4_gfw5h")
-target_scene_path = "res://02_scenes/03_levels/level_cookingCounter.tscn"
-transition = 2
-use_loading_screen = false
-
-[node name="button_prevScene" type="Button" parent="."]
-offset_left = 19.0
-offset_top = 18.0
-offset_right = 193.0
-offset_bottom = 82.0
-theme_override_font_sizes/font_size = 41
-script = ExtResource("4_gfw5h")
-target_scene_path = "res://02_scenes/03_levels/level_orderCounter.tscn"
-transition = 3
-use_loading_screen = false
-
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
@@ -165,5 +145,46 @@ position = Vector2(23.804321, -943)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_uu03t")
 
-[connection signal="pressed" from="button_nextScene" to="button_nextScene" method="_on_pressed"]
-[connection signal="pressed" from="button_prevScene" to="button_prevScene" method="_on_pressed"]
+[node name="SceneButtons" type="Node2D" parent="."]
+
+[node name="button_nextScene" type="Button" parent="SceneButtons"]
+offset_left = 1092.0
+offset_top = 21.0
+offset_right = 1266.0
+offset_bottom = 85.0
+theme = ExtResource("10_pxsgn")
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = ExtResource("11_fpdgg")
+theme_override_styles/pressed = ExtResource("11_fpdgg")
+theme_override_styles/hover = ExtResource("11_fpdgg")
+theme_override_styles/disabled = ExtResource("11_fpdgg")
+theme_override_styles/focus = ExtResource("11_fpdgg")
+script = ExtResource("4_gfw5h")
+target_scene_path = "res://02_scenes/03_levels/level_cookingCounter.tscn"
+transition = 2
+use_loading_screen = false
+
+[node name="spinny" type="Node2D" parent="SceneButtons"]
+position = Vector2(103, 46)
+rotation = 3.1415925
+
+[node name="button_prevScene" type="Button" parent="SceneButtons/spinny"]
+offset_left = -81.0
+offset_top = -29.0
+offset_right = 93.0
+offset_bottom = 35.0
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = ExtResource("11_fpdgg")
+theme_override_styles/pressed = ExtResource("11_fpdgg")
+theme_override_styles/hover = ExtResource("11_fpdgg")
+theme_override_styles/disabled = ExtResource("11_fpdgg")
+theme_override_styles/focus = ExtResource("11_fpdgg")
+script = ExtResource("4_gfw5h")
+target_scene_path = "res://02_scenes/03_levels/level_orderCounter.tscn"
+transition = 3
+use_loading_screen = false
+
+[node name="TipBox" parent="." instance=ExtResource("13_l575l")]
+
+[connection signal="pressed" from="SceneButtons/button_nextScene" to="SceneButtons/button_nextScene" method="_on_pressed"]
+[connection signal="pressed" from="SceneButtons/spinny/button_prevScene" to="SceneButtons/spinny/button_prevScene" method="_on_pressed"]

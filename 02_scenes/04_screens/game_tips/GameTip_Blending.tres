@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameTip" load_steps=3 format=3 uid="uid://cp6ys7yj1nbxq"]
+
+[ext_resource type="Texture2D" uid="uid://b6yu7p5hlecm" path="res://01_assets/01_sprites/02_objects/batidora.PNG" id="1_riced"]
+[ext_resource type="Script" uid="uid://baa3jk7x6sfse" path="res://02_scenes/04_screens/game_tips/game_tip.gd" id="2_21vp8"]
+
+[resource]
+script = ExtResource("2_21vp8")
+text = "Pon ingredientes en la batidora y actívala para batirlos."
+image = ExtResource("1_riced")
+metadata/_custom_type_script = "uid://baa3jk7x6sfse"

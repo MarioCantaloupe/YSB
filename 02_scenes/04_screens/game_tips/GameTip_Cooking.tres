@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameTip" load_steps=3 format=3 uid="uid://da0a4jtcg8nwc"]
+
+[ext_resource type="Texture2D" uid="uid://37k4ujge1c5r" path="res://01_assets/01_sprites/04_vfx/stove_fire.png" id="1_nb712"]
+[ext_resource type="Script" uid="uid://baa3jk7x6sfse" path="res://02_scenes/04_screens/game_tips/game_tip.gd" id="2_gcs12"]
+
+[resource]
+script = ExtResource("2_gcs12")
+text = "Pon los ingredientes en los fogones para cocinarlos."
+image = ExtResource("1_nb712")
+metadata/_custom_type_script = "uid://baa3jk7x6sfse"

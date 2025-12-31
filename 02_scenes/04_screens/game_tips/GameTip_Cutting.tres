@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameTip" load_steps=3 format=3 uid="uid://chr8ys0sr7mwc"]
+
+[ext_resource type="Script" uid="uid://baa3jk7x6sfse" path="res://02_scenes/04_screens/game_tips/game_tip.gd" id="1_470e3"]
+[ext_resource type="Texture2D" uid="uid://dunv7fftvnlfn" path="res://01_assets/01_sprites/02_objects/knife.png" id="1_vdg70"]
+
+[resource]
+script = ExtResource("1_470e3")
+text = "Usa el cuchillo para cortar ingredientes haciendo gestos. "
+image = ExtResource("1_vdg70")
+metadata/_custom_type_script = "uid://baa3jk7x6sfse"

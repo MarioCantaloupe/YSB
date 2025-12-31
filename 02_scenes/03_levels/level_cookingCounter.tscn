@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2gd5cnmmonf"]
+[gd_scene load_steps=20 format=3 uid="uid://c2gd5cnmmonf"]
 
-[ext_resource type="Script" uid="uid://bpu36njf45mvk" path="res://02_scenes/03_levels/level.gd" id="1_p1e7v"]
+[ext_resource type="Script" uid="uid://cx8je0lkkt62n" path="res://02_scenes/03_levels/level_cooking_counter.gd" id="1_jkjey"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="2_i7egh"]
 [ext_resource type="Texture2D" uid="uid://wt2e1uavyimq" path="res://01_assets/01_sprites/03_environments/fondo.PNG" id="2_nargq"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="3_i7egh"]
@@ -11,6 +11,10 @@
 [ext_resource type="Shader" uid="uid://cx741vcq254d2" path="res://01_assets/04_shaders/alpha_pulsing.tres" id="6_lpdvu"]
 [ext_resource type="Texture2D" uid="uid://cdvw0om54b2ay" path="res://01_assets/01_sprites/03_environments/luces.png" id="7_t2iny"]
 [ext_resource type="PackedScene" uid="uid://b4f22bbh2xbs4" path="res://02_scenes/02_objects/stations/stove.tscn" id="8_nargq"]
+[ext_resource type="PackedScene" uid="uid://bmnxwektka7wt" path="res://02_scenes/04_screens/game_tip_box.tscn" id="12_jkjey"]
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="13_lpdvu"]
+[ext_resource type="Resource" uid="uid://da0a4jtcg8nwc" path="res://02_scenes/04_screens/game_tips/GameTip_Cooking.tres" id="13_v4eug"]
+[ext_resource type="StyleBox" uid="uid://bf2vrb0ob3w3m" path="res://03_themes/ArrowButton_StyleBoxTexture.tres" id="14_t2iny"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ouxpp"]
 shader = ExtResource("6_lpdvu")
@@ -23,9 +27,8 @@ size = Vector2(120.5, 1097)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_usgy1"]
 size = Vector2(120.5, 1227)
 
-[node name="Node2D" type="Node2D" groups=["mouse_scene"]]
-script = ExtResource("1_p1e7v")
-can_pause = true
+[node name="CookingCounter" type="Node2D" groups=["mouse_scene"]]
+script = ExtResource("1_jkjey")
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -128,17 +131,6 @@ position = Vector2(23.804321, -943)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_usgy1")
 
-[node name="button_prevScene" type="Button" parent="."]
-offset_left = 30.695679
-offset_top = 32.0
-offset_right = 204.69568
-offset_bottom = 96.0
-theme_override_font_sizes/font_size = 41
-script = ExtResource("3_i7egh")
-target_scene_path = "res://02_scenes/03_levels/level_cuttingCounter.tscn"
-transition = 3
-use_loading_screen = false
-
 [node name="pantry" parent="." instance=ExtResource("2_i7egh")]
 anchor_bottom = 1.915
 offset_left = -0.3043213
@@ -146,17 +138,6 @@ offset_top = 552.0
 offset_right = 1279.6957
 offset_bottom = 720.0
 grow_vertical = 2
-
-[node name="button_nextScene" type="Button" parent="."]
-offset_left = 1065.6957
-offset_top = 32.0
-offset_right = 1239.6957
-offset_bottom = 96.0
-theme_override_font_sizes/font_size = 41
-script = ExtResource("3_i7egh")
-target_scene_path = "res://02_scenes/03_levels/level_blenderCounter.tscn"
-transition = 2
-use_loading_screen = false
 
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -168,5 +149,47 @@ offset_right = 4.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[connection signal="pressed" from="button_prevScene" to="button_prevScene" method="_on_pressed"]
-[connection signal="pressed" from="button_nextScene" to="button_nextScene" method="_on_pressed"]
+[node name="TipBox" parent="." instance=ExtResource("12_jkjey")]
+tip_data = ExtResource("13_v4eug")
+
+[node name="SceneButtons" type="Node2D" parent="."]
+
+[node name="button_nextScene" type="Button" parent="SceneButtons"]
+offset_left = 1092.0
+offset_top = 21.0
+offset_right = 1266.0
+offset_bottom = 85.0
+theme = ExtResource("13_lpdvu")
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = ExtResource("14_t2iny")
+theme_override_styles/pressed = ExtResource("14_t2iny")
+theme_override_styles/hover = ExtResource("14_t2iny")
+theme_override_styles/disabled = ExtResource("14_t2iny")
+theme_override_styles/focus = ExtResource("14_t2iny")
+script = ExtResource("3_i7egh")
+target_scene_path = "res://02_scenes/03_levels/level_blenderCounter.tscn"
+transition = 2
+use_loading_screen = false
+
+[node name="spinny" type="Node2D" parent="SceneButtons"]
+position = Vector2(103, 46)
+rotation = 3.1415925
+
+[node name="button_prevScene" type="Button" parent="SceneButtons/spinny"]
+offset_left = -81.0
+offset_top = -29.0
+offset_right = 93.0
+offset_bottom = 35.0
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = ExtResource("14_t2iny")
+theme_override_styles/pressed = ExtResource("14_t2iny")
+theme_override_styles/hover = ExtResource("14_t2iny")
+theme_override_styles/disabled = ExtResource("14_t2iny")
+theme_override_styles/focus = ExtResource("14_t2iny")
+script = ExtResource("3_i7egh")
+target_scene_path = "res://02_scenes/03_levels/level_cuttingCounter.tscn"
+transition = 3
+use_loading_screen = false
+
+[connection signal="pressed" from="SceneButtons/button_nextScene" to="SceneButtons/button_nextScene" method="_on_pressed"]
+[connection signal="pressed" from="SceneButtons/spinny/button_prevScene" to="SceneButtons/spinny/button_prevScene" method="_on_pressed"]
