@@ -1,0 +1,6 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://bf2vrb0ob3w3m"]
+
+[ext_resource type="Texture2D" uid="uid://bb4m7q02r3hnf" path="res://01_assets/01_sprites/05_ui/flecha.PNG" id="1_hwrf4"]
+
+[resource]
+texture = ExtResource("1_hwrf4")
