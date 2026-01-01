@@ -9,27 +9,9 @@ func _ready() -> void:
 	tab_container.connect("mouse_exited", _mouse_out_pantry)
 
 func _mouse_in_pantry():
-	PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_INTERACT)
+	if not PlayerCursor.is_knife:
+		PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_INTERACT)
 	
 func _mouse_out_pantry():
-	PlayerCursor.set_cursor(PlayerCursor.CursorType.POINT)
-
-
-#func _on_panes_tab_button_pressed(tab: int) -> void:
-	#PantryInventory.open_tab = tab
-	#print("tab clicked")
-#
-#
-#func _on_carnes_tab_button_pressed(tab: int) -> void:
-	#PantryInventory.open_tab = tab
-	#print("tab clicked")
-#
-#
-#func _on_vegetales_tab_button_pressed(tab: int) -> void:
-	#PantryInventory.open_tab = tab
-	#print("tab clicked")
-#
-#
-#func _on_líquidos_tab_button_pressed(tab: int) -> void:
-	#PantryInventory.open_tab = tab
-	#print("tab clicked")
+	if not PlayerCursor.is_knife:
+		PlayerCursor.set_cursor(PlayerCursor.CursorType.POINT)

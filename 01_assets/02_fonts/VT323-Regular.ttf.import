@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dkm1wr55ky6h6"
-path="res://.godot/imported/merchant-copy-doublesize.ttf-9f18f3678fa0fd3a2b1150529f1dde14.fontdata"
+uid="uid://wl0sie60h0aj"
+path="res://.godot/imported/VT323-Regular.ttf-4417af5b0102a2d3179f196ebd3dda6c.fontdata"
 
 [deps]
 
-source_file="res://01_assets/02_fonts/merchant-copy-doublesize.ttf"
-dest_files=["res://.godot/imported/merchant-copy-doublesize.ttf-9f18f3678fa0fd3a2b1150529f1dde14.fontdata"]
+source_file="res://01_assets/02_fonts/VT323-Regular.ttf"
+dest_files=["res://.godot/imported/VT323-Regular.ttf-4417af5b0102a2d3179f196ebd3dda6c.fontdata"]
 
 [params]
 

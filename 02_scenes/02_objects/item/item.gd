@@ -8,8 +8,9 @@ signal item_grabbed(bool)
 
 @export var food_data : ItemData
 @export var gravity : bool = true : set = set_gravity
-var cooking_time : float
 
+
+#region Scene Nodes
 @onready var sprite: Sprite2D = $sprite
 @onready var ice_sprite: Sprite2D = $sprite/ice_sprite
 @onready var collision: CollisionShape2D = $collision
@@ -21,18 +22,21 @@ var cooking_time : float
 @onready var tooltip: Node2D = $tooltip
 
 
-#@onready var click_area: Button = $click_area
+
 @onready var click_area: Area2D = $click_area
 @onready var poof_vfx: AnimatedSprite2D = $poof_vfx
 
 @onready var debug_text: Label = $debug_text
+#endregion
 
+#region Variables
 # cooking variables
 var chop_level : int = 0 : set = _set_chop_level
 var cook_level : int = 0 : set = _set_cook_level
 var ice_level : int
 @export var is_clean : bool = false
 @export var is_frozen : bool = false
+var cooking_time : float
 
 # navigation variables
 var selected = false : set = _set_selected
@@ -52,6 +56,7 @@ var fake_floor_y: float = 0.0
 var has_fake_floor := false
 var floor_reached := false
 var distance_to_fake_floor : float
+#endregion
 
 func _ready() -> void:
 	if not gravity:
@@ -171,6 +176,7 @@ func _process(_delta: float) -> void:
 	debug_text.text = "collision: " + str(not collision.disabled)
 
 # MAIN ACTIONS
+#region Cooking Functions
 func cook():
 	if has_reached_rest:
 		if not is_frozen:
@@ -220,7 +226,20 @@ func defrost():
 			_set_cook_level(2)
 			static_dust_particles.self_modulate = Color(0.149, 0.149, 0.149, 1.0) #burn dust
 			play_poof(Color(0.106, 0.07, 0.015, 1.0))
+#endregion
 
+func play_poof(color):
+	poof_vfx.self_modulate = color
+	poof_vfx.show()
+	poof_vfx.play("poof")
+	poof_vfx.animation_finished.connect(func(): poof_vfx.hide(), CONNECT_ONE_SHOT)
+
+func create_fake_floor():
+	if enable_fake_floor:
+			var drop_dist: float = clamp(abs(linear_velocity.y) * 0.2,min_drop_distance,max_drop_distance)
+			fake_floor_y = global_position.y + drop_dist
+			has_fake_floor = true
+			floor_reached = false
 
 # UTILITIES
 func station_action(action):
@@ -267,6 +286,34 @@ func clear_from_station():
 	if cook_timer != null:
 		cook_timer.stop()
 
+func animate_to_inventory(target_pos : Vector2) -> Tween:
+	var tween := create_tween()
+	tween.set_parallel(true)
+
+	tween.tween_property(
+		self,
+		"global_position",
+		target_pos,
+		0.35
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+
+	tween.tween_property(
+		self,
+		"scale",
+		Vector2.ZERO,
+		0.35
+	)
+
+	tween.tween_property(
+		self,
+		"modulate:a",
+		0.0,
+		0.25
+	)
+
+	return tween
+
+#region State Saving
 func apply_item_state(state: ItemState) -> void:
 	if state == null:
 		push_error("ItemState is Null")
@@ -306,7 +353,9 @@ func save_item_state() -> ItemState:
 	item_state.data = food_data
 	
 	return item_state
+#endregion
 	
+#region Setters
 # SETTERS
 func _set_chop_level(value):
 	chop_level = clamp(value, 0 ,2)
@@ -346,7 +395,7 @@ func _set_selected(value : bool):
 		z_index = _original_z_index
 	
 	if selected and not value:
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.1).timeout
 		PlayerCursor.held_item = null
 		linear_velocity += PlayerCursor.get_avg_mouse_velocity()
 		
@@ -367,7 +416,9 @@ func set_gravity(value : bool):
 		gravity_scale = 1
 	else:
 		gravity_scale = 0
+#endregion
 
+#region Signaled Functions
 # SIGNALED
 func _on_chopping_component_knife_slip() -> void:
 	pass
@@ -387,25 +438,11 @@ func _on_chopping_component_chop_up(_new_level: int) -> void:
 	else:
 		tooltip.play_popup("Requiere descongelar")
 
-func play_poof(color):
-	poof_vfx.self_modulate = color
-	poof_vfx.show()
-	poof_vfx.play("poof")
-	poof_vfx.animation_finished.connect(func(): poof_vfx.hide(), CONNECT_ONE_SHOT)
-
-func create_fake_floor():
-	if enable_fake_floor:
-			var drop_dist: float = clamp(abs(linear_velocity.y) * 0.2,min_drop_distance,max_drop_distance)
-			fake_floor_y = global_position.y + drop_dist
-			has_fake_floor = true
-			floor_reached = false
-
-
 func _on_click_area_mouse_entered() -> void:
 	if not selected and not PlayerCursor.is_knife and PlayerCursor.held_item == null:
 		PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_HOLD)	
 
-
 func _on_click_area_mouse_exited() -> void:
 	if not selected and not PlayerCursor.is_knife and PlayerCursor.held_item == null:
 		PlayerCursor.set_cursor(PlayerCursor.CursorType.POINT)
+#endregion

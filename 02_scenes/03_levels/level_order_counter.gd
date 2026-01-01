@@ -1,19 +1,24 @@
-extends Node2D
+extends LevelScene
 
 @onready var string_curve: Path2D = $string_curve
-
+@onready var tip_box: GameTipPanel = $TipBox
 var orders_given : int = 0
 
 @export var note_scene : PackedScene
 @export var note_scale : Vector2
-# Define how many notes can fit on the string at once
 @export var max_notes_on_string : int = 5
 
-# Keep track of which slots are occupied (e.g., [false, true, false...])
 var occupied_slots: Array[bool] = []
 
 func _ready():
-	# Initialize the slots as empty (false) when the game starts
+	GameSystem.start_game()
+	
+	if not GameSystem.orders_tip_shown:
+		await get_tree().create_timer(3).timeout
+		tip_box.show_tip()
+		GameSystem.orders_tip_shown = true
+	
+	#slots
 	occupied_slots.resize(max_notes_on_string)
 	occupied_slots.fill(false)
 

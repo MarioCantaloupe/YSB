@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3g5p2h50h7pq"
-path="res://.godot/imported/Suelo_interseccion.png-559662e5fc57449bea5f9a08bf5e70b3.ctex"
+uid="uid://bfnqxnvdw20yk"
+path="res://.godot/imported/spaceFloor_tilemap.png-40e6536090d5df15ecb5581d97c5ed24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01_assets/01_sprites/03_environments/Suelo_interseccion.png"
-dest_files=["res://.godot/imported/Suelo_interseccion.png-559662e5fc57449bea5f9a08bf5e70b3.ctex"]
+source_file="res://01_assets/01_sprites/03_environments/spaceFloor_tilemap.png"
+dest_files=["res://.godot/imported/spaceFloor_tilemap.png-40e6536090d5df15ecb5581d97c5ed24.ctex"]
 
 [params]
 

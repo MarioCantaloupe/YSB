@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co3qcou8q5eim"
-path="res://.godot/imported/Suelo_union.png-870e24f3af4457037b4584c2f7c922ae.ctex"
+uid="uid://bb4m7q02r3hnf"
+path="res://.godot/imported/flecha.PNG-2780dd98f7c9793e13670d039a5e2acf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://01_assets/01_sprites/03_environments/Suelo_union.png"
-dest_files=["res://.godot/imported/Suelo_union.png-870e24f3af4457037b4584c2f7c922ae.ctex"]
+source_file="res://01_assets/01_sprites/05_ui/flecha.PNG"
+dest_files=["res://.godot/imported/flecha.PNG-2780dd98f7c9793e13670d039a5e2acf.ctex"]
 
 [params]
 
