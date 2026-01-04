@@ -15,4 +15,5 @@ cooking_time = 5.0
 ingredient_height_ch00 = 170
 ingredient_height_ch01 = 170
 ingredient_height_ch02 = 170
+cleanable = true
 sprite_grid = Array[Array]([[ExtResource("2_1utov")], [ExtResource("3_xq7pv")]])
