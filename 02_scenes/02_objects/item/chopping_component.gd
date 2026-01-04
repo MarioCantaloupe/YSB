@@ -1,20 +1,22 @@
 extends Node2D
 
 @export var slices_per_level : int = 5
+@onready var knife_tutorial: AnimatedSprite2D = $knife_tutorial
 
 signal chop_up(new_level: int)
 signal knife_slip()
 
 @onready var bottom_cut_zone: Area2D = $bottomCut_zone
 @onready var top_cut_zone: Area2D = $topCut_zone
-@onready var sound_player: AudioStreamPlayer2D = $soundPlayer
-
+@export var chop_audio : AudioStream
 
 var mouse_hovering : bool = false
 var chopping : bool = false
 var chop_isTop : bool = false 
 var slice_count : int = 0
 var chop_level : int = 0
+
+var has_shown_tutorial : bool = false
 
 
 func _ready() -> void:
@@ -39,14 +41,19 @@ func chop_level_up():
 #Mouse over activation
 func _on_activation_zone_mouse_entered() -> void:
 	mouse_hovering = true
+	if PlayerCursor.is_knife and not has_shown_tutorial:
+				knife_tutorial.show()
+				has_shown_tutorial = true
 func _on_activation_zone_mouse_exited() -> void:
 	mouse_hovering = false
+	
 
 
 func _on_activation_zone_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
 	if PlayerCursor.is_knife:
 		if Input.is_action_just_pressed("Lclick"):
 			chopping = true
+			knife_tutorial.hide()
 			bottom_cut_zone.monitoring = true
 			top_cut_zone.monitoring = true
 
@@ -56,8 +63,7 @@ func _on_bottom_cut_zone_mouse_entered() -> void:
 		if chop_isTop:
 			slice_count += 1
 			chop_isTop = false
-			sound_player.pitch_scale = 1 + (float(slice_count) / slices_per_level)*0.5
-			sound_player.play()
+			AudioManager.play_oneshot(chop_audio, 0, 1 + (float(slice_count) / slices_per_level)*0.5, 0, AudioManager.Bus.SFX)
 
 
 func _on_top_cut_zone_mouse_entered() -> void:
@@ -65,8 +71,8 @@ func _on_top_cut_zone_mouse_entered() -> void:
 		if not chop_isTop:
 			slice_count += 1
 			chop_isTop = true
-			sound_player.pitch_scale = 1 + (float(slice_count) / slices_per_level)*0.5
-			sound_player.play()
+			AudioManager.play_oneshot(chop_audio, 0, 1 + (float(slice_count) / slices_per_level)*0.5, 0, AudioManager.Bus.SFX)
+
 
 
 func _on_side_zone_mouse_entered() -> void:
