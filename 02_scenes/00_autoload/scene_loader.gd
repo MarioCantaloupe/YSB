@@ -85,10 +85,12 @@ func play_item_exit_animation() -> void:
 		print_debug("tree doesn't have items")
 		return
 
-	var target : Vector2 = Vector2(DisplayServer.screen_get_size().x/3,DisplayServer.screen_get_size().y-100)
+	var target : Vector2 = Vector2(
+		DisplayServer.screen_get_size().x/3.0,
+			DisplayServer.screen_get_size().y-100.0)
 	var longest_tween: Tween = null
 
-	for item in items:
+	for item : Item in items:
 		var tween : Tween = item.animate_to_inventory(target)
 		longest_tween = tween
 
