@@ -37,6 +37,9 @@ func _update_collision():
 
 func _on_area_input(_viewport, event: InputEvent, _shape_idx):
 	
+	if PlayerCursor.held_item == null or PlayerCursor.is_knife:
+		return
+	
 	if event.is_action_released("Lclick"):
 		accept_item(PlayerCursor.held_item)
 		return
