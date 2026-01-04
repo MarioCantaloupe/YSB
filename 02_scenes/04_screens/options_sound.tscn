@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://nhky3miorccp"]
+
+[ext_resource type="Script" uid="uid://bl8pj2de17hg6" path="res://02_scenes/04_screens/options_sound.gd" id="1_cybv7"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cybv7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 58.0
+offset_top = 45.0
+offset_right = 246.0
+offset_bottom = 210.0
+
+[node name="LabelGeneral" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Volumen general"
+
+[node name="HSliderGeneral" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="LabelMusica2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Música"
+
+[node name="HSliderMusic" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="LabelEfectos" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Efectos de sonido"
+
+[node name="HSliderSfx" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="LabelInterfaz" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Interfaz"
+
+[node name="HSliderInterfaz" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[connection signal="value_changed" from="VBoxContainer/HSliderGeneral" to="." method="_on_h_slider_general_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSliderMusic" to="." method="_on_h_slider_music_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSliderSfx" to="." method="_on_h_slider_sfx_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSliderInterfaz" to="." method="_on_h_slider_interfaz_value_changed"]
