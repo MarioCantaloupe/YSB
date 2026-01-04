@@ -1,9 +1,9 @@
 extends Control
 
 var options_screen = preload("res://02_scenes/04_screens/screen_options.tscn")
-var main_menu = preload("res://02_scenes/04_screens/screen_mainMenu.tscn")
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@export var MainMenu : String = "res://02_scenes/04_screens/screen_mainMenu.tscn"
 func _ready() -> void:
 	
 	visible = false
@@ -57,4 +57,4 @@ func _on_options_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_packed(main_menu)
+	SceneLoader.load_scene(MainMenu, SceneLoader.Transition.FADE, true)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuq0bem6wdd4y"]
+[gd_scene load_steps=8 format=3 uid="uid://cuq0bem6wdd4y"]
 
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_hekwa"]
 [ext_resource type="Script" uid="uid://dxwdao053ukve" path="res://02_scenes/04_screens/screen_options.gd" id="1_wkq6u"]
 [ext_resource type="Script" uid="uid://duwv1o7gw68hi" path="res://02_scenes/04_screens/button_master.gd" id="3_wgf6b"]
+[ext_resource type="AudioStream" uid="uid://dt1oi7lmia6nx" path="res://01_assets/03_sound/menu/minimize_009.ogg" id="4_uuqo5"]
 
 [sub_resource type="Animation" id="Animation_hekwa"]
 length = 0.001
@@ -122,6 +123,7 @@ offset_bottom = 74.0
 theme_override_font_sizes/font_size = 21
 text = "VOLVER"
 script = ExtResource("3_wgf6b")
+click_audio = ExtResource("4_uuqo5")
 
 [node name="Panel" type="Panel" parent="Panel3"]
 layout_mode = 1

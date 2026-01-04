@@ -1,6 +1,6 @@
 extends LevelScene
 
-@onready var tip_box: GameTipPanel = $TipBox
+@onready var tip_box: GameTipPanel = %TipBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

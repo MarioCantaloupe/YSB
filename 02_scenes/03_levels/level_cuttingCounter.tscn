@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b1uufv8ixv0b5"]
+[gd_scene load_steps=19 format=3 uid="uid://b1uufv8ixv0b5"]
 
 [ext_resource type="Script" uid="uid://dhj03vcapxkd1" path="res://02_scenes/03_levels/level_cutting_counter.gd" id="1_l575l"]
 [ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="2_pkr72"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="4_gfw5h"]
 [ext_resource type="Texture2D" uid="uid://cdvw0om54b2ay" path="res://01_assets/01_sprites/03_environments/luces.png" id="4_oi6qb"]
 [ext_resource type="Texture2D" uid="uid://c0c48ma4mpvm7" path="res://01_assets/01_sprites/03_environments/encimera.PNG" id="4_uu03t"]
-[ext_resource type="PackedScene" uid="uid://dsbonk760qi1j" path="res://02_scenes/05_others/killzone.tscn" id="8_l52f4"]
 [ext_resource type="PackedScene" uid="uid://dywybglont3jq" path="res://02_scenes/02_objects/knife.tscn" id="10_oi6qb"]
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="10_pxsgn"]
 [ext_resource type="StyleBox" uid="uid://bf2vrb0ob3w3m" path="res://03_themes/ArrowButton_StyleBoxTexture.tres" id="11_fpdgg"]
@@ -19,15 +18,12 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tjvqv"]
 shader = ExtResource("3_oi6qb")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mv02x"]
-size = Vector2(86, 3167)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uu03t"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tjvqv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxsgn"]
+size = Vector2(311.76105, 1097)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l575l"]
-size = Vector2(120.5, 1097)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uu03t"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpdgg"]
 size = Vector2(120.5, 1227)
 
 [node name="CuttingCounter" type="Node2D" groups=["mouse_scene"]]
@@ -89,20 +85,19 @@ position = Vector2(305, 306)
 scale = Vector2(1.2533906, 1.2533906)
 
 [node name="knife" parent="." instance=ExtResource("10_oi6qb")]
-position = Vector2(941, 203)
-rotation = 1.5707964
+position = Vector2(474, 284)
+rotation = -0.2200036
 scale = Vector2(0.351, 0.351)
 
 [node name="pantry" parent="." instance=ExtResource("3_26cpk")]
 anchor_bottom = 1.915
 offset_left = -0.3043213
-offset_top = 552.0
+offset_top = 490.0
 offset_right = 1279.6957
 offset_bottom = 720.0
 grow_vertical = 2
 
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PauseMenu" parent="pause_canvasLayer" instance=ExtResource("16_fpdgg")]
 process_mode = 3
@@ -110,40 +105,6 @@ offset_left = 4.0
 offset_right = 4.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[node name="killzone" parent="." instance=ExtResource("8_l52f4")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
-position = Vector2(-179, -1052.5)
-shape = SubResource("RectangleShape2D_mv02x")
-debug_color = Color(0.85, 0, 0, 0.41960785)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="killzone"]
-position = Vector2(1437, -1037)
-shape = SubResource("RectangleShape2D_mv02x")
-debug_color = Color(0.85, 0, 0, 0.41960785)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(640.6957, 360)
-collision_mask = 2
-
-[node name="wall_bottom" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 150)
-rotation = 0.00061584933
-shape = SubResource("WorldBoundaryShape2D_tjvqv")
-
-[node name="wall_left" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-637.4457, -394.5)
-shape = SubResource("RectangleShape2D_l575l")
-
-[node name="wall_right" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(693.3043, -394.5)
-shape = SubResource("RectangleShape2D_l575l")
-
-[node name="wall_top" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(23.804321, -943)
-rotation = 1.5707964
-shape = SubResource("RectangleShape2D_uu03t")
 
 [node name="SceneButtons" type="Node2D" parent="."]
 
@@ -185,6 +146,31 @@ transition = 3
 use_loading_screen = false
 
 [node name="TipBox" parent="." instance=ExtResource("13_l575l")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(640.6957, 360)
+collision_mask = 2
+
+[node name="wall_bottom" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(19.371948, 150)
+rotation = 0.00061584933
+shape = SubResource("WorldBoundaryShape2D_uu03t")
+
+[node name="wall_left" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-605.6957, -419.75098)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_pxsgn")
+
+[node name="wall_right" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(515.6763, -401)
+rotation = -0.2617994
+shape = SubResource("RectangleShape2D_pxsgn")
+
+[node name="wall_top" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(43.17627, -943)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_fpdgg")
 
 [connection signal="pressed" from="SceneButtons/button_nextScene" to="SceneButtons/button_nextScene" method="_on_pressed"]
 [connection signal="pressed" from="SceneButtons/spinny/button_prevScene" to="SceneButtons/spinny/button_prevScene" method="_on_pressed"]

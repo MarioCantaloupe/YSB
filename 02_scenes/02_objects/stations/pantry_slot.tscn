@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbymaercxye8d"]
+[gd_scene load_steps=9 format=3 uid="uid://cbymaercxye8d"]
 
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_43obl"]
 [ext_resource type="Script" uid="uid://chvb44aglrm8p" path="res://02_scenes/02_objects/stations/pantry_slot.gd" id="1_dwulp"]
@@ -12,6 +12,10 @@ texture_margin_left = 25.0
 texture_margin_top = 25.0
 texture_margin_right = 35.0
 texture_margin_bottom = 55.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_rs1f4"]
+outline_size = 10
+outline_color = Color(0.24313726, 0.16470589, 0.11372549, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ram23"]
 
@@ -48,6 +52,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Nombre"
+label_settings = SubResource("LabelSettings_rs1f4")
 horizontal_alignment = 1
 
 [node name="Image" type="TextureRect" parent="PanelContainer/VBoxContainer"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://woyyjsax1g5c"]
+[gd_scene load_steps=35 format=3 uid="uid://woyyjsax1g5c"]
 
 [ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/stations/station.tscn" id="1_65jii"]
 [ext_resource type="PackedScene" uid="uid://b81rxm7d8fp6m" path="res://02_scenes/02_objects/stations/blender.tscn" id="2_sryl2"]
@@ -27,23 +27,28 @@
 [ext_resource type="Texture2D" uid="uid://c0gve4goacgwf" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co01.PNG" id="25_i8b2s"]
 [ext_resource type="Texture2D" uid="uid://cq1kbc7hu183l" path="res://01_assets/01_sprites/02_objects/00_foods/slime_ch02_co02.PNG" id="26_v3nj7"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="27_3omxm"]
+[ext_resource type="PackedScene" uid="uid://dywybglont3jq" path="res://02_scenes/02_objects/knife.tscn" id="27_fdho2"]
 [ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="28_srrtn"]
+[ext_resource type="PackedScene" uid="uid://ksuuxrwvi3hv" path="res://02_scenes/02_objects/stations/stacking_plate.tscn" id="29_sryl2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ntjb8"]
 
-[sub_resource type="Resource" id="Resource_vrbhm"]
+[sub_resource type="Resource" id="Resource_fdho2"]
 resource_local_to_scene = true
 script = ExtResource("5_pxaco")
 id = "steak"
 name = "Filete"
 average_color = Color(0.85, 0.1105, 0.25840023, 1)
 type = 1
+ingredient_height_ch00 = 70
+ingredient_height_ch01 = 70
+ingredient_height_ch02 = 70
 cookable = true
 cleanable = true
 cuttable = true
 sprite_grid = Array[Array]([[ExtResource("6_qdmhu"), ExtResource("7_ro2q7"), ExtResource("8_bw5sj")], [ExtResource("9_ubtys"), ExtResource("10_3ryf3"), ExtResource("11_a2sfp")], [ExtResource("12_jh4rm"), ExtResource("13_53x5r"), ExtResource("14_3phrp")]])
 
-[sub_resource type="Resource" id="Resource_p6123"]
+[sub_resource type="Resource" id="Resource_aun3e"]
 resource_local_to_scene = true
 script = ExtResource("5_pxaco")
 id = "lettuce_blue"
@@ -51,6 +56,9 @@ name = "Lechuga Azul"
 average_color = Color(0.10813113, 0.709177, 0.750614, 1)
 type = 2
 cooking_time = 6.0
+ingredient_height_ch00 = 220
+ingredient_height_ch01 = 50
+ingredient_height_ch02 = 30
 cleanable = true
 cuttable = true
 sprite_grid = Array[Array]([[ExtResource("15_vjjpe")], [ExtResource("16_gx0xu")], [ExtResource("17_x1pe1")]])
@@ -136,16 +144,19 @@ target_scene_path = "res://02_scenes/04_screens/main_menu.tscn"
 
 [node name="item" parent="." instance=ExtResource("4_aun3e")]
 position = Vector2(-104, 115)
-food_data = SubResource("Resource_vrbhm")
-is_frozen = true
+food_data = SubResource("Resource_fdho2")
 
 [node name="item2" parent="." instance=ExtResource("4_aun3e")]
 position = Vector2(129, 117)
-food_data = SubResource("Resource_p6123")
+food_data = SubResource("Resource_aun3e")
 
 [node name="item3" parent="." instance=ExtResource("4_aun3e")]
 position = Vector2(355, 117)
 food_data = SubResource("Resource_n3gjq")
+
+[node name="knife" parent="item3" instance=ExtResource("27_fdho2")]
+position = Vector2(60, -292)
+scale = Vector2(0.40969437, 0.40969437)
 
 [node name="pantry" parent="." instance=ExtResource("27_3omxm")]
 anchor_bottom = 1.915
@@ -157,6 +168,9 @@ grow_vertical = 2
 
 [node name="tap" parent="." instance=ExtResource("28_srrtn")]
 position = Vector2(228, -58)
+
+[node name="stacking_plate" parent="." instance=ExtResource("29_sryl2")]
+position = Vector2(-70, -123)
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
