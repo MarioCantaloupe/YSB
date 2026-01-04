@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ksuuxrwvi3hv"]
+
+[ext_resource type="Script" uid="uid://cphfdctmby237" path="res://02_scenes/02_objects/stations/stacking_plate.gd" id="1_nmbtf"]
+[ext_resource type="Texture2D" uid="uid://btkyrmvs11wty" path="res://01_assets/01_sprites/02_objects/plato.PNG" id="3_nmbtf"]
+[ext_resource type="PackedScene" uid="uid://cq1lsvnggrlx4" path="res://02_scenes/02_objects/stations/drop_zone.tscn" id="4_2flfw"]
+
+[node name="stacking_plate" type="Node2D"]
+script = ExtResource("1_nmbtf")
+drop_zone_scene = ExtResource("4_2flfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.1920929e-07, 14.999999)
+scale = Vector2(0.48486832, 0.48486832)
+texture = ExtResource("3_nmbtf")
+
+[node name="drop_zone" parent="." instance=ExtResource("4_2flfw")]

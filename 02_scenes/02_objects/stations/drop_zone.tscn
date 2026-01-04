@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq1lsvnggrlx4"]
+[gd_scene load_steps=3 format=3 uid="uid://cq1lsvnggrlx4"]
 
 [ext_resource type="Script" uid="uid://b68ufgk0jfqsx" path="res://02_scenes/02_objects/stations/drop_zone.gd" id="1_t6dxm"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lvqsn"]
+radius = 32.72
+
 [node name="drop_zone" type="Node2D" groups=["rest_zone"]]
 script = ExtResource("1_t6dxm")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+gizmo_extents = 65.0
+
+[node name="click_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="click_area"]
+shape = SubResource("CircleShape2D_lvqsn")
