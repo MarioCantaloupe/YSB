@@ -24,7 +24,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_collision_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
-		if area.get_parent().get_parent().carrito_demon:
+		if area.owner.carrito_demon:
 			destroyed()
 		else:
 			pass
