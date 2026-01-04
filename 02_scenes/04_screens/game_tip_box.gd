@@ -7,6 +7,10 @@ class_name GameTipPanel
 @onready var game_tip_text: RichTextLabel = %GameTipText
 @onready var game_tip_panel: PanelContainer = %GameTipPanel
 
+@export_group("Audio")
+@export var slide_audio : AudioStream
+@export var click_audio : AudioStream
+
 var panel_length : float
 
 var tween_out : Tween
@@ -24,13 +28,17 @@ func show_tip():
 	"position:x", -panel_length,
 	slide_time
 	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	
+	AudioManager.play_oneshot(slide_audio, 1, 1, 0, AudioManager.Bus.UI)
 
 func _gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Lclick"):
 		tween_out = create_tween()
 		tween_out.tween_property(game_tip_panel,
 		"position:x", panel_length, slide_time
-		).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+		).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 		await tween_out.finished
 		queue_free()
+		
+		
 	

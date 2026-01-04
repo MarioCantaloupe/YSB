@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("2_35o8r")
-text = "Los pedidos deberían aparecer en cualquier momento. ( * ) son fuego. ( / ) son cortes."
+text = "( [color=orange]*[/color] ) para [color=orange]fuego[/color].
+( [color=gray]/[/color] ) para [color=gray]cortes[/color]."
 image = ExtResource("1_xvai8")
 metadata/_custom_type_script = "uid://baa3jk7x6sfse"
