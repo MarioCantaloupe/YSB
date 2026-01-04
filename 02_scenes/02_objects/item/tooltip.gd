@@ -5,6 +5,8 @@ extends Node2D
 @export var hold_time := 1.0
 @export var return_time := 0.3
 
+@export var slide_audio : AudioStream
+
 @onready var item_label: Label = $item_label
 @onready var og_pos : Vector2 = position
 
@@ -26,7 +28,7 @@ func play_popup(text : String):
 	
 	var start_pos := position
 	var start_scale := scale
-
+	
 	tween_up = create_tween()
 
 	# ───── STEP 1: UP (PARALLEL) ─────
@@ -82,3 +84,5 @@ func play_popup(text : String):
 		0.0,
 		return_time
 	)
+	
+	AudioManager.play_oneshot(slide_audio, 5, 1, 0, AudioManager.Bus.UI)
