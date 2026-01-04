@@ -1,9 +1,6 @@
 extends Node2D
-class_name AudioManager
 
 @export var max_sound_count : int = 128
-var test_sound = preload("res://01_assets/03_sound/Boing-001.wav")
-var test_music = preload("res://01_assets/03_sound/music/doodoo.mp3")
 
 var sound_count : int
 
@@ -16,13 +13,6 @@ enum Bus {
 	UI,
 }
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("debug_key"):
-		play_oneshot(test_sound, 0, 2, 0, AudioManager.Bus.SFX)
-		if not _music_player:
-			play_music(test_music)
-		else:
-			stop_music()
 func play_music(music: AudioStream):
 	if _music_player:
 		stop_music()
