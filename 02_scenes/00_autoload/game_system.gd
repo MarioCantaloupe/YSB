@@ -1,9 +1,25 @@
 extends Node
 
-var spaceship_integrity
+var total_spaceship_integrity : float = 900
+var spaceship_integrity : float = 900 #seconds
+var integrity_loss_rate : float = 1 #integrity/seconds
+var game_started : bool = false
 var drinks_unlocked : bool = false
+
+# GAME TIPS
+var game_tip_scene : String = "res://02_scenes/04_screens/game_tip_box.tscn"
+var orders_tip_shown : bool = false
+var cutting_tip_shown : bool = false
+var cooking_tip_shown : bool = false
+var blending_tip_shown : bool = false
+var stacking_tip_shown : bool = false
+
+
 # Array to hold all currently active orders
 var active_orders: Array[OrderData] = []
+
+func _ready() -> void:
+	spaceship_integrity = total_spaceship_integrity
 
 # Called when a new note is clicked
 func register_order(id: int, bocata_data: Array[ItemState], drink_data : Array[ItemState]):
@@ -32,3 +48,10 @@ func get_order_by_id(order_id: int) -> OrderData:
 		if order.order_id == order_id:
 			return order
 	return null
+
+func start_game():
+	game_started = true
+
+func _process(delta: float) -> void:
+	if game_started:
+		spaceship_integrity -= integrity_loss_rate * delta
