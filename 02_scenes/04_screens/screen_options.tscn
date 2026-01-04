@@ -177,7 +177,7 @@ text = "Créditos"
 language = "es_ES"
 script = ExtResource("3_wgf6b")
 
-[node name="Panel2" type="Panel" parent="Panel3"]
+[node name="PanelDerecho" type="Panel" parent="Panel3"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -196,3 +196,6 @@ libraries = {
 
 [connection signal="pressed" from="Panel3/button_exit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="Panel3/button_exit" to="Panel3/button_exit" method="_on_pressed"]
+[connection signal="pressed" from="Panel3/Panel/VBoxContainer/sound_marginContainer/button_soundPanel" to="." method="_on_button_sound_panel_pressed"]
+[connection signal="pressed" from="Panel3/Panel/VBoxContainer/screen_marginContainer/button_screenPanel" to="." method="_on_button_screen_panel_pressed"]
+[connection signal="pressed" from="Panel3/Panel/VBoxContainer/credits_marginContainer/button_creditsPanel" to="." method="_on_button_credits_panel_pressed"]
