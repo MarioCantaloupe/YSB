@@ -1,155 +1,100 @@
-[gd_scene load_steps=6 format=3 uid="uid://byb7u0hwxfrok"]
+[gd_scene load_steps=10 format=3 uid="uid://byb7u0hwxfrok"]
 
 [ext_resource type="Script" uid="uid://ctlnuo2p3liiv" path="res://02_scenes/04_screens/screen_intro.gd" id="1_ds4fj"]
-[ext_resource type="Texture2D" uid="uid://dtamiajjh8xgl" path="res://01_assets/01_sprites/00_placeholders/introLogo_placeholder.png" id="1_sehy1"]
+[ext_resource type="Shader" uid="uid://bn3b2nunntuc4" path="res://01_assets/04_shaders/Halftone.gdshader" id="2_8ifa3"]
+[ext_resource type="AudioStream" uid="uid://cx2dam1ughrth" path="res://01_assets/03_sound/bite.ogg" id="2_t5p4s"]
+[ext_resource type="Texture2D" uid="uid://c343ftpyd1nn2" path="res://01_assets/01_sprites/05_ui/cantaloop_logo2.PNG" id="2_xpbil"]
+[ext_resource type="Texture2D" uid="uid://cs0vr215lvtug" path="res://01_assets/01_sprites/05_ui/cantaloop_logo1.PNG" id="3_8ifa3"]
 
-[sub_resource type="Animation" id="Animation_8ifa3"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:self_modulate:r")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:self_modulate:g")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("TextureRect:self_modulate:b")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("TextureRect:self_modulate:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5p4s"]
+shader = ExtResource("2_8ifa3")
+shader_parameter/grid_size = 35
+shader_parameter/dot_scale = 0.342000016245
+shader_parameter/brightness_mult = 1.5000000223518
+shader_parameter/dot_color = Color(0.85, 0.66385, 0.2295, 0.36078432)
+shader_parameter/bg_color = Color(0.40949997, 0.63, 0.457275, 0.21176471)
+shader_parameter/scroll_speed_x = 0.05
+shader_parameter/scroll_speed_y = 0.05
 
-[sub_resource type="Animation" id="Animation_xpbil"]
-resource_name = "logo_fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:self_modulate:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:self_modulate:r")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(1, 0, 0, 0.16666667, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("TextureRect:self_modulate:g")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(1, 0, 0, 0.16666667, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("TextureRect:self_modulate:b")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(1, 0, 0, 0.16666667, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("TextureRect:self_modulate:a")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(0, 0, 0, 0.16666667, 0.16666667, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
+[sub_resource type="Gradient" id="Gradient_a48hw"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_t5p4s"]
-_data = {
-&"RESET": SubResource("Animation_8ifa3"),
-&"logo_fade_in": SubResource("Animation_xpbil")
-}
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nrm6b"]
+gradient = SubResource("Gradient_a48hw")
+width = 128
+height = 72
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
 
-[node name="intro" type="Node2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_t5p4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xpbil")
+}],
+"loop": true,
+"name": &"bite",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8ifa3")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 1.0
+}]
+
+[node name="intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ds4fj")
+bite_audio = ExtResource("2_t5p4s")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="BackgroundBlack" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -640.0
-offset_top = -360.0
-offset_right = 640.0
-offset_bottom = 360.0
+[node name="BackgroundWhite" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 35.0
+offset_right = -35.0
+offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -640.6957
-offset_top = -360.0
-offset_right = 640.6957
-offset_bottom = 360.0
+[node name="Halftone" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_t5p4s")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 35.0
+offset_right = -35.0
+offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_sehy1")
-expand_mode = 2
+texture = SubResource("GradientTexture2D_nrm6b")
+expand_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_t5p4s")
-}
+[node name="Logo" type="AnimatedSprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_t5p4s")
+animation = &"normal"
