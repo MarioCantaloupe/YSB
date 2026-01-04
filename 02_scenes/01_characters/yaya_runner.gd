@@ -94,7 +94,7 @@ func yaya_hit():
 func increase_carrito_level(value):
 	if not carrito_demon:
 		carrito_level += value
-		print(carrito_level)
+		print_debug("carrito_level" + str(carrito_level))
 		if carrito_level >= carrito_threshold:
 			set_demon_mode(true)
 
@@ -102,13 +102,13 @@ func set_demon_mode(value):
 	if value == true:
 		carrito_demon = true
 		demon_form()
-		print("carrito demon ON")
+		print_debug("carrito demon ON")
 		carrito_level = 0
 		demon_cart_timer.start()
 	if value == false:
 		carrito_demon = false
 		regular_form()
-		print("carrito demon OFF")
+		print_debug("carrito demon OFF")
 
 func demon_form():
 	sprite_carrito.modulate = Color(1.825, 0.168, 1.328, 1.0)
@@ -130,7 +130,6 @@ func _on_collision_area_entered(area: Area2D) -> void:
 
 func _on_hit_cooldown_timeout() -> void:
 	can_hit = true
-	print("inv frames ended")
 
 func _on_demon_cart_timer_timeout() -> void:
 	set_demon_mode(false)
@@ -144,7 +143,6 @@ func _on_carrito_animation_finished() -> void:
 			sprite_carrito.play("chew")
 		"chew":
 			chew_count += 1
-			print("chew count = " + str(chew_count))
 			if chew_count < chew_loops:
 				sprite_carrito.play("chew")
 			else:
