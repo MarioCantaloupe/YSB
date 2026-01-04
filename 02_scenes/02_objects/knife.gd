@@ -22,10 +22,10 @@ func _on_click_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx:
 
 
 func _on_click_area_mouse_entered() -> void:
-	if not PlayerCursor.is_knife:
+	if not PlayerCursor.is_knife and not PlayerCursor.held_item:
 		PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_INTERACT)
 
 
 func _on_click_area_mouse_exited() -> void:
-	if not PlayerCursor.is_knife:
+	if not PlayerCursor.is_knife and not PlayerCursor.held_item:
 		PlayerCursor.set_cursor(PlayerCursor.CursorType.POINT)
