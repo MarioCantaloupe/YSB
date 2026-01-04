@@ -12,5 +12,5 @@ func _physics_process(_delta: float) -> void:
 
 func _on_collision_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
-		area.get_parent().get_parent().increase_carrito_level(1)
+		area.owner.increase_carrito_level(1)
 		queue_free()
