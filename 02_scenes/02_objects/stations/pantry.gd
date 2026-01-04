@@ -9,9 +9,9 @@ func _ready() -> void:
 	tab_container.connect("mouse_exited", _mouse_out_pantry)
 
 func _mouse_in_pantry():
-	if not PlayerCursor.is_knife:
+	if not PlayerCursor.is_knife and not PlayerCursor.held_item:
 		PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_INTERACT)
 	
 func _mouse_out_pantry():
-	if not PlayerCursor.is_knife:
+	if not PlayerCursor.is_knife and not PlayerCursor.held_item:
 		PlayerCursor.set_cursor(PlayerCursor.CursorType.POINT)
