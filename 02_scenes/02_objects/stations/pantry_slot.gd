@@ -37,32 +37,23 @@ func _update_collision():
 
 func _on_area_input(_viewport, event: InputEvent, _shape_idx):
 	
-	if PlayerCursor.held_item == null or PlayerCursor.is_knife:
+	if PlayerCursor.is_knife:
 		return
 	
-	if event.is_action_released("Lclick"):
+	if event.is_action_released("Lclick") and PlayerCursor.held_item:
 		accept_item(PlayerCursor.held_item)
 		return
-	
-	if not event.is_action_pressed("Lclick"):
-		return
 
-	if PlayerCursor.held_item != null or PlayerCursor.is_knife:
-		return
-	print("mouse detected")
-	var state: ItemState = null
-	
-	if infinite_resources:
-		state = ItemState.new()
-		state.data = item_resource
-	elif PantryInventory.has_item(item_resource.id):
-		state = PantryInventory.pop_item_state(item_resource.id)
-	else:
-		return
-
-	_spawn_item(state)
-	
-	
+	if event.is_action_pressed("Lclick"):
+		var state: ItemState = null
+		if infinite_resources:
+			state = ItemState.new()
+			state.data = item_resource
+		elif PantryInventory.has_item(item_resource.id):
+			state = PantryInventory.pop_item_state(item_resource.id)
+		else:
+			return #TODO add "no items available feedback
+		_spawn_item(state)
 
 
 func _spawn_item(state: ItemState):
@@ -88,6 +79,9 @@ func _on_area_exited():
 
 
 func accept_item(item):
+	if not item:
+		push_error("NULL dropped")
+		return
 	var state = item.save_item_state()
 	PantryInventory.add_item_state(state)
 	item.queue_free()
