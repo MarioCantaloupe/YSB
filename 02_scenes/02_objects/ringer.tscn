@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckoxorblkavdh"]
+
+[ext_resource type="Script" uid="uid://b21icdr0oio5q" path="res://02_scenes/02_objects/ringer.gd" id="1_1am0d"]
+[ext_resource type="Texture2D" uid="uid://kh6qbo56rr7g" path="res://01_assets/01_sprites/02_objects/campanita.PNG" id="1_qahf6"]
+[ext_resource type="AudioStream" uid="uid://dvvnd1mj5boeg" path="res://01_assets/03_sound/ding.ogg" id="2_7b7t1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1am0d"]
+radius = 191.42
+
+[node name="Ringer" type="Node2D"]
+script = ExtResource("1_1am0d")
+ding_audio = ExtResource("2_7b7t1")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_qahf6")
+offset = Vector2(0, -100)
+
+[node name="click_area" type="Area2D" parent="."]
+position = Vector2(0, -106)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="click_area"]
+position = Vector2(0, -41)
+shape = SubResource("CircleShape2D_1am0d")
+
+[connection signal="input_event" from="click_area" to="." method="_on_click_area_input_event"]
