@@ -1,44 +1,166 @@
-[gd_scene load_steps=7 format=3 uid="uid://2fdgqp5p3dve"]
+[gd_scene load_steps=20 format=3 uid="uid://2fdgqp5p3dve"]
 
-[ext_resource type="Texture2D" uid="uid://7jqwh04fqi31" path="res://01_assets/01_sprites/00_placeholders/mainMenu_placeholder.png" id="1_3kh57"]
-[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_5oke2"]
 [ext_resource type="Script" uid="uid://dsk14mfsfdj04" path="res://02_scenes/04_screens/screen_main_menu.gd" id="1_j4tqg"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="2_7uqsd"]
+[ext_resource type="Texture2D" uid="uid://bbmklayn4cr0r" path="res://01_assets/01_sprites/05_ui/pPrincipal_yayaYCarro.PNG" id="3_2k6bo"]
+[ext_resource type="Shader" uid="uid://bn3b2nunntuc4" path="res://01_assets/04_shaders/Halftone.gdshader" id="3_25ra4"]
 [ext_resource type="Script" uid="uid://dorl1ac5yqonb" path="res://02_scenes/04_screens/button_quit.gd" id="4_1swjj"]
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="4_siwkm"]
 [ext_resource type="Script" uid="uid://duwv1o7gw68hi" path="res://02_scenes/04_screens/button_master.gd" id="5_e5igh"]
+[ext_resource type="AudioStream" uid="uid://33s5acxx6d61" path="res://01_assets/03_sound/menu/maximize_009.ogg" id="6_ooxka"]
+[ext_resource type="AudioStream" uid="uid://cdbx8q8i535xi" path="res://01_assets/03_sound/honk.ogg" id="7_25ra4"]
+[ext_resource type="Shader" uid="uid://cobedgecb5b01" path="res://01_assets/04_shaders/SolidColor.gdshader" id="8_2k6bo"]
+[ext_resource type="Texture2D" uid="uid://cyo2yoaptrpdq" path="res://01_assets/01_sprites/05_ui/YSB_LogoWide.png" id="8_ooxka"]
 
-[node name="MainMenu" type="Node2D" groups=["mouse_scene"]]
-script = ExtResource("1_j4tqg")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25ra4"]
+shader = ExtResource("3_25ra4")
+shader_parameter/grid_size = 55
+shader_parameter/dot_scale = 0.402000019095
+shader_parameter/brightness_mult = 1.5000000223518
+shader_parameter/dot_color = Color(0.42, 0.10919999, 0.38891986, 0.6627451)
+shader_parameter/bg_color = Color(1, 1, 1, 0)
+shader_parameter/scroll_speed_x = 0.05
+shader_parameter/scroll_speed_y = 0.0
 
-[node name="UI" type="Control" parent="."]
+[sub_resource type="Gradient" id="Gradient_siwkm"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.4855372, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4kl2f"]
+gradient = SubResource("Gradient_siwkm")
+width = 128
+height = 72
+fill_from = Vector2(1, 0.032881215)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Animation" id="Animation_2k6bo"]
+resource_name = "LogoFloat"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button/Logo:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(-35, -1, 0, 1, 0, -10.910332, -1, 0, 1, 0, -35, -1, 0, 1, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+
+[sub_resource type="Animation" id="Animation_25ra4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button/Logo:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-10, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button/Logo:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.02617994, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ooxka"]
+_data = {
+&"LogoFloat": SubResource("Animation_2k6bo"),
+&"RESET": SubResource("Animation_25ra4")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ooxka"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7feqe"]
+shader = ExtResource("8_2k6bo")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 1.0
+
+[node name="MainMenu" type="Control" groups=["mouse_scene"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_5oke2")
+script = ExtResource("1_j4tqg")
 
-[node name="bg" type="TextureRect" parent="UI"]
+[node name="BackgroundWhite" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundOrange" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 35.0
+offset_right = -35.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8980392, 0.5176471, 0.24705882, 1)
+
+[node name="Halftone" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_25ra4")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 35.0
+offset_right = -35.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_4kl2f")
+expand_mode = 1
+
+[node name="Foreground" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1281.0
 offset_bottom = 716.0
-texture = ExtResource("1_3kh57")
+texture = ExtResource("3_2k6bo")
 expand_mode = 2
 
-[node name="Button_Manager" type="Control" parent="UI"]
+[node name="Button_Manager" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("4_siwkm")
 
-[node name="mainmenu_buttons" type="VBoxContainer" parent="UI/Button_Manager"]
-layout_mode = 0
-offset_left = 929.0
-offset_top = 326.0
-offset_right = 1220.0
-offset_bottom = 610.0
+[node name="mainmenu_buttons" type="VBoxContainer" parent="Button_Manager"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 908.0
+offset_top = 356.0
+offset_right = 1199.0
+offset_bottom = 640.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="button_start" type="Button" parent="UI/Button_Manager/mainmenu_buttons"]
+[node name="button_start" type="Button" parent="Button_Manager/mainmenu_buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "JUGAR"
@@ -46,20 +168,82 @@ script = ExtResource("2_7uqsd")
 target_scene_path = "res://02_scenes/03_levels/level_orderCounter.tscn"
 hover_rotation = 1.5
 
-[node name="button_options" type="Button" parent="UI/Button_Manager/mainmenu_buttons"]
+[node name="button_options" type="Button" parent="Button_Manager/mainmenu_buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "OPCIONES"
 script = ExtResource("5_e5igh")
 hover_rotation = -1.5
+click_audio = ExtResource("6_ooxka")
 
-[node name="button_quit" type="Button" parent="UI/Button_Manager/mainmenu_buttons"]
+[node name="button_quit" type="Button" parent="Button_Manager/mainmenu_buttons"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "SALIR"
 script = ExtResource("4_1swjj")
 hover_rotation = 1.5
 
-[connection signal="pressed" from="UI/Button_Manager/mainmenu_buttons/button_start" to="UI/Button_Manager/mainmenu_buttons/button_start" method="_on_pressed"]
-[connection signal="pressed" from="UI/Button_Manager/mainmenu_buttons/button_options" to="." method="_on_button_options_pressed"]
-[connection signal="pressed" from="UI/Button_Manager/mainmenu_buttons/button_quit" to="UI/Button_Manager/mainmenu_buttons/button_quit" method="_on_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ooxka")
+}
+autoplay = "LogoFloat"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -684.0
+offset_top = 49.0
+offset_right = -158.0
+offset_bottom = 312.0
+grow_horizontal = 0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ooxka")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ooxka")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ooxka")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ooxka")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ooxka")
+flat = true
+script = ExtResource("5_e5igh")
+hover_scale = Vector2(1.05, 1.05)
+pressed_scale = Vector2(1, 1)
+hover_rotation = 2.0
+hover_audio = null
+click_audio = ExtResource("7_25ra4")
+click_audio_volume = -4.0
+audio_variation = 0.16
+
+[node name="Logo" type="TextureRect" parent="Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.001
+anchor_top = 0.001
+anchor_right = 1.001
+anchor_bottom = 0.001
+offset_left = -542.52606
+offset_top = -10.2630005
+offset_right = 19.660522
+offset_bottom = 316.32336
+rotation = 0.02617994
+texture = ExtResource("8_ooxka")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Logo_DropShadow" type="TextureRect" parent="Button/Logo"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_7feqe")
+layout_mode = 0
+offset_left = 25.0459
+offset_top = 13.1797495
+offset_right = 587.2326
+offset_bottom = 339.7651
+texture = ExtResource("8_ooxka")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="Button_Manager/mainmenu_buttons/button_start" to="Button_Manager/mainmenu_buttons/button_start" method="_on_pressed"]
+[connection signal="pressed" from="Button_Manager/mainmenu_buttons/button_options" to="." method="_on_button_options_pressed"]
+[connection signal="pressed" from="Button_Manager/mainmenu_buttons/button_quit" to="Button_Manager/mainmenu_buttons/button_quit" method="_on_pressed"]
