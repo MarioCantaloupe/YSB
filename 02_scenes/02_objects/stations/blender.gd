@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var blender_audio : AudioStream
 @export var held_items : Array = []
 @onready var drop_zone: Area2D = $drop_zone
 @onready var button: Button = $Button
@@ -12,8 +13,7 @@ func _ready() -> void:
 	pass
 
 func _on_button_pressed() -> void:
-	var tween = create_tween()
-	tween.tween_property(blender_fluid, "self_modulate", blended_color, 1)
+	blend()
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("Lclick"):
@@ -45,6 +45,12 @@ func get_array_average_color() -> Color:
 		sum_b / count,
 		1
 	)
+
+func blend():
+	var tween = create_tween()
+	tween.tween_property(blender_fluid, "self_modulate", blended_color, 1)
+	
+	AudioManager.play_oneshot(blender_audio, 0, 1, 0, AudioManager.Bus.SFX)
 
 func _on_drop_zone_mouse_entered() -> void:
 	can_drop = true
