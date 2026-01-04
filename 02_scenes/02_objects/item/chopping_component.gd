@@ -4,79 +4,70 @@ extends Node2D
 @onready var knife_tutorial: AnimatedSprite2D = $knife_tutorial
 
 signal chop_up(new_level: int)
-signal knife_slip()
+signal knife_timeout()
 
-@onready var bottom_cut_zone: Area2D = $bottomCut_zone
-@onready var top_cut_zone: Area2D = $topCut_zone
 @export var chop_audio : AudioStream
+@export var min_chop_mouse_speed : float = 1500
+@export var max_time_between_slices : float
 
-var mouse_hovering : bool = false
-var chopping : bool = false
-var chop_isTop : bool = false 
 var slice_count : int = 0
 var chop_level : int = 0
 
 var has_shown_tutorial : bool = false
 
+var slicing_mode : bool = false
+var slicing_timer : Timer
 
 func _ready() -> void:
-	bottom_cut_zone.monitoring = false
-	top_cut_zone.monitoring = false
+	slicing_timer = Timer.new()
+	add_child(slicing_timer)
+	slicing_timer.wait_time = max_time_between_slices
+	slicing_timer.one_shot = true
+	slicing_timer.timeout.connect(slicing_timer_finished)
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_released("Lclick"):
-		chopping = false
-		bottom_cut_zone.monitoring = false
-		top_cut_zone.monitoring = false
-		slice_count = 0
-	if slice_count >= slices_per_level:
-		chop_level_up()
+	
 
 func chop_level_up():
 	chop_level += 1
 	emit_signal("chop_up", chop_level)
 	slice_count = 0
-	chopping = false #prevent overchopping
 
 #Mouse over activation
 func _on_activation_zone_mouse_entered() -> void:
-	mouse_hovering = true
-	if PlayerCursor.is_knife and not has_shown_tutorial:
-				knife_tutorial.show()
-				has_shown_tutorial = true
-func _on_activation_zone_mouse_exited() -> void:
-	mouse_hovering = false
+	print(PlayerCursor.get_avg_mouse_velocity().length())
+	if PlayerCursor.get_avg_mouse_velocity().length() > min_chop_mouse_speed:
+		increase_slice_level()
 	
+	if PlayerCursor.is_knife and not has_shown_tutorial:
+		knife_tutorial.show()
+		
 
 
-func _on_activation_zone_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
-	if PlayerCursor.is_knife:
-		if Input.is_action_just_pressed("Lclick"):
-			chopping = true
-			knife_tutorial.hide()
-			bottom_cut_zone.monitoring = true
-			top_cut_zone.monitoring = true
+func _input(event: InputEvent) -> void:
+	
+	if not PlayerCursor.is_knife:
+		return
+	
+	if event.is_action_pressed("Lclick"):
+		slicing_mode = true
+		print_debug("slicing_mode = " + str(slicing_mode))
+		if not has_shown_tutorial:
+			knife_tutorial.show()
+			has_shown_tutorial = true
+	if event.is_action_released("Lclick"):
+		slicing_mode = false
+		print_debug("slicing_mode = " + str(slicing_mode))
+		slice_count = 0
 
+func increase_slice_level():
+	slicing_timer.start()
+	slice_count += 1
+	AudioManager.play_oneshot(chop_audio, 0, 1 + (float(slice_count) / slices_per_level)*0.5, 0, AudioManager.Bus.SFX)
+	if slice_count >= slices_per_level:
+		chop_level_up()
+		knife_tutorial.hide()
 
-func _on_bottom_cut_zone_mouse_entered() -> void:
-	if chopping:
-		if chop_isTop:
-			slice_count += 1
-			chop_isTop = false
-			AudioManager.play_oneshot(chop_audio, 0, 1 + (float(slice_count) / slices_per_level)*0.5, 0, AudioManager.Bus.SFX)
-
-
-func _on_top_cut_zone_mouse_entered() -> void:
-	if chopping:
-		if not chop_isTop:
-			slice_count += 1
-			chop_isTop = true
-			AudioManager.play_oneshot(chop_audio, 0, 1 + (float(slice_count) / slices_per_level)*0.5, 0, AudioManager.Bus.SFX)
-
-
-
-func _on_side_zone_mouse_entered() -> void:
-	if chopping:
-		emit_signal("knife_slip")
-	chopping = false
+func slicing_timer_finished():
 	slice_count = 0
+	print_debug("knife reset")
+	emit_signal("knife_timeout")
