@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bwov6edkubuxi"]
+[gd_scene load_steps=34 format=3 uid="uid://bwov6edkubuxi"]
 
 [ext_resource type="Script" uid="uid://choy4l2dbk5xs" path="res://02_scenes/02_objects/item/item.gd" id="1_xwsi1"]
 [ext_resource type="Texture2D" uid="uid://blwgex1cdinyv" path="res://01_assets/01_sprites/04_vfx/shadow.png" id="2_028ab"]
@@ -6,6 +6,8 @@
 [ext_resource type="Material" uid="uid://nvg3t8mftpqk" path="res://02_scenes/02_objects/item/boil_material.tres" id="3_4ymcn"]
 [ext_resource type="PackedScene" uid="uid://dx46jgahrlra4" path="res://02_scenes/02_objects/item/chopping_component.tscn" id="3_7pmsf"]
 [ext_resource type="Script" uid="uid://ch7hpp8eatjiq" path="res://02_scenes/02_objects/item/visual_components/item_shadow.gd" id="3_fldbe"]
+[ext_resource type="AudioStream" uid="uid://dba8vxlq74pyt" path="res://01_assets/03_sound/menu/drop_002.ogg" id="3_xw3og"]
+[ext_resource type="AudioStream" uid="uid://d1wd562uw3sxm" path="res://01_assets/03_sound/menu/drop_004.ogg" id="4_fc64x"]
 [ext_resource type="Texture2D" uid="uid://bno73j0wa8l1g" path="res://01_assets/01_sprites/04_vfx/pelusa_spritesheet.png" id="5_wkqhs"]
 [ext_resource type="Texture2D" uid="uid://bol4fikx3rlfj" path="res://01_assets/01_sprites/04_vfx/vfx_poof_spritesheet.png" id="8_028ab"]
 [ext_resource type="Texture2D" uid="uid://lagptp0juwey" path="res://01_assets/01_sprites/02_objects/icecube_full.png" id="8_xesb6"]
@@ -103,7 +105,7 @@ animations = [{
 
 [sub_resource type="LabelSettings" id="LabelSettings_4xaah"]
 outline_size = 10
-outline_color = Color(0, 0, 0, 1)
+outline_color = Color(0.14406568, 0.0035918537, 0.13521418, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l4qy8"]
 radius = 16.0
@@ -119,6 +121,8 @@ input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_70bak")
 script = ExtResource("1_xwsi1")
 food_data = ExtResource("2_70bak")
+pickup_audio = ExtResource("3_xw3og")
+drop_audio = ExtResource("4_fc64x")
 is_clean = true
 max_drop_distance = 75.0
 
@@ -192,6 +196,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="debug_text" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

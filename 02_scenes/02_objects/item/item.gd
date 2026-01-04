@@ -9,6 +9,9 @@ signal item_grabbed(bool)
 @export var food_data : ItemData
 @export var gravity : bool = true : set = set_gravity
 
+@export_group("Audio")
+@export var pickup_audio : AudioStream
+@export var drop_audio : AudioStream
 
 #region Scene Nodes
 @onready var sprite: Sprite2D = $sprite
@@ -34,6 +37,7 @@ signal item_grabbed(bool)
 var chop_level : int = 0 : set = _set_chop_level
 var cook_level : int = 0 : set = _set_cook_level
 var ice_level : int
+@export_group("Item State")
 @export var is_clean : bool = false
 @export var is_frozen : bool = false
 var cooking_time : float
@@ -48,7 +52,9 @@ var _original_z_index : int
 var ingredient_height : int
 
 # fake floor variables
-@export var enable_fake_floor := true
+var enable_fake_floor := true
+
+@export_group("Fake Floor")
 @export var min_drop_distance := 70.0   # min distance item will fall
 @export var max_drop_distance := 140.0  # max distance item will fall (if tossed hard)
 
@@ -68,6 +74,9 @@ func _ready() -> void:
 	cook_timer.wait_time = cooking_time
 	_set_selected(false)
 	check_rest_zones()
+	
+	_update_ingredient_height()
+	
 	if is_frozen:
 		ice_sprite.show()
 		ice_level = 2
@@ -80,7 +89,7 @@ func _ready() -> void:
 	else:
 		static_dust_particles.hide()
 
-
+#region INPUT
 #--------------------------------   INPUT   -----------------------------------
 #LClick On
 func _on_click_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
@@ -100,8 +109,8 @@ func _on_click_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx:
 			PlayerCursor.set_cursor(PlayerCursor.CursorType.HOLDING)
 			
 			ui_clock.hide_cooking_ui(true)
+			check_rest_zones()
 			emit_signal("item_grabbed", true)
-
 
 #LClick Off
 func _input(event):
@@ -116,21 +125,23 @@ func _input(event):
 			var closest_rest = null
 			
 			for child in rest_nodes:
-				var distance = global_position.distance_to(child.global_position)
-				if distance < shortest_distance:
-					shortest_distance = distance
-					closest_rest = child
+				if child:
+					var distance = global_position.distance_to(child.global_position)
+					if distance < shortest_distance:
+						shortest_distance = distance
+						closest_rest = child
 			
 			if closest_rest and not closest_rest.is_occupied:
 				_set_has_reached_rest(true)
 				closest_rest.select(self)
 				#-------------------we are cooking-----------------------
-				station_action(closest_rest.get_parent().action) #gets the station action
+				if closest_rest.get_parent() is Station:
+					station_action(closest_rest.get_parent().action) #gets the station action
 				rest_point = closest_rest.global_position
 			else:
 				_set_has_reached_rest(false)
 				ui_clock.hide_cooking_ui(true)
-
+#endregion
 
 #--------------------------------   TICK   ---------------------------------
 func _physics_process(delta: float) -> void:
@@ -173,7 +184,7 @@ func _physics_process(delta: float) -> void:
 		distance_to_fake_floor = 0.0
 
 func _process(_delta: float) -> void:
-	debug_text.text = "collision: " + str(not collision.disabled)
+	debug_text.text = "height: " + str(ingredient_height)
 
 # MAIN ACTIONS
 #region Cooking Functions
@@ -226,6 +237,12 @@ func defrost():
 			_set_cook_level(2)
 			static_dust_particles.self_modulate = Color(0.149, 0.149, 0.149, 1.0) #burn dust
 			play_poof(Color(0.106, 0.07, 0.015, 1.0))
+
+func stack():
+	pass
+	#var plate : Node2D = get_parent() as StackingPlate
+	#if plate:
+		#plate.try_add_item(self)
 #endregion
 
 func play_poof(color):
@@ -242,9 +259,21 @@ func create_fake_floor():
 			floor_reached = false
 
 # UTILITIES
+
+func _update_ingredient_height():
+	match chop_level:
+		0:
+			ingredient_height = food_data.ingredient_height_ch00
+		1:
+			ingredient_height = food_data.ingredient_height_ch01
+		2:
+			ingredient_height = food_data.ingredient_height_ch02
+	
+	print_debug("set ingredient height to " + str(ingredient_height))
+
 func station_action(action):
 	if action == 0:
-		pass
+		stack()
 	elif action == 1:
 		cook()
 	elif action == 2:
@@ -361,13 +390,7 @@ func _set_chop_level(value):
 	chop_level = clamp(value, 0 ,2)
 	set_sprite(chop_level, cook_level)
 	print(chop_level)
-	if chop_level == 0:
-		ingredient_height = food_data.ingredient_height_ch00
-	elif chop_level == 1:
-		ingredient_height = food_data.ingredient_height_ch01
-	elif chop_level == 2:
-		ingredient_height = food_data.ingredient_height_ch02
-	
+	_update_ingredient_height()
 	
 func _set_cook_level(value):
 	cook_level = clamp(value, 0 ,2)
@@ -387,15 +410,19 @@ func _set_selected(value : bool):
 	
 	if value == true:
 		z_index = 1000
-		var zones = get_tree().get_nodes_in_group("rest_zone")
+		var zones : = get_tree().get_nodes_in_group("rest_zone")
 		for i in zones:
 			if i.held_item == self:
 				i.deselect()
+		
+		AudioManager.play_oneshot(pickup_audio, 0, 1, 0, AudioManager.Bus.SFX)
+
 	else:
 		z_index = _original_z_index
+		AudioManager.play_oneshot(drop_audio, 0, 1, 0, AudioManager.Bus.SFX)
 	
 	if selected and not value:
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(.08).timeout
 		PlayerCursor.held_item = null
 		linear_velocity += PlayerCursor.get_avg_mouse_velocity()
 		
