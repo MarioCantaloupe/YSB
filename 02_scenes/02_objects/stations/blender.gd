@@ -10,7 +10,7 @@ var can_drop : bool
 var blended_color : Color
 
 func _ready() -> void:
-	pass
+	blended_color = Color(0.879, 0.824, 0.707, 0.255)
 
 func _on_button_pressed() -> void:
 	blend()
@@ -30,7 +30,7 @@ func get_array_average_color() -> Color:
 	var sum_b := 0.0
 
 	if held_items.is_empty():
-		return Color.WHITE  #cum
+		return Color(0.888, 0.866, 0.79, 0.388)  #cum
 
 	for item in held_items:
 		var c: Color = item
@@ -58,3 +58,11 @@ func _on_drop_zone_mouse_entered() -> void:
 func _on_drop_zone_mouse_exited() -> void:
 	can_drop = false
 	print(can_drop)
+
+
+func _on_button_mouse_entered() -> void:
+	PlayerCursor.set_cursor(PlayerCursor.CursorType.CAN_INTERACT)
+
+
+func _on_button_mouse_exited() -> void:
+	PlayerCursor.set_cursor(PlayerCursor.CursorType.POINT)
