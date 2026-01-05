@@ -13,11 +13,15 @@ enum Bus {
 	UI,
 }
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 func play_music(music: AudioStream):
 	if _music_player:
 		stop_music()
 
 	_music_player = AudioStreamPlayer2D.new()
+	_music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	_music_player.stream = music
 	_music_player.bus = "Music"
 	get_tree().current_scene.add_child(_music_player)
@@ -32,6 +36,7 @@ func stop_music() -> void:
 func play_oneshot(sound: AudioStream, volume_db : float, pitch_scale : float, panning_strength: float, bus : Bus) -> void:
 	if sound_count < max_sound_count:
 		var audio_player = AudioStreamPlayer2D.new()
+		audio_player.process_mode = Node.PROCESS_MODE_ALWAYS
 		sound_count += 1
 		
 		# sound settings
