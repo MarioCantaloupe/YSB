@@ -447,9 +447,6 @@ func set_gravity(value : bool):
 
 #region Signaled Functions
 # SIGNALED
-func _on_chopping_component_knife_slip() -> void:
-	pass
-	#TODO
 
 func _on_chopping_component_chop_up(_new_level: int) -> void:
 	if not is_frozen:
