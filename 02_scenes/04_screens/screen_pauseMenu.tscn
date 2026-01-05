@@ -199,6 +199,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -218,21 +219,39 @@ mouse_filter = 1
 layout_mode = 2
 alignment = 1
 
-[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="MC_Resume" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ButtonResume" type="Button" parent="PanelContainer/VBoxContainer/MC_Resume"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_5fg5t")
 text = "Reanudar"
 script = ExtResource("4_2qhxx")
 
-[node name="Options" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="MC_Options" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ButtonOptions" type="Button" parent="PanelContainer/VBoxContainer/MC_Options"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_5fg5t")
 text = "Opciones"
 script = ExtResource("4_2qhxx")
 
-[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="MC_Quit" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 0
+
+[node name="ButtonQuit" type="Button" parent="PanelContainer/VBoxContainer/MC_Quit"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_5fg5t")
@@ -246,6 +265,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_iewla")
 }
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MC_Resume/ButtonResume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MC_Options/ButtonOptions" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MC_Quit/ButtonQuit" to="." method="_on_quit_pressed"]

@@ -160,7 +160,11 @@ offset_bottom = 640.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="button_start" type="Button" parent="Button_Manager/mainmenu_buttons"]
+[node name="MC_Start" type="MarginContainer" parent="Button_Manager/mainmenu_buttons"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="button_start" type="Button" parent="Button_Manager/mainmenu_buttons/MC_Start"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "JUGAR"
@@ -168,7 +172,13 @@ script = ExtResource("2_7uqsd")
 target_scene_path = "res://02_scenes/03_levels/level_orderCounter.tscn"
 hover_rotation = 1.5
 
-[node name="button_options" type="Button" parent="Button_Manager/mainmenu_buttons"]
+[node name="MC_Options" type="MarginContainer" parent="Button_Manager/mainmenu_buttons"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="button_options" type="Button" parent="Button_Manager/mainmenu_buttons/MC_Options"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "OPCIONES"
@@ -176,7 +186,13 @@ script = ExtResource("5_e5igh")
 hover_rotation = -1.5
 click_audio = ExtResource("6_ooxka")
 
-[node name="button_quit" type="Button" parent="Button_Manager/mainmenu_buttons"]
+[node name="MC_Quit" type="MarginContainer" parent="Button_Manager/mainmenu_buttons"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+
+[node name="button_quit" type="Button" parent="Button_Manager/mainmenu_buttons/MC_Quit"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 41
 text = "SALIR"
@@ -194,10 +210,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -684.0
-offset_top = 49.0
-offset_right = -158.0
-offset_bottom = 312.0
+offset_left = -699.0
+offset_top = 36.0
+offset_right = -173.0
+offset_bottom = 299.0
 grow_horizontal = 0
 focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ooxka")
@@ -244,6 +260,6 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="Button_Manager/mainmenu_buttons/button_start" to="Button_Manager/mainmenu_buttons/button_start" method="_on_pressed"]
-[connection signal="pressed" from="Button_Manager/mainmenu_buttons/button_options" to="." method="_on_button_options_pressed"]
-[connection signal="pressed" from="Button_Manager/mainmenu_buttons/button_quit" to="Button_Manager/mainmenu_buttons/button_quit" method="_on_pressed"]
+[connection signal="pressed" from="Button_Manager/mainmenu_buttons/MC_Start/button_start" to="Button_Manager/mainmenu_buttons/MC_Start/button_start" method="_on_pressed"]
+[connection signal="pressed" from="Button_Manager/mainmenu_buttons/MC_Options/button_options" to="." method="_on_button_options_pressed"]
+[connection signal="pressed" from="Button_Manager/mainmenu_buttons/MC_Quit/button_quit" to="Button_Manager/mainmenu_buttons/MC_Quit/button_quit" method="_on_pressed"]

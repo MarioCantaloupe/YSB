@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://nhky3miorccp"]
+[gd_scene load_steps=3 format=3 uid="uid://nhky3miorccp"]
 
 [ext_resource type="Script" uid="uid://bl8pj2de17hg6" path="res://02_scenes/04_screens/options_sound.gd" id="1_cybv7"]
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_kpach"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9,56 +10,92 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_kpach")
 script = ExtResource("1_cybv7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-offset_left = 58.0
-offset_top = 45.0
-offset_right = 246.0
-offset_bottom = 210.0
+offset_left = 33.0
+offset_top = 29.0
+offset_right = 574.0
+offset_bottom = 525.0
 
-[node name="LabelGeneral" type="Label" parent="VBoxContainer"]
+[node name="MC_SliderGeneral" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MC_SliderGeneral"]
+layout_mode = 2
+
+[node name="LabelGeneral" type="Label" parent="VBoxContainer/MC_SliderGeneral/VBoxContainer"]
 layout_mode = 2
 text = "Volumen general"
 
-[node name="HSliderGeneral" type="HSlider" parent="VBoxContainer"]
+[node name="HSliderGeneral" type="HSlider" parent="VBoxContainer/MC_SliderGeneral/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="LabelMusica2" type="Label" parent="VBoxContainer"]
+[node name="MC_SliderMusic" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MC_SliderMusic"]
+layout_mode = 2
+
+[node name="LabelMusica2" type="Label" parent="VBoxContainer/MC_SliderMusic/VBoxContainer"]
 layout_mode = 2
 text = "Música"
 
-[node name="HSliderMusic" type="HSlider" parent="VBoxContainer"]
+[node name="HSliderMusic" type="HSlider" parent="VBoxContainer/MC_SliderMusic/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="LabelEfectos" type="Label" parent="VBoxContainer"]
+[node name="MC_SliderSFX" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MC_SliderSFX"]
+layout_mode = 2
+
+[node name="LabelEfectos" type="Label" parent="VBoxContainer/MC_SliderSFX/VBoxContainer"]
 layout_mode = 2
 text = "Efectos de sonido"
 
-[node name="HSliderSfx" type="HSlider" parent="VBoxContainer"]
+[node name="HSliderSfx" type="HSlider" parent="VBoxContainer/MC_SliderSFX/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="LabelInterfaz" type="Label" parent="VBoxContainer"]
+[node name="MC_SliderUI" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MC_SliderUI"]
+layout_mode = 2
+
+[node name="LabelInterfaz" type="Label" parent="VBoxContainer/MC_SliderUI/VBoxContainer"]
 layout_mode = 2
 text = "Interfaz"
 
-[node name="HSliderInterfaz" type="HSlider" parent="VBoxContainer"]
+[node name="HSliderInterfaz" type="HSlider" parent="VBoxContainer/MC_SliderUI/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[connection signal="value_changed" from="VBoxContainer/HSliderGeneral" to="." method="_on_h_slider_general_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/HSliderMusic" to="." method="_on_h_slider_music_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/HSliderSfx" to="." method="_on_h_slider_sfx_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/HSliderInterfaz" to="." method="_on_h_slider_interfaz_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MC_SliderGeneral/VBoxContainer/HSliderGeneral" to="." method="_on_h_slider_general_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MC_SliderMusic/VBoxContainer/HSliderMusic" to="." method="_on_h_slider_music_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MC_SliderSFX/VBoxContainer/HSliderSfx" to="." method="_on_h_slider_sfx_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MC_SliderUI/VBoxContainer/HSliderInterfaz" to="." method="_on_h_slider_interfaz_value_changed"]

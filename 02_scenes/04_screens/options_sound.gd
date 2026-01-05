@@ -1,9 +1,9 @@
 extends Control
 
-@onready var master_slider: HSlider= $VBoxContainer/HSliderGeneral
-@onready var music_slider: HSlider= $VBoxContainer/HSliderMusic
-@onready var sfx_slider: HSlider= $VBoxContainer/HSliderSfx
-@onready var interfaz_slider: HSlider= $VBoxContainer/HSliderInterfaz
+@onready var master_slider: HSlider= %HSliderGeneral
+@onready var music_slider: HSlider= %HSliderMusic
+@onready var sfx_slider: HSlider= %HSliderSfx
+@onready var interfaz_slider: HSlider= %HSliderInterfaz
 
 const BUS_MASTER:= "Master"
 const BUS_MUSIC:= "Music"

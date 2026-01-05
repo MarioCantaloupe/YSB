@@ -1,9 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://cuq0bem6wdd4y"]
+[gd_scene load_steps=13 format=3 uid="uid://cuq0bem6wdd4y"]
 
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_hekwa"]
 [ext_resource type="Script" uid="uid://dxwdao053ukve" path="res://02_scenes/04_screens/screen_options.gd" id="1_wkq6u"]
+[ext_resource type="Texture2D" uid="uid://dxn668dhtltf8" path="res://01_assets/01_sprites/05_ui/UIObcionesFondo_v01.png" id="3_oo8yh"]
 [ext_resource type="Script" uid="uid://duwv1o7gw68hi" path="res://02_scenes/04_screens/button_master.gd" id="3_wgf6b"]
 [ext_resource type="AudioStream" uid="uid://dt1oi7lmia6nx" path="res://01_assets/03_sound/menu/minimize_009.ogg" id="4_uuqo5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oo8yh"]
+blend_mode = 2
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_ldyhd"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fi2xf"]
+gradient = SubResource("Gradient_ldyhd")
+fill = 1
+fill_from = Vector2(0.5037594, 0.53634083)
+fill_to = Vector2(0.48872182, 0.05764411)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hxiu0"]
+texture = SubResource("GradientTexture2D_fi2xf")
 
 [sub_resource type="Animation" id="Animation_hekwa"]
 length = 0.001
@@ -94,13 +111,9 @@ grow_vertical = 2
 theme = ExtResource("1_hekwa")
 script = ExtResource("1_wkq6u")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-expand_mode = 2
-
 [node name="Panel3" type="Panel" parent="."]
+self_modulate = Color(0.059300967, 0.20959085, 0.10548916, 1)
+material = SubResource("CanvasItemMaterial_oo8yh")
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -113,6 +126,21 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 pivot_offset = Vector2(583, 300)
+theme_override_styles/panel = SubResource("StyleBoxTexture_hxiu0")
+
+[node name="BG" type="TextureRect" parent="Panel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_oo8yh")
+expand_mode = 1
 
 [node name="button_exit" type="Button" parent="Panel3"]
 layout_mode = 0
@@ -126,13 +154,14 @@ script = ExtResource("3_wgf6b")
 click_audio = ExtResource("4_uuqo5")
 
 [node name="Panel" type="Panel" parent="Panel3"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 40.0
 offset_top = -126.0
-offset_right = 308.0
+offset_right = 373.0
 offset_bottom = 126.0
 grow_vertical = 2
 
@@ -141,8 +170,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 94.0
-offset_bottom = -94.0
+offset_top = 2.0
+offset_right = 34.285706
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -150,6 +180,9 @@ alignment = 1
 [node name="sound_marginContainer" type="MarginContainer" parent="Panel3/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 39
+theme_override_constants/margin_bottom = 10
 
 [node name="button_soundPanel" type="Button" parent="Panel3/Panel/VBoxContainer/sound_marginContainer"]
 layout_mode = 2
@@ -160,6 +193,9 @@ script = ExtResource("3_wgf6b")
 [node name="screen_marginContainer" type="MarginContainer" parent="Panel3/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
 
 [node name="button_screenPanel" type="Button" parent="Panel3/Panel/VBoxContainer/screen_marginContainer"]
 layout_mode = 2
@@ -170,6 +206,8 @@ script = ExtResource("3_wgf6b")
 [node name="credits_marginContainer" type="MarginContainer" parent="Panel3/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="button_creditsPanel" type="Button" parent="Panel3/Panel/VBoxContainer/credits_marginContainer"]
 layout_mode = 2
@@ -178,11 +216,13 @@ language = "es_ES"
 script = ExtResource("3_wgf6b")
 
 [node name="PanelDerecho" type="Panel" parent="Panel3"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 170.71423
 offset_top = 30.0
 offset_right = -30.0
 offset_bottom = -30.0
