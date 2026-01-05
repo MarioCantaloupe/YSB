@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("2_21vp8")
-text = "Pon ingredientes en la batidora y actívala para [shake rate=20.0 level=5 connected=0]batirlos[/shake]."
+text = "Pon ingredientes en la batidora y actívala para [tornado radius=3.0 freq=2 connected=0][shake rate=15.0 level=9 connected=0]batirlos[/shake][/tornado]."
 image = ExtResource("1_riced")
 metadata/_custom_type_script = "uid://baa3jk7x6sfse"

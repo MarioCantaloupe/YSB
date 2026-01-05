@@ -10,9 +10,10 @@ var orders_given : int = 0
 
 var occupied_slots: Array[bool] = []
 
+
 func _ready():
 	GameSystem.start_game()
-	
+	tip_box.tip_box_clicked.connect(tip_shown)
 	#slots
 	occupied_slots.resize(max_notes_on_string)
 	occupied_slots.fill(false)
@@ -20,9 +21,10 @@ func _ready():
 	if not GameSystem.orders_tip_shown:
 		await get_tree().create_timer(3).timeout
 		tip_box.show_tip()
-		GameSystem.orders_tip_shown = true
 	
 	
+func tip_shown():
+	GameSystem.orders_tip_shown = true
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_key"):

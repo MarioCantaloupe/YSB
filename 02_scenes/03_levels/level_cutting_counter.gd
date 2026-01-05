@@ -4,7 +4,11 @@ extends LevelScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	tip_box.tip_box_clicked.connect(tip_shown)
+	
 	if not GameSystem.cutting_tip_shown:
 		await get_tree().create_timer(3).timeout
 		tip_box.show_tip()
-		GameSystem.cutting_tip_shown = true
+
+func tip_shown():
+	GameSystem.cutting_tip_shown = true

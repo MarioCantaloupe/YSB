@@ -1,6 +1,8 @@
 extends Control
 class_name GameTipPanel
 
+signal tip_box_clicked
+
 @export var slide_time : float = 0.7
 @export var tip_data : GameTip
 @onready var game_tip_icon: TextureRect = %GameTipIcon
@@ -37,6 +39,7 @@ func _gui_input(event: InputEvent) -> void:
 		tween_out.tween_property(game_tip_panel,
 		"position:x", panel_length, slide_time
 		).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+		emit_signal("tip_box_clicked")
 		await tween_out.finished
 		queue_free()
 		
