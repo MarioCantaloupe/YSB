@@ -2,8 +2,6 @@ extends Node
 class_name RandomItemStateGenerator
 
 # Folder containing all ItemData .tres files
-# Godot docs: DirAccess
-# https://docs.godotengine.org/en/stable/classes/class_diraccess.html
 @export_dir var item_data_folder: String = "res://02_scenes/02_objects/00_item_data/"
 
 # Weight configuration resource
