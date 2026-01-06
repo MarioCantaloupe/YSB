@@ -101,8 +101,8 @@ grow_vertical = 2
 [node name="memory_notes_bar" parent="." instance=ExtResource("15_pxsgn")]
 anchors_preset = 0
 anchor_right = 0.0
-offset_left = 210.0
-offset_right = 3606.0
+offset_left = 265.0
+offset_right = 3265.0
 grow_horizontal = 1
 scale = Vector2(0.25, 0.25)
 size_flags_horizontal = 3

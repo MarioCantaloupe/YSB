@@ -3,7 +3,7 @@ extends Node2D
 @onready var fire_sprite: Sprite2D = $fire_sprite
 
 
-func _on_station_station_selected(state : bool, item : Item) -> void:
+func _on_station_station_selected(state : bool, _item : Item) -> void:
 	if state:
 		fire_sprite.show()
 		print_debug("stove ON")
