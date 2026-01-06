@@ -75,9 +75,6 @@ func _go_to_loading_screen() -> void:
 	get_tree().change_scene_to_file(loading_scene_path)
 
 
-# TODO: change globalscript to sceneloader singleton
-#func change_scene(scene):
-	#get_tree().change_scene_to_file(scene)
 
 func play_item_exit_animation() -> void:
 	var items := get_tree().get_nodes_in_group("Item")
