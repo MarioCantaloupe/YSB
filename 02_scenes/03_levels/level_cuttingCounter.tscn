@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b1uufv8ixv0b5"]
+[gd_scene load_steps=20 format=3 uid="uid://b1uufv8ixv0b5"]
 
 [ext_resource type="Script" uid="uid://dhj03vcapxkd1" path="res://02_scenes/03_levels/level_cutting_counter.gd" id="1_l575l"]
 [ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="2_pkr72"]
@@ -13,6 +13,7 @@
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="10_pxsgn"]
 [ext_resource type="StyleBox" uid="uid://bf2vrb0ob3w3m" path="res://03_themes/ArrowButton_StyleBoxTexture.tres" id="11_fpdgg"]
 [ext_resource type="PackedScene" uid="uid://bmnxwektka7wt" path="res://02_scenes/04_screens/game_tip_box.tscn" id="13_l575l"]
+[ext_resource type="PackedScene" uid="uid://dyr0jkcrbvgke" path="res://02_scenes/04_screens/memory_note_bar.tscn" id="15_pxsgn"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="16_fpdgg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tjvqv"]
@@ -97,6 +98,15 @@ offset_right = 1279.6957
 offset_bottom = 720.0
 grow_vertical = 2
 
+[node name="memory_notes_bar" parent="." instance=ExtResource("15_pxsgn")]
+anchors_preset = 0
+anchor_right = 0.0
+offset_left = 210.0
+offset_right = 3606.0
+grow_horizontal = 1
+scale = Vector2(0.25, 0.25)
+size_flags_horizontal = 3
+
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="pause_canvasLayer" instance=ExtResource("16_fpdgg")]
@@ -146,6 +156,8 @@ transition = 3
 use_loading_screen = false
 
 [node name="TipBox" parent="." instance=ExtResource("13_l575l")]
+offset_left = 1298.0
+offset_right = 1298.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(640.6957, 360)

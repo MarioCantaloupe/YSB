@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://305xsumn4isp"]
+[gd_scene load_steps=16 format=3 uid="uid://305xsumn4isp"]
 
 [ext_resource type="Script" uid="uid://ye3ledg6bvos" path="res://02_scenes/03_levels/level_blender_counter.gd" id="1_mcc7k"]
 [ext_resource type="PackedScene" uid="uid://b81rxm7d8fp6m" path="res://02_scenes/02_objects/stations/blender.tscn" id="1_wbwrb"]
 [ext_resource type="Texture2D" uid="uid://oprhxtbm0png" path="res://01_assets/01_sprites/03_environments/encimera_fondo.PNG" id="2_25ncl"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="2_co7y4"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="4_5fig4"]
+[ext_resource type="PackedScene" uid="uid://dyr0jkcrbvgke" path="res://02_scenes/04_screens/memory_note_bar.tscn" id="5_asryy"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="6_25ncl"]
+[ext_resource type="StyleBox" uid="uid://bf2vrb0ob3w3m" path="res://03_themes/ArrowButton_StyleBoxTexture.tres" id="6_irbnl"]
 [ext_resource type="PackedScene" uid="uid://bmnxwektka7wt" path="res://02_scenes/04_screens/game_tip_box.tscn" id="7_mcc7k"]
 [ext_resource type="Resource" uid="uid://cp6ys7yj1nbxq" path="res://02_scenes/04_screens/game_tips/GameTip_Blending.tres" id="8_ffnp2"]
 [ext_resource type="PackedScene" uid="uid://ksuuxrwvi3hv" path="res://02_scenes/02_objects/stations/stacking_plate.tscn" id="9_ffnp2"]
@@ -51,6 +53,37 @@ offset_right = 1279.6957
 offset_bottom = 720.0
 grow_vertical = 2
 
+[node name="memory_notes_bar" parent="." instance=ExtResource("5_asryy")]
+anchors_preset = 0
+anchor_right = 0.0
+offset_left = 265.0
+offset_right = 3265.0
+grow_horizontal = 1
+scale = Vector2(0.25, 0.25)
+size_flags_horizontal = 3
+
+[node name="SceneButtons" type="Node2D" parent="."]
+
+[node name="spinny" type="Node2D" parent="SceneButtons"]
+position = Vector2(103, 46)
+rotation = 3.1415925
+
+[node name="button_prevScene" type="Button" parent="SceneButtons/spinny"]
+offset_left = -81.0
+offset_top = -29.0
+offset_right = 93.0
+offset_bottom = 35.0
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = ExtResource("6_irbnl")
+theme_override_styles/pressed = ExtResource("6_irbnl")
+theme_override_styles/hover = ExtResource("6_irbnl")
+theme_override_styles/disabled = ExtResource("6_irbnl")
+theme_override_styles/focus = ExtResource("6_irbnl")
+script = ExtResource("6_25ncl")
+target_scene_path = "res://02_scenes/03_levels/level_cookingCounter.tscn"
+transition = 3
+use_loading_screen = false
+
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="pause_canvasLayer" instance=ExtResource("4_5fig4")]
@@ -60,19 +93,9 @@ offset_right = 4.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="button_prevScene" type="Button" parent="."]
-offset_left = 30.695679
-offset_top = 32.0
-offset_right = 204.69568
-offset_bottom = 96.0
-theme_override_font_sizes/font_size = 41
-script = ExtResource("6_25ncl")
-target_scene_path = "res://02_scenes/03_levels/level_cookingCounter.tscn"
-transition = 3
-use_loading_screen = false
-metadata/_edit_use_anchors_ = true
-
 [node name="TipBox" parent="." instance=ExtResource("7_mcc7k")]
+offset_left = 1298.0
+offset_right = 1298.0
 tip_data = ExtResource("8_ffnp2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -107,4 +130,4 @@ position = Vector2(830, 348)
 position = Vector2(1064, 225)
 scale = Vector2(0.23892392, 0.23892392)
 
-[connection signal="pressed" from="button_prevScene" to="button_prevScene" method="_on_pressed"]
+[connection signal="pressed" from="SceneButtons/spinny/button_prevScene" to="SceneButtons/spinny/button_prevScene" method="_on_pressed"]

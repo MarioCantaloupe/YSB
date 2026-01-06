@@ -22,7 +22,6 @@ point_count = 6
 script = ExtResource("1_bovh0")
 note_scene = ExtResource("2_w24k5")
 note_scale = Vector2(0.35, 0.35)
-max_notes_on_string = 6
 can_pause = true
 
 [node name="Background" type="TextureRect" parent="."]
@@ -52,14 +51,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_top = -87.0
 offset_right = 1281.4441
-offset_bottom = 720.0
+offset_bottom = 633.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_e2j81")
 expand_mode = 2
 
 [node name="string_curve" type="Path2D" parent="."]
+position = Vector2(0, -87)
 curve = SubResource("Curve2D_w24k5")
 
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
@@ -72,6 +73,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="TipBox" parent="." instance=ExtResource("7_jy05j")]
+offset_left = 1299.0
+offset_right = 1299.0
 tip_data = ExtResource("8_julew")
 
 [node name="SceneButtons" type="Node2D" parent="."]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvwo0ofsdhvto"]
+
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_3rxic"]
+[ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="2_by242"]
+[ext_resource type="Script" uid="uid://dorl1ac5yqonb" path="res://02_scenes/04_screens/button_quit.gd" id="3_5da81"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3rxic")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -277.0
+offset_top = -226.0
+offset_right = 277.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BigTItle" type="RichTextLabel" parent="VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.36152047, 0.017769981, 0.2485125, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/normal_font_size = 69
+bbcode_enabled = true
+text = "[center][tornado connected=0 radius=5 freq=3]GAME OVER[/tornado][/center]"
+fit_content = true
+
+[node name="Subtitle" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Sin los Bocatas de [color=orange]Yaya™[/color], la estación espacial cayó en [shake]caos...[/shake][/center]"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MC_MainMenu" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+
+[node name="Button_MainMenu" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/MC_MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Reintentar"
+script = ExtResource("2_by242")
+target_scene_path = "res://02_scenes/04_screens/screen_mainMenu.tscn"
+
+[node name="MC_Quit" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+
+[node name="Button_Quit" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/MC_Quit"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Salir"
+script = ExtResource("3_5da81")
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/MC_MainMenu/Button_MainMenu" to="VBoxContainer/MarginContainer/HBoxContainer/MC_MainMenu/Button_MainMenu" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/MC_Quit/Button_Quit" to="VBoxContainer/MarginContainer/HBoxContainer/MC_Quit/Button_Quit" method="_on_pressed"]
