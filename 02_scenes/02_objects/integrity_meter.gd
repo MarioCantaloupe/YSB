@@ -15,4 +15,4 @@ func _process(_delta: float) -> void:
 	
 	
 	mouse_to_meter = global_position.distance_to(get_global_mouse_position())
-	sound.volume_db = remap(mouse_to_meter, 1400, 0, -48, 2)
+	sound.volume_db = remap(mouse_to_meter, 1400, 0, -48, -6)

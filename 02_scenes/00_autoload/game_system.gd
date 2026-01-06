@@ -1,8 +1,12 @@
 extends Node
 
+signal new_note(order : OrderData)
+signal order_accepted(order : OrderData)
+signal order_completed(order_id : int)
+
 var total_spaceship_integrity : float = 900
-var spaceship_integrity : float = 900 #seconds
-var integrity_loss_rate : float = 1 #integrity/seconds
+var spaceship_integrity : float = 900
+var integrity_loss_rate : float = 1
 var game_started : bool = false
 var drinks_unlocked : bool = false
 
@@ -14,44 +18,74 @@ var cooking_tip_shown : bool = false
 var blending_tip_shown : bool = false
 var stacking_tip_shown : bool = false
 
+# ORDERS
+var pending_orders : Array[OrderData] = []
+var active_orders : Array[OrderData] = []
+var next_order_id : int = 1
+var max_active_orders : int = 10
 
-# Array to hold all currently active orders
-var active_orders: Array[OrderData] = []
+# ORDER SCREEN
+var occupied_slots : Array[int] = [] # order_id, -1 = empty
+var max_notes_on_string : int = 5 
 
 func _ready() -> void:
 	spaceship_integrity = total_spaceship_integrity
-
-# Called when a new note is clicked
-func register_order(id: int, bocata_data: Array[ItemState], drink_data : Array[ItemState]):
-	var new_order = OrderData.new()
-	new_order.order_id = id
-	new_order.sandwich_ingredients = bocata_data
-	new_order.creation_time = Time.get_ticks_msec()
 	
-	new_order.drink_ingredients = drink_data
-	
-	print("GameSystem: Registered Order #", id, " with ", bocata_data.size(), " ingredients.")
-	
-	active_orders.append(new_order)
+	if occupied_slots.is_empty():
+		occupied_slots.resize(5)
+		occupied_slots.fill(-1)
 
 
-func complete_order(order_id: int):
+func create_order() -> OrderData:
+	var order := OrderData.new()
+	order.order_id = next_order_id
+	next_order_id += 1
+
+	order.creation_time = Time.get_ticks_msec()
+
+	var generator := OrderGenerator.new()
+	order.bocata_ingredients = generator.build_bocata()
+	order.drink_ingredients = generator.build_drink()
+
+	pending_orders.append(order)
+	emit_signal("new_note", order)
+
+	return order
+
+
+func accept_order(id : int) -> void:
+	var order := get_pending_order(id)
+	if order == null:
+		return
+
+	pending_orders.erase(order)
+	active_orders.append(order)
+
+	order.taken_time = Time.get_ticks_msec()
+	emit_signal("order_accepted", order)
+	print("GameSystem: Order #", id, " accepted")
+
+
+func complete_order(order_id : int) -> void:
 	for order in active_orders:
 		if order.order_id == order_id:
-			print("GameSystem: Order #", order_id, " completed!")
 			active_orders.erase(order)
+			emit_signal("order_completed", order_id)
+			print("GameSystem: Order #", order_id, " completed")
 			return
 
 
-func get_order_by_id(order_id: int) -> OrderData:
-	for order in active_orders:
-		if order.order_id == order_id:
+func get_pending_order(id : int) -> OrderData:
+	for order in pending_orders:
+		if order.order_id == id:
 			return order
 	return null
 
-func start_game():
+
+func start_game() -> void:
 	game_started = true
 
-func _process(delta: float) -> void:
+
+func _process(delta : float) -> void:
 	if game_started:
 		spaceship_integrity -= integrity_loss_rate * delta
