@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bwov6edkubuxi"]
+[gd_scene load_steps=35 format=3 uid="uid://bwov6edkubuxi"]
 
 [ext_resource type="Script" uid="uid://choy4l2dbk5xs" path="res://02_scenes/02_objects/item/item.gd" id="1_xwsi1"]
 [ext_resource type="Texture2D" uid="uid://blwgex1cdinyv" path="res://01_assets/01_sprites/04_vfx/shadow.png" id="2_028ab"]
@@ -18,6 +18,7 @@
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="12_4xaah"]
 [ext_resource type="Texture2D" uid="uid://bxdffroj5togu" path="res://01_assets/01_sprites/05_ui/reloj_cronometro.PNG" id="12_ntrvf"]
 [ext_resource type="Script" uid="uid://b4lkuhhayt4sa" path="res://02_scenes/02_objects/item/visual_components/cooking_ui.gd" id="12_osky5"]
+[ext_resource type="PackedScene" uid="uid://m50vwetoeqq1" path="res://02_scenes/02_objects/item/food_particles.tscn" id="16_fc64x"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_70bak"]
 friction = 0.69
@@ -223,6 +224,7 @@ debug_color = Color(4.692748e-06, 0.6478955, 0.1750665, 0.41960785)
 z_index = 5
 position = Vector2(0, -21)
 slices_per_level = 3
+food_particles_scene = ExtResource("16_fc64x")
 
 [node name="click_area" type="Area2D" parent="."]
 position = Vector2(0, -21)
@@ -245,7 +247,6 @@ texture = ExtResource("12_ntrvf")
 
 [connection signal="item_grabbed" from="." to="shadow" method="_on_item_item_grabbed"]
 [connection signal="chop_up" from="chopping_component" to="." method="_on_chopping_component_chop_up"]
-[connection signal="knife_slip" from="chopping_component" to="." method="_on_chopping_component_knife_slip"]
 [connection signal="input_event" from="click_area" to="." method="_on_click_area_input_event"]
 [connection signal="mouse_entered" from="click_area" to="." method="_on_click_area_mouse_entered"]
 [connection signal="mouse_exited" from="click_area" to="." method="_on_click_area_mouse_exited"]
