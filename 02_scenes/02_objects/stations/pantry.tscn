@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://bpk6ka7ckqbny"]
+[gd_scene load_steps=105 format=3 uid="uid://bpk6ka7ckqbny"]
 
 [ext_resource type="Script" uid="uid://d1dttk4pxhjhm" path="res://02_scenes/02_objects/stations/pantry.gd" id="1_immh1"]
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_j875i"]
@@ -85,7 +85,8 @@
 [ext_resource type="Texture2D" uid="uid://k16clpg308jc" path="res://01_assets/01_sprites/02_objects/00_foods/vodka_full.PNG" id="83_kgf0i"]
 [ext_resource type="Texture2D" uid="uid://bdndc0d0shdqh" path="res://01_assets/01_sprites/02_objects/00_foods/vodka_empty.PNG" id="84_rgkmc"]
 [ext_resource type="Texture2D" uid="uid://d0nrpqoiabe11" path="res://01_assets/01_sprites/02_objects/00_foods/agua.png" id="85_tdnom"]
-[ext_resource type="Resource" uid="uid://cs5136jvpayga" path="res://02_scenes/02_objects/00_item_data/ingredient_milk.tres" id="86_hsqr4"]
+[ext_resource type="Texture2D" uid="uid://i1jk84srlyno" path="res://01_assets/01_sprites/02_objects/00_foods/leche.png" id="86_ric1f"]
+[ext_resource type="Texture2D" uid="uid://bchwphs6576ap" path="res://01_assets/01_sprites/02_objects/00_foods/leche_acabada.png" id="87_vbxwb"]
 
 [sub_resource type="Resource" id="Resource_1uwdl"]
 resource_local_to_scene = true
@@ -321,6 +322,20 @@ ingredient_height_ch01 = 330
 ingredient_height_ch02 = 330
 sprite_grid = Array[Array]([[ExtResource("85_tdnom")]])
 
+[sub_resource type="Resource" id="Resource_tg1ol"]
+resource_local_to_scene = true
+script = ExtResource("5_sk60u")
+id = "milk"
+name = "Leche"
+average_color = Color(0.99, 0.99, 0.99, 1)
+type = 3
+cooking_time = 5.0
+ingredient_height_ch00 = 170
+ingredient_height_ch01 = 170
+ingredient_height_ch02 = 170
+cleanable = true
+sprite_grid = Array[Array]([[ExtResource("86_ric1f")], [ExtResource("87_vbxwb")]])
+
 [node name="pantry" type="Control"]
 layout_mode = 3
 anchor_top = 0.66
@@ -341,6 +356,7 @@ anchor_bottom = 1.0
 offset_top = -3.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_j875i")
 tab_alignment = 1
 current_tab = 1
 clip_tabs = false
@@ -504,7 +520,7 @@ item_resource = SubResource("Resource_80p5t")
 [node name="Milk" parent="TabContainer/Líquidos/03_fluids" instance=ExtResource("4_ugox1")]
 layout_mode = 2
 size_flags_vertical = 1
-item_resource = ExtResource("86_hsqr4")
+item_resource = SubResource("Resource_tg1ol")
 
 [connection signal="tab_button_pressed" from="TabContainer/Panes" to="." method="_on_panes_tab_button_pressed"]
 [connection signal="tab_button_pressed" from="TabContainer/Carnes" to="." method="_on_carnes_tab_button_pressed"]

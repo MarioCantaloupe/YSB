@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=26 format=3 uid="uid://js8iup5k42b2"]
+[gd_resource type="Theme" load_steps=30 format=3 uid="uid://js8iup5k42b2"]
 
 [ext_resource type="FontFile" uid="uid://c4dv7ucucjugc" path="res://01_assets/02_fonts/CherryBombOne-Regular.ttf" id="1_8iynm"]
 [ext_resource type="StyleBox" uid="uid://bnpv1eqjrjca7" path="res://03_themes/Gen_StyleBoxFlat.tres" id="2_tukxv"]
@@ -116,6 +116,9 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jy4br"]
+bg_color = Color(0.5818836, 0.20005468, 0.10124602, 1)
+
 [sub_resource type="DPITexture" id="DPITexture_8iynm"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#fff\" fill-opacity=\".75\" d=\"m1 3 2-2 5 5 5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5z\"/></svg>
 "
@@ -207,12 +210,12 @@ border_width_right = 1
 border_color = Color(0.175, 0.175, 0.175, 1)
 corner_detail = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jy4br"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdobd"]
 content_margin_left = 10.0
 content_margin_top = 4.0
 content_margin_right = 10.0
 content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+bg_color = Color(0.30588236, 0.21960784, 0.16862746, 1)
 border_width_top = 2
 border_color = Color(1, 1, 1, 0.75)
 corner_detail = 1
@@ -227,6 +230,33 @@ border_width_left = 1
 border_width_right = 1
 border_color = Color(0.175, 0.175, 0.175, 1)
 corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2b0i2"]
+bg_color = Color(0.75122917, 0.568933, 0.45715058, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqefe"]
+bg_color = Color(0.30588236, 0.21960784, 0.16862746, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jes1l"]
+bg_color = Color(0.24313726, 0.16470589, 0.11372549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+expand_margin_left = 5.0
+expand_margin_right = 5.0
 
 [resource]
 default_font_size = 34
@@ -254,6 +284,7 @@ PopupMenu/constants/outline_size = 12
 PopupMenu/fonts/font = ExtResource("1_8iynm")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_t6to6")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_ytmny")
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_jy4br")
 ProgressBar/fonts/font = ExtResource("1_8iynm")
 RichTextLabel/fonts/normal_font = ExtResource("1_8iynm")
 TabBar/colors/drop_mark_color = Color(1, 1, 1, 1)
@@ -278,10 +309,13 @@ TabBar/styles/button_pressed = SubResource("StyleBoxFlat_n7bfi")
 TabBar/styles/tab_disabled = SubResource("StyleBoxFlat_tsv2t")
 TabBar/styles/tab_focus = SubResource("StyleBoxFlat_lx8pj")
 TabBar/styles/tab_hovered = SubResource("StyleBoxFlat_ws4lo")
-TabBar/styles/tab_selected = SubResource("StyleBoxFlat_jy4br")
+TabBar/styles/tab_selected = SubResource("StyleBoxFlat_kdobd")
 TabBar/styles/tab_unselected = SubResource("StyleBoxFlat_myw1x")
 TabContainer/font_sizes/font_size = 20
 TabContainer/fonts/font = ExtResource("1_8iynm")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_2b0i2")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_eqefe")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_jes1l")
 TextEdit/fonts/font = ExtResource("1_8iynm")
 Tree/fonts/font = ExtResource("1_8iynm")
 Tree/fonts/title_button_font = ExtResource("1_8iynm")
