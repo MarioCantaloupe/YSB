@@ -357,12 +357,14 @@ offset_top = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_j875i")
+theme_override_constants/side_margin = 8
+theme_override_constants/outline_size = 1
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 clip_tabs = false
+all_tabs_in_front = true
 
 [node name="Panes" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("1_j875i")
@@ -400,6 +402,7 @@ size_flags_vertical = 1
 item_resource = SubResource("Resource_dwx7n")
 
 [node name="Carnes" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("1_j875i")
