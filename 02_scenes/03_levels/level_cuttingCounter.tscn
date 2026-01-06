@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://wt2e1uavyimq" path="res://01_assets/01_sprites/03_environments/fondo.PNG" id="2_tjvqv"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="3_26cpk"]
 [ext_resource type="PackedScene" uid="uid://dx13ntlp0pio6" path="res://02_scenes/02_objects/trash_bin.tscn" id="3_l575l"]
-[ext_resource type="Shader" uid="uid://cx741vcq254d2" path="res://01_assets/04_shaders/alpha_pulsing.tres" id="3_oi6qb"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="4_gfw5h"]
 [ext_resource type="Texture2D" uid="uid://cdvw0om54b2ay" path="res://01_assets/01_sprites/03_environments/luces.png" id="4_oi6qb"]
 [ext_resource type="Texture2D" uid="uid://c0c48ma4mpvm7" path="res://01_assets/01_sprites/03_environments/encimera.PNG" id="4_uu03t"]
+[ext_resource type="Shader" uid="uid://1sahnc5ng4ij" path="res://01_assets/04_shaders/alpha_pulsing.gdshader" id="5_pxsgn"]
 [ext_resource type="PackedScene" uid="uid://dywybglont3jq" path="res://02_scenes/02_objects/knife.tscn" id="10_oi6qb"]
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="10_pxsgn"]
 [ext_resource type="StyleBox" uid="uid://bf2vrb0ob3w3m" path="res://03_themes/ArrowButton_StyleBoxTexture.tres" id="11_fpdgg"]
@@ -16,8 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://dyr0jkcrbvgke" path="res://02_scenes/04_screens/memory_note_bar.tscn" id="15_pxsgn"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="16_fpdgg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tjvqv"]
-shader = ExtResource("3_oi6qb")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fpdgg"]
+shader = ExtResource("5_pxsgn")
+shader_parameter/speed = 3.030000143925
+shader_parameter/amplitude = 0.8230000390925
+shader_parameter/offset = 0.0
+shader_parameter/color = Color(1, 1, 1, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uu03t"]
 
@@ -64,7 +68,7 @@ texture = ExtResource("4_uu03t")
 expand_mode = 2
 
 [node name="Lights" type="TextureRect" parent="Environment"]
-material = SubResource("ShaderMaterial_tjvqv")
+material = SubResource("ShaderMaterial_fpdgg")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

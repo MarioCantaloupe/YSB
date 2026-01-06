@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://305xsumn4isp"]
+[gd_scene load_steps=19 format=3 uid="uid://305xsumn4isp"]
 
 [ext_resource type="Script" uid="uid://ye3ledg6bvos" path="res://02_scenes/03_levels/level_blender_counter.gd" id="1_mcc7k"]
 [ext_resource type="PackedScene" uid="uid://b81rxm7d8fp6m" path="res://02_scenes/02_objects/stations/blender.tscn" id="1_wbwrb"]
 [ext_resource type="Texture2D" uid="uid://oprhxtbm0png" path="res://01_assets/01_sprites/03_environments/encimera_fondo.PNG" id="2_25ncl"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="2_co7y4"]
+[ext_resource type="Shader" uid="uid://1sahnc5ng4ij" path="res://01_assets/04_shaders/alpha_pulsing.gdshader" id="3_r5rvx"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="4_5fig4"]
+[ext_resource type="Texture2D" uid="uid://cdvw0om54b2ay" path="res://01_assets/01_sprites/03_environments/luces.png" id="4_6nwc7"]
 [ext_resource type="PackedScene" uid="uid://dyr0jkcrbvgke" path="res://02_scenes/04_screens/memory_note_bar.tscn" id="5_asryy"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="6_25ncl"]
 [ext_resource type="StyleBox" uid="uid://bf2vrb0ob3w3m" path="res://03_themes/ArrowButton_StyleBoxTexture.tres" id="6_irbnl"]
@@ -12,6 +14,13 @@
 [ext_resource type="Resource" uid="uid://cp6ys7yj1nbxq" path="res://02_scenes/04_screens/game_tips/GameTip_Blending.tres" id="8_ffnp2"]
 [ext_resource type="PackedScene" uid="uid://ksuuxrwvi3hv" path="res://02_scenes/02_objects/stations/stacking_plate.tscn" id="9_ffnp2"]
 [ext_resource type="PackedScene" uid="uid://ckoxorblkavdh" path="res://02_scenes/02_objects/ringer.tscn" id="10_w0dvf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugonm"]
+shader = ExtResource("3_r5rvx")
+shader_parameter/speed = 3.030000143925
+shader_parameter/amplitude = 0.8230000390925
+shader_parameter/offset = 0.0
+shader_parameter/color = Color(1, 1, 1, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mcc7k"]
 
@@ -24,7 +33,9 @@ size = Vector2(120.5, 1227)
 [node name="BlenderCounter" type="Node2D" groups=["mouse_scene"]]
 script = ExtResource("1_mcc7k")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Background" type="TextureRect" parent="Environment"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -37,6 +48,20 @@ grow_vertical = 2
 texture = ExtResource("2_25ncl")
 expand_mode = 2
 
+[node name="Lights" type="TextureRect" parent="Environment"]
+material = SubResource("ShaderMaterial_ugonm")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1281.3914
+offset_bottom = 599.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6nwc7")
+expand_mode = 2
+
 [node name="WorldItems" type="Node2D" parent="."]
 z_index = 3
 y_sort_enabled = true
@@ -44,6 +69,10 @@ y_sort_enabled = true
 [node name="blender" parent="WorldItems" instance=ExtResource("1_wbwrb")]
 position = Vector2(449.00003, 355)
 scale = Vector2(0.49374786, 0.49374786)
+
+[node name="Ringer" parent="WorldItems" instance=ExtResource("10_w0dvf")]
+position = Vector2(1064, 225)
+scale = Vector2(0.23892392, 0.23892392)
 
 [node name="pantry" parent="." instance=ExtResource("2_co7y4")]
 anchor_bottom = 1.915
@@ -125,9 +154,5 @@ shape = SubResource("RectangleShape2D_w0dvf")
 
 [node name="stacking_plate" parent="." instance=ExtResource("9_ffnp2")]
 position = Vector2(830, 348)
-
-[node name="Ringer" parent="." instance=ExtResource("10_w0dvf")]
-position = Vector2(1064, 225)
-scale = Vector2(0.23892392, 0.23892392)
 
 [connection signal="pressed" from="SceneButtons/spinny/button_prevScene" to="SceneButtons/spinny/button_prevScene" method="_on_pressed"]

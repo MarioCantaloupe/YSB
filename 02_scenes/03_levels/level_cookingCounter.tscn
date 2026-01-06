@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c0c48ma4mpvm7" path="res://01_assets/01_sprites/03_environments/encimera.PNG" id="4_v4eug"]
 [ext_resource type="Texture2D" uid="uid://dajowwt01h7be" path="res://01_assets/01_sprites/03_environments/stove.png" id="5_sbtd8"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="5_xprrl"]
-[ext_resource type="Shader" uid="uid://cx741vcq254d2" path="res://01_assets/04_shaders/alpha_pulsing.tres" id="6_lpdvu"]
+[ext_resource type="Shader" uid="uid://1sahnc5ng4ij" path="res://01_assets/04_shaders/alpha_pulsing.gdshader" id="6_t2iny"]
 [ext_resource type="Texture2D" uid="uid://cdvw0om54b2ay" path="res://01_assets/01_sprites/03_environments/luces.png" id="7_t2iny"]
 [ext_resource type="PackedScene" uid="uid://b4f22bbh2xbs4" path="res://02_scenes/02_objects/stations/stove.tscn" id="8_nargq"]
 [ext_resource type="PackedScene" uid="uid://dyr0jkcrbvgke" path="res://02_scenes/04_screens/memory_note_bar.tscn" id="10_t2iny"]
@@ -18,7 +18,11 @@
 [ext_resource type="StyleBox" uid="uid://bf2vrb0ob3w3m" path="res://03_themes/ArrowButton_StyleBoxTexture.tres" id="14_t2iny"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ouxpp"]
-shader = ExtResource("6_lpdvu")
+shader = ExtResource("6_t2iny")
+shader_parameter/speed = 3.030000143925
+shader_parameter/amplitude = 0.8230000390925
+shader_parameter/offset = 0.0
+shader_parameter/color = Color(1, 1, 1, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lpdvu"]
 
