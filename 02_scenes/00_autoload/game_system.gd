@@ -4,8 +4,8 @@ signal new_note(order : OrderData)
 signal order_accepted(order : OrderData)
 signal order_completed(order_id : int)
 
-var total_spaceship_integrity : float = 900
-var spaceship_integrity : float = 900
+const MAX_SPACESHIP_INTEGRITY : float = 10
+var spaceship_integrity : float = 10
 var integrity_loss_rate : float = 1
 var game_started : bool = false
 var drinks_unlocked : bool = false
@@ -29,7 +29,7 @@ var occupied_slots : Array[int] = [] # order_id, -1 = empty
 var max_notes_on_string : int = 5 
 
 func _ready() -> void:
-	spaceship_integrity = total_spaceship_integrity
+	spaceship_integrity = MAX_SPACESHIP_INTEGRITY
 	
 	if occupied_slots.is_empty():
 		occupied_slots.resize(5)
@@ -89,3 +89,17 @@ func start_game() -> void:
 func _process(delta : float) -> void:
 	if game_started:
 		spaceship_integrity -= integrity_loss_rate * delta
+	
+	if spaceship_integrity <= 0:
+		game_over()
+		spaceship_integrity = 9999999
+
+func game_over():
+	#TODO reset all (inventory)
+	spaceship_integrity = MAX_SPACESHIP_INTEGRITY
+	pending_orders.clear()
+	active_orders.clear()
+	for i in occupied_slots:
+		occupied_slots[i] = -1
+	PantryInventory.inventory.clear()
+	SceneLoader.load_scene("res://02_scenes/04_screens/screen_gameOver.tscn", SceneLoader.Transition.NONE, false)

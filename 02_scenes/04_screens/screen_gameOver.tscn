@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvwo0ofsdhvto"]
+[gd_scene load_steps=6 format=3 uid="uid://dvwo0ofsdhvto"]
 
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_3rxic"]
-[ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="2_by242"]
+[ext_resource type="Script" uid="uid://bkid8c8hwkam0" path="res://02_scenes/04_screens/screen_game_over.gd" id="2_etj05"]
 [ext_resource type="Script" uid="uid://dorl1ac5yqonb" path="res://02_scenes/04_screens/button_quit.gd" id="3_5da81"]
+[ext_resource type="AudioStream" uid="uid://ckoigi141y2j0" path="res://01_assets/03_sound/outage.ogg" id="3_bg576"]
+[ext_resource type="Script" uid="uid://b1u86gppc23ti" path="res://02_scenes/04_screens/button_restart.gd" id="4_bg576"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -12,6 +14,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_3rxic")
+script = ExtResource("2_etj05")
+outage_audio = ExtResource("3_bg576")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -71,7 +75,7 @@ theme_override_constants/margin_right = 25
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Reintentar"
-script = ExtResource("2_by242")
+script = ExtResource("4_bg576")
 target_scene_path = "res://02_scenes/04_screens/screen_mainMenu.tscn"
 
 [node name="MC_Quit" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
@@ -85,6 +89,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Salir"
 script = ExtResource("3_5da81")
+
+[node name="BlackFadeIn" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/MC_MainMenu/Button_MainMenu" to="VBoxContainer/MarginContainer/HBoxContainer/MC_MainMenu/Button_MainMenu" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/MC_Quit/Button_Quit" to="VBoxContainer/MarginContainer/HBoxContainer/MC_Quit/Button_Quit" method="_on_pressed"]
