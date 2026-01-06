@@ -51,10 +51,11 @@ func get_count(id: String) -> int:
 	return inventory[id].size()
 
 func initialize_starting_inventory() -> void:
-	for item_data in starting_items:
-		var state := ItemState.new()
-		state.data = item_data
-		add_item_state(state)
+	for i in 2: #give 2 of every item
+		for item_data in starting_items:
+			var state := ItemState.new()
+			state.data = item_data
+			add_item_state(state)
 		
 func load_starting_items() -> void:
 	starting_items.clear()
