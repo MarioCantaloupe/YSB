@@ -1,7 +1,9 @@
 extends Control
+class_name MemoryNotesBar
 
 @export var max_active_notes := 5
 @export var memory_note_scene: PackedScene
+@export var selectable_notes : bool = false
 
 @onready var hbox := $HBoxContainer
 
@@ -21,6 +23,9 @@ func add_order(order_data: OrderData):
 
 	var note: MemoryNote = memory_note_scene.instantiate()
 	hbox.add_child(note)
+	if selectable_notes:
+		note.is_selectable = true
+		note.order_selected.connect(_on_order_selected)
 	note.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	note.setup(order_data)
 
@@ -29,3 +34,9 @@ func remove_order(order_id: int):
 		if child.order_data.order_id == order_id:
 			child.queue_free()
 			return
+			
+func _on_order_selected(order_id : int):
+	if not selectable_notes:
+		return
+	
+	

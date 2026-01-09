@@ -1,6 +1,8 @@
 extends Control
 class_name MemoryNote
 
+signal order_selected(order_id : int)
+
 @onready var ticket_box: MarginContainer = $ticket_box
 @onready var rich_label: RichTextLabel = $ticket_box/VBoxContainer/MarginContainer_text/ticket_richLabel
 @onready var order_label: Label = $ticket_box/VBoxContainer/MarginContainer_orderNum/order_number
@@ -10,6 +12,7 @@ var order_data: OrderData
 var hidden_y : float = -50
 var shown_y : float = 0
 var visible_strip_height: float = 20.0  # the part visible when collapsed
+@export var is_selectable : bool = false
 
 func setup(data: OrderData):
 	order_data = data
@@ -35,14 +38,30 @@ func _ready():
 	position.y = hidden_y
 
 func _on_box_mouse_entered():
-	if tween:
-		tween.kill()
-	tween = create_tween()
-	tween.tween_property(self, "position:y", shown_y, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	match is_selectable:
+		false:
+			if tween:
+				tween.kill()
+			tween = create_tween()
+			tween.tween_property(self, "position:y", shown_y, 0.3
+			).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		true:
+			pass
 
 
 func _on_box_mouse_exited():
-	if tween:
-		tween.kill()
-	tween = create_tween()
-	tween.tween_property(self, "position:y", hidden_y, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	match is_selectable:
+		false:
+			if tween:
+				tween.kill()
+			tween = create_tween()
+			tween.tween_property(self, "position:y", hidden_y, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		true:
+			pass
+
+func _gui_input(event: InputEvent) -> void:
+	if not is_selectable:
+		return
+	
+	if event.is_action_pressed("Lclick"):
+		emit_signal("order_selected", order_data.order_id)
