@@ -4,11 +4,23 @@ signal new_note(order : OrderData)
 signal order_accepted(order : OrderData)
 signal order_completed(order_id : int)
 
-const MAX_SPACESHIP_INTEGRITY : float = 10
-var spaceship_integrity : float = 10
-var integrity_loss_rate : float = 1
+const MAX_SPACESHIP_INTEGRITY : float = 720
+var spaceship_integrity : float = 720
+const INTEGRITY_LOSS_RATE : float = 1
 var game_started : bool = false
 var drinks_unlocked : bool = false
+
+# GAME STATE
+enum GameStates{
+	Orders,
+	Cutting,
+	Cooking,
+	Finalizing,
+	Runner,
+}
+
+var GameState : GameStates
+
 
 # GAME TIPS
 var game_tip_scene : String = "res://02_scenes/04_screens/game_tip_box.tscn"
@@ -17,7 +29,10 @@ var cutting_tip_shown : bool = false
 var cooking_tip_shown : bool = false
 var blending_tip_shown : bool = false
 var stacking_tip_shown : bool = false
+var ringer_tip_shown : bool = false
 
+
+# FOR CONTINUITY
 # ORDERS
 var pending_orders : Array[OrderData] = []
 var active_orders : Array[OrderData] = []
@@ -26,7 +41,13 @@ var max_active_orders : int = 10
 
 # ORDER SCREEN
 var occupied_slots : Array[int] = [] # order_id, -1 = empty
-var max_notes_on_string : int = 5 
+var max_notes_on_string : int = 5
+
+# BLENDER SCREEN
+var ingredient_states_in_blender : Array [ItemState] = []
+var blender_fluid_color : Color = Color(1.0, 1.0, 1.0, 0.0)
+
+var runner_button_shown : bool
 
 func _ready() -> void:
 	spaceship_integrity = MAX_SPACESHIP_INTEGRITY
@@ -87,15 +108,29 @@ func start_game() -> void:
 
 
 func _process(delta : float) -> void:
-	if game_started:
-		spaceship_integrity -= integrity_loss_rate * delta
+	if get_tree().paused == true:
+		return
+	
+	if not game_started:
+		return
+	
+	match GameState:
+		GameStates.Orders:
+			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta
+		GameStates.Cutting:
+			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta
+		GameStates.Cooking:
+			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta
+		GameStates.Finalizing:
+			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta
+		GameStates.Runner:
+			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta * 0.4
 	
 	if spaceship_integrity <= 0:
 		game_over()
 		spaceship_integrity = 9999999
 
 func game_over():
-	#TODO reset all (inventory)
 	spaceship_integrity = MAX_SPACESHIP_INTEGRITY
 	pending_orders.clear()
 	active_orders.clear()
