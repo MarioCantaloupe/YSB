@@ -237,6 +237,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="ui_clock" type="Sprite2D" parent="."]
+z_index = 6
 position = Vector2(0, -121)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("11_w438a")
