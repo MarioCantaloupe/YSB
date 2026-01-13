@@ -4,6 +4,7 @@ extends LevelScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameSystem.GameState = GameSystem.GameStates.Cooking
 	tip_box.tip_box_clicked.connect(tip_shown)
 	
 	if not GameSystem.cooking_tip_shown:

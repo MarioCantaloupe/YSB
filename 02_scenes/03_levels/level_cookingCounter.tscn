@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c2gd5cnmmonf"]
+[gd_scene load_steps=22 format=3 uid="uid://c2gd5cnmmonf"]
 
 [ext_resource type="Script" uid="uid://cx8je0lkkt62n" path="res://02_scenes/03_levels/level_cooking_counter.gd" id="1_jkjey"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="2_i7egh"]
@@ -16,6 +16,7 @@
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="13_lpdvu"]
 [ext_resource type="Resource" uid="uid://da0a4jtcg8nwc" path="res://02_scenes/04_screens/game_tips/GameTip_Cooking.tres" id="13_v4eug"]
 [ext_resource type="StyleBox" uid="uid://bf2vrb0ob3w3m" path="res://03_themes/ArrowButton_StyleBoxTexture.tres" id="14_t2iny"]
+[ext_resource type="PackedScene" uid="uid://dpqbk8bij07ld" path="res://02_scenes/04_screens/button_runner.tscn" id="17_ouxpp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ouxpp"]
 shader = ExtResource("6_t2iny")
@@ -111,6 +112,7 @@ position = Vector2(733, 407)
 position = Vector2(985, 408)
 
 [node name="pantry" parent="." instance=ExtResource("2_i7egh")]
+unique_name_in_owner = true
 anchor_bottom = 1.915
 offset_left = -0.3043213
 offset_top = 490.0
@@ -189,7 +191,7 @@ position = Vector2(640.6957, 360)
 collision_mask = 2
 
 [node name="wall_bottom" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(19.371948, 150)
+position = Vector2(19.371948, 126)
 rotation = 0.00061584933
 shape = SubResource("WorldBoundaryShape2D_lpdvu")
 
@@ -208,6 +210,12 @@ shape = SubResource("RectangleShape2D_t2iny")
 position = Vector2(43.17627, -943)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_ouxpp")
+
+[node name="ButtonRunner" parent="." instance=ExtResource("17_ouxpp")]
+offset_left = 1294.0
+offset_top = 103.0
+offset_right = 1589.0
+offset_bottom = 198.0
 
 [connection signal="pressed" from="SceneButtons/button_nextScene" to="SceneButtons/button_nextScene" method="_on_pressed"]
 [connection signal="pressed" from="SceneButtons/spinny/button_prevScene" to="SceneButtons/spinny/button_prevScene" method="_on_pressed"]

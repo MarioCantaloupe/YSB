@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b1uufv8ixv0b5"]
+[gd_scene load_steps=21 format=3 uid="uid://b1uufv8ixv0b5"]
 
 [ext_resource type="Script" uid="uid://dhj03vcapxkd1" path="res://02_scenes/03_levels/level_cutting_counter.gd" id="1_l575l"]
 [ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="2_pkr72"]
@@ -14,6 +14,7 @@
 [ext_resource type="StyleBox" uid="uid://bf2vrb0ob3w3m" path="res://03_themes/ArrowButton_StyleBoxTexture.tres" id="11_fpdgg"]
 [ext_resource type="PackedScene" uid="uid://bmnxwektka7wt" path="res://02_scenes/04_screens/game_tip_box.tscn" id="13_l575l"]
 [ext_resource type="PackedScene" uid="uid://dyr0jkcrbvgke" path="res://02_scenes/04_screens/memory_note_bar.tscn" id="15_pxsgn"]
+[ext_resource type="PackedScene" uid="uid://dpqbk8bij07ld" path="res://02_scenes/04_screens/button_runner.tscn" id="16_2qpom"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="16_fpdgg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fpdgg"]
@@ -95,6 +96,7 @@ rotation = -0.2200036
 scale = Vector2(0.351, 0.351)
 
 [node name="pantry" parent="." instance=ExtResource("3_26cpk")]
+unique_name_in_owner = true
 anchor_bottom = 1.915
 offset_left = -0.3043213
 offset_top = 490.0
@@ -119,6 +121,12 @@ offset_left = 4.0
 offset_right = 4.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="ButtonRunner" parent="." instance=ExtResource("16_2qpom")]
+offset_left = 1294.0
+offset_top = 103.0
+offset_right = 1589.0
+offset_bottom = 198.0
 
 [node name="SceneButtons" type="Node2D" parent="."]
 
@@ -168,7 +176,7 @@ position = Vector2(640.6957, 360)
 collision_mask = 2
 
 [node name="wall_bottom" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(19.371948, 150)
+position = Vector2(19.371948, 126)
 rotation = 0.00061584933
 shape = SubResource("WorldBoundaryShape2D_uu03t")
 

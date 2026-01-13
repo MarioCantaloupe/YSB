@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cb04ji4mpf2vu"]
+[gd_scene load_steps=33 format=3 uid="uid://cb04ji4mpf2vu"]
 
 [ext_resource type="Script" uid="uid://bqognyraoiwx0" path="res://02_scenes/03_levels/runner/infinite_runner.gd" id="1_0p27r"]
 [ext_resource type="PackedScene" uid="uid://co1ew4wo03x4j" path="res://02_scenes/01_characters/yaya_runner.tscn" id="1_w88gs"]
@@ -12,8 +12,13 @@
 [ext_resource type="Shader" uid="uid://dfgjmecwmsf8a" path="res://02_scenes/03_levels/runner/infinite_runner_floor_tile.gdshader" id="7_mnamq"]
 [ext_resource type="Texture2D" uid="uid://baeif3q7vrxks" path="res://01_assets/01_sprites/03_environments/espacio_planeta2.PNG" id="9_mnamq"]
 [ext_resource type="PackedScene" uid="uid://c1wptoyd5dxoi" path="res://02_scenes/02_objects/number_visualFeedback.tscn" id="11_4y28a"]
+[ext_resource type="PackedScene" uid="uid://bbhi6ysyx7ejp" path="res://02_scenes/02_objects/runner/obstacle.tscn" id="11_wgdh0"]
+[ext_resource type="PackedScene" uid="uid://8qmxj4brmbi6" path="res://02_scenes/02_objects/runner/obstacle_variants/obstacle_rock.tscn" id="12_4y28a"]
 [ext_resource type="Texture2D" uid="uid://dml57yyf6gus8" path="res://01_assets/01_sprites/05_ui/barra_aire_vacia.PNG" id="13_qdfx5"]
+[ext_resource type="PackedScene" uid="uid://dw1jr8geg1a2k" path="res://02_scenes/02_objects/runner/obstacle_variants/obstacle_bus.tscn" id="13_wc3ee"]
+[ext_resource type="PackedScene" uid="uid://fv84rityqeju" path="res://02_scenes/02_objects/runner/obstacle_variants/obstacle_cat.tscn" id="14_7wen0"]
 [ext_resource type="Texture2D" uid="uid://csf86bh3q7488" path="res://01_assets/01_sprites/05_ui/barra_aire_llena.PNG" id="14_sxx0n"]
+[ext_resource type="PackedScene" uid="uid://cbx6k5i72h3n2" path="res://02_scenes/02_objects/runner/cart_upgrade.tscn" id="15_br75m"]
 [ext_resource type="Script" uid="uid://ci4vbvj1pr6m4" path="res://02_scenes/02_objects/runner/candy_spawner.gd" id="17_wc3ee"]
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="19_4y28a"]
 
@@ -243,6 +248,27 @@ jump_time_to_descent = 1.5
 [node name="asteroid_spawner" type="Node2D" parent="."]
 script = ExtResource("2_u86ga")
 number_visFeedback_scene = ExtResource("11_4y28a")
+obstacle_scenes = [{
+"is_obstacle": true,
+"scene": ExtResource("11_wgdh0"),
+"weight": 3
+}, {
+"is_obstacle": true,
+"scene": ExtResource("12_4y28a"),
+"weight": 10
+}, {
+"is_obstacle": true,
+"scene": ExtResource("13_wc3ee"),
+"weight": 3
+}, {
+"is_obstacle": true,
+"scene": ExtResource("14_7wen0"),
+"weight": 1
+}, {
+"is_obstacle": false,
+"scene": ExtResource("15_br75m"),
+"weight": 8
+}]
 
 [node name="asteroid_spawn_timer" type="Timer" parent="asteroid_spawner"]
 wait_time = 0.7
