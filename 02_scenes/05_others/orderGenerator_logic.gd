@@ -2,8 +2,8 @@ extends Node
 class_name OrderGenerator
 
 var max_drink_size : int = 3
-var max_bocata_size : int = 5
-var max_size_var : int = 2
+var max_bocata_size : int = 4
+var max_size_var : int = 1
 
 
 func _create_generator(bread_weight: int, meat_weight: int, veggie_weight: int, fluid_weight: int) -> RandomItemStateGenerator:
@@ -19,7 +19,6 @@ func _create_generator(bread_weight: int, meat_weight: int, veggie_weight: int, 
 	generator.weight_config.fluid = fluid_weight
 
 	return generator
-
 
 func build_bocata() -> Array[ItemState]:
 	var bocata_ingredients : Array[ItemState] = []
@@ -38,7 +37,6 @@ func build_bocata() -> Array[ItemState]:
 		bocata_ingredients.append(generator.generate_item_state())
 
 	return bocata_ingredients
-
 
 func build_drink() -> Array[ItemState]:
 	var drink_ingredients : Array[ItemState] = []
