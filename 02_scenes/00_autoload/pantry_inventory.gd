@@ -74,3 +74,12 @@ func load_starting_items() -> void:
 				starting_items.append(res)
 		file_name = dir.get_next()
 	dir.list_dir_end()
+	
+func get_all_item_data() -> Array[ItemData]:
+	return starting_items
+	
+func get_random_item_data() -> ItemData:
+	if starting_items.is_empty():
+		push_error("No ItemData available in inventory pool")
+		return null
+	return starting_items.pick_random()
