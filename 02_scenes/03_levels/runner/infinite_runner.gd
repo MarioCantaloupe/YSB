@@ -17,6 +17,8 @@ func _ready() -> void:
 	texture_lung_bar.value = player.lung_capacity
 	#lung_bar.max_value = player.lung_capacity
 	#lung_bar.value = player.lung_capacity
+	
+	AudioManager.play_music(preload("res://01_assets/03_sound/music/Runner_theme.mp3"))
 
 func _process(_delta: float) -> void:
 	#lung_bar.value = player.lung_capacity
@@ -29,3 +31,4 @@ func _on_yaya_game_end() -> void:
 	GameSystem.runner_button_shown = false
 	PlayerCursor.enable_cursor(true)
 	SceneLoader.load_scene("res://02_scenes/03_levels/level_cuttingCounter.tscn", SceneLoader.Transition.NONE)
+	AudioManager.stop_music()

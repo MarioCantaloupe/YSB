@@ -7,6 +7,7 @@ func _ready() -> void:
 	GameSystem.GameState = GameSystem.GameStates.Cutting
 	tip_box.tip_box_clicked.connect(tip_shown)
 	
+	
 	if not GameSystem.cutting_tip_shown:
 		await get_tree().create_timer(3).timeout
 		tip_box.show_tip()
