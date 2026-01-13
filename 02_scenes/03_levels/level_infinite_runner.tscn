@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cb04ji4mpf2vu"]
+[gd_scene load_steps=26 format=3 uid="uid://cb04ji4mpf2vu"]
 
 [ext_resource type="Script" uid="uid://bqognyraoiwx0" path="res://02_scenes/03_levels/runner/infinite_runner.gd" id="1_0p27r"]
 [ext_resource type="PackedScene" uid="uid://co1ew4wo03x4j" path="res://02_scenes/01_characters/yaya_runner.tscn" id="1_w88gs"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://baeif3q7vrxks" path="res://01_assets/01_sprites/03_environments/espacio_planeta2.PNG" id="9_mnamq"]
 [ext_resource type="Texture2D" uid="uid://dml57yyf6gus8" path="res://01_assets/01_sprites/05_ui/barra_aire_vacia.PNG" id="13_qdfx5"]
 [ext_resource type="Texture2D" uid="uid://csf86bh3q7488" path="res://01_assets/01_sprites/05_ui/barra_aire_llena.PNG" id="14_sxx0n"]
-[ext_resource type="AudioStream" uid="uid://b0tpm0q7wx2qu" path="res://01_assets/03_sound/music/Runner_theme.mp3" id="16_sxx0n"]
 [ext_resource type="Script" uid="uid://ci4vbvj1pr6m4" path="res://02_scenes/02_objects/runner/candy_spawner.gd" id="17_wc3ee"]
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="19_4y28a"]
 
@@ -308,12 +307,6 @@ visible = false
 process_mode = 3
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_sxx0n")
-autoplay = true
-bus = &"Music"
-parameters/looping = true
 
 [connection signal="GameEnd" from="YayaPlayer" to="." method="_on_yaya_game_end"]
 [connection signal="timeout" from="asteroid_spawner/asteroid_spawn_timer" to="asteroid_spawner" method="_on_asteroid_spawn_timer_timeout"]

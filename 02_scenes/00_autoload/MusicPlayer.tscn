@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8bxrs812sr5o"]
+
+[ext_resource type="AudioStream" uid="uid://dyyc43xv7kl3n" path="res://01_assets/03_sound/music/Cooking_theme.mp3" id="1_0kcb6"]
+[ext_resource type="Script" uid="uid://deuwdavncolwv" path="res://02_scenes/00_autoload/MusicPlayer.gd" id="2_ddi88"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_0kcb6")
+bus = &"Music"
+script = ExtResource("2_ddi88")

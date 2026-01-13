@@ -25,6 +25,7 @@ SceneLoader="*res://02_scenes/00_autoload/scene_loader.gd"
 PantryInventory="*res://02_scenes/00_autoload/pantry_inventory.gd"
 GameSystem="*res://02_scenes/00_autoload/game_system.gd"
 AudioManager="*res://02_scenes/00_autoload/audio_manager.gd"
+MusicPlayer="*res://02_scenes/00_autoload/MusicPlayer.tscn"
 
 [display]
 
