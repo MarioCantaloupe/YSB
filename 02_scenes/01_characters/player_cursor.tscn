@@ -1,7 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6yq7w30thmrd"]
+[gd_scene load_steps=3 format=3 uid="uid://b6yq7w30thmrd"]
 
 [ext_resource type="Script" uid="uid://4ifttdykwnuu" path="res://02_scenes/01_characters/player_cursor.gd" id="1_vubgr"]
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="2_t28ww"]
 
 [node name="player_cursor" type="Node2D"]
 z_index = 999
 script = ExtResource("1_vubgr")
+
+[node name="Tip" type="RichTextLabel" parent="."]
+visible = false
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -42.0
+offset_right = 141.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_t28ww")
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "[center]Hello[/center]"
+fit_content = true

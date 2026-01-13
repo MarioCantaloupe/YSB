@@ -6,6 +6,8 @@ const VELOCITY_SAMPLES : int = 8
 
 const CURSOR_REFERENCE_RESOLUTION := Vector2i(1280, 720)
 
+@onready var tip: RichTextLabel = $Tip
+
 var cursor_scale := 1.0
 var scaled_cursor_cache := {}
 
@@ -140,3 +142,10 @@ func get_scaled_cursor(cursor_type: CursorType) -> Dictionary:
 
 	scaled_cursor_cache[cursor_type] = result
 	return result
+
+
+func show_tip(tipText : String):
+	tip.text = tipText
+	tip.show()
+	await get_tree().create_timer(1).timeout
+	tip.hide()
