@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cb04ji4mpf2vu"]
+[gd_scene load_steps=26 format=3 uid="uid://cb04ji4mpf2vu"]
 
 [ext_resource type="Script" uid="uid://bqognyraoiwx0" path="res://02_scenes/03_levels/runner/infinite_runner.gd" id="1_0p27r"]
 [ext_resource type="PackedScene" uid="uid://co1ew4wo03x4j" path="res://02_scenes/01_characters/yaya_runner.tscn" id="1_w88gs"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bfnqxnvdw20yk" path="res://01_assets/01_sprites/03_environments/spaceFloor_tilemap.png" id="7_dt7y8"]
 [ext_resource type="Shader" uid="uid://dfgjmecwmsf8a" path="res://02_scenes/03_levels/runner/infinite_runner_floor_tile.gdshader" id="7_mnamq"]
 [ext_resource type="Texture2D" uid="uid://baeif3q7vrxks" path="res://01_assets/01_sprites/03_environments/espacio_planeta2.PNG" id="9_mnamq"]
-[ext_resource type="PackedScene" uid="uid://c1wptoyd5dxoi" path="res://02_scenes/02_objects/number_visualFeedback.tscn" id="11_4y28a"]
 [ext_resource type="Texture2D" uid="uid://dml57yyf6gus8" path="res://01_assets/01_sprites/05_ui/barra_aire_vacia.PNG" id="13_qdfx5"]
 [ext_resource type="Texture2D" uid="uid://csf86bh3q7488" path="res://01_assets/01_sprites/05_ui/barra_aire_llena.PNG" id="14_sxx0n"]
 [ext_resource type="Script" uid="uid://ci4vbvj1pr6m4" path="res://02_scenes/02_objects/runner/candy_spawner.gd" id="17_wc3ee"]
@@ -65,9 +64,6 @@ shader_parameter/tile_size = 256.0
 shader_parameter/tile_count = 3.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w88gs"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_2tkmp"]
-font_size = 51
 
 [sub_resource type="Animation" id="Animation_2tkmp"]
 length = 0.001
@@ -242,7 +238,6 @@ jump_time_to_descent = 1.5
 
 [node name="asteroid_spawner" type="Node2D" parent="."]
 script = ExtResource("2_u86ga")
-number_visFeedback_scene = ExtResource("11_4y28a")
 
 [node name="asteroid_spawn_timer" type="Timer" parent="asteroid_spawner"]
 wait_time = 0.7
@@ -283,17 +278,21 @@ rotation = -0.05943233
 theme = ExtResource("19_4y28a")
 text = "AIRE"
 
-[node name="start_tooltip" type="Label" parent="."]
+[node name="start_tooltip" type="RichTextLabel" parent="."]
 modulate = Color(1, 1, 1, 0)
-offset_left = 518.0
+offset_left = 402.0
 offset_top = 280.0
-offset_right = 774.0
-offset_bottom = 423.0
+offset_right = 890.0
+offset_bottom = 392.0
 pivot_offset = Vector2(124.605, 78.58)
 size_flags_horizontal = 4
-text = "Usa 
-las flechas"
-label_settings = SubResource("LabelSettings_2tkmp")
+theme = ExtResource("19_4y28a")
+theme_override_colors/font_outline_color = Color(0.21495858, 0.017998759, 0.30119038, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/normal_font_size = 59
+bbcode_enabled = true
+text = "[center][shake rate=8 level=8 connected=0] ¡Usa las flechas! [/shake][/center]"
+fit_content = true
 horizontal_alignment = 1
 
 [node name="tooltip_player" type="AnimationPlayer" parent="."]
@@ -302,6 +301,7 @@ libraries = {
 }
 
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PauseMenu" parent="pause_canvasLayer" instance=ExtResource("6_2tkmp")]
 process_mode = 3

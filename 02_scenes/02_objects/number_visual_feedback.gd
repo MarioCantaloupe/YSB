@@ -6,7 +6,7 @@ extends Node2D
 @onready var label: Label = $Label
 
 func setup(amount: int):
-	label.text = "+%d" % amount
+	label.text = "+" + str(amount) + "!"
 	start_animation()
 
 func start_animation():

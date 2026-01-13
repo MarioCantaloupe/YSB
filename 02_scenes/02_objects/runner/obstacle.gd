@@ -5,19 +5,22 @@ signal loot_generated(amount: int, world_position: Vector2)
 @export var obstacle_data : ObstacleData
 
 @export var obstacle_particles_scene: PackedScene
+@export var number_visFeedback_scene: PackedScene
 
 @onready var sprite: Sprite2D = $sprite
 
+var loot_amount
 var instanced_particles = null
 var random_rotation : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	random_rotation = randf_range(-0.05, 0.05)
+	loot_amount = generate_loot_amount()
+	
+	random_rotation = randf_range(-obstacle_data.rotation, obstacle_data.rotation)
 	sprite.texture = obstacle_data.sprite
 	instanced_particles = obstacle_particles_scene.instantiate()
 	await instanced_particles.ready
-	
 	
 func _physics_process(_delta: float) -> void:
 	position.x -= obstacle_data.movement_speed
@@ -55,6 +58,7 @@ func destroyed():
 		particle_timer.start()
 	else:
 		push_error("no obstacle particles found")
+	visual_feedback(loot_amount)
 	var amount : int = give_loot()
 	emit_signal("loot_generated", amount, global_position)
 	queue_free()
@@ -64,10 +68,8 @@ func give_loot() -> int:
 	if pool.is_empty():
 		push_error("Inventory pool empty")
 		return 0 
-	
-	var amount : int = generate_loot_amount()
-	
-	for i in amount:
+
+	for i in loot_amount:
 		var item_data: ItemData = pool.pick_random()
 		if item_data == null:
 			continue
@@ -79,7 +81,7 @@ func give_loot() -> int:
 		
 		PantryInventory.add_item_state(state)
 	
-	return amount
+	return loot_amount
 
 func generate_loot_amount() -> int:
 	var amount := randi_range(
@@ -92,3 +94,12 @@ func generate_loot_amount() -> int:
 		amount = int(round(amount * (1.0 + variance)))
 
 	return max(amount, 1)
+
+func visual_feedback(amount : int):
+	if amount <= 0:
+		return
+
+	var text := number_visFeedback_scene.instantiate()
+	text.global_position = global_position
+	get_tree().current_scene.add_child(text)
+	text.setup(amount)

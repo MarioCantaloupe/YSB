@@ -6,11 +6,11 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_sj6m6"]
 font = ExtResource("3_cpe61")
-font_size = 47
-outline_size = 17
+font_size = 80
+outline_size = 20
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Node2D" type="Node2D"]
+[node name="number_visFeedback" type="Node2D"]
 z_index = 50
 script = ExtResource("1_f5aho")
 

@@ -11,6 +11,8 @@ class_name ObstacleData
 @export var hit_sound : AudioStream
 @export var size_variance : float = 0
 
+@export var rotation : float
+
 var loot_amount : int
 	
 @export var sprite : Texture2D

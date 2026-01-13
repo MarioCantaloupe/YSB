@@ -23,3 +23,15 @@ func _on_drop_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: i
 		Vector2.ONE,
 		1
 		).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+
+
+
+func _on_drop_area_mouse_entered() -> void:
+	if PlayerCursor.held_item != null:
+		var tween_out : Tween = create_tween()
+		tween_out.tween_property(controller, "scale", Vector2(1.1, 1.1), 0.1)
+
+
+func _on_drop_area_mouse_exited() -> void:
+	var tween_in : Tween = create_tween()
+	tween_in.tween_property(controller, "scale", Vector2.ONE, 0.1) 

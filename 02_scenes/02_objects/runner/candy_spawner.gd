@@ -13,3 +13,4 @@ func _on_asteroid_spawn_timer_timeout() -> void:
 	candy.position.y = randi_range(0 , get_viewport().size.y - 100)
 	candy.position.x = get_viewport().size.x + 100
 	add_child(candy)
+	print_debug("spawned candy!")

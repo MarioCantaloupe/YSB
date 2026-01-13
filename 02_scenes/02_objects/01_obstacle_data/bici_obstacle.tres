@@ -7,8 +7,9 @@
 [resource]
 script = ExtResource("2_y3t4n")
 name = "Bicicleta"
-min_loot = 2
-max_loot = 6
+min_loot = 1
+max_loot = 4
 hit_sound = ExtResource("1_gjjv0")
+rotation = 0.05
 sprite = ExtResource("3_gjjv0")
 metadata/_custom_type_script = "uid://bhj1pdgi67rgb"

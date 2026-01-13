@@ -8,5 +8,6 @@
 script = ExtResource("2_geand")
 name = "Gato"
 hit_sound = ExtResource("1_k5d3m")
+rotation = 0.09
 sprite = ExtResource("3_k5d3m")
 metadata/_custom_type_script = "uid://bhj1pdgi67rgb"

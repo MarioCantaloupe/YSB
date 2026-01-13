@@ -163,3 +163,5 @@ libraries = {
 autoplay = "blackHole_spin"
 
 [connection signal="input_event" from="drop_area" to="." method="_on_drop_area_input_event"]
+[connection signal="mouse_entered" from="drop_area" to="." method="_on_drop_area_mouse_entered"]
+[connection signal="mouse_exited" from="drop_area" to="." method="_on_drop_area_mouse_exited"]

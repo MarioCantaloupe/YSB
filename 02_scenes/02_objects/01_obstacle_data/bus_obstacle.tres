@@ -10,5 +10,6 @@ name = "Bus"
 min_loot = 10
 max_loot = 15
 hit_sound = ExtResource("1_8v8cm")
+rotation = 0.01
 sprite = ExtResource("3_8v8cm")
 metadata/_custom_type_script = "uid://bhj1pdgi67rgb"

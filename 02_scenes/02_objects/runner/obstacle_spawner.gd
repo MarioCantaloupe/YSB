@@ -2,8 +2,6 @@ extends Node2D
 
 @onready var player: Player = %YayaPlayer
 
-@export var number_visFeedback_scene : PackedScene
-
 @export var obstacle_scenes := [
 	{
 		"scene": preload("res://02_scenes/02_objects/runner/obstacle.tscn"),
@@ -17,22 +15,22 @@ extends Node2D
 	},
 	{
 		"scene": preload("res://02_scenes/02_objects/runner/obstacle_variants/obstacle_bus.tscn"),
-		"weight": 7,
-		"is_obstacle": true
-	},
-	{
-		"scene": preload("res://02_scenes/02_objects/runner/obstacle_variants/obstacle_cat.tscn"),
 		"weight": 1,
 		"is_obstacle": true
 	},
 	{
+		"scene": preload("res://02_scenes/02_objects/runner/obstacle_variants/obstacle_cat.tscn"),
+		"weight": 2,
+		"is_obstacle": true
+	},
+	{
 		"scene": preload("res://02_scenes/02_objects/runner/obstacle_variants/obstacle_patinete.tscn"),
-		"weight": 5,
+		"weight": 7,
 		"is_obstacle": true
 	},
 	{
 		"scene": preload("res://02_scenes/02_objects/runner/obstacle_variants/obstacle_bici.tscn"),
-		"weight": 5,
+		"weight": 6,
 		"is_obstacle": true
 	},
 ]
@@ -52,11 +50,8 @@ func _on_asteroid_spawn_timer_timeout() -> void:
 		obstacle.scale.x *= scale_variance
 		obstacle.scale.y *= scale_variance
 	add_child(obstacle)
-	if not obstacle.has_method("loot_generated"):
-		return
-		
-	obstacle.loot_generated.connect(_on_obstacle_loot_generated)
-	
+	print_debug("spawned obstacle!")
+			
 func pick_weighted_scene() -> PackedScene:
 	var total_weight = 0
 	for item in obstacle_scenes:
@@ -69,12 +64,3 @@ func pick_weighted_scene() -> PackedScene:
 			return item.scene
 
 	return obstacle_scenes[0].scene # Fallback
-
-func _on_obstacle_loot_generated(amount: int, pos: Vector2):
-	if amount <= 0:
-		return
-
-	var text := number_visFeedback_scene.instantiate()
-	text.global_position = pos
-	add_child(text)
-	text.setup(amount)

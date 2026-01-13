@@ -7,8 +7,8 @@
 [resource]
 script = ExtResource("2_h0ei6")
 name = "Patinete"
-min_loot = 2
-max_loot = 5
+max_loot = 3
 hit_sound = ExtResource("1_inrqs")
+rotation = 0.05
 sprite = ExtResource("3_inrqs")
 metadata/_custom_type_script = "uid://bhj1pdgi67rgb"

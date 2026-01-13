@@ -7,9 +7,10 @@
 [resource]
 script = ExtResource("1_n780b")
 name = "Obstacle"
-min_loot = 3
-max_loot = 7
+min_loot = 2
+max_loot = 5
 hit_sound = ExtResource("1_xagop")
 size_variance = 0.5
+rotation = 0.05
 sprite = ExtResource("3_xagop")
 metadata/_custom_type_script = "uid://bhj1pdgi67rgb"
