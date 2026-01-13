@@ -184,7 +184,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 
 [node name="order_selection" parent="CanvasLayer" instance=ExtResource("16_ugonm")]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://pxr14x5uimus"]
+[gd_scene load_steps=8 format=3 uid="uid://pxr14x5uimus"]
 
 [ext_resource type="PackedScene" uid="uid://dyr0jkcrbvgke" path="res://02_scenes/04_screens/memory_note_bar.tscn" id="1_8h12x"]
 [ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_m33b2"]
@@ -6,6 +6,17 @@
 [ext_resource type="AudioStream" uid="uid://33s5acxx6d61" path="res://01_assets/03_sound/menu/maximize_009.ogg" id="3_f085h"]
 [ext_resource type="AudioStream" uid="uid://dt1oi7lmia6nx" path="res://01_assets/03_sound/menu/minimize_009.ogg" id="4_mc4tu"]
 [ext_resource type="Script" uid="uid://duwv1o7gw68hi" path="res://02_scenes/04_screens/button_master.gd" id="6_mc4tu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mc4tu"]
+bg_color = Color(0.27, 0.0855, 0, 0.3254902)
+skew = Vector2(0.09, 0)
+border_width_left = 10
+border_width_bottom = 10
+border_color = Color(0.28, 0.0868, 0.24780004, 0.38431373)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="order_selection" type="Control"]
 layout_mode = 3
@@ -31,6 +42,8 @@ offset_right = -131.0
 offset_bottom = -0.040039063
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_m33b2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mc4tu")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 2

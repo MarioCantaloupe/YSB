@@ -280,9 +280,9 @@ text = "AIRE"
 
 [node name="start_tooltip" type="RichTextLabel" parent="."]
 modulate = Color(1, 1, 1, 0)
-offset_left = 402.0
+offset_left = 271.0
 offset_top = 280.0
-offset_right = 890.0
+offset_right = 1021.0
 offset_bottom = 392.0
 pivot_offset = Vector2(124.605, 78.58)
 size_flags_horizontal = 4
