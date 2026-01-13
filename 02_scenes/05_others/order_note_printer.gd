@@ -36,7 +36,7 @@ static func build_text(order_data : OrderData) -> String:
 	return "\n".join(lines)
 
 
-static func render_level(symbol: String, level: int, max_level: int = 3) -> String:
+static func render_level(symbol: String, level: int, max_level: int = 2) -> String:
 	var result := ""
 	for i in range(max_level):
 		if i < level:
