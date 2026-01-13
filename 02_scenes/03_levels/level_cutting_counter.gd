@@ -7,6 +7,8 @@ func _ready() -> void:
 	GameSystem.GameState = GameSystem.GameStates.Cutting
 	tip_box.tip_box_clicked.connect(tip_shown)
 	
+	MusicPlayer.play_music(preload("res://01_assets/03_sound/music/Cooking_theme.mp3"))
+	
 	if not GameSystem.cutting_tip_shown:
 		await get_tree().create_timer(3).timeout
 		tip_box.show_tip()

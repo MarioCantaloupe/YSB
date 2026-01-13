@@ -18,6 +18,7 @@ func _ready() -> void:
 func tip_shown():
 	GameSystem.blending_tip_shown = true
 	
+	MusicPlayer.play_music(preload("res://01_assets/03_sound/music/Cooking_theme.mp3"))
 
 
 func _on_ringer_order_ready() -> void:
