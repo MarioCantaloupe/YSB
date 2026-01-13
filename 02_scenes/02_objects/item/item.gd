@@ -12,6 +12,8 @@ signal item_grabbed(bool)
 @export_group("Audio")
 @export var pickup_audio : AudioStream
 @export var drop_audio : AudioStream
+@export var plop_audio : AudioStream
+@export var burnt_audio : AudioStream
 
 #region Scene Nodes
 @onready var sprite: Sprite2D = $sprite
@@ -72,6 +74,7 @@ func _ready() -> void:
 	_original_z_index = z_index
 	cooking_time = food_data.cooking_time
 	cook_timer.wait_time = cooking_time
+	ui_clock.hide_cooking_ui(true)
 	_set_selected(false)
 	check_rest_zones()
 	
@@ -83,7 +86,7 @@ func _ready() -> void:
 	else:
 		ice_sprite.hide()
 		ice_level = 0
-	ui_clock.hide_cooking_ui(true)
+	
 	if not is_clean:
 		static_dust_particles.show()
 	else:
@@ -93,24 +96,26 @@ func _ready() -> void:
 #--------------------------------   INPUT   -----------------------------------
 #LClick On
 func _on_click_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
-	if Input.is_action_just_pressed("Lclick"):
-		if not PlayerCursor.is_knife:
-			# Prevent multiple items from being grabbed at the same time
-			# Only grab if nothing is currently held, or if we already hold this item
-			if PlayerCursor.held_item != null and PlayerCursor.held_item != self:
-				return
-
-			PlayerCursor.held_item = self
-			last_item_pos = get_global_mouse_position()
-			print(PlayerCursor.held_item.food_data.name)
-			_set_selected(true)
-			stop_right_there()
-			
-			PlayerCursor.set_cursor(PlayerCursor.CursorType.HOLDING)
-			
-			ui_clock.hide_cooking_ui(true)
-			check_rest_zones()
-			emit_signal("item_grabbed", true)
+	if PlayerCursor.is_knife:
+		return
+	if PlayerCursor.held_item != null and PlayerCursor.held_item != self: #keep hands empty!
+			return
+	
+	if _event.is_action_pressed("Lclick"):
+		PlayerCursor.held_item = self
+		last_item_pos = get_global_mouse_position()
+		
+		
+		_set_selected(true)
+		stop_right_there()
+		
+		PlayerCursor.set_cursor(PlayerCursor.CursorType.HOLDING)
+		
+		ui_clock.hide_cooking_ui(true)
+		check_rest_zones()
+		emit_signal("item_grabbed", true)
+		
+		print("picked up", PlayerCursor.held_item.food_data.name)
 
 #LClick Off
 func _input(event):
@@ -172,6 +177,7 @@ func _physics_process(delta: float) -> void:
 			if not floor_reached:
 				linear_velocity.y = 0 #stop item immediately
 				floor_reached = true
+				AudioManager.play_oneshot(plop_audio, 0, 1, 0, AudioManager.Bus.SFX)
 			gravity_scale = 0
 
 			linear_velocity.y = lerp(linear_velocity.y, 0.0, delta * 8.0)
@@ -199,7 +205,7 @@ func cook():
 					
 					ui_clock.hide_cooking_ui(false)
 					ui_clock.start_cooking_ui(cooking_time)
-					print("started timer")
+					#print("started timer")
 				else:
 					tooltip.play_popup("item no cocinable")
 			else:
@@ -210,16 +216,17 @@ func cook():
 func _on_cook_timer_timeout() -> void:
 	if has_reached_rest and food_data.cookable:
 		_set_cook_level(cook_level+1)
-		print("cook level " + str(cook_level))
+		#print("cook level " + str(cook_level))
 		if cook_level < 2:
 			play_poof(Color(1.0, 1.0, 1.0, 1.0))
 			cook_timer.start()
 			ui_clock.start_cooking_ui(cooking_time)
 		else:
 			play_poof(Color(0.0, 0.0, 0.0, 1.0))
+			AudioManager.play_oneshot(burnt_audio, 0, 1, 0, AudioManager.Bus.SFX)
 			ui_clock.hide_cooking_ui(true)
 	else:
-		print(str(food_data.name) + " has not reached rest")
+		print_debug(str(food_data.name) + " has not reached rest")
 
 func clean():
 	if is_frozen:
@@ -237,12 +244,8 @@ func defrost():
 			_set_cook_level(2)
 			static_dust_particles.self_modulate = Color(0.149, 0.149, 0.149, 1.0) #burn dust
 			play_poof(Color(0.106, 0.07, 0.015, 1.0))
+			AudioManager.play_oneshot(burnt_audio, 0, 1, 0, AudioManager.Bus.SFX)
 
-func stack():
-	pass
-	#var plate : Node2D = get_parent() as StackingPlate
-	#if plate:
-		#plate.try_add_item(self)
 #endregion
 
 func play_poof(color):
@@ -273,7 +276,7 @@ func _update_ingredient_height():
 
 func station_action(action):
 	if action == 0:
-		stack()
+		pass
 	elif action == 1:
 		cook()
 	elif action == 2:
@@ -389,7 +392,7 @@ func save_item_state() -> ItemState:
 func _set_chop_level(value):
 	chop_level = clamp(value, 0 ,2)
 	set_sprite(chop_level, cook_level)
-	print(chop_level)
+	#print(chop_level)
 	_update_ingredient_height()
 	
 func _set_cook_level(value):
@@ -415,11 +418,11 @@ func _set_selected(value : bool):
 			if i.held_item == self:
 				i.deselect()
 		
-		AudioManager.play_oneshot(pickup_audio, 0, 1, 0, AudioManager.Bus.SFX)
+		AudioManager.play_oneshot(pickup_audio, -6, 1, 0, AudioManager.Bus.SFX)
 
 	else:
 		z_index = _original_z_index
-		AudioManager.play_oneshot(drop_audio, 0, 1, 0, AudioManager.Bus.SFX)
+		AudioManager.play_oneshot(drop_audio, -6, 1, 0, AudioManager.Bus.SFX)
 	
 	if selected and not value:
 		await get_tree().create_timer(.08).timeout
@@ -454,7 +457,7 @@ func _on_chopping_component_chop_up(_new_level: int) -> void:
 			if food_data.cuttable:
 				_set_chop_level(chop_level+1)
 				play_poof(Color(4.416, 4.416, 4.416, 1.0))
-				print(chop_level)
+				#print(chop_level)
 			else:
 				tooltip.play_popup("No cortable")
 		else:

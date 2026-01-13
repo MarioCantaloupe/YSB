@@ -1,6 +1,8 @@
 extends Control
 class_name PantrySlot
 
+signal out_of_ingredients(item : ItemData)
+
 @export var item_resource: ItemData
 @export var infinite_resources := false
 
@@ -52,7 +54,9 @@ func _on_area_input(_viewport, event: InputEvent, _shape_idx):
 		elif PantryInventory.has_item(item_resource.id):
 			state = PantryInventory.pop_item_state(item_resource.id)
 		else:
-			return #TODO add "no items available feedback
+			PlayerCursor.show_tip("Sin ingrediente")
+			emit_signal("out_of_ingredients", item_resource)
+			return
 		_spawn_item(state)
 
 

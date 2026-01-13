@@ -31,7 +31,7 @@ func play_popup(text : String):
 	
 	tween_up = create_tween()
 
-	# ───── STEP 1: UP (PARALLEL) ─────
+	# up
 	tween_up.set_parallel(true)
 
 	tween_up.tween_property(
@@ -55,12 +55,12 @@ func play_popup(text : String):
 		move_time
 	).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 
-	# ───── STEP 2: HOLD ─────
+	# hold
 	tween_up.chain()
 	await tween_up.tween_interval(hold_time).finished
 
 
-	# ───── STEP 3: DOWN (PARALLEL) ─────
+	# down
 	tween_down = create_tween()
 	tween_down.set_parallel(true)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bwov6edkubuxi"]
+[gd_scene load_steps=36 format=3 uid="uid://bwov6edkubuxi"]
 
 [ext_resource type="Script" uid="uid://choy4l2dbk5xs" path="res://02_scenes/02_objects/item/item.gd" id="1_xwsi1"]
 [ext_resource type="Texture2D" uid="uid://blwgex1cdinyv" path="res://01_assets/01_sprites/04_vfx/shadow.png" id="2_028ab"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dba8vxlq74pyt" path="res://01_assets/03_sound/menu/drop_002.ogg" id="3_xw3og"]
 [ext_resource type="AudioStream" uid="uid://d1wd562uw3sxm" path="res://01_assets/03_sound/menu/drop_004.ogg" id="4_fc64x"]
 [ext_resource type="Texture2D" uid="uid://bno73j0wa8l1g" path="res://01_assets/01_sprites/04_vfx/pelusa_spritesheet.png" id="5_wkqhs"]
+[ext_resource type="AudioStream" uid="uid://de5wcb5tfa2ky" path="res://01_assets/03_sound/boowomp.ogg" id="5_wl6fe"]
 [ext_resource type="Texture2D" uid="uid://bol4fikx3rlfj" path="res://01_assets/01_sprites/04_vfx/vfx_poof_spritesheet.png" id="8_028ab"]
 [ext_resource type="Texture2D" uid="uid://lagptp0juwey" path="res://01_assets/01_sprites/02_objects/icecube_full.png" id="8_xesb6"]
 [ext_resource type="Script" uid="uid://c3g1inqiivp0n" path="res://02_scenes/02_objects/item/visual_components/ice_block.gd" id="9_exv7o"]
@@ -118,12 +119,12 @@ size = Vector2(84, 82)
 [node name="item" type="RigidBody2D" groups=["Item", "grabbables"]]
 y_sort_enabled = true
 collision_layer = 2
-input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_70bak")
 script = ExtResource("1_xwsi1")
 food_data = ExtResource("2_70bak")
 pickup_audio = ExtResource("3_xw3og")
 drop_audio = ExtResource("4_fc64x")
+burnt_audio = ExtResource("5_wl6fe")
 is_clean = true
 max_drop_distance = 75.0
 

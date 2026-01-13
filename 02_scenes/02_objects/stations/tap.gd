@@ -4,6 +4,7 @@ extends Node2D
 @onready var station: Node2D = $station
 @onready var mode_switch: Button = $mode_switch
 @onready var vfx: AnimatedSprite2D = $vfx
+@onready var audio_player: AudioStreamPlayer2D = $AudioPlayer
 
 @export var water_tap : Texture2D
 @export var fire_tap : Texture2D
@@ -15,7 +16,6 @@ extends Node2D
 @export var fire_audio : AudioStream
 
 func _ready() -> void:
-	#tap_vfx.hide()
 	vfx.hide()
 
 func _on_mode_switch_pressed() -> void:
@@ -33,15 +33,21 @@ func _on_mode_switch_pressed() -> void:
 func enable_fire(value):
 	if station.action == station.StationAction.DEFROST:
 		vfx.play("fire")
+		audio_player.stream = fire_audio
 		if value == true:
 			vfx.show()
+			audio_player.play()
 		else:
 			vfx.hide()
+			audio_player.stop()
 	
 func enable_water(value):
 	if station.action == station.StationAction.CLEAN:
 		vfx.play("water")
+		audio_player.stream = water_audio
 		if value == true:
 			vfx.show()
+			audio_player.play()
 		else:
 			vfx.hide()
+			audio_player.stop()

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1wptoyd5dxoi"]
+
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_d3yam"]
+[ext_resource type="Script" uid="uid://bwa00hfry3bux" path="res://02_scenes/02_objects/number_visual_feedback.gd" id="1_f5aho"]
+[ext_resource type="FontFile" uid="uid://c4dv7ucucjugc" path="res://01_assets/02_fonts/CherryBombOne-Regular.ttf" id="3_cpe61"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sj6m6"]
+font = ExtResource("3_cpe61")
+font_size = 47
+outline_size = 17
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+z_index = 50
+script = ExtResource("1_f5aho")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d3yam")
+text = "+67!"
+label_settings = SubResource("LabelSettings_sj6m6")
+horizontal_alignment = 1
+vertical_alignment = 1

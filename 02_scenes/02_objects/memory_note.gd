@@ -46,7 +46,8 @@ func _on_box_mouse_entered():
 			tween.tween_property(self, "position:y", shown_y, 0.3
 			).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		true:
-			pass
+			var tween_in : Tween = create_tween()
+			tween_in.tween_property(self, "scale", Vector2.ONE, 0.2)
 
 
 func _on_box_mouse_exited():
@@ -57,7 +58,8 @@ func _on_box_mouse_exited():
 			tween = create_tween()
 			tween.tween_property(self, "position:y", hidden_y, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 		true:
-			pass
+			var tween_out : Tween = create_tween()
+			tween_out.tween_property(self, "scale", Vector2(1,1), 0.2)
 
 func _gui_input(event: InputEvent) -> void:
 	if not is_selectable:

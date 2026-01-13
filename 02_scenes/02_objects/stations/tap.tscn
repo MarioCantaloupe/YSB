@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://wkvbdahuorpu"]
+[gd_scene load_steps=17 format=3 uid="uid://wkvbdahuorpu"]
 
 [ext_resource type="Script" uid="uid://5s35cm0w1768" path="res://02_scenes/02_objects/stations/tap.gd" id="1_tebv5"]
 [ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/stations/station.tscn" id="1_xjyip"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://5llyfe3vwywh" path="res://01_assets/01_sprites/fregadero_fuego.PNG" id="3_aahug"]
 [ext_resource type="Texture2D" uid="uid://deum0vheb2y6" path="res://01_assets/01_sprites/04_vfx/tap_flame.png" id="4_x4ek4"]
 [ext_resource type="AudioStream" uid="uid://d2r0oeyqwrf0l" path="res://01_assets/03_sound/kitchen/switch.ogg" id="6_d4fx6"]
+[ext_resource type="AudioStream" uid="uid://cr68dvsj5buw0" path="res://01_assets/03_sound/kitchen/tap_water.ogg" id="7_k3jm1"]
+[ext_resource type="AudioStream" uid="uid://jge7eyh264xi" path="res://01_assets/03_sound/kitchen/tap_fire.ogg" id="8_d73kj"]
 [ext_resource type="Texture2D" uid="uid://bd7ca7wnmx21n" path="res://01_assets/01_sprites/04_vfx/fuego_anim/fuego_1.PNG" id="8_k3jm1"]
 [ext_resource type="Texture2D" uid="uid://dluxjw7exgng6" path="res://01_assets/01_sprites/04_vfx/fuego_anim/fuego_2.PNG" id="9_d73kj"]
 [ext_resource type="Texture2D" uid="uid://b3d1ulvq6o0uk" path="res://01_assets/01_sprites/04_vfx/fuego_anim/fuego_3.PNG" id="10_wls1b"]
@@ -52,6 +54,8 @@ fire_tap = ExtResource("3_aahug")
 water_texture = ExtResource("2_ial2f")
 fire_texture = ExtResource("4_x4ek4")
 switch_audio = ExtResource("6_d4fx6")
+water_audio = ExtResource("7_k3jm1")
+fire_audio = ExtResource("8_d73kj")
 
 [node name="tap" type="Sprite2D" parent="."]
 position = Vector2(-6.199995, -28.800007)
@@ -86,5 +90,7 @@ animation = &"fire"
 autoplay = "fire"
 frame = 1
 frame_progress = 0.80841804
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="pressed" from="mode_switch" to="." method="_on_mode_switch_pressed"]
