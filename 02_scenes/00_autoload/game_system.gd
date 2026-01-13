@@ -2,13 +2,17 @@ extends Node
 
 signal new_note(order : OrderData)
 signal order_accepted(order : OrderData)
+signal order_submitted(order_id: int, bocata: Array[ItemState], drink: Array[ItemState]) #unused
 signal order_completed(order_id : int)
 
 const MAX_SPACESHIP_INTEGRITY : float = 720
 var spaceship_integrity : float = 720
 const INTEGRITY_LOSS_RATE : float = 1
+const ORDER_INTEGRITY_DELTA : float = 60.0
+const ORDER_SUCCESS_THRESHOLD := 50
+
 var game_started : bool = false
-var drinks_unlocked : bool = false
+#var drinks_unlocked : bool = false
 
 # GAME STATE
 enum GameStates{
@@ -31,6 +35,15 @@ var blending_tip_shown : bool = false
 var stacking_tip_shown : bool = false
 var ringer_tip_shown : bool = false
 
+
+# ORDER CREATION
+
+var base_order_interval : float = 30 #base interval between orders
+var min_order_interval : float = 2 #minimum interval between orders
+var difficulty_ramp_rate : float = 0.8 #interval time decrease per order
+
+var _order_timer: float = 0
+var _current_order_interval : float = base_order_interval
 
 # FOR CONTINUITY
 # ORDERS
@@ -58,6 +71,9 @@ func _ready() -> void:
 
 
 func create_order() -> OrderData:
+	if occupied_slots.count(-1) == 0:
+		return null
+	
 	var order := OrderData.new()
 	order.order_id = next_order_id
 	next_order_id += 1
@@ -86,6 +102,19 @@ func accept_order(id : int) -> void:
 	emit_signal("order_accepted", order)
 	print("GameSystem: Order #", id, " accepted")
 
+func submit_order(order_id : int, bocata: Array[ItemState], drink: Array[ItemState]):
+	var expected : OrderData = get_active_order(order_id)
+	if expected == null:
+		print_debug("Expected order is NULL")
+		return
+	
+	var given : OrderData = OrderData.new()
+	given.bocata_ingredients = bocata
+	given.drink_ingredients = drink
+	
+	var score : int = OrderMatcher.match_order_simple(given, expected)
+	
+	apply_order_result(order_id, score)
 
 func complete_order(order_id : int) -> void:
 	for order in active_orders:
@@ -101,34 +130,77 @@ func get_pending_order(id : int) -> OrderData:
 		if order.order_id == id:
 			return order
 	return null
+	
+func get_active_order(id: int) -> OrderData:
+	for order in active_orders:
+		if order.order_id == id:
+			return order
+	return null
 
 
 func start_game() -> void:
 	game_started = true
 
+func _update_order_spawning(delta: float) -> void:
+	if pending_orders.size() >= max_active_orders:
+		return
+
+	if occupied_slots.count(-1) == 0:
+		return
+
+	var spawn_multiplier := 1.0
+	match GameState:
+		GameStates.Runner:
+			spawn_multiplier = 0.0 # no notes spawn when in runner
+		GameStates.Cutting, GameStates.Cooking:
+			spawn_multiplier = 1.2
+
+	_order_timer += delta * spawn_multiplier
+
+	if _order_timer >= _current_order_interval:
+		_order_timer = 0.0
+		_current_order_interval = max(
+			min_order_interval,
+			_current_order_interval - difficulty_ramp_rate
+		)
+		create_order()
+
 
 func _process(delta : float) -> void:
-	if get_tree().paused == true:
+	if get_tree().paused or not game_started:
 		return
 	
-	if not game_started:
-		return
+	_update_integrity(delta)
+	_update_order_spawning(delta)
 	
+
+func _update_integrity(delta: float) -> void:
 	match GameState:
-		GameStates.Orders:
-			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta
-		GameStates.Cutting:
-			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta
-		GameStates.Cooking:
-			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta
-		GameStates.Finalizing:
-			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta
 		GameStates.Runner:
-			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta * 0.4
-	
+			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta * 0.25 # time dilation bruhaps??
+		_:
+			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta
+
 	if spaceship_integrity <= 0:
 		game_over()
-		spaceship_integrity = 9999999
+
+
+func apply_order_result(order_id: int, score: int):
+	var success : bool = score >= ORDER_SUCCESS_THRESHOLD
+	
+	var delta := ORDER_INTEGRITY_DELTA
+	if not success:
+		delta = -ORDER_INTEGRITY_DELTA
+	
+	if delta > 0:
+		IntegrityMeter.visual_feedback(true)
+	else:
+		IntegrityMeter.visual_feedback(false)
+	
+	spaceship_integrity += delta
+	spaceship_integrity = clamp(spaceship_integrity, 0 , MAX_SPACESHIP_INTEGRITY)
+	print("Spaceship integrity was modified by ", delta)
+	complete_order(order_id)
 
 func game_over():
 	spaceship_integrity = MAX_SPACESHIP_INTEGRITY
