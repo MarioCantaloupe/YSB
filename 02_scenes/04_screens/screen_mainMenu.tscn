@@ -264,6 +264,7 @@ metadata/_edit_lock_ = true
 stream = ExtResource("12_4kl2f")
 autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [connection signal="pressed" from="Button_Manager/mainmenu_buttons/MC_Start/button_start" to="Button_Manager/mainmenu_buttons/MC_Start/button_start" method="_on_pressed"]
 [connection signal="pressed" from="Button_Manager/mainmenu_buttons/MC_Options/button_options" to="." method="_on_button_options_pressed"]

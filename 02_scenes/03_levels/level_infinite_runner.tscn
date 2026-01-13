@@ -313,6 +313,7 @@ size_flags_vertical = 4
 stream = ExtResource("16_sxx0n")
 autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [connection signal="GameEnd" from="YayaPlayer" to="." method="_on_yaya_game_end"]
 [connection signal="timeout" from="asteroid_spawner/asteroid_spawn_timer" to="asteroid_spawner" method="_on_asteroid_spawn_timer_timeout"]
