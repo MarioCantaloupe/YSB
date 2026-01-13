@@ -4,12 +4,13 @@ signal new_note(order : OrderData)
 signal order_accepted(order : OrderData)
 signal order_submitted(order_id: int, bocata: Array[ItemState], drink: Array[ItemState]) #unused
 signal order_completed(order_id : int)
+signal order_result(result : bool)
 
 const MAX_SPACESHIP_INTEGRITY : float = 720
 var spaceship_integrity : float = 720
 const INTEGRITY_LOSS_RATE : float = 1
 const ORDER_INTEGRITY_DELTA : float = 60.0
-const ORDER_SUCCESS_THRESHOLD := 50
+const ORDER_SUCCESS_THRESHOLD := 40
 
 var game_started : bool = false
 #var drinks_unlocked : bool = false
@@ -43,7 +44,9 @@ var min_order_interval : float = 2 #minimum interval between orders
 var difficulty_ramp_rate : float = 0.8 #interval time decrease per order
 
 var _order_timer: float = 0
-var _current_order_interval : float = base_order_interval
+var _current_order_interval : float = 1.0
+
+var first_order_spawned : bool = false
 
 # FOR CONTINUITY
 # ORDERS
@@ -124,7 +127,7 @@ func complete_order(order_id : int) -> void:
 			print("GameSystem: Order #", order_id, " completed")
 			return
 
-
+# helpers
 func get_pending_order(id : int) -> OrderData:
 	for order in pending_orders:
 		if order.order_id == id:
@@ -136,10 +139,6 @@ func get_active_order(id: int) -> OrderData:
 		if order.order_id == id:
 			return order
 	return null
-
-
-func start_game() -> void:
-	game_started = true
 
 func _update_order_spawning(delta: float) -> void:
 	if pending_orders.size() >= max_active_orders:
@@ -159,32 +158,31 @@ func _update_order_spawning(delta: float) -> void:
 
 	if _order_timer >= _current_order_interval:
 		_order_timer = 0.0
-		_current_order_interval = max(
-			min_order_interval,
-			_current_order_interval - difficulty_ramp_rate
-		)
+
 		create_order()
 
+		if not first_order_spawned:
+			first_order_spawned = true
+			_current_order_interval = base_order_interval
+		else:
+			_current_order_interval = max(
+				min_order_interval,
+				_current_order_interval - difficulty_ramp_rate
+			)
 
-func _process(delta : float) -> void:
-	if get_tree().paused or not game_started:
-		return
-	
-	_update_integrity(delta)
-	_update_order_spawning(delta)
-	
 
 func _update_integrity(delta: float) -> void:
 	match GameState:
 		GameStates.Runner:
-			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta * 0.25 # time dilation bruhaps??
-		_:
+			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta * 0.20 # time dilation bruhaps??
+		GameStates.Finalizing:
 			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta
+		_:
+			spaceship_integrity -= INTEGRITY_LOSS_RATE * delta * 0.85
 
 	if spaceship_integrity <= 0:
 		game_over()
-
-
+	
 func apply_order_result(order_id: int, score: int):
 	var success : bool = score >= ORDER_SUCCESS_THRESHOLD
 	
@@ -193,19 +191,35 @@ func apply_order_result(order_id: int, score: int):
 		delta = -ORDER_INTEGRITY_DELTA
 	
 	if delta > 0:
-		IntegrityMeter.visual_feedback(true)
+		emit_signal("order_result", true)
 	else:
-		IntegrityMeter.visual_feedback(false)
+		emit_signal("order_result", false)
+		
 	
 	spaceship_integrity += delta
 	spaceship_integrity = clamp(spaceship_integrity, 0 , MAX_SPACESHIP_INTEGRITY)
 	print("Spaceship integrity was modified by ", delta)
 	complete_order(order_id)
 
+
+
+func start_game() -> void:
+	game_started = true
+
+func _process(delta : float) -> void:
+	if get_tree().paused or not game_started:
+		return
+	
+	_update_integrity(delta)
+	_update_order_spawning(delta)
+
 func game_over():
 	spaceship_integrity = MAX_SPACESHIP_INTEGRITY
 	pending_orders.clear()
 	active_orders.clear()
+	first_order_spawned = false
+	_current_order_interval = 1.0
+	_order_timer = 0.0
 	for i in occupied_slots:
 		occupied_slots[i] = -1
 	PantryInventory.inventory.clear()
