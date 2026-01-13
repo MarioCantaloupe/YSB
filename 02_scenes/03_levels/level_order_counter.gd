@@ -18,8 +18,6 @@ func _ready() -> void:
 	
 	_restore_existing_notes()
 	
-	MusicPlayer.play_music(preload("res://01_assets/03_sound/music/Cooking_theme.mp3"))
-	
 	
 	if not GameSystem.orders_tip_shown:
 		await get_tree().create_timer(3).timeout

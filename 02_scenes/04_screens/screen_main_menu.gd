@@ -1,10 +1,9 @@
 extends Control
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameSystem.game_started = false
-	MusicPlayer.play_music(preload("res://01_assets/03_sound/music/menu_theme.mp3"))
+	AudioManager.play_music(preload("res://01_assets/03_sound/music/menu_theme.mp3"))
 
 
 func _on_button_options_pressed() -> void:
@@ -16,4 +15,4 @@ func _on_button_options_pressed() -> void:
 )
 
 func _exit_tree():
-	MusicPlayer.stop_music()
+	AudioManager.stop_music()
