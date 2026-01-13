@@ -8,9 +8,9 @@ class_name DynamicButton
 
 @export_group("Audio")
 @export var hover_audio : AudioStream = preload("res://01_assets/03_sound/menu/click_003.ogg")
-@export var hover_audio_volume : float
+@export var hover_audio_volume : float = -8
 @export var click_audio : AudioStream = preload("res://01_assets/03_sound/menu/select_004.ogg")
-@export var click_audio_volume : float
+@export var click_audio_volume : float = -6
 @export var audio_variation : float
 
 func _ready() -> void:
@@ -20,6 +20,10 @@ func _ready() -> void:
 	
 	
 	call_deferred("_init_pivot")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_key"):
+		grab_attention()
 
 func _init_pivot() -> void:
 	pivot_offset = size/2.0
@@ -65,3 +69,12 @@ func _button_pressed() -> void:
 		click_audio_volume,
 		1 + randf_range(-audio_variation, audio_variation),
 		0, AudioManager.Bus.UI)
+
+func grab_attention() -> void:
+	var button_attention_tween : Tween = create_tween()
+	for loop in 2:
+		AudioManager.play_oneshot(hover_audio, hover_audio_volume, 1, 0, AudioManager.Bus.UI)
+		button_attention_tween.tween_property(self, "scale", hover_scale, 0.2
+		).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+		button_attention_tween.tween_property(self, "scale", Vector2.ONE, 0.2
+		).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
