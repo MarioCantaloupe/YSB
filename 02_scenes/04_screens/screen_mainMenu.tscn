@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://2fdgqp5p3dve"]
+[gd_scene load_steps=21 format=3 uid="uid://2fdgqp5p3dve"]
 
 [ext_resource type="Script" uid="uid://dsk14mfsfdj04" path="res://02_scenes/04_screens/screen_main_menu.gd" id="1_j4tqg"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="2_7uqsd"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cdbx8q8i535xi" path="res://01_assets/03_sound/honk.ogg" id="7_25ra4"]
 [ext_resource type="Shader" uid="uid://cobedgecb5b01" path="res://01_assets/04_shaders/SolidColor.gdshader" id="8_2k6bo"]
 [ext_resource type="Texture2D" uid="uid://cyo2yoaptrpdq" path="res://01_assets/01_sprites/05_ui/YSB_LogoWide.png" id="8_ooxka"]
+[ext_resource type="AudioStream" uid="uid://cjnfbmyuk0k08" path="res://01_assets/03_sound/music/menu_theme.mp3" id="12_4kl2f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_25ra4"]
 shader = ExtResource("3_25ra4")
@@ -258,6 +259,11 @@ texture = ExtResource("8_ooxka")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_4kl2f")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="Button_Manager/mainmenu_buttons/MC_Start/button_start" to="Button_Manager/mainmenu_buttons/MC_Start/button_start" method="_on_pressed"]
 [connection signal="pressed" from="Button_Manager/mainmenu_buttons/MC_Options/button_options" to="." method="_on_button_options_pressed"]
