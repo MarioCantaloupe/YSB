@@ -4,14 +4,10 @@ var options_screen = preload("res://02_scenes/04_screens/screen_options.tscn")
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var MainMenu : String = "res://02_scenes/04_screens/screen_mainMenu.tscn"
+
 func _ready() -> void:
-	
 	visible = false
 	animation_player.play("RESET")
-	
-
-func _process(_delta: float) -> void:
-	testEsc()
 
 func resume():
 	animation_player.play_backwards("menu_popup")
@@ -28,9 +24,9 @@ func pause():
 	get_tree().paused = true
 	visible = true
 	animation_player.play("menu_popup")
-	
-func testEsc():
-	if Input.is_action_just_pressed("pause"):
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
 		if not get_tree().paused:
 			PlayerCursor.enable_cursor(true)
 			pause()
@@ -39,10 +35,8 @@ func testEsc():
 			resume()
 			print("game resumed")
 
-
 func _on_resume_pressed() -> void:
 	resume()
-
 
 func _on_options_pressed() -> void:
 	var options = options_screen.instantiate()

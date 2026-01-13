@@ -226,7 +226,6 @@ script = ExtResource("5_e5igh")
 hover_scale = Vector2(1.05, 1.05)
 pressed_scale = Vector2(1, 1)
 hover_rotation = 2.0
-hover_audio = null
 click_audio = ExtResource("7_25ra4")
 click_audio_volume = -4.0
 audio_variation = 0.16
