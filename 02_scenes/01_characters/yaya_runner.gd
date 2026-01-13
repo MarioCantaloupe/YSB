@@ -16,11 +16,18 @@ signal GameEnd
 var can_hit : bool = true
 
 var carrito_demon : bool = false
-@export var carrito_threshold : int = 5
+@export var carrito_threshold : int = 3
 var carrito_level : int = 0
 var ready_to_eat : bool = false
 var chew_count : int = 0
 var chew_loops : int = 2
+
+#scaling
+var velocity_scale_y: float = 1.0
+var velocity_scale_x: float = 1.0
+var duck_scale_y : float = 1.0
+var duck_scale_x : float = 1.0
+
 
 @export var jump_height : float = 300
 @export var jump_time_to_peak : float = 0.5
@@ -46,10 +53,13 @@ func _input(_event: InputEvent) -> void:
 		duck(false)
 
 func _process(delta: float) -> void:
-	lung_capacity -= delta
+	match carrito_demon:
+		false:
+			lung_capacity += -1 * delta
+		true:
+			lung_capacity += 0.5 * delta
 	if lung_capacity <= 0:
 		no_air_left()
-	
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
@@ -67,20 +77,46 @@ func _physics_process(delta: float) -> void:
 		else:
 			fall_gravity_buffer = fall_gravity
 	
-	#var v := velocity
-	#scaler.scale.y = lerp(scaler.scale.y, remap(abs(v.y), 0, 700, 0.75, 1), delta * 20)
+	# squash and stretch
+	var speed_y : float = abs(velocity.y)
+
+	var target_scale_y := 1.0
+	var target_scale_x := 1.0
+
+	if not is_on_floor():
+		# falling / jumping
+		target_scale_y = remap(speed_y, 0, 700, 1.0, 0.75)
+		target_scale_x = remap(speed_y, 0, 700, 1.0, 1.15)
+
+	velocity_scale_y = lerp(
+		velocity_scale_y,
+		clamp(target_scale_y, 0.75, 1.0), delta * 20)
+
+	velocity_scale_x = lerp(
+		velocity_scale_x,
+		clamp(target_scale_x, 1.0, 1.15), delta * 20)
+
+	#apply scale
+	scaler.scale = Vector2(
+		velocity_scale_x * duck_scale_x,
+		velocity_scale_y * duck_scale_y)
+
 	
 	move_and_slide()
 
 func jump():
 	velocity.y = jump_velocity
 
-func duck(value : bool):
-	if value:
-		scaler.scale.y = 0.5
-		#var tween : Tween
-	else:
-		scaler.scale.y = 1
+func duck(value: bool):
+	var target_scale_y := 0.5 if value else 1.0
+	var target_scale_x := 1.5 if value else 1.0
+	
+	var tween: Tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(self,"duck_scale_y", target_scale_y, 0.1
+	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(self,"duck_scale_x", target_scale_x, 0.1
+	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 
 func get_custom_gravity():
 	return jump_gravity if velocity.y < 0.0 else fall_gravity_buffer
