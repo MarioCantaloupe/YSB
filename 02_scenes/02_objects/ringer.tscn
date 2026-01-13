@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckoxorblkavdh"]
+[gd_scene load_steps=6 format=3 uid="uid://ckoxorblkavdh"]
 
 [ext_resource type="Script" uid="uid://b21icdr0oio5q" path="res://02_scenes/02_objects/ringer.gd" id="1_1am0d"]
 [ext_resource type="Texture2D" uid="uid://kh6qbo56rr7g" path="res://01_assets/01_sprites/02_objects/campanita.PNG" id="1_qahf6"]
 [ext_resource type="AudioStream" uid="uid://dvvnd1mj5boeg" path="res://01_assets/03_sound/ding.ogg" id="2_7b7t1"]
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="5_rr7my"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1am0d"]
 radius = 191.42
@@ -22,4 +23,31 @@ position = Vector2(0, -106)
 position = Vector2(0, -41)
 shape = SubResource("CircleShape2D_1am0d")
 
+[node name="tooltip" type="RichTextLabel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -401.0
+offset_top = -496.0
+offset_right = 401.0
+offset_bottom = -358.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("5_rr7my")
+theme_override_colors/font_outline_color = Color(0.4862745, 0.3764706, 0.28627452, 1)
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/normal_font_size = 94
+bbcode_enabled = true
+text = "[center][color=ffcfa5]3[/color] para entregar[/center]"
+fit_content = true
+
+[node name="combo_timer" type="Timer" parent="."]
+wait_time = 0.333
+one_shot = true
+
 [connection signal="input_event" from="click_area" to="." method="_on_click_area_input_event"]
+[connection signal="timeout" from="combo_timer" to="." method="_on_combo_timer_timeout"]
