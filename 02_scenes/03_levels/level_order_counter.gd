@@ -10,8 +10,10 @@ var max_notes_on_string : int
 
 
 func _ready() -> void:
-	GameSystem.start_game()
 	GameSystem.new_note.connect(_on_new_order_created)
+	
+	
+	GameSystem.start_game()
 	
 	tip_box.tip_box_clicked.connect(tip_shown)
 	max_notes_on_string = GameSystem.max_notes_on_string
