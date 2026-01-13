@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ryqpe6qt3p8n"]
+[gd_scene load_steps=6 format=3 uid="uid://ryqpe6qt3p8n"]
 
 [ext_resource type="PackedScene" uid="uid://bbhi6ysyx7ejp" path="res://02_scenes/02_objects/runner/obstacle.tscn" id="1_pwg4u"]
 [ext_resource type="Texture2D" uid="uid://dwuhp2l33jjps" path="res://01_assets/01_sprites/02_objects/obstacles/basura_patinete.PNG" id="2_e1dbk"]
+[ext_resource type="Resource" uid="uid://cctenuf23b064" path="res://02_scenes/02_objects/01_obstacle_data/patinete_obstacle.tres" id="2_tuupu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tuupu"]
 size = Vector2(20, 115.03594)
@@ -10,6 +11,7 @@ size = Vector2(20, 115.03594)
 size = Vector2(127.00001, 32.000008)
 
 [node name="obstacle" instance=ExtResource("1_pwg4u")]
+obstacle_data = ExtResource("2_tuupu")
 
 [node name="sprite" parent="." index="0"]
 scale = Vector2(0.29700553, 0.26908702)

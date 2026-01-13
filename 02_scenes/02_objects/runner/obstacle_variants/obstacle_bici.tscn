@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvk5ciwopbpg2"]
+
+[ext_resource type="PackedScene" uid="uid://bbhi6ysyx7ejp" path="res://02_scenes/02_objects/runner/obstacle.tscn" id="1_2ooq8"]
+[ext_resource type="Texture2D" uid="uid://b8lqme64t4bmd" path="res://01_assets/01_sprites/02_objects/obstacles/basura_bici.PNG" id="2_2ooq8"]
+[ext_resource type="Resource" uid="uid://brnm8fxa31yvf" path="res://02_scenes/02_objects/01_obstacle_data/bici_obstacle.tres" id="2_awlbp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuupu"]
+size = Vector2(25.000006, 90.000015)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_awlbp"]
+radius = 25.000004
+height = 141.50002
+
+[node name="obstacle" instance=ExtResource("1_2ooq8")]
+obstacle_data = ExtResource("2_awlbp")
+
+[node name="sprite" parent="." index="0"]
+scale = Vector2(0.29700553, 0.26908702)
+texture = ExtResource("2_2ooq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision" index="0"]
+position = Vector2(7.9999995, -26.5)
+rotation = -1.5707964
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_tuupu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="collision" index="1"]
+position = Vector2(-0.9999999, 10)
+rotation = -1.5707964
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("CapsuleShape2D_awlbp")

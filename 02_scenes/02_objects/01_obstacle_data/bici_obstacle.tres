@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ObstacleData" load_steps=4 format=3 uid="uid://brnm8fxa31yvf"]
+
+[ext_resource type="AudioStream" uid="uid://dncyme50uifut" path="res://01_assets/03_sound/hit.wav" id="1_gjjv0"]
+[ext_resource type="Script" uid="uid://bhj1pdgi67rgb" path="res://02_scenes/02_objects/01_obstacle_data/obstacle_data_resource.gd" id="2_y3t4n"]
+[ext_resource type="Texture2D" uid="uid://b8lqme64t4bmd" path="res://01_assets/01_sprites/02_objects/obstacles/basura_bici.PNG" id="3_gjjv0"]
+
+[resource]
+script = ExtResource("2_y3t4n")
+name = "Bicicleta"
+min_loot = 2
+max_loot = 6
+hit_sound = ExtResource("1_gjjv0")
+sprite = ExtResource("3_gjjv0")
+metadata/_custom_type_script = "uid://bhj1pdgi67rgb"

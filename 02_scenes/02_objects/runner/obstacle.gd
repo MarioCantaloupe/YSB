@@ -1,7 +1,8 @@
 extends Node2D
 
+signal loot_generated(amount: int, world_position: Vector2)
 
-@export var obstacle_data : Resource
+@export var obstacle_data : ObstacleData
 
 @export var obstacle_particles_scene: PackedScene
 
@@ -52,9 +53,42 @@ func destroyed():
 		particle_timer.connect("timeout", Callable(particles, "queue_free"))
 		get_parent().add_child(particle_timer)
 		particle_timer.start()
-		
-		
 	else:
 		push_error("no obstacle particles found")
-	# TODO: drop loot
+	var amount : int = give_loot()
+	emit_signal("loot_generated", amount, global_position)
 	queue_free()
+
+func give_loot() -> int:
+	var pool := PantryInventory.get_all_item_data()
+	if pool.is_empty():
+		push_error("Inventory pool empty")
+		return 0 
+	
+	var amount : int = generate_loot_amount()
+	
+	for i in amount:
+		var item_data: ItemData = pool.pick_random()
+		if item_data == null:
+			continue
+		
+		var state : ItemState = ItemState.new()
+		state.data = item_data
+		state.is_clean = false
+		state.is_frozen = randf_range(0,1)
+		
+		PantryInventory.add_item_state(state)
+	
+	return amount
+
+func generate_loot_amount() -> int:
+	var amount := randi_range(
+		obstacle_data.min_loot,
+		obstacle_data.max_loot
+	)
+
+	if obstacle_data.size_variance != 0.0:
+		var variance := randf_range(-obstacle_data.size_variance, obstacle_data.size_variance)
+		amount = int(round(amount * (1.0 + variance)))
+
+	return max(amount, 1)
