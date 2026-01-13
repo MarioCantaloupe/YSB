@@ -4,11 +4,14 @@ extends LevelScene
 @onready var texture_lung_bar: TextureProgressBar = %texture_lung_bar
 @onready var tooltip_player: AnimationPlayer = $tooltip_player
 
+@export var music_audio : AudioStream
 
 var has_tooltip_appeared : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	AudioManager.play_music(music_audio, -6)
+	
 	GameSystem.GameState = GameSystem.GameStates.Runner
 	PlayerCursor.enable_cursor(false)
 	tooltip_player.play("control_tooltip_fadeIn")
@@ -18,8 +21,6 @@ func _ready() -> void:
 	#lung_bar.max_value = player.lung_capacity
 	#lung_bar.value = player.lung_capacity
 	
-	AudioManager.play_music(preload("res://01_assets/03_sound/music/Runner_theme.mp3"))
-
 func _process(_delta: float) -> void:
 	#lung_bar.value = player.lung_capacity
 	texture_lung_bar.value = player.lung_capacity
@@ -31,4 +32,3 @@ func _on_yaya_game_end() -> void:
 	GameSystem.runner_button_shown = false
 	PlayerCursor.enable_cursor(true)
 	SceneLoader.load_scene("res://02_scenes/03_levels/level_cuttingCounter.tscn", SceneLoader.Transition.NONE)
-	AudioManager.stop_music()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://df1gg5noj12cr"]
+[gd_scene load_steps=13 format=3 uid="uid://df1gg5noj12cr"]
 
 [ext_resource type="Script" uid="uid://bvkwrh163n3aj" path="res://02_scenes/03_levels/level_order_counter.gd" id="1_bovh0"]
 [ext_resource type="Texture2D" uid="uid://cb4comhg3t442" path="res://01_assets/01_sprites/03_environments/notas_fondo.PNG" id="1_cja8n"]
 [ext_resource type="Texture2D" uid="uid://v7q1uqwpjyof" path="res://01_assets/01_sprites/03_environments/cordel.PNG" id="2_e2j81"]
 [ext_resource type="PackedScene" uid="uid://bq80il7e83rsc" path="res://02_scenes/02_objects/order_note.tscn" id="2_w24k5"]
+[ext_resource type="AudioStream" uid="uid://dyyc43xv7kl3n" path="res://01_assets/03_sound/music/Cooking_theme.mp3" id="3_dpyo0"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="5_408wl"]
 [ext_resource type="PackedScene" uid="uid://hcaomq6vq7pf" path="res://02_scenes/04_screens/screen_pauseMenu.tscn" id="6_0wcnp"]
 [ext_resource type="PackedScene" uid="uid://bmnxwektka7wt" path="res://02_scenes/04_screens/game_tip_box.tscn" id="7_jy05j"]
@@ -21,6 +22,7 @@ point_count = 6
 script = ExtResource("1_bovh0")
 note_scene = ExtResource("2_w24k5")
 note_scale = Vector2(0.35, 0.35)
+music_audio = ExtResource("3_dpyo0")
 can_pause = true
 
 [node name="Background" type="TextureRect" parent="."]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://b1uufv8ixv0b5"]
+[gd_scene load_steps=22 format=3 uid="uid://b1uufv8ixv0b5"]
 
 [ext_resource type="Script" uid="uid://dhj03vcapxkd1" path="res://02_scenes/03_levels/level_cutting_counter.gd" id="1_l575l"]
+[ext_resource type="AudioStream" uid="uid://dyyc43xv7kl3n" path="res://01_assets/03_sound/music/Cooking_theme.mp3" id="2_2qpom"]
 [ext_resource type="PackedScene" uid="uid://wkvbdahuorpu" path="res://02_scenes/02_objects/stations/tap.tscn" id="2_pkr72"]
 [ext_resource type="Texture2D" uid="uid://wt2e1uavyimq" path="res://01_assets/01_sprites/03_environments/fondo.PNG" id="2_tjvqv"]
 [ext_resource type="PackedScene" uid="uid://bpk6ka7ckqbny" path="res://02_scenes/02_objects/stations/pantry.tscn" id="3_26cpk"]
@@ -34,6 +35,7 @@ size = Vector2(120.5, 1227)
 
 [node name="CuttingCounter" type="Node2D" groups=["mouse_scene"]]
 script = ExtResource("1_l575l")
+music_audio = ExtResource("2_2qpom")
 
 [node name="Environment" type="Node2D" parent="."]
 

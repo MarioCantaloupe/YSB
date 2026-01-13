@@ -6,12 +6,16 @@ extends LevelScene
 
 @export var note_scene : PackedScene
 @export var note_scale : Vector2
+
+@export var music_audio : AudioStream
+
 var max_notes_on_string : int
 
 
 func _ready() -> void:
-	GameSystem.new_note.connect(_on_new_order_created)
+	AudioManager.play_music(music_audio, -12)
 	
+	GameSystem.new_note.connect(_on_new_order_created)
 	
 	GameSystem.start_game()
 	

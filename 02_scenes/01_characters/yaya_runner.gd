@@ -12,7 +12,7 @@ signal GameEnd
 @onready var scaler: Node2D = $YayaEntity
 
 
-@export var lung_capacity : float = 60
+@export var lung_capacity : float = 90
 var can_hit : bool = true
 
 var carrito_demon : bool = false

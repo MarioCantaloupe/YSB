@@ -16,15 +16,16 @@ enum Bus {
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-func play_music(music: AudioStream):
+func play_music(music: AudioStream, volumeDb):
 	if _music_player:
 		stop_music()
 
 	_music_player = AudioStreamPlayer2D.new()
 	_music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	_music_player.stream = music
+	_music_player.volume_db = volumeDb
 	_music_player.bus = "Music"
-	get_tree().current_scene.add_child(_music_player)
+	add_child(_music_player)
 	_music_player.play()
 
 func stop_music() -> void:
@@ -49,7 +50,7 @@ func play_oneshot(sound: AudioStream, volume_db : float, pitch_scale : float, pa
 		
 		# adding player
 		await get_tree().process_frame
-		get_tree().current_scene.add_child(audio_player)
+		add_child(audio_player)
 		audio_player.play()
 		audio_player.connect("finished", Callable(self, "_on_finished").bind(audio_player)) #borrar y reducir cuenta
 
