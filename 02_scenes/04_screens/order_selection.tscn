@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://pxr14x5uimus"]
+
+[ext_resource type="PackedScene" uid="uid://dyr0jkcrbvgke" path="res://02_scenes/04_screens/memory_note_bar.tscn" id="1_8h12x"]
+[ext_resource type="Theme" uid="uid://js8iup5k42b2" path="res://03_themes/UI_theme.tres" id="1_m33b2"]
+[ext_resource type="Script" uid="uid://bro8x2jr2qq04" path="res://02_scenes/04_screens/order_selection.gd" id="2_kbcje"]
+[ext_resource type="AudioStream" uid="uid://33s5acxx6d61" path="res://01_assets/03_sound/menu/maximize_009.ogg" id="3_f085h"]
+[ext_resource type="AudioStream" uid="uid://dt1oi7lmia6nx" path="res://01_assets/03_sound/menu/minimize_009.ogg" id="4_mc4tu"]
+[ext_resource type="Script" uid="uid://duwv1o7gw68hi" path="res://02_scenes/04_screens/button_master.gd" id="6_mc4tu"]
+
+[node name="order_selection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_m33b2")
+script = ExtResource("2_kbcje")
+fade_in_audio = ExtResource("3_f085h")
+fade_out_audio = ExtResource("4_mc4tu")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.21800001
+anchor_right = 1.0
+anchor_bottom = 0.78200006
+offset_left = 131.0
+offset_top = 0.039993286
+offset_right = -131.0
+offset_bottom = -0.040039063
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="MC_Dialog" type="MarginContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 50
+
+[node name="RTL_Dialog" type="RichTextLabel" parent="Panel/VBoxContainer/MC_Dialog"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Escoge un pedido:[/center]"
+fit_content = true
+
+[node name="MC_Notes" type="MarginContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 405
+
+[node name="Control" type="Control" parent="Panel/VBoxContainer/MC_Notes"]
+layout_mode = 2
+
+[node name="memory_notes_bar" parent="Panel/VBoxContainer/MC_Notes/Control" instance=ExtResource("1_8h12x")]
+unique_name_in_owner = true
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+offset_left = 75.0
+offset_right = 2968.3335
+grow_horizontal = 1
+scale = Vector2(0.3, 0.3)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+selectable_notes = true
+
+[node name="MC_ReturnButton" type="MarginContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 25
+
+[node name="BUT_Return" type="Button" parent="Panel/VBoxContainer/MC_ReturnButton"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Volver"
+script = ExtResource("6_mc4tu")

@@ -1,6 +1,8 @@
 extends Control
 class_name MemoryNotesBar
 
+signal order_selected(order_id : int)
+
 @export var max_active_notes := 5
 @export var memory_note_scene: PackedScene
 @export var selectable_notes : bool = false
@@ -38,5 +40,4 @@ func remove_order(order_id: int):
 func _on_order_selected(order_id : int):
 	if not selectable_notes:
 		return
-	
-	
+	emit_signal("order_selected", order_id)
