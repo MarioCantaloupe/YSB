@@ -1,9 +1,6 @@
 extends Node2D
 class_name IntegrityMeter
 
-@export var min_value : float = 17
-@export var max_value : float = 85
-
 @export var stable_audio : AudioStream
 @export var unstable_audio : AudioStream
 
@@ -12,19 +9,28 @@ class_name IntegrityMeter
 
 var mouse_to_meter : float
 
+func _ready() -> void:
+	GameSystem.connect("order_result", visual_feedback)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	progress_tank.value = remap(GameSystem.spaceship_integrity, 0, GameSystem.MAX_SPACESHIP_INTEGRITY, 17, 85)
-	
+	progress_tank.value = remap(GameSystem.spaceship_integrity, 0, GameSystem.MAX_SPACESHIP_INTEGRITY, 0, 100)
 	
 	mouse_to_meter = global_position.distance_to(get_global_mouse_position())
 	sound.volume_db = remap(mouse_to_meter, 1400, 0, -48, -6)
 
-static func visual_feedback(is_good: bool):
+func visual_feedback(is_good: bool):
 	match is_good:
 		true:
-			pass #TODO green fucking overlay and shiz with money sound
+			#TODO green fucking overlay and shiz with money sound
+			AudioManager.play_oneshot(stable_audio, 0, 1, 0, AudioManager.Bus.SFX)
+			var tween_good : Tween = create_tween()
+			tween_good.tween_property(progress_tank, "tint_progress", Color(0.541, 1.825, 0.15, 1.0), 1)
+			tween_good.tween_property(progress_tank, "tint_progress", Color(1.825, 0.708, 0.15), 1)
 		false:
-			pass #TODO big fucking X onscreen and everything turns black and white and dark with loud wrong buzzer
-	
+			#TODO big fucking X onscreen and everything turns black and white and dark with loud wrong buzzer
+			AudioManager.play_oneshot(unstable_audio, 0, 1, 0, AudioManager.Bus.SFX)
+			var tween_bad : Tween = create_tween()
+			for loop in 3:
+				tween_bad.tween_property(progress_tank, "tint_progress", Color(1.825, 0.15, 0.15, 1.0), .1)
+				tween_bad.tween_property(progress_tank, "tint_progress", Color(1.825, 0.708, 0.15), .1)

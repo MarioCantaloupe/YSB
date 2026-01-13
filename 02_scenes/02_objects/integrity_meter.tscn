@@ -21,10 +21,12 @@ offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 step = 0.1
-value = 17.0
+value = 50.0
 fill_mode = 3
 texture_under = ExtResource("1_ys86d")
 texture_progress = ExtResource("2_hiatv")
+texture_progress_offset = Vector2(94.2, 67.755)
+tint_progress = Color(1.8247963, 0.70820326, 0.14990671, 1)
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_q7ddc")
