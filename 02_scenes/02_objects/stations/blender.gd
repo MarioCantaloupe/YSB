@@ -13,7 +13,7 @@ func _ready() -> void:
 	blended_color = GameSystem.blender_fluid_color
 	blender_fluid.self_modulate = blended_color
 	states_in_cup = GameSystem.ingredient_states_in_blender
-
+	GameSystem.order_completed.connect(empty_blender)
 func _on_button_pressed() -> void:
 	blend()
 
@@ -66,3 +66,7 @@ func _on_button_mouse_exited() -> void:
 
 func finish_drink() -> Array[ItemState]:
 	return states_in_cup
+
+func empty_blender(_order_id : int):
+	states_in_cup.clear()
+	blender_fluid.self_modulate = Color(0.0, 0.0, 0.0, 0.0)

@@ -10,6 +10,7 @@ extends LevelScene
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameSystem.GameState = GameSystem.GameStates.Finalizing
+	GameSystem.order_completed.connect(empty_plate)
 	tip_box.tip_box_clicked.connect(tip_shown)
 	
 	if not GameSystem.blending_tip_shown:
@@ -26,3 +27,7 @@ func _on_ringer_order_ready() -> void:
 	
 	order_selection.set_prepared_order(final_bocata, final_drink)
 	
+func empty_plate(_order_id : int):
+	for item in get_tree().get_nodes_in_group("Item"):
+		print("deleted item")
+		item.queue_free()
