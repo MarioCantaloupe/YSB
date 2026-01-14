@@ -4,7 +4,6 @@ extends Sprite2D
 var cooking_tween: Tween
 
 func start_cooking_ui(cooking_time: float):
-	# Kill any existing tween
 	if cooking_tween and cooking_tween.is_running():
 		cooking_tween.kill()
 

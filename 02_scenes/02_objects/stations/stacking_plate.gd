@@ -73,7 +73,7 @@ func _remove_top_drop_zone() -> void:
 	if drop_zones.size() <= 1:
 		return #pa no crashear
 
-	var dz : Node2D = drop_zones.pop_back() #quita un item de atrás (arriba)
+	var dz : Node2D = drop_zones.pop_back() #takes from the top
 	dz.queue_free()
 	_position_top_drop_zone()
 

@@ -27,7 +27,6 @@ enum CursorType {
 	KNIFE,
 }
 
-# Cursor definitions (texture + hotspot in one place)
 var cursor_data := {
 	CursorType.POINT: {
 		"texture": preload("res://01_assets/01_sprites/01_characters/cursor/cursor_point.png"),

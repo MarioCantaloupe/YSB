@@ -55,6 +55,5 @@ func play_oneshot(sound: AudioStream, volume_db : float, pitch_scale : float, pa
 		audio_player.connect("finished", Callable(self, "_on_finished").bind(audio_player)) #borrar y reducir cuenta
 
 func _on_finished(player: AudioStreamPlayer2D) -> void:
-	# Called when the finished signal is emitted
 	sound_count -= 1
 	player.queue_free()

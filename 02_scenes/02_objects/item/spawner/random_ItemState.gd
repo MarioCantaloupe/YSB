@@ -1,35 +1,29 @@
 extends Node
 class_name RandomItemStateGenerator
 
-# Folder containing all ItemData .tres files
+# ItemData resource foñder
 @export_dir var item_data_folder: String = "res://02_scenes/02_objects/00_item_data/"
 
-# Weight configuration resource
-# Designers create and assign this in the Inspector
+# weight configuration resource
 @export var weight_config: IngredientWeightConfig
 
-# Cooking
 @export_group("State variables")
 @export var min_cook_level: int = 0
 @export var max_cook_level: int = 2
 var max_allowed_cook_level : int = 2
 
-# Chopping
+
 @export var min_chop_level: int = 0
 @export var max_chop_level: int = 2
 var max_allowed_chop_level : int = 2
 
-# Probabilities (0.0 – 1.0)
 @export_range(0.0, 1.0) var frozen_chance: float = 0.15
 @export_range(0.0, 1.0) var clean_chance: float = 0.8
 
 
-# All loaded ItemData resources
 var _item_data_by_type: Dictionary = {}
 
-# Local RNG (do NOT use global randomize repeatedly)
-# Godot docs:
-# https://docs.godotengine.org/en/stable/classes/class_randomnumbergenerator.html
+
 var _rng := RandomNumberGenerator.new()
 
 func _init():
@@ -136,7 +130,7 @@ func _generate_item_state(item_data: ItemData) -> ItemState:
 	if item_data.cleanable:
 		state.is_clean = _rng.randf() < clean_chance
 
-	# Freezing (pure state, not ItemData capability)
+	# Freezing
 	state.is_frozen = _rng.randf() < frozen_chance
 
 	return state

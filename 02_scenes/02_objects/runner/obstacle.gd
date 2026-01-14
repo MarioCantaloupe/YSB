@@ -49,7 +49,7 @@ func destroyed():
 		audio_player.play()
 		audio_player.connect("finished", Callable(audio_player, "queue_free")) #se auto borra el sonido
 		
-		# Clean up particles after they finish
+		# particle self kill
 		var particle_timer := Timer.new()
 		particle_timer.wait_time = particles.lifetime
 		particle_timer.one_shot = true

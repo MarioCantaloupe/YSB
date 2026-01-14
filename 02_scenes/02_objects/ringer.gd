@@ -36,7 +36,7 @@ func _on_click_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: 
 			if GameSystem.active_orders.is_empty():
 				show_tip("[center]No hay pedidos![/center]")
 				return
-			print("Order is ready!") #TODO add order finished logic
+			print("Order is ready!")
 			ringer_level = 0
 			emit_signal("order_ready")
 			GameSystem.ringer_tip_shown = true

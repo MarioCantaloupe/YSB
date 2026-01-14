@@ -38,7 +38,7 @@ func _change_scene() -> void:
 	else:
 		get_tree().change_scene_to_file(_target_scene)
 
-	# Defer so the new scene is fully ready
+	# wait for scene to be ready
 	call_deferred("_play_transition_in")
 
 func _create_transition_overlay() -> CanvasLayer:

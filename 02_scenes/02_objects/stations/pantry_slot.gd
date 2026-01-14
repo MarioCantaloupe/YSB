@@ -17,16 +17,14 @@ var can_drop := false
 
 
 func _ready():
-	# Button = visuals only
 	image.texture = item_resource.sprite_grid[0][0]
 	label.text = item_resource.name
 
-	# Area2D signals
 	drop_area.mouse_entered.connect(_on_area_entered)
 	drop_area.mouse_exited.connect(_on_area_exited)
 	drop_area.input_event.connect(_on_area_input)
 
-	# Keep Area2D size synced to UI
+	#rescale to ui
 	resized.connect(_update_collision)
 	_update_collision()
 
