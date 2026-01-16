@@ -47,6 +47,7 @@ var _order_timer: float = 0
 var _current_order_interval : float = 1.0
 
 var first_order_spawned : bool = false
+var first_order_taken : bool = false
 
 # FOR CONTINUITY
 # ORDERS
@@ -54,6 +55,7 @@ var pending_orders : Array[OrderData] = []
 var active_orders : Array[OrderData] = []
 var next_order_id : int = 1
 var max_active_orders : int = 10
+var music_started : bool = false
 
 # ORDER SCREEN
 var occupied_slots : Array[int] = [] # order_id, -1 = empty
@@ -74,6 +76,9 @@ func _ready() -> void:
 
 
 func create_order() -> OrderData:
+	if pending_orders.size() >= max_active_orders:
+		return null
+	
 	if occupied_slots.count(-1) == 0:
 		return null
 	
@@ -88,9 +93,20 @@ func create_order() -> OrderData:
 	order.drink_ingredients = generator.build_drink()
 
 	pending_orders.append(order)
+
+
+	var slot_index := _get_random_free_slot_index()
+	if slot_index != -1:
+		occupied_slots[slot_index] = order.order_id
+
 	emit_signal("new_note", order)
+	var newOrder_audio : AudioStream = preload("res://01_assets/03_sound/new_order.ogg")
+	AudioManager.play_oneshot(newOrder_audio, 0, 1, 0, AudioManager.Bus.SFX)
 
 	return order
+
+
+
 
 
 func accept_order(id : int) -> void:
@@ -101,9 +117,18 @@ func accept_order(id : int) -> void:
 	pending_orders.erase(order)
 	active_orders.append(order)
 
+	# CHANGE START: Clear the slot immediately
+	for i in range(max_notes_on_string):
+		if occupied_slots[i] == id:
+			occupied_slots[i] = -1
+			break
+	# CHANGE END
+
 	order.taken_time = Time.get_ticks_msec()
 	emit_signal("order_accepted", order)
 	print("GameSystem: Order #", id, " accepted")
+
+
 
 func submit_order(order_id : int, bocata: Array[ItemState], drink: Array[ItemState]):
 	var expected : OrderData = get_active_order(order_id)
@@ -170,6 +195,18 @@ func _update_order_spawning(delta: float) -> void:
 				_current_order_interval - difficulty_ramp_rate
 			)
 
+func _get_random_free_slot_index() -> int:
+	var free_indices: Array[int] = []
+	for i in range(max_notes_on_string):
+		if occupied_slots[i] == -1:
+			free_indices.append(i)
+	
+	if free_indices.is_empty():
+		return -1
+		
+	return free_indices.pick_random()
+
+
 
 func _update_integrity(delta: float) -> void:
 	match GameState:
@@ -220,7 +257,8 @@ func game_over():
 	first_order_spawned = false
 	_current_order_interval = 1.0
 	_order_timer = 0.0
-	for i in occupied_slots:
-		occupied_slots[i] = -1
+	
+	occupied_slots.fill(-1)
+	
 	PantryInventory.inventory.clear()
 	SceneLoader.load_scene("res://02_scenes/04_screens/screen_gameOver.tscn", SceneLoader.Transition.NONE, false)

@@ -13,10 +13,11 @@ var max_notes_on_string : int
 
 
 func _ready() -> void:
-	AudioManager.play_music(music_audio, -12)
+	if not GameSystem.music_started:
+		AudioManager.play_music(music_audio, -12)
 	
 	GameSystem.new_note.connect(_on_new_order_created)
-	
+	GameSystem.music_started = true
 	GameSystem.start_game()
 	
 	tip_box.tip_box_clicked.connect(tip_shown)
@@ -24,6 +25,10 @@ func _ready() -> void:
 	
 	_restore_existing_notes()
 	
+	if GameSystem.first_order_taken == true:
+		button_next_scene.show()
+	else:
+		button_next_scene.hide()
 	
 	if not GameSystem.orders_tip_shown:
 		await get_tree().create_timer(0.5).timeout
@@ -50,11 +55,19 @@ func _on_new_order_created(order: OrderData) -> void:
 	if order == null:
 		return
 
-	var slot_index := _get_random_free_slot()
+	var slot_index := -1
+	for i in range(max_notes_on_string):
+		if GameSystem.occupied_slots[i] == order.order_id:
+			slot_index = i
+			break
+			
 	if slot_index == -1:
+		printerr("Critical Error: Order created but no slot found in occupied_slots")
 		return
 
 	_place_note(order, slot_index)
+
+
 
 func _place_note(order: OrderData, slot_index: int) -> void:
 	var step: float = 1.0 / (max_notes_on_string + 1)
@@ -69,9 +82,10 @@ func _place_note(order: OrderData, slot_index: int) -> void:
 	path_follow.add_child(note)
 
 	note.setup(order)
-
-	GameSystem.occupied_slots[slot_index] = order.order_id
+	
 	note.note_was_taken.connect(_on_note_taken.bind(note, slot_index))
+
+
 
 func _get_random_free_slot() -> int:
 	var free_slots: Array[int] = []
@@ -85,10 +99,12 @@ func _get_random_free_slot() -> int:
 
 	return free_slots.pick_random()
 
-func _on_note_taken(order_id : int, note_node : Node, slot_index : int) -> void:
+func _on_note_taken(order_id : int, note_node : Node, _slot_index : int) -> void:
 	GameSystem.accept_order(order_id)
-	GameSystem.occupied_slots[slot_index] = -1
+  
 	note_node.queue_free()
+	button_next_scene.show()
+	GameSystem.first_order_taken = true
 	button_next_scene.grab_attention()
 
 func _restore_note(order : OrderData, slot_index : int) -> void:
