@@ -10,8 +10,11 @@ signal note_was_taken(order_id : int)
 @onready var order_number_label: Label = $ticket_box/VBoxContainer/MarginContainer_orderNum/order_number
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@export var note_audio: AudioStream
+
 var order_data : OrderData
 var taken : bool = false
+
 
 
 func setup(order : OrderData) -> void:
@@ -33,9 +36,9 @@ func note_taken() -> void:
 		return
 
 	taken = true
+	AudioManager.play_oneshot(note_audio, 0, 1, 0, AudioManager.Bus.SFX)
 	animation_player.play_backwards("note_appear")
 	emit_signal("note_was_taken", order_data.order_id)
-
 
 func _on_ticket_box_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Lclick"):

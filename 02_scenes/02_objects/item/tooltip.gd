@@ -23,7 +23,7 @@ func play_popup(text : String):
 			print("not playing tween")
 			return
 		
-	
+	AudioManager.play_oneshot(slide_audio, 5, 1, 0, AudioManager.Bus.UI)
 	item_label.text = text
 	
 	var start_pos := position
@@ -85,4 +85,4 @@ func play_popup(text : String):
 		return_time
 	)
 	
-	AudioManager.play_oneshot(slide_audio, 5, 1, 0, AudioManager.Bus.UI)
+	

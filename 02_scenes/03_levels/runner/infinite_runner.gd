@@ -32,3 +32,4 @@ func _on_yaya_game_end() -> void:
 	GameSystem.runner_button_shown = false
 	PlayerCursor.enable_cursor(true)
 	SceneLoader.load_scene("res://02_scenes/03_levels/level_cuttingCounter.tscn", SceneLoader.Transition.NONE)
+	AudioManager.play_music(preload("res://01_assets/03_sound/music/Cooking_theme.mp3"), -12)

@@ -51,4 +51,5 @@ func _on_options_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
+	AudioManager.stop_music()
 	SceneLoader.load_scene(MainMenu, SceneLoader.Transition.FADE, true)

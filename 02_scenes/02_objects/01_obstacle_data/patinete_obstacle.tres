@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ObstacleData" load_steps=4 format=3 uid="uid://cctenuf23b064"]
 
-[ext_resource type="AudioStream" uid="uid://dncyme50uifut" path="res://01_assets/03_sound/hit.wav" id="1_inrqs"]
+[ext_resource type="AudioStream" uid="uid://j7j7d462efwm" path="res://01_assets/03_sound/metalhit.ogg" id="1_inrqs"]
 [ext_resource type="Script" uid="uid://bhj1pdgi67rgb" path="res://02_scenes/02_objects/01_obstacle_data/obstacle_data_resource.gd" id="2_h0ei6"]
 [ext_resource type="Texture2D" uid="uid://dwuhp2l33jjps" path="res://01_assets/01_sprites/02_objects/obstacles/basura_patinete.PNG" id="3_inrqs"]
 

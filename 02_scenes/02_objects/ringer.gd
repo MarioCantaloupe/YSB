@@ -8,7 +8,7 @@ signal order_ready
 @onready var combo_timer: Timer = $combo_timer
 @onready var tooltip: RichTextLabel = $tooltip
 @export var ding_audio : AudioStream
-
+@export var tooltip_audio : AudioStream
 var ringer_level : int
 var click_tween : Tween
 
@@ -54,6 +54,7 @@ func _on_combo_timer_timeout() -> void:
 	
 func show_tip(tipText : String):
 	tooltip.text = tipText
+	AudioManager.play_oneshot(tooltip_audio, 0 ,1, 0, AudioManager.Bus.UI)
 	#show tooltip
 	tooltween_up = create_tween()
 	tooltween_up.set_parallel(true)

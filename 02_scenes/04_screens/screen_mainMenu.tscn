@@ -1,7 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://2fdgqp5p3dve"]
+[gd_scene load_steps=24 format=3 uid="uid://2fdgqp5p3dve"]
 
 [ext_resource type="Script" uid="uid://dsk14mfsfdj04" path="res://02_scenes/04_screens/screen_main_menu.gd" id="1_j4tqg"]
-[ext_resource type="AudioStream" uid="uid://cjnfbmyuk0k08" path="res://01_assets/03_sound/music/menu_theme.mp3" id="2_4kl2f"]
 [ext_resource type="Script" uid="uid://cu6ytqfsos3av" path="res://02_scenes/04_screens/button_change_scene.gd" id="2_7uqsd"]
 [ext_resource type="Texture2D" uid="uid://bbmklayn4cr0r" path="res://01_assets/01_sprites/05_ui/pPrincipal_yayaYCarro.PNG" id="3_2k6bo"]
 [ext_resource type="Shader" uid="uid://bn3b2nunntuc4" path="res://01_assets/04_shaders/Halftone.gdshader" id="3_25ra4"]
@@ -12,6 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://cdbx8q8i535xi" path="res://01_assets/03_sound/honk.ogg" id="7_25ra4"]
 [ext_resource type="Shader" uid="uid://cobedgecb5b01" path="res://01_assets/04_shaders/SolidColor.gdshader" id="8_2k6bo"]
 [ext_resource type="Texture2D" uid="uid://cyo2yoaptrpdq" path="res://01_assets/01_sprites/05_ui/YSB_LogoWide.png" id="8_ooxka"]
+[ext_resource type="AudioStream" uid="uid://086itvlrntln" path="res://01_assets/03_sound/music/menuTheme_bass.ogg" id="12_vdpe1"]
+[ext_resource type="AudioStream" uid="uid://btoc06g5vp2ou" path="res://01_assets/03_sound/music/menuTheme_drums.ogg" id="13_tu30e"]
+[ext_resource type="AudioStream" uid="uid://cljjt3x3q1ayc" path="res://01_assets/03_sound/music/menuTheme_other.ogg" id="14_7nro5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_25ra4"]
 shader = ExtResource("3_25ra4")
@@ -89,6 +91,15 @@ shader = ExtResource("8_2k6bo")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 1.0
 
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_e4pgx"]
+stream_count = 3
+stream_0/stream = ExtResource("12_vdpe1")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("13_tu30e")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("14_7nro5")
+stream_2/volume = 0.0
+
 [node name="MainMenu" type="Control" groups=["mouse_scene"]]
 layout_mode = 3
 anchors_preset = 15
@@ -97,7 +108,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j4tqg")
-music_audio = ExtResource("2_4kl2f")
 
 [node name="BackgroundWhite" type="ColorRect" parent="."]
 layout_mode = 1
@@ -260,6 +270,11 @@ texture = ExtResource("8_ooxka")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_lock_ = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamSynchronized_e4pgx")
+volume_db = -12.0
+bus = &"Music"
 
 [connection signal="pressed" from="Button_Manager/mainmenu_buttons/MC_Start/button_start" to="Button_Manager/mainmenu_buttons/MC_Start/button_start" method="_on_pressed"]
 [connection signal="pressed" from="Button_Manager/mainmenu_buttons/MC_Options/button_options" to="." method="_on_button_options_pressed"]

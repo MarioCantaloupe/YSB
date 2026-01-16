@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://dx13ntlp0pio6"]
+[gd_scene load_steps=31 format=3 uid="uid://dx13ntlp0pio6"]
 
 [ext_resource type="Script" uid="uid://c2n2s6fs13tfq" path="res://02_scenes/02_objects/trash_bin.gd" id="1_8wf21"]
 [ext_resource type="Texture2D" uid="uid://bnl107nnmcrny" path="res://01_assets/01_sprites/02_objects/02_papelera/agujero.PNG" id="1_ajdb3"]
 [ext_resource type="Texture2D" uid="uid://gara7ekr8kng" path="res://01_assets/01_sprites/02_objects/02_papelera/aura_agujero.PNG" id="2_700yg"]
+[ext_resource type="AudioStream" uid="uid://dowuv2pmr8j6k" path="res://01_assets/03_sound/trash_suck.ogg" id="2_jf07c"]
 [ext_resource type="Shader" uid="uid://d1ndjouy7ryjd" path="res://01_assets/01_sprites/02_objects/02_papelera/trash_bin_aura.tres" id="2_x78en"]
 [ext_resource type="Shader" uid="uid://cfd782tvgy5c7" path="res://01_assets/01_sprites/02_objects/02_papelera/trash_bin_estrellas.tres" id="3_700yg"]
 [ext_resource type="Texture2D" uid="uid://vacorvw48erq" path="res://01_assets/01_sprites/02_objects/02_papelera/estrellas_agujero.PNG" id="3_x78en"]
@@ -128,6 +129,7 @@ _data = {
 
 [node name="trash_bin" type="Node2D"]
 script = ExtResource("1_8wf21")
+suck_audio = ExtResource("2_jf07c")
 
 [node name="controller" type="Node2D" parent="."]
 

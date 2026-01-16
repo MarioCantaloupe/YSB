@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bq80il7e83rsc"]
+[gd_scene load_steps=14 format=3 uid="uid://bq80il7e83rsc"]
 
 [ext_resource type="Script" uid="uid://7vbuvpyhkrk3" path="res://02_scenes/02_objects/order_note.gd" id="1_76yku"]
 [ext_resource type="Texture2D" uid="uid://cei82cwkotrng" path="res://01_assets/01_sprites/02_objects/tique.PNG" id="2_nr0ra"]
+[ext_resource type="AudioStream" uid="uid://df8b0ylcwuejn" path="res://01_assets/03_sound/take_order.ogg" id="2_ucmjy"]
 [ext_resource type="Shader" uid="uid://c6d1er8x4ep6h" path="res://01_assets/04_shaders/printed_receipt.gdshader" id="3_ucmjy"]
 [ext_resource type="Texture2D" uid="uid://dbwuai8nppsxp" path="res://01_assets/01_sprites/05_ui/YSB_LogoInitials.png" id="4_njcss"]
 [ext_resource type="FontFile" uid="uid://wl0sie60h0aj" path="res://01_assets/02_fonts/VT323-Regular.ttf" id="5_njcss"]
@@ -173,6 +174,7 @@ _data = {
 [node name="order_note" type="Node2D"]
 z_index = 5
 script = ExtResource("1_76yku")
+note_audio = ExtResource("2_ucmjy")
 
 [node name="ticket_box" type="MarginContainer" parent="."]
 anchors_preset = -1

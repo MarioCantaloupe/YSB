@@ -11,7 +11,14 @@ signal GameEnd
 @onready var collision: Area2D = $YayaEntity/collision
 @onready var scaler: Node2D = $YayaEntity
 
+@export_group("Audio")
+@export var jump_audio : AudioStream
+@export var hurt_audio : AudioStream
+@export var powerup_audio : AudioStream
+@export var powerdown_audio : AudioStream
 
+
+@export_group("Properties")
 @export var lung_capacity : float = 90
 var can_hit : bool = true
 
@@ -105,7 +112,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func jump():
+	AudioManager.play_oneshot(jump_audio, 0, 1, 0, AudioManager.Bus.SFX)
 	velocity.y = jump_velocity
+	
 
 func duck(value: bool):
 	var target_scale_y := 0.5 if value else 1.0
@@ -122,6 +131,7 @@ func get_custom_gravity():
 	return jump_gravity if velocity.y < 0.0 else fall_gravity_buffer
 
 func yaya_hit():
+	AudioManager.play_oneshot(hurt_audio, -3, 1, 0, AudioManager.Bus.SFX)
 	lung_capacity -= 5
 	can_hit = false
 	animation_player.play("yaya_hit")
@@ -138,12 +148,14 @@ func set_demon_mode(value):
 	if value == true:
 		carrito_demon = true
 		demon_form()
+		AudioManager.play_oneshot(powerup_audio, -6, 1, 0, AudioManager.Bus.SFX)
 		print_debug("carrito demon ON")
 		carrito_level = 0
 		demon_cart_timer.start()
 	if value == false:
 		carrito_demon = false
 		regular_form()
+		AudioManager.play_oneshot(powerdown_audio, -6, 1, 0, AudioManager.Bus.SFX)
 		print_debug("carrito demon OFF")
 
 func demon_form():

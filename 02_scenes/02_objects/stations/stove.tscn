@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4f22bbh2xbs4"]
+[gd_scene load_steps=6 format=3 uid="uid://b4f22bbh2xbs4"]
 
 [ext_resource type="PackedScene" uid="uid://kcobqkuobirl" path="res://02_scenes/02_objects/stations/station.tscn" id="1_73e1l"]
 [ext_resource type="Script" uid="uid://dyohucblox24s" path="res://02_scenes/02_objects/stations/stove.gd" id="1_uopil"]
 [ext_resource type="Texture2D" uid="uid://37k4ujge1c5r" path="res://01_assets/01_sprites/04_vfx/stove_fire.png" id="2_uopil"]
 [ext_resource type="Material" uid="uid://nvg3t8mftpqk" path="res://02_scenes/02_objects/item/boil_material.tres" id="3_u2q3q"]
+[ext_resource type="AudioStream" uid="uid://oxfmy5ak37ur" path="res://01_assets/03_sound/kitchen/frying.ogg" id="5_7fu3t"]
 
 [node name="stove" type="Node2D"]
 script = ExtResource("1_uopil")
@@ -15,5 +16,10 @@ action = 1
 visible = false
 material = ExtResource("3_u2q3q")
 texture = ExtResource("2_uopil")
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7fu3t")
+volume_db = -6.0
+pitch_scale = 1.1
 
 [connection signal="station_selected" from="station" to="." method="_on_station_station_selected"]

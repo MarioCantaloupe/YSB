@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b35nkyy8bi5em"]
+[gd_scene load_steps=7 format=3 uid="uid://b35nkyy8bi5em"]
 
 [ext_resource type="Script" uid="uid://clxbnawwx5u1y" path="res://02_scenes/02_objects/integrity_meter.gd" id="1_hiatv"]
 [ext_resource type="Texture2D" uid="uid://dkdf6wfh2ufql" path="res://01_assets/01_sprites/02_objects/tanque_vacio.PNG" id="1_ys86d"]
+[ext_resource type="AudioStream" uid="uid://brkrrjmgbyu6c" path="res://01_assets/03_sound/good_order.ogg" id="2_64nnu"]
 [ext_resource type="Texture2D" uid="uid://dlyfgi6xe010m" path="res://01_assets/01_sprites/02_objects/tanque_lleno.PNG" id="2_hiatv"]
+[ext_resource type="AudioStream" uid="uid://cwbqacb53sb5n" path="res://01_assets/03_sound/wrong_order.ogg" id="3_p178l"]
 [ext_resource type="AudioStream" uid="uid://bf11sq4indalj" path="res://01_assets/03_sound/kitchen/doomsday_clock.ogg" id="4_q7ddc"]
 
 [node name="integrity_meter" type="Node2D"]
 script = ExtResource("1_hiatv")
+stable_audio = ExtResource("2_64nnu")
+unstable_audio = ExtResource("3_p178l")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 8

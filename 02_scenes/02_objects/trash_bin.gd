@@ -3,10 +3,13 @@ extends Node2D
 @onready var controller: Node2D = $controller
 var tween : Tween
 @onready var eat_anim: AnimatedSprite2D = $controller/eat_anim
+@export var suck_audio : AudioStream
+
 
 func _on_drop_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_released("Lclick") and PlayerCursor.held_item != null:
 		print("item_dropped")
+		AudioManager.play_oneshot(suck_audio, -3, 1, 0, AudioManager.Bus.SFX)
 		PlayerCursor.held_item.queue_free()
 		
 		if tween:

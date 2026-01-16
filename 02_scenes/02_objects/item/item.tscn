@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bwov6edkubuxi"]
+[gd_scene load_steps=38 format=3 uid="uid://bwov6edkubuxi"]
 
 [ext_resource type="Script" uid="uid://choy4l2dbk5xs" path="res://02_scenes/02_objects/item/item.gd" id="1_xwsi1"]
 [ext_resource type="Texture2D" uid="uid://blwgex1cdinyv" path="res://01_assets/01_sprites/04_vfx/shadow.png" id="2_028ab"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://d1wd562uw3sxm" path="res://01_assets/03_sound/menu/drop_004.ogg" id="4_fc64x"]
 [ext_resource type="Texture2D" uid="uid://bno73j0wa8l1g" path="res://01_assets/01_sprites/04_vfx/pelusa_spritesheet.png" id="5_wkqhs"]
 [ext_resource type="AudioStream" uid="uid://de5wcb5tfa2ky" path="res://01_assets/03_sound/boowomp.ogg" id="5_wl6fe"]
+[ext_resource type="AudioStream" uid="uid://cuosxkcvkjktn" path="res://01_assets/03_sound/poof.ogg" id="6_r3d6d"]
 [ext_resource type="Texture2D" uid="uid://bol4fikx3rlfj" path="res://01_assets/01_sprites/04_vfx/vfx_poof_spritesheet.png" id="8_028ab"]
 [ext_resource type="Texture2D" uid="uid://lagptp0juwey" path="res://01_assets/01_sprites/02_objects/icecube_full.png" id="8_xesb6"]
 [ext_resource type="Script" uid="uid://c3g1inqiivp0n" path="res://02_scenes/02_objects/item/visual_components/ice_block.gd" id="9_exv7o"]
@@ -20,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bxdffroj5togu" path="res://01_assets/01_sprites/05_ui/reloj_cronometro.PNG" id="12_ntrvf"]
 [ext_resource type="Script" uid="uid://b4lkuhhayt4sa" path="res://02_scenes/02_objects/item/visual_components/cooking_ui.gd" id="12_osky5"]
 [ext_resource type="PackedScene" uid="uid://m50vwetoeqq1" path="res://02_scenes/02_objects/item/food_particles.tscn" id="16_fc64x"]
+[ext_resource type="AudioStream" uid="uid://c77k0l8but2f6" path="res://01_assets/03_sound/music/popup.ogg" id="16_fhien"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_70bak"]
 friction = 0.69
@@ -125,6 +127,7 @@ food_data = ExtResource("2_70bak")
 pickup_audio = ExtResource("3_xw3og")
 drop_audio = ExtResource("4_fc64x")
 burnt_audio = ExtResource("5_wl6fe")
+poof_audio = ExtResource("6_r3d6d")
 is_clean = true
 max_drop_distance = 75.0
 
@@ -177,6 +180,7 @@ animation = &"poof"
 position = Vector2(0, -70)
 script = ExtResource("11_l4qy8")
 move_distance = 50.0
+slide_audio = ExtResource("16_fhien")
 
 [node name="item_label" type="Label" parent="tooltip"]
 anchors_preset = 8

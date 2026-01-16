@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://cb04ji4mpf2vu"]
+[gd_scene load_steps=27 format=3 uid="uid://cb04ji4mpf2vu"]
 
 [ext_resource type="Script" uid="uid://bqognyraoiwx0" path="res://02_scenes/03_levels/runner/infinite_runner.gd" id="1_0p27r"]
 [ext_resource type="PackedScene" uid="uid://co1ew4wo03x4j" path="res://02_scenes/01_characters/yaya_runner.tscn" id="1_w88gs"]
+[ext_resource type="AudioStream" uid="uid://b0tpm0q7wx2qu" path="res://01_assets/03_sound/music/Runner_theme.mp3" id="2_sxx0n"]
 [ext_resource type="Script" uid="uid://cfel1p4e70kct" path="res://02_scenes/02_objects/runner/obstacle_spawner.gd" id="2_u86ga"]
 [ext_resource type="Texture2D" uid="uid://cupemqikjx4w6" path="res://01_assets/01_sprites/03_environments/espacio_estrellas1.PNG" id="4_bg425"]
 [ext_resource type="Texture2D" uid="uid://bugpe7nf0gshr" path="res://01_assets/01_sprites/03_environments/espacio_planeta1.PNG" id="4_p2ljq"]
@@ -146,6 +147,7 @@ _data = {
 
 [node name="InfiniteRunner" type="Node2D"]
 script = ExtResource("1_0p27r")
+music_audio = ExtResource("2_sxx0n")
 
 [node name="BgManager" type="Node2D" parent="."]
 
@@ -301,7 +303,6 @@ libraries = {
 }
 
 [node name="pause_canvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PauseMenu" parent="pause_canvasLayer" instance=ExtResource("6_2tkmp")]
 process_mode = 3

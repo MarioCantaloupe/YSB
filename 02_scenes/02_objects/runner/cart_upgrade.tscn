@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbx6k5i72h3n2"]
+[gd_scene load_steps=8 format=3 uid="uid://cbx6k5i72h3n2"]
 
 [ext_resource type="Script" uid="uid://bqnduylenu37c" path="res://02_scenes/02_objects/runner/cart_upgrade.gd" id="2_5x7pv"]
+[ext_resource type="AudioStream" uid="uid://cjjcd45ra25ri" path="res://01_assets/03_sound/candy_eat.ogg" id="3_2rt86"]
 [ext_resource type="Resource" uid="uid://cy3ompnpe6ige" path="res://02_scenes/02_objects/01_obstacle_data/cart_upgrade.tres" id="3_hn43r"]
 [ext_resource type="Texture2D" uid="uid://b78e8cnigsi32" path="res://01_assets/01_sprites/02_objects/magic_candy.png" id="3_kw5xt"]
+[ext_resource type="Texture2D" uid="uid://0u17slrrg1g0" path="res://01_assets/01_sprites/04_vfx/radial_gradient.png" id="4_q2c83"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hf6sg"]
+blend_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5pvj"]
 radius = 44.0
@@ -10,6 +15,13 @@ radius = 44.0
 [node name="pickup" type="Node2D"]
 script = ExtResource("2_5x7pv")
 obstacle_data = ExtResource("3_hn43r")
+upgrade_sound = ExtResource("3_2rt86")
+
+[node name="gradient" type="Sprite2D" parent="."]
+modulate = Color(0.58500004, 0.75, 0.45000002, 0.4509804)
+material = SubResource("CanvasItemMaterial_hf6sg")
+scale = Vector2(0.19726563, 0.19726563)
+texture = ExtResource("4_q2c83")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 2)

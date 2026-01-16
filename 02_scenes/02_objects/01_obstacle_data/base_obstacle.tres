@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ObstacleData" load_steps=4 format=3 uid="uid://d5nolignyog7"]
 
 [ext_resource type="Script" uid="uid://bhj1pdgi67rgb" path="res://02_scenes/02_objects/01_obstacle_data/obstacle_data_resource.gd" id="1_n780b"]
-[ext_resource type="AudioStream" uid="uid://dncyme50uifut" path="res://01_assets/03_sound/hit.wav" id="1_xagop"]
+[ext_resource type="AudioStream" uid="uid://ddb5r8n1aomyk" path="res://01_assets/03_sound/debris.ogg" id="1_xagop"]
 [ext_resource type="Texture2D" uid="uid://cuwsi0ah53ma1" path="res://01_assets/01_sprites/02_objects/obstacles/asteroid.png" id="3_xagop"]
 
 [resource]

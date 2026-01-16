@@ -1,8 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://co1ew4wo03x4j"]
+[gd_scene load_steps=26 format=3 uid="uid://co1ew4wo03x4j"]
 
 [ext_resource type="Script" uid="uid://cchhadnjmn6at" path="res://02_scenes/01_characters/yaya_runner.gd" id="1_cq216"]
+[ext_resource type="AudioStream" uid="uid://voe7nbgtlvnw" path="res://01_assets/03_sound/boing.ogg" id="2_k52j5"]
 [ext_resource type="Texture2D" uid="uid://crx6i0afvhpg7" path="res://01_assets/01_sprites/01_characters/carrito/carrito_masticar_1.PNG" id="3_0mk7g"]
+[ext_resource type="AudioStream" uid="uid://b6axy5b80ib0l" path="res://01_assets/03_sound/damage.ogg" id="3_lwibl"]
 [ext_resource type="Texture2D" uid="uid://c5n4ra3wnqq62" path="res://01_assets/01_sprites/01_characters/carrito/carrito_masticar_2.PNG" id="4_k52j5"]
+[ext_resource type="AudioStream" uid="uid://ddvwxctrvdbxh" path="res://01_assets/03_sound/power_up.ogg" id="4_ngwu8"]
+[ext_resource type="AudioStream" uid="uid://bnjv0jgkl7xb3" path="res://01_assets/03_sound/power_down.ogg" id="5_83rty"]
 [ext_resource type="Texture2D" uid="uid://0d87po60ml5x" path="res://01_assets/01_sprites/01_characters/carrito/carrito_tragar_1.PNG" id="5_lwibl"]
 [ext_resource type="Texture2D" uid="uid://c7ji2cco65wjj" path="res://01_assets/01_sprites/01_characters/carrito/carrito_tragar_2.PNG" id="6_rbvnr"]
 [ext_resource type="Texture2D" uid="uid://bo3v5jr6w244j" path="res://01_assets/01_sprites/01_characters/carrito/carro_idle_1.PNG" id="7_0mk7g"]
@@ -169,6 +173,10 @@ size = Vector2(223.5, 158)
 
 [node name="yaya" type="CharacterBody2D"]
 script = ExtResource("1_cq216")
+jump_audio = ExtResource("2_k52j5")
+hurt_audio = ExtResource("3_lwibl")
+powerup_audio = ExtResource("4_ngwu8")
+powerdown_audio = ExtResource("5_83rty")
 jump_time_to_descent = 2.0
 
 [node name="hit_cooldown" type="Timer" parent="."]

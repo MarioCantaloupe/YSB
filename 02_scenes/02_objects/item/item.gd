@@ -14,6 +14,7 @@ signal item_grabbed(bool)
 @export var drop_audio : AudioStream
 @export var plop_audio : AudioStream
 @export var burnt_audio : AudioStream
+@export var poof_audio : AudioStream
 
 #region Scene Nodes
 @onready var sprite: Sprite2D = $sprite
@@ -249,6 +250,7 @@ func defrost():
 #endregion
 
 func play_poof(color):
+	AudioManager.play_oneshot(poof_audio, 0, 1, 0, AudioManager.Bus.SFX)
 	poof_vfx.self_modulate = color
 	poof_vfx.show()
 	poof_vfx.play("poof")
