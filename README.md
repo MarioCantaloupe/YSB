@@ -1,6 +1,6 @@
 ![título del juego Yaya's Sideral Bocatas](https://github.com/MarioCantaloupe/YSB/blob/main/01_assets/01_sprites/05_ui/YSB_LogoWide.png?raw=true)
 
-*Yaya's Sideral Bocatas** es una pequeña demo hecha con [Godot](https://godotengine.org/) 4.5.
+**Yaya's Sideral Bocatas** es una pequeña demo hecha con [Godot](https://godotengine.org/) 4.5.
 
 Es un juego de cocina similar a Cooking Mama con físicas donde usas el ratón para dar los pedidos a tus clientes.
 
